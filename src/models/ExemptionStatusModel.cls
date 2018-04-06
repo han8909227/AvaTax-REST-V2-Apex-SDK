@@ -1,0 +1,21 @@
+/*
+ * AvaTax API Client Library
+ *
+ * (c) 2004-2018 Avalara, Inc.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ */
+
+/// Indicates the customer's exemption status in a specific country and region.
+
+global class ExemptionStatusModel extends ErrorResult
+{
+
+    /// The exemption status of this customer in this country/region.
+    global String status { get; set; }
+
+    /// Certificate if the customer is exempted
+    global CertificateModel certificate { get; set; }
+}
