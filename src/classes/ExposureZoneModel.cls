@@ -16,10 +16,10 @@ global class ExposureZoneModel extends ErrorResult
 {
 
     /// A unique ID number representing this exposure zone.
-    global Integer? id { get; set; }
+    global Integer id { get; set; }
 
     /// The unique ID number of the AvaTax company that recorded this customer.
-    global Integer? companyId { get; set; }
+    global Integer companyId { get; set; }
 
     /// The short name of this exposure zone, suitable for use in a drop-down list.
     global String name { get; set; }
@@ -31,10 +31,10 @@ global class ExposureZoneModel extends ErrorResult
     global String description { get; set; }
 
     /// The date when this record was created.
-    global DateTime? created { get; set; }
+    global DateTime created { get; set; }
 
     /// The date/time when this record was last modified.
-    global DateTime? modified { get; set; }
+    global DateTime modified { get; set; }
 
     /// Two or three character ISO 3166 region, province, or state name of this exposure zone.
     global String region { get; set; }

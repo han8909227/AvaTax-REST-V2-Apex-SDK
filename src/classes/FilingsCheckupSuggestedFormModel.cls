@@ -14,7 +14,7 @@ global class FilingsCheckupSuggestedFormModel extends ErrorResult
 {
 
     /// Tax Authority ID of the suggested form returned
-    global Integer? taxAuthorityId { get; set; }
+    global Integer taxAuthorityId { get; set; }
 
     /// Country of the suggested form returned
     global String country { get; set; }

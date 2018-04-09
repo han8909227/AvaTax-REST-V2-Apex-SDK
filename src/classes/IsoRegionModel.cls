@@ -29,7 +29,7 @@ global class IsoRegionModel extends ErrorResult
 
     /// For the United States, this flag indicates whether a U.S. State participates in the Streamlined
     /// Sales Tax program. For countries other than the US, this flag is null.
-    global Boolean? streamlinedSalesTax { get; set; }
+    global Boolean streamlinedSalesTax { get; set; }
 
     /// A list of localized names in a variety of languages.
     /// 

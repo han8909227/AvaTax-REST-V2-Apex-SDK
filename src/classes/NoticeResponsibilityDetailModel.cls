@@ -14,7 +14,7 @@ global class NoticeResponsibilityDetailModel extends ErrorResult
 {
 
     /// The unique ID number of this filing frequency.
-    global Integer? id { get; set; }
+    global Integer id { get; set; }
 
     /// TaxNoticeId
     global Integer noticeId { get; set; }

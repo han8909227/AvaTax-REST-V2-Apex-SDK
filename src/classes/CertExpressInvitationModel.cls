@@ -18,10 +18,10 @@ global class CertExpressInvitationModel extends ErrorResult
 {
 
     /// A unique ID number representing this CertExpress invitation.
-    global Integer? id { get; set; }
+    global Integer id { get; set; }
 
     /// The unique ID number of the AvaTax company that sent this invitation.
-    global Integer? companyId { get; set; }
+    global Integer companyId { get; set; }
 
     /// The email address to which this invitation was sent. If this invitation was presented as a weblink, this value will be null.
     global String recipient { get; set; }
@@ -42,27 +42,27 @@ global class CertExpressInvitationModel extends ErrorResult
     global String emailStatus { get; set; }
 
     /// True if this invitation contained a cover letter only.
-    global Boolean? coverLettersOnly { get; set; }
+    global Boolean coverLettersOnly { get; set; }
 
     /// When an invitation is sent, it contains a list of exposure zones for which the customer is invited to upload
     /// their exemption certificates. This list contains the ID numbers of the exposure zones identified.
     /// 
     /// For a list of exposure zones, please call `ListCertificateExposureZones`.
-    global List<Int32> exposureZones { get; set; }
+    global Integer exposureZones { get; set; }
 
     /// The list of exemption reasons identified by this CertExpress invitation.
     /// 
     /// For a list of reason codes, please call `ListCertificateExemptReasons`.
-    global List<Int32> exemptReasons { get; set; }
+    global Integer exemptReasons { get; set; }
 
     /// Indicates the method that was used to deliver this CertExpress invitation.
-    global CertificateRequestDeliveryMethod? deliveryMethod { get; set; }
+    global CertificateRequestDeliveryMethod deliveryMethod { get; set; }
 
     /// The custom message delivered with this invitation.
     global String message { get; set; }
 
     /// The date of the invitation.
-    global DateTime? date { get; set; }
+    global DateTime date { get; set; }
 
     /// The web link (URL) that a customer can click on or visit to begin using this CertExpress invitation. 
     /// 

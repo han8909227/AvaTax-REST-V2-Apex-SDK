@@ -14,5 +14,5 @@ global class BulkLockTransactionResult
 {
 
     /// Number of records that have been modified
-    global Integer? numberOfRecords { get; set; }
+    global Integer numberOfRecords { get; set; }
 }

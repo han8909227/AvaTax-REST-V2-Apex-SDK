@@ -23,7 +23,7 @@ global class AddressResolutionModel extends ErrorResult
     global CoordinateInfo coordinates { get; set; }
 
     /// The resolution quality of the geospatial coordinates
-    global ResolutionQuality? resolutionQuality { get; set; }
+    global ResolutionQuality resolutionQuality { get; set; }
 
     /// List of informational and warning messages regarding this address
     global List<TaxAuthorityInfo> taxAuthorities { get; set; }

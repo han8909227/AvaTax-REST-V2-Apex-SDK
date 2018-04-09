@@ -14,7 +14,7 @@ global class FilingAttachmentModel extends ErrorResult
 {
 
     /// The resourceFileId used to retrieve the attachment
-    global Integer? resourceFileId { get; set; }
+    global Integer resourceFileId { get; set; }
 
     /// The description of the attachment
     global String description { get; set; }

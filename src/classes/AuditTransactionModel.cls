@@ -14,19 +14,19 @@ global class AuditTransactionModel extends ErrorResult
 {
 
     /// Unique ID number of the company that created this transaction
-    global Integer? companyId { get; set; }
+    global Integer companyId { get; set; }
 
     /// Reconstructed API request/response
     global ReconstructedApiRequestResponseModel reconstructed { get; set; }
 
     /// Server timestamp, in UTC, of the date/time when the original transaction was created
-    global DateTime? serverTimestamp { get; set; }
+    global DateTime serverTimestamp { get; set; }
 
     /// Length of time the original API call took
-    global DateTime? serverDuration { get; set; }
+    global DateTime serverDuration { get; set; }
 
     /// api call status
-    global ApiCallStatus? apiCallStatus { get; set; }
+    global ApiCallStatus apiCallStatus { get; set; }
 
     /// Original API request/response
     global OriginalApiRequestResponseModel original { get; set; }

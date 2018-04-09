@@ -17,7 +17,7 @@ global class NexusByTaxFormModel extends ErrorResult
     global String formCode { get; set; }
 
     /// The company ID of the company that was used to load the companyNexus array. If this value is null, no company data was loaded.
-    global Integer? companyId { get; set; }
+    global Integer companyId { get; set; }
 
     /// A list of all Avalara-defined nexus that are relevant to this tax form
     global List<NexusModel> nexusDefinitions { get; set; }

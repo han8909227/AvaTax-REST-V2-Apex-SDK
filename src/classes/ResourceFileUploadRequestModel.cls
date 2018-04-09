@@ -20,17 +20,17 @@ global class ResourceFileUploadRequestModel extends ErrorResult
     global String username { get; set; }
 
     /// The account ID to which this file will be attached.
-    global Integer? accountId { get; set; }
+    global Integer accountId { get; set; }
 
     /// The company ID to which this file will be attached.
-    global Integer? companyId { get; set; }
+    global Integer companyId { get; set; }
 
     /// The original name of this file.
     global String name { get; set; }
 
     /// The resource type ID of this file.
-    global Integer? resourceFileTypeId { get; set; }
+    global Integer resourceFileTypeId { get; set; }
 
     /// Length of the file in bytes.
-    global Int64? length { get; set; }
+    global Integer length { get; set; }
 }

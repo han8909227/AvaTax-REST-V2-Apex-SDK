@@ -14,10 +14,10 @@ global class FormMasterModel extends ErrorResult
 {
 
     /// Unique ID number of this form master object
-    global Integer? id { get; set; }
+    global Integer id { get; set; }
 
     /// The type of the form being submitted
-    global Integer? formTypeId { get; set; }
+    global Integer formTypeId { get; set; }
 
     /// Unique tax form code representing this tax form
     global String taxFormCode { get; set; }
@@ -32,7 +32,7 @@ global class FormMasterModel extends ErrorResult
     global String description { get; set; }
 
     /// True if this form is available for use
-    global Boolean? isEffective { get; set; }
+    global Boolean isEffective { get; set; }
 
     /// ISO 3166 code of the country that issued this tax form
     global String country { get; set; }
@@ -47,88 +47,88 @@ global class FormMasterModel extends ErrorResult
     global String shortCode { get; set; }
 
     /// Day of the month when the form is due
-    global Integer? dueDay { get; set; }
+    global Integer dueDay { get; set; }
 
     /// Day of the month on which the form is considered delinquent. Almost always the same as DueDay
-    global Integer? delinquentDay { get; set; }
+    global Integer delinquentDay { get; set; }
 
     /// Month of the year the state considers as the first fiscal month
-    global Integer? fiscalYearStartMonth { get; set; }
+    global Integer fiscalYearStartMonth { get; set; }
 
     /// Can form support multi frequencies
-    global Boolean? hasMultiFrequencies { get; set; }
+    global Boolean hasMultiFrequencies { get; set; }
 
     /// Does this tax authority require a power of attorney in order to speak to Avalara
-    global Boolean? isPOARequired { get; set; }
+    global Boolean isPOARequired { get; set; }
 
     /// True if this form requires that the customer register with the authority
-    global Boolean? isRegistrationRequired { get; set; }
+    global Boolean isRegistrationRequired { get; set; }
 
     /// Unused
-    global Boolean? hasMultiRegistrationMethods { get; set; }
+    global Boolean hasMultiRegistrationMethods { get; set; }
 
     /// Unused
-    global Boolean? hasSchedules { get; set; }
+    global Boolean hasSchedules { get; set; }
 
     /// Unused
-    global Boolean? hasMultiFilingMethods { get; set; }
+    global Boolean hasMultiFilingMethods { get; set; }
 
     /// Unused
-    global Boolean? hasMultiPayMethods { get; set; }
+    global Boolean hasMultiPayMethods { get; set; }
 
     /// Unused
-    global Boolean? isEFTRequired { get; set; }
+    global Boolean isEFTRequired { get; set; }
 
     /// Unused
-    global Boolean? isFilePayMethodLinked { get; set; }
+    global Boolean isFilePayMethodLinked { get; set; }
 
     /// Unused
-    global Integer? mailingReceivedRuleId { get; set; }
+    global Integer mailingReceivedRuleId { get; set; }
 
     /// Unused
-    global Integer? proofOfMailingId { get; set; }
+    global Integer proofOfMailingId { get; set; }
 
     /// True if you can report a negative amount in a single jurisdiction on the form
-    global Boolean? isNegAmountAllowed { get; set; }
+    global Boolean isNegAmountAllowed { get; set; }
 
     /// True if the form overall can go negative
-    global Boolean? allowNegativeOverallTax { get; set; }
+    global Boolean allowNegativeOverallTax { get; set; }
 
     /// Unused
-    global Boolean? isNettingRequired { get; set; }
+    global Boolean isNettingRequired { get; set; }
 
     /// Unused
-    global Integer? roundingMethodId { get; set; }
+    global Integer roundingMethodId { get; set; }
 
     /// Total amount of discounts that can be received by a vendor each year
-    global Decimal? vendorDiscountAnnualMax { get; set; }
+    global Decimal vendorDiscountAnnualMax { get; set; }
 
     /// Unused
-    global Boolean? versionsRequireAuthorityApproval { get; set; }
+    global Boolean versionsRequireAuthorityApproval { get; set; }
 
     /// Type of outlet reporting for this form
-    global Integer? outletReportingMethodId { get; set; }
+    global Integer outletReportingMethodId { get; set; }
 
     /// Unused
-    global Boolean? hasReportingCodes { get; set; }
+    global Boolean hasReportingCodes { get; set; }
 
     /// Not sure if used
-    global Boolean? hasPrepayments { get; set; }
+    global Boolean hasPrepayments { get; set; }
 
     /// Unused
-    global Boolean? grossIncludesInterstateSales { get; set; }
+    global Boolean grossIncludesInterstateSales { get; set; }
 
     /// Unused
     global String grossIncludesTax { get; set; }
 
     /// Unused
-    global Boolean? hasEfileFee { get; set; }
+    global Boolean hasEfileFee { get; set; }
 
     /// Unused
-    global Boolean? hasEpayFee { get; set; }
+    global Boolean hasEpayFee { get; set; }
 
     /// Unused
-    global Boolean? hasDependencies { get; set; }
+    global Boolean hasDependencies { get; set; }
 
     /// Unused
     global String requiredEfileTrigger { get; set; }
@@ -137,10 +137,10 @@ global class FormMasterModel extends ErrorResult
     global String requiredEftTrigger { get; set; }
 
     /// Unused
-    global Boolean? vendorDiscountEfile { get; set; }
+    global Boolean vendorDiscountEfile { get; set; }
 
     /// Unused
-    global Boolean? vendorDiscountPaper { get; set; }
+    global Boolean vendorDiscountPaper { get; set; }
 
     /// Unused
     global String peerReviewed { get; set; }
@@ -152,16 +152,16 @@ global class FormMasterModel extends ErrorResult
     global String peerReviewedDate { get; set; }
 
     /// ID of the Avalara user who created the form
-    global Integer? createdUserId { get; set; }
+    global Integer createdUserId { get; set; }
 
     /// Date when form was created
-    global DateTime? createdDate { get; set; }
+    global DateTime createdDate { get; set; }
 
     /// ID of the Avalara user who modified the form
-    global Integer? modifiedUserId { get; set; }
+    global Integer modifiedUserId { get; set; }
 
     /// Date when form was modified
-    global DateTime? modifiedDate { get; set; }
+    global DateTime modifiedDate { get; set; }
 
     /// Mailing address of the department of revenue
     global String dorAddressMailTo { get; set; }
@@ -227,16 +227,16 @@ global class FormMasterModel extends ErrorResult
     global String amendedAddressCountry { get; set; }
 
     /// Unused
-    global Boolean? onlineBackFiling { get; set; }
+    global Boolean onlineBackFiling { get; set; }
 
     /// Unused
-    global Boolean? onlineAmendedReturns { get; set; }
+    global Boolean onlineAmendedReturns { get; set; }
 
     /// --Need Further Clarification
     global String prepaymentFrequency { get; set; }
 
     /// Unused
-    global Boolean? outletLocationIdentifiersRequired { get; set; }
+    global Boolean outletLocationIdentifiersRequired { get; set; }
 
     /// --Need Further Clarification
     global String listingSortOrder { get; set; }
@@ -245,13 +245,13 @@ global class FormMasterModel extends ErrorResult
     global String dorWebsite { get; set; }
 
     /// --Need Further Clarification
-    global Boolean? fileForAllOutlets { get; set; }
+    global Boolean fileForAllOutlets { get; set; }
 
     /// --Need Further Clarification
-    global Boolean? paperFormsDoNotHaveDiscounts { get; set; }
+    global Boolean paperFormsDoNotHaveDiscounts { get; set; }
 
     /// Internal behavior
-    global Boolean? stackAggregation { get; set; }
+    global Boolean stackAggregation { get; set; }
 
     /// --Need Further Clarification
     global String roundingPrecision { get; set; }
@@ -260,25 +260,25 @@ global class FormMasterModel extends ErrorResult
     global String inconsistencyTolerance { get; set; }
 
     /// Date when this form became effective
-    global DateTime? effDate { get; set; }
+    global DateTime effDate { get; set; }
 
     /// Date when this form expired
-    global DateTime? endDate { get; set; }
+    global DateTime endDate { get; set; }
 
     /// True if this form can be shown to customers
-    global Boolean? visibleToCustomers { get; set; }
+    global Boolean visibleToCustomers { get; set; }
 
     /// True if this form requires that you set up outlets in the state
-    global Boolean? requiresOutletSetup { get; set; }
+    global Boolean requiresOutletSetup { get; set; }
 
     /// True if this state permits payment by ACH Credit
-    global Boolean? achCreditAllowed { get; set; }
+    global Boolean achCreditAllowed { get; set; }
 
     /// Jurisdiction level of the state
     global String reportLevel { get; set; }
 
     /// True if this form is verified filed via email
-    global Boolean? postOfficeValidated { get; set; }
+    global Boolean postOfficeValidated { get; set; }
 
     /// Internal Avalara flag
     global String stackAggregationOption { get; set; }
@@ -296,10 +296,10 @@ global class FormMasterModel extends ErrorResult
     global String averageCheckClearDays { get; set; }
 
     /// Unused
-    global Boolean? filterZeroRatedLineDetails { get; set; }
+    global Boolean filterZeroRatedLineDetails { get; set; }
 
     /// Unused
-    global Boolean? allowsBulkFilingAccounts { get; set; }
+    global Boolean allowsBulkFilingAccounts { get; set; }
 
     /// Unused
     global String bulkAccountInstructionLink { get; set; }
@@ -314,7 +314,7 @@ global class FormMasterModel extends ErrorResult
     global String transactionSortingOption { get; set; }
 
     /// Unused
-    global Integer? contentReviewFrequencyId { get; set; }
+    global Integer contentReviewFrequencyId { get; set; }
 
     /// Unused
     global String aliasForFormMasterId { get; set; }

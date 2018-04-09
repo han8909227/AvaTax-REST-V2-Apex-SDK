@@ -14,13 +14,13 @@ global class ReportModel extends ErrorResult
 {
 
     /// The unique identifier of the report task
-    global Int64? id { get; set; }
+    global Integer id { get; set; }
 
     /// The ID of the account the reported transactions are from
-    global Integer? accountId { get; set; }
+    global Integer accountId { get; set; }
 
     /// The ID of the company the reported transactions are from
-    global Integer? companyId { get; set; }
+    global Integer companyId { get; set; }
 
     /// The type of the report: ExportDocumentLine, etc.
     global String reportType { get; set; }
@@ -32,7 +32,7 @@ global class ReportModel extends ErrorResult
     global String status { get; set; }
 
     /// The size of the report file, if available
-    global Integer? size { get; set; }
+    global Integer size { get; set; }
 
     /// The format of the report file
     global String format { get; set; }
@@ -41,14 +41,14 @@ global class ReportModel extends ErrorResult
     global String file { get; set; }
 
     /// The time when the report task was initiated
-    global DateTime? createdDate { get; set; }
+    global DateTime createdDate { get; set; }
 
     /// The Id of the user who initiated this task
-    global Integer? createdUserId { get; set; }
+    global Integer createdUserId { get; set; }
 
     /// The userName of the user who initiated the report task
     global String createdUser { get; set; }
 
     /// The time when the report was finished building, if completed
-    global DateTime? completedDate { get; set; }
+    global DateTime completedDate { get; set; }
 }

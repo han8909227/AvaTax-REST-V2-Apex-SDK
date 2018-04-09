@@ -14,7 +14,7 @@ global class AvaFileFormModel extends ErrorResult
 {
 
     /// Unique Id of the form
-    global Integer? id { get; set; }
+    global Integer id { get; set; }
 
     /// Name of the file being returned
     global String returnName { get; set; }
@@ -26,10 +26,10 @@ global class AvaFileFormModel extends ErrorResult
     global String description { get; set; }
 
     /// The date this form starts to take effect
-    global DateTime? effDate { get; set; }
+    global DateTime effDate { get; set; }
 
     /// The date the form finishes to take effect
-    global DateTime? endDate { get; set; }
+    global DateTime endDate { get; set; }
 
     /// State/Province/Region where the form is submitted for
     global String region { get; set; }
@@ -38,32 +38,32 @@ global class AvaFileFormModel extends ErrorResult
     global String country { get; set; }
 
     /// The type of the form being submitted
-    global FormTypeId? formTypeId { get; set; }
+    global FormTypeId formTypeId { get; set; }
 
     /// 
-    global FilingOptionTypeId? filingOptionTypeId { get; set; }
+    global FilingOptionTypeId filingOptionTypeId { get; set; }
 
     /// The type of the due date
-    global DueDateTypeId? dueDateTypeId { get; set; }
+    global DueDateTypeId dueDateTypeId { get; set; }
 
     /// Due date
-    global Byte? dueDay { get; set; }
+    global Byte dueDay { get; set; }
 
     /// 
-    global DueDateTypeId? efileDueDateTypeId { get; set; }
+    global DueDateTypeId efileDueDateTypeId { get; set; }
 
     /// The date by when the E-filing should be submitted
-    global Byte? efileDueDay { get; set; }
+    global Byte efileDueDay { get; set; }
 
     /// The time of day by when the E-filing should be submitted
-    global DateTime? efileDueTime { get; set; }
+    global DateTime efileDueTime { get; set; }
 
     /// Whether the customer has discount
-    global Boolean? hasVendorDiscount { get; set; }
+    global Boolean hasVendorDiscount { get; set; }
 
     /// The way system does the rounding
-    global RoundingTypeId? roundingTypeId { get; set; }
+    global RoundingTypeId roundingTypeId { get; set; }
 
     /// The outlet type of the form
-    global OutletTypeId? outletTypeId { get; set; }
+    global OutletTypeId outletTypeId { get; set; }
 }

@@ -20,8 +20,8 @@ global class NoticeCustomerFundingOptionModel extends ErrorResult
     global String description { get; set; }
 
     /// A flag if the FundingOption is active
-    global Boolean? activeFlag { get; set; }
+    global Boolean activeFlag { get; set; }
 
     /// sort order of the FundingOptions
-    global Integer? sortOrder { get; set; }
+    global Integer sortOrder { get; set; }
 }

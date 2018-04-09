@@ -19,10 +19,10 @@ global class MultiDocumentModel extends ErrorResult
 {
 
     /// The unique ID number of this MultiDocument object.
-    global Int64? id { get; set; }
+    global Integer id { get; set; }
 
     /// The unique ID number of the AvaTax customer account that created this MultiDocument object.
-    global Integer? accountId { get; set; }
+    global Integer accountId { get; set; }
 
     /// The transaction code of the MultiDocument transaction.
     /// 
@@ -35,19 +35,19 @@ global class MultiDocumentModel extends ErrorResult
     /// * SalesInvoice - An invoice that can be reported on a tax return
     /// 
     /// For more information about document types, see [DocumentType](https://developer.avalara.com/api-reference/avatax/rest/v2/models/enums/DocumentType/)
-    global DocumentType? type { get; set; }
+    global DocumentType type { get; set; }
 
     /// The user ID of the user who created this record.
-    global Integer? createdUserId { get; set; }
+    global Integer createdUserId { get; set; }
 
     /// The date/time when this record was created.
-    global DateTime? createdDate { get; set; }
+    global DateTime createdDate { get; set; }
 
     /// The date/time when this record was last modified.
-    global DateTime? modifiedDate { get; set; }
+    global DateTime modifiedDate { get; set; }
 
     /// The user ID of the user who last modified this record.
-    global Integer? modifiedUserId { get; set; }
+    global Integer modifiedUserId { get; set; }
 
     /// A separate document will exist for each unique combination of buyer and seller in this MultiDocument transaction.
     global List<TransactionModel> documents { get; set; }

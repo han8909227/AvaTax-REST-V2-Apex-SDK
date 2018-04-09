@@ -14,10 +14,10 @@ global class FilingAdjustmentModel extends ErrorResult
 {
 
     /// The unique ID number for the adjustment.
-    global Int64? id { get; set; }
+    global Integer id { get; set; }
 
     /// The filing return id that this applies too
-    global Int64? filingId { get; set; }
+    global Integer filingId { get; set; }
 
     /// The adjustment amount.
     global Decimal amount { get; set; }
@@ -29,7 +29,7 @@ global class FilingAdjustmentModel extends ErrorResult
     global AdjustmentTypeId type { get; set; }
 
     /// Whether or not the adjustment has been calculated.
-    global Boolean? isCalculated { get; set; }
+    global Boolean isCalculated { get; set; }
 
     /// The account type of the adjustment.
     global PaymentAccountTypeId accountType { get; set; }
@@ -38,14 +38,14 @@ global class FilingAdjustmentModel extends ErrorResult
     global String reason { get; set; }
 
     /// The date when this record was created.
-    global DateTime? createdDate { get; set; }
+    global DateTime createdDate { get; set; }
 
     /// The User ID of the user who created this record.
-    global Integer? createdUserId { get; set; }
+    global Integer createdUserId { get; set; }
 
     /// The date/time when this record was last modified.
-    global DateTime? modifiedDate { get; set; }
+    global DateTime modifiedDate { get; set; }
 
     /// The user ID of the user who last modified this record.
-    global Integer? modifiedUserId { get; set; }
+    global Integer modifiedUserId { get; set; }
 }

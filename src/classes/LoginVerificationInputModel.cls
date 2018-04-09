@@ -32,8 +32,8 @@ global class LoginVerificationInputModel extends ErrorResult
     global String additionalOptions { get; set; }
 
     /// Bulk Request Id of the verification
-    global Integer? bulkRequestId { get; set; }
+    global Integer bulkRequestId { get; set; }
 
     /// Priority of the verification request
-    global Integer? priority { get; set; }
+    global Integer priority { get; set; }
 }

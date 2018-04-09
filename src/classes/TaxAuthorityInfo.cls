@@ -20,7 +20,7 @@ global class TaxAuthorityInfo
     global String jurisdictionName { get; set; }
 
     /// The type of jurisdiction referenced by this tax authority.
-    global JurisdictionType? jurisdictionType { get; set; }
+    global JurisdictionType jurisdictionType { get; set; }
 
     /// An Avalara-assigned signature code for this tax authority.
     global String signatureCode { get; set; }

@@ -20,7 +20,7 @@ global class UserModel extends ErrorResult
     global Integer accountId { get; set; }
 
     /// If this user is locked to one company (and its children), this is the unique ID number of the company to which this user belongs.
-    global Integer? companyId { get; set; }
+    global Integer companyId { get; set; }
 
     /// The username which is used to log on to the AvaTax website, or to authenticate against API calls.
     global String userName { get; set; }
@@ -41,20 +41,20 @@ global class UserModel extends ErrorResult
     global SecurityRoleId securityRoleId { get; set; }
 
     /// The status of the user's password.
-    global PasswordStatusId? passwordStatus { get; set; }
+    global PasswordStatusId passwordStatus { get; set; }
 
     /// True if this user is currently active.
-    global Boolean? isActive { get; set; }
+    global Boolean isActive { get; set; }
 
     /// The date when this record was created.
-    global DateTime? createdDate { get; set; }
+    global DateTime createdDate { get; set; }
 
     /// The User ID of the user who created this record.
-    global Integer? createdUserId { get; set; }
+    global Integer createdUserId { get; set; }
 
     /// The date/time when this record was last modified.
-    global DateTime? modifiedDate { get; set; }
+    global DateTime modifiedDate { get; set; }
 
     /// The user ID of the user who last modified this record.
-    global Integer? modifiedUserId { get; set; }
+    global Integer modifiedUserId { get; set; }
 }

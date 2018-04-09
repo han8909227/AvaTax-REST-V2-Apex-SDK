@@ -80,7 +80,7 @@ global class EcmsModel extends ErrorResult
     global String exemptReasonOtherDescription { get; set; }
 
     /// Effective date for this exempt certificate
-    global DateTime? effectiveDate { get; set; }
+    global DateTime effectiveDate { get; set; }
 
     /// A list of applicable regions for this exempt certificate.
     /// 
@@ -91,22 +91,22 @@ global class EcmsModel extends ErrorResult
     global ExemptCertStatusId exemptCertStatusId { get; set; }
 
     /// Date when this exempt certificate was created
-    global DateTime? createdDate { get; set; }
+    global DateTime createdDate { get; set; }
 
     /// Date when last transaction with this exempt certificate happened
-    global DateTime? lastTransactionDate { get; set; }
+    global DateTime lastTransactionDate { get; set; }
 
     /// When this exempt certificate will expire
-    global DateTime? expiryDate { get; set; }
+    global DateTime expiryDate { get; set; }
 
     /// User that creates the certificate
-    global Integer? createdUserId { get; set; }
+    global Integer createdUserId { get; set; }
 
     /// Date when this exempt certificate was modified
-    global DateTime? modifiedDate { get; set; }
+    global DateTime modifiedDate { get; set; }
 
     /// Who modified this exempt certificate
-    global Integer? modifiedUserId { get; set; }
+    global Integer modifiedUserId { get; set; }
 
     /// Name or ISO 3166 code identifying the country that issued this ECMS certificate.
     /// 
@@ -123,7 +123,7 @@ global class EcmsModel extends ErrorResult
     global String avaCertId { get; set; }
 
     /// Review status for this exempt certificate
-    global ExemptCertReviewStatusId? exemptCertReviewStatusId { get; set; }
+    global ExemptCertReviewStatusId exemptCertReviewStatusId { get; set; }
 
     /// Exempt Cert details
     global List<EcmsDetailModel> details { get; set; }

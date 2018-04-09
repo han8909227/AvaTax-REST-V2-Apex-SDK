@@ -40,12 +40,12 @@ global class NewAccountRequestModel extends ErrorResult
     /// The date on which the account should take effect. If null, defaults to today.
     /// 
     /// You should leave this value `null` unless specifically requested by your Avalara business development manager.
-    global DateTime? effectiveDate { get; set; }
+    global DateTime effectiveDate { get; set; }
 
     /// The date on which the account should expire.
     /// 
     /// You should leave this value `null` unless specifically requested by your Avalara business development manager.
-    global DateTime? endDate { get; set; }
+    global DateTime endDate { get; set; }
 
     /// The name of the account to create
     global String accountName { get; set; }
@@ -89,7 +89,7 @@ global class NewAccountRequestModel extends ErrorResult
     /// * `Normal` - A standard welcome email will be sent.
     /// * `Suppressed` - No email will be sent.
     /// * `Custom` - If your Avalara business development representative provides you with a customized welcome email for your customers, please select this option.
-    global WelcomeEmail? welcomeEmail { get; set; }
+    global WelcomeEmail welcomeEmail { get; set; }
 
     /// Address information of the account being created.
     global CompanyAddress companyAddress { get; set; }
@@ -105,10 +105,10 @@ global class NewAccountRequestModel extends ErrorResult
     /// Set this to true if and only if the owner of the newly created account accepts Avalara's terms and conditions for your account.
     /// 
     /// Reading and accepting Avalara's terms and conditions is necessary in order for the account to receive a license key.
-    global Boolean? acceptAvalaraTermsAndConditions { get; set; }
+    global Boolean acceptAvalaraTermsAndConditions { get; set; }
 
     /// Set this to true if and only if the owner of the newly created account has fully read Avalara's terms and conditions for your account.
     /// 
     /// Reading and accepting Avalara's terms and conditions is necessary in order for the account to receive a license key.
-    global Boolean? haveReadAvalaraTermsAndConditions { get; set; }
+    global Boolean haveReadAvalaraTermsAndConditions { get; set; }
 }

@@ -18,7 +18,7 @@ global class PreferredProgramModel extends ErrorResult
 {
 
     /// The unique ID number representing this preferred program.
-    global Integer? id { get; set; }
+    global Integer id { get; set; }
 
     /// A code that identifies this preferred program. To select this program, specify this code
     /// value in the `AvaTax.LC.PreferredProgram` parameter.
@@ -32,9 +32,9 @@ global class PreferredProgramModel extends ErrorResult
 
     /// The earliest date for which this preferred program can be used in AvaTax. If `null`, this preferred program
     /// is valid for all dates earlier than `endDate`.
-    global DateTime? effectiveDate { get; set; }
+    global DateTime effectiveDate { get; set; }
 
     /// The latest date for which this preferred program can be used in AvaTax. If `null`, this preferred program
     /// is valid for all dates later than `effectiveDate`.
-    global DateTime? endDate { get; set; }
+    global DateTime endDate { get; set; }
 }

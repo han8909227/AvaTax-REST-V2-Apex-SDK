@@ -14,13 +14,13 @@ global class TransactionLineLocationTypeModel extends ErrorResult
 {
 
     /// The unique ID number of this line location address model
-    global Int64? documentLineLocationTypeId { get; set; }
+    global Integer documentLineLocationTypeId { get; set; }
 
     /// The unique ID number of the document line associated with this line location address model
-    global Int64? documentLineId { get; set; }
+    global Integer documentLineId { get; set; }
 
     /// The address ID corresponding to this model
-    global Int64? documentAddressId { get; set; }
+    global Integer documentAddressId { get; set; }
 
     /// The location type code corresponding to this model
     global String locationTypeCode { get; set; }

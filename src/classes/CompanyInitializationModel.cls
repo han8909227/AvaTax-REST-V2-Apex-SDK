@@ -86,5 +86,5 @@ global class CompanyInitializationModel extends ErrorResult
     global String faxNumber { get; set; }
 
     /// Parent Company ID
-    global Integer? parentCompanyId { get; set; }
+    global Integer parentCompanyId { get; set; }
 }

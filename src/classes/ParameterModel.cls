@@ -14,7 +14,7 @@ global class ParameterModel extends ErrorResult
 {
 
     /// The unique ID number of this property.
-    global Int64? id { get; set; }
+    global Integer id { get; set; }
 
     /// The category grouping of this parameter. When your user interface displays a large number of parameters, they should
     /// be grouped by their category value.
@@ -24,7 +24,7 @@ global class ParameterModel extends ErrorResult
     global String name { get; set; }
 
     /// The data type of the property.
-    global ParameterBagDataType? dataType { get; set; }
+    global ParameterBagDataType dataType { get; set; }
 
     /// Help text to be shown to the user when they are filling out this parameter. Help text may include HTML links to additional
     /// content with more information about a parameter.

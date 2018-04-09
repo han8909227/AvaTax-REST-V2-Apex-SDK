@@ -14,8 +14,8 @@ global class ActivateAccountModel extends ErrorResult
 {
 
     /// Set this to true if and only if you accept Avalara's terms and conditions for your account.
-    global Boolean? acceptAvalaraTermsAndConditions { get; set; }
+    global Boolean acceptAvalaraTermsAndConditions { get; set; }
 
     /// Set this to true if and only if you have fully read Avalara's terms and conditions for your account.
-    global Boolean? haveReadAvalaraTermsAndConditions { get; set; }
+    global Boolean haveReadAvalaraTermsAndConditions { get; set; }
 }

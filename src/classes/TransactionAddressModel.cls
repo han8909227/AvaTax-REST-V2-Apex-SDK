@@ -14,13 +14,13 @@ global class TransactionAddressModel extends ErrorResult
 {
 
     /// The unique ID number of this address.
-    global Int64? id { get; set; }
+    global Integer id { get; set; }
 
     /// The unique ID number of the document to which this address belongs.
-    global Int64? transactionId { get; set; }
+    global Integer transactionId { get; set; }
 
     /// The boundary level at which this address was validated.
-    global BoundaryLevel? boundaryLevel { get; set; }
+    global BoundaryLevel boundaryLevel { get; set; }
 
     /// The first line of the address.
     global String line1 { get; set; }
@@ -44,7 +44,7 @@ global class TransactionAddressModel extends ErrorResult
     global String country { get; set; }
 
     /// The unique ID number of the tax region for this address.
-    global Integer? taxRegionId { get; set; }
+    global Integer taxRegionId { get; set; }
 
     /// Latitude for this address
     global String latitude { get; set; }

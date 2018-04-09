@@ -14,7 +14,7 @@ global class LicenseKeyModel extends ErrorResult
 {
 
     /// The primary key of the account
-    global Integer? accountId { get; set; }
+    global Integer accountId { get; set; }
 
     /// This is your private license key. You must record this license key for safekeeping.
     /// If you lose this key, you must contact the ResetLicenseKey API in order to request a new one.

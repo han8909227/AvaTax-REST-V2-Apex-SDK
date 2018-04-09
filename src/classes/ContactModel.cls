@@ -17,7 +17,7 @@ global class ContactModel extends ErrorResult
     global Integer id { get; set; }
 
     /// The unique ID number of the company to which this contact belongs.
-    global Integer? companyId { get; set; }
+    global Integer companyId { get; set; }
 
     /// A unique code for this contact.
     global String contactCode { get; set; }
@@ -83,14 +83,14 @@ global class ContactModel extends ErrorResult
     global String fax { get; set; }
 
     /// The date when this record was created.
-    global DateTime? createdDate { get; set; }
+    global DateTime createdDate { get; set; }
 
     /// The User ID of the user who created this record.
-    global Integer? createdUserId { get; set; }
+    global Integer createdUserId { get; set; }
 
     /// The date/time when this record was last modified.
-    global DateTime? modifiedDate { get; set; }
+    global DateTime modifiedDate { get; set; }
 
     /// The user ID of the user who last modified this record.
-    global Integer? modifiedUserId { get; set; }
+    global Integer modifiedUserId { get; set; }
 }

@@ -23,10 +23,10 @@ global class SkyscraperStatusModel extends ErrorResult
     global String country { get; set; }
 
     /// They Scraper type
-    global ScraperType? scraperType { get; set; }
+    global ScraperType scraperType { get; set; }
 
     /// Indicates if the return is currently available
-    global Boolean? isAvailable { get; set; }
+    global Boolean isAvailable { get; set; }
 
     /// The expected response time of the call
     global String expectedResponseTime { get; set; }

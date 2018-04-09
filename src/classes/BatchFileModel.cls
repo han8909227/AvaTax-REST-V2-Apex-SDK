@@ -14,10 +14,10 @@ global class BatchFileModel extends ErrorResult
 {
 
     /// The unique ID number assigned to this batch file.
-    global Integer? id { get; set; }
+    global Integer id { get; set; }
 
     /// The unique ID number of the batch that this file belongs to.
-    global Integer? batchId { get; set; }
+    global Integer batchId { get; set; }
 
     /// Logical Name of file (e.g. "Input" or "Error").
     global String name { get; set; }
@@ -26,7 +26,7 @@ global class BatchFileModel extends ErrorResult
     global Byte[] content { get; set; }
 
     /// Size of content, in bytes.
-    global Integer? contentLength { get; set; }
+    global Integer contentLength { get; set; }
 
     /// Content mime type (e.g. text/csv). This is used for HTTP downloading.
     global String contentType { get; set; }
@@ -38,5 +38,5 @@ global class BatchFileModel extends ErrorResult
     global String filePath { get; set; }
 
     /// Number of errors that occurred when processing this file.
-    global Integer? errorCount { get; set; }
+    global Integer errorCount { get; set; }
 }

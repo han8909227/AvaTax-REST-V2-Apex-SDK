@@ -20,7 +20,7 @@ global class SettingModel extends ErrorResult
     global Integer id { get; set; }
 
     /// The unique ID number of the company this setting refers to.
-    global Integer? companyId { get; set; }
+    global Integer companyId { get; set; }
 
     /// A user-defined "set" containing this name-value pair.
     global String set { get; set; }

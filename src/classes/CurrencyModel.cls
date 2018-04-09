@@ -20,5 +20,5 @@ global class CurrencyModel extends ErrorResult
     global String description { get; set; }
 
     /// The number of decimal digits to use when formatting a currency value for display.
-    global Byte? decimalDigits { get; set; }
+    global Byte decimalDigits { get; set; }
 }

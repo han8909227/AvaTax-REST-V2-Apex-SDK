@@ -47,13 +47,13 @@ global class EcmsDetailModel extends ErrorResult
     global String country { get; set; }
 
     /// End date of this exempt certificate
-    global DateTime? endDate { get; set; }
+    global DateTime endDate { get; set; }
 
     /// ID type of this exempt certificate
     global String idType { get; set; }
 
     /// Is the tax code list an exculsion list?
-    global Byte? isTaxCodeListExclusionList { get; set; }
+    global Byte isTaxCodeListExclusionList { get; set; }
 
     /// optional: list of tax code associated with this exempt certificate detail
     global List<EcmsDetailTaxCodeModel> taxCodes { get; set; }

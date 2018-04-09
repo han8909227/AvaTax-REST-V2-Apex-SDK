@@ -14,16 +14,16 @@ global class NewAccountModel extends ErrorResult
 {
 
     /// This is the ID number of the account that was created
-    global Integer? accountId { get; set; }
+    global Integer accountId { get; set; }
 
     /// This is the email address to which credentials were mailed
     global String accountDetailsEmailedTo { get; set; }
 
     /// The date and time when this account was created
-    global DateTime? createdDate { get; set; }
+    global DateTime createdDate { get; set; }
 
     /// The date and time when account information was emailed to the user
-    global DateTime? emailedDate { get; set; }
+    global DateTime emailedDate { get; set; }
 
     /// If this account includes any limitations, specify them here
     global String limitations { get; set; }

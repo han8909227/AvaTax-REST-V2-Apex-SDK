@@ -16,7 +16,7 @@ global class UomModel extends ErrorResult
 {
 
     /// The unique ID number of this unit of measurement.
-    global Integer? id { get; set; }
+    global Integer id { get; set; }
 
     /// The code that refers to this unit of measurement.
     global String code { get; set; }
@@ -28,7 +28,7 @@ global class UomModel extends ErrorResult
     global String description { get; set; }
 
     /// The ID number of the measurement type, such as "Distance" or "Mass".
-    global Integer? measurementTypeId { get; set; }
+    global Integer measurementTypeId { get; set; }
 
     /// The code describing the measurement type.
     global String measurementTypeCode { get; set; }
@@ -42,5 +42,5 @@ global class UomModel extends ErrorResult
     global String measurementTypeDescription { get; set; }
 
     /// True if this measurement is an International System of Units (abbreviated SI) defined standard.
-    global Boolean? isSiUom { get; set; }
+    global Boolean isSiUom { get; set; }
 }

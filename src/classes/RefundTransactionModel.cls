@@ -29,12 +29,12 @@ global class RefundTransactionModel extends ErrorResult
     /// To refund the tax that was paid in the previous transaction, specify `TaxOnly`.
     /// 
     /// To issue a percentage-based discount, specify `Percentage`.
-    global RefundType? refundType { get; set; }
+    global RefundType refundType { get; set; }
 
     /// The percentage for refund.
     /// 
     /// This value only applies if you choose `refundType = Percentage` or `refundType = Partial`.
-    global Decimal? refundPercentage { get; set; }
+    global Decimal refundPercentage { get; set; }
 
     /// If you chose a refund of type `Partial`, this indicates which lines from the original transaction are being refunded.
     global List<String> refundLines { get; set; }

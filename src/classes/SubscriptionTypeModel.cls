@@ -14,7 +14,7 @@ global class SubscriptionTypeModel extends ErrorResult
 {
 
     /// The unique ID number of this subscription type.
-    global Integer? id { get; set; }
+    global Integer id { get; set; }
 
     /// The friendly name of the service this subscription type represents.
     global String description { get; set; }

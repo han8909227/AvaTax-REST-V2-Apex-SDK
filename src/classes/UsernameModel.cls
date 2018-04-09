@@ -17,5 +17,5 @@ global class UsernameModel extends ErrorResult
     global String username { get; set; }
 
     /// Whether or not the username is taken.
-    global Boolean? taken { get; set; }
+    global Boolean taken { get; set; }
 }

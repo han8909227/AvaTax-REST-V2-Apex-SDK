@@ -25,7 +25,7 @@ global class IsoCountryModel extends ErrorResult
     global String name { get; set; }
 
     /// True if this country is a member of the European Union
-    global Boolean? isEuropeanUnion { get; set; }
+    global Boolean isEuropeanUnion { get; set; }
 
     /// A list of localized names in a variety of languages.
     /// 

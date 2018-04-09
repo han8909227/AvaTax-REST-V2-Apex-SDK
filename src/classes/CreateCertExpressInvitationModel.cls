@@ -30,14 +30,14 @@ global class CreateCertExpressInvitationModel extends ErrorResult
     /// If you do not provide a list of exposure zones, the customer will be prompted to select an exposure zone.
     /// 
     /// For a list of available exposure zones, please call `ListCertificateExposureZones`.
-    global List<Int32> exposureZones { get; set; }
+    global Integer exposureZones { get; set; }
 
     /// You may optionally specify a list of exemption reasons to pre-populate in this CertExpress invitation.
     /// If you list exemption reasons, the customer will have part of their form already filled in when they visit
     /// the CertExpress website. 
     /// 
     /// For a list of available exemption reasons, please call `ListCertificateExemptReasons`.
-    global List<Int32> exemptReasons { get; set; }
+    global Integer exemptReasons { get; set; }
 
     /// Specify the type of invitation. CertExpress invitations can be delivered via email, web link, or
     /// facsimile. 
@@ -45,5 +45,5 @@ global class CreateCertExpressInvitationModel extends ErrorResult
     /// * If you specify `Email`, the invitation will be delivered via email. Please ask the customer to ensure that 
     /// * If you specify `Fax`, the invitation will be sent via fax to the customer's fax number on file.
     /// * If you specify `Download`, the invitation will be prepared as a web link that you can display to the customer.
-    global CertificateRequestDeliveryMethod? deliveryMethod { get; set; }
+    global CertificateRequestDeliveryMethod deliveryMethod { get; set; }
 }

@@ -23,10 +23,10 @@ global class JurisdictionModel extends ErrorResult
     global JurisdictionType type { get; set; }
 
     /// The base rate of tax specific to this jurisdiction.
-    global Decimal? rate { get; set; }
+    global Decimal rate { get; set; }
 
     /// The "Sales" tax rate specific to this jurisdiction.
-    global Decimal? salesRate { get; set; }
+    global Decimal salesRate { get; set; }
 
     /// The Avalara-supplied signature code for this jurisdiction.
     global String signatureCode { get; set; }
@@ -42,7 +42,7 @@ global class JurisdictionModel extends ErrorResult
     global String region { get; set; }
 
     /// The "Seller's Use" tax rate specific to this jurisdiction.
-    global Decimal? useRate { get; set; }
+    global Decimal useRate { get; set; }
 
     /// The city name of this jurisdiction
     global String city { get; set; }
@@ -74,11 +74,11 @@ global class JurisdictionModel extends ErrorResult
     global String placeFips { get; set; }
 
     /// Unique AvaTax Id of this Jurisdiction
-    global Integer? id { get; set; }
+    global Integer id { get; set; }
 
     /// The date this jurisdiction starts to take effect on tax calculations
-    global DateTime? effectiveDate { get; set; }
+    global DateTime effectiveDate { get; set; }
 
     /// The date this jurisdiction stops to take effect on tax calculations
-    global DateTime? endDate { get; set; }
+    global DateTime endDate { get; set; }
 }

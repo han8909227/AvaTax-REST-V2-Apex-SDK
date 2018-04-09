@@ -25,7 +25,7 @@ global class CreateTransactionModel extends ErrorResult
     /// be preserved.
     /// 
     /// If you omit this value, the API will assume you want to create a `SalesOrder`.
-    global DocumentType? type { get; set; }
+    global DocumentType type { get; set; }
 
     /// Company Code - Specify the code of the company creating this transaction here. If you leave this value null,
     /// your account's default company will be used instead.
@@ -57,7 +57,7 @@ global class CreateTransactionModel extends ErrorResult
     /// Discount - The discount amount to apply to the document. This value will be applied only to lines
     /// that have the `discounted` flag set to true. If no lines have `discounted` set to true, this discount
     /// cannot be applied.
-    global Decimal? discount { get; set; }
+    global Decimal discount { get; set; }
 
     /// Purchase Order Number for this document.
     /// 
@@ -97,7 +97,7 @@ global class CreateTransactionModel extends ErrorResult
 
     /// Causes the document to be committed if true. This option is only applicable for invoice document 
     /// types, not orders.
-    global Boolean? commit { get; set; }
+    global Boolean commit { get; set; }
 
     /// BatchCode for batch operations.
     global String batchCode { get; set; }
@@ -110,16 +110,16 @@ global class CreateTransactionModel extends ErrorResult
 
     /// Specifies whether the tax calculation is handled Local, Remote, or Automatic (default). This only 
     /// applies when using an AvaLocal server.
-    global ServiceMode? serviceMode { get; set; }
+    global ServiceMode serviceMode { get; set; }
 
     /// Currency exchange rate from this transaction to the company base currency.
     ///  
     /// This only needs to be set if the transaction currency is different than the company base currency.
     /// It defaults to 1.0.
-    global Decimal? exchangeRate { get; set; }
+    global Decimal exchangeRate { get; set; }
 
     /// Effective date of the exchange rate.
-    global DateTime? exchangeRateEffectiveDate { get; set; }
+    global DateTime exchangeRateEffectiveDate { get; set; }
 
     /// Sets the Point of Sale Lane Code sent by the User for this document.
     global String posLaneCode { get; set; }
@@ -141,7 +141,7 @@ global class CreateTransactionModel extends ErrorResult
     /// Set this value to `true` to consider your company as the importer of record and collect these taxes.
     /// 
     /// This value may also be set at the Nexus level. See `NexusModel` for more information.
-    global Boolean? isSellerImporterOfRecord { get; set; }
+    global Boolean isSellerImporterOfRecord { get; set; }
 
     /// User-supplied description for this transaction.
     global String description { get; set; }
@@ -150,5 +150,5 @@ global class CreateTransactionModel extends ErrorResult
     global String email { get; set; }
 
     /// If the user wishes to request additional debug information from this transaction, specify a level higher than `normal`.
-    global TaxDebugLevel? debugLevel { get; set; }
+    global TaxDebugLevel debugLevel { get; set; }
 }

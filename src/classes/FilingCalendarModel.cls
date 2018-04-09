@@ -15,10 +15,10 @@ global class FilingCalendarModel extends ErrorResult
 {
 
     /// The unique ID number of this filing calendar.
-    global Int64 id { get; set; }
+    global Integer id { get; set; }
 
     /// The unique ID number of the company to which this filing calendar belongs.
-    global Integer? companyId { get; set; }
+    global Integer companyId { get; set; }
 
     /// DEPRECATED - The legacy return name of the tax form to file. Please use `taxFormCode` instead.
     global String returnName { get; set; }
@@ -52,16 +52,16 @@ global class FilingCalendarModel extends ErrorResult
     global String locationCode { get; set; }
 
     /// If this calendar is for a location-specific tax return, specify the location-specific behavior here.
-    global OutletTypeId? outletTypeId { get; set; }
+    global OutletTypeId outletTypeId { get; set; }
 
     /// Specify the ISO 4217 currency code for the currency to remit for this tax return. For all tax returns in the United States, specify "USD".
     global String paymentCurrency { get; set; }
 
     /// The frequency on which this tax form is filed.
-    global FilingFrequencyId? filingFrequencyId { get; set; }
+    global FilingFrequencyId filingFrequencyId { get; set; }
 
     /// A 16-bit bitmap containing a 1 for each month when the return should be filed.
-    global Int16? months { get; set; }
+    global Integer months { get; set; }
 
     /// Tax Registration ID for this Region - in the U.S., this is for your state.
     global String stateRegistrationId { get; set; }
@@ -149,15 +149,15 @@ global class FilingCalendarModel extends ErrorResult
     /// The earliest date for the tax period when this return should be filed.
     /// This date specifies the earliest date for tax transactions that should be reported on this filing calendar.
     /// Please note that tax is usually filed one month in arrears: for example, tax for January transactions is typically filed during the month of February.
-    global DateTime? effectiveDate { get; set; }
+    global DateTime effectiveDate { get; set; }
 
     /// The last date for the tax period when this return should be filed.
     /// This date specifies the last date for tax transactions that should be reported on this filing calendar.
     /// Please note that tax is usually filed one month in arrears: for example, tax for January transactions is typically filed during the month of February.
-    global DateTime? endDate { get; set; }
+    global DateTime endDate { get; set; }
 
     /// The method to be used when filing this return.
-    global FilingTypeId? filingTypeId { get; set; }
+    global FilingTypeId filingTypeId { get; set; }
 
     /// If you file electronically, this is the username you use to log in to the tax authority's website.
     global String eFileUsername { get; set; }
@@ -167,7 +167,7 @@ global class FilingCalendarModel extends ErrorResult
 
     /// If you are required to prepay a percentage of taxes for future periods, please specify the percentage in whole numbers; 
     /// for example, the value 90 would indicate 90%.
-    global Byte? prepayPercentage { get; set; }
+    global Byte prepayPercentage { get; set; }
 
     /// The type of tax to report on this return.
     global MatchingTaxType taxTypeId { get; set; }
@@ -209,7 +209,7 @@ global class FilingCalendarModel extends ErrorResult
     global String other3Value { get; set; }
 
     /// The unique ID of the tax authority of this return.
-    global Integer? taxAuthorityId { get; set; }
+    global Integer taxAuthorityId { get; set; }
 
     /// The name of the tax authority of this return.
     global String taxAuthorityName { get; set; }
@@ -218,16 +218,16 @@ global class FilingCalendarModel extends ErrorResult
     global String taxAuthorityType { get; set; }
 
     /// The date when this record was created.
-    global DateTime? createdDate { get; set; }
+    global DateTime createdDate { get; set; }
 
     /// The User ID of the user who created this record.
-    global Integer? createdUserId { get; set; }
+    global Integer createdUserId { get; set; }
 
     /// The date/time when this record was last modified.
-    global DateTime? modifiedDate { get; set; }
+    global DateTime modifiedDate { get; set; }
 
     /// The user ID of the user who last modified this record.
-    global Integer? modifiedUserId { get; set; }
+    global Integer modifiedUserId { get; set; }
 
     /// CompanyReturn settings for complext filing calendar
     global List<CompanyReturnSettingModel> settings { get; set; }

@@ -15,7 +15,7 @@ global class FilingRequestDataModel extends ErrorResult
 {
 
     /// The company return ID if requesting an update.
-    global Int64? companyReturnId { get; set; }
+    global Integer companyReturnId { get; set; }
 
     /// DEPRECATED - The legacy return name of the requested calendar.
     global String returnName { get; set; }
@@ -31,10 +31,10 @@ global class FilingRequestDataModel extends ErrorResult
     global String registrationId { get; set; }
 
     /// The months of the request
-    global Int16 months { get; set; }
+    global Integer months { get; set; }
 
     /// The type of tax to report on this return.
-    global MatchingTaxType? taxTypeId { get; set; }
+    global MatchingTaxType taxTypeId { get; set; }
 
     /// Location code of the request
     global String locationCode { get; set; }
@@ -43,10 +43,10 @@ global class FilingRequestDataModel extends ErrorResult
     global DateTime effDate { get; set; }
 
     /// Filing cycle end date of the request
-    global DateTime? endDate { get; set; }
+    global DateTime endDate { get; set; }
 
     /// Flag if the request is a clone of a current filing calendar
-    global Boolean? isClone { get; set; }
+    global Boolean isClone { get; set; }
 
     /// The two character ISO 3166 country code of the country that issued the tax form for this filing calendar.
     global String country { get; set; }
@@ -55,7 +55,7 @@ global class FilingRequestDataModel extends ErrorResult
     global String region { get; set; }
 
     /// The tax authority id of the return
-    global Integer? taxAuthorityId { get; set; }
+    global Integer taxAuthorityId { get; set; }
 
     /// The tax authority name on the return
     global String taxAuthorityName { get; set; }

@@ -14,7 +14,7 @@ global class FundingConfigurationModel extends ErrorResult
 {
 
     /// CompanyID
-    global Integer? companyId { get; set; }
+    global Integer companyId { get; set; }
 
     /// Domain
     global String systemType { get; set; }
@@ -23,11 +23,11 @@ global class FundingConfigurationModel extends ErrorResult
     global String currency { get; set; }
 
     /// Sender
-    global Boolean? isFundingSetup { get; set; }
+    global Boolean isFundingSetup { get; set; }
 
     /// DocumentKey
     global String fundingMethod { get; set; }
 
     /// LastPolled
-    global DateTime? lastUpdated { get; set; }
+    global DateTime lastUpdated { get; set; }
 }

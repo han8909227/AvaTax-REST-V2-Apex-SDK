@@ -20,8 +20,8 @@ global class NoticePriorityModel extends ErrorResult
     global String description { get; set; }
 
     /// A flag if the Priority is active
-    global Boolean? activeFlag { get; set; }
+    global Boolean activeFlag { get; set; }
 
     /// sort order of the Prioritys
-    global Integer? sortOrder { get; set; }
+    global Integer sortOrder { get; set; }
 }

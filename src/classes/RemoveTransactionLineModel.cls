@@ -20,11 +20,11 @@ global class RemoveTransactionLineModel extends ErrorResult
     global String transactionCode { get; set; }
 
     /// document type
-    global DocumentType? documentType { get; set; }
+    global DocumentType documentType { get; set; }
 
     /// List of lines to be added
     global List<String> lines { get; set; }
 
     /// ption to renumber lines after removal. After renumber, the line number becomes: "1", "2", "3", ...
-    global Boolean? renumber { get; set; }
+    global Boolean renumber { get; set; }
 }

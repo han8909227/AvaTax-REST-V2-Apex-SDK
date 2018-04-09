@@ -17,16 +17,16 @@ global class CertificateModel extends ErrorResult
 {
 
     /// Unique ID number of this certificate.
-    global Integer? id { get; set; }
+    global Integer id { get; set; }
 
     /// The unique ID number of the AvaTax company that recorded this certificate.
-    global Integer? companyId { get; set; }
+    global Integer companyId { get; set; }
 
     /// The date when this certificate was signed.
-    global DateTime? signedDate { get; set; }
+    global DateTime signedDate { get; set; }
 
     /// Expiration date when this certificate will no longer be valid.
-    global DateTime? expirationDate { get; set; }
+    global DateTime expirationDate { get; set; }
 
     /// File name for the image of this certificate.
     /// 
@@ -41,33 +41,33 @@ global class CertificateModel extends ErrorResult
     /// True if this certificate is marked as valid. A valid certificate can be considered for exemption purposes.
     /// When a certificate is marked invalid, it will no longer be considered when calculating exemption for
     /// a customer.
-    global Boolean? valid { get; set; }
+    global Boolean valid { get; set; }
 
     /// This value is true if the certificate has gone through the certificate validation process.
     /// For more information on the certificate validation process, please see the Avalara Help Center.
-    global Boolean? verified { get; set; }
+    global Boolean verified { get; set; }
 
     /// If this certificate provides exemption from transactional taxes, what percentage of the transaction 
     /// is considered exempt?
     /// 
     /// For a fully exempt certificate, this percentage should be 100.
-    global Decimal? exemptPercentage { get; set; }
+    global Decimal exemptPercentage { get; set; }
 
     /// This value is true if this certificate is a single (or standalone) certificate. This value is set
     /// during the audit stage of the certificate validation process.
-    global Boolean? isSingleCertificate { get; set; }
+    global Boolean isSingleCertificate { get; set; }
 
     /// The exemption reason associated with this certificate.
     global ExemptionReasonModel exemptionReason { get; set; }
 
     /// The date/time when this record was created.
-    global DateTime? createdDate { get; set; }
+    global DateTime createdDate { get; set; }
 
     /// The date/time when this record was last modified.
-    global DateTime? modifiedDate { get; set; }
+    global DateTime modifiedDate { get; set; }
 
     /// Number of pages contained within this certificate.
-    global Integer? pageCount { get; set; }
+    global Integer pageCount { get; set; }
 
     /// A list of customers to which this certificate applies. You can fetch this data by specifying
     /// `$include=customers` when calling a certificate fetch API.

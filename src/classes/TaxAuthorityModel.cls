@@ -20,8 +20,8 @@ global class TaxAuthorityModel extends ErrorResult
     global String name { get; set; }
 
     /// The type of this tax authority.
-    global Integer? taxAuthorityTypeId { get; set; }
+    global Integer taxAuthorityTypeId { get; set; }
 
     /// The unique ID number of the jurisdiction for this tax authority.
-    global Integer? jurisdictionId { get; set; }
+    global Integer jurisdictionId { get; set; }
 }

@@ -29,7 +29,7 @@ global class MultiDocumentLineItemModel extends ErrorResult
     /// Quantity of items in this line. This quantity value should always be a positive value representing the quantity of product that changed hands, even when handling returns or refunds.
     /// 
     /// If not provided, or if set to zero, the quantity value is assumed to be one (1).
-    global Decimal? quantity { get; set; }
+    global Decimal quantity { get; set; }
 
     /// Total amount for this line. The amount represents the net currency value that changed hands from the customer (represented by the `customerCode` field) to the company (represented by the `companyCode`) field.
     /// 
@@ -69,14 +69,14 @@ global class MultiDocumentLineItemModel extends ErrorResult
 
     /// True if the document discount should be applied to this line. If this value is false, or not provided, discounts will not be 
     /// applied to this line even if they are specified on the root `discount` element.
-    global Boolean? discounted { get; set; }
+    global Boolean discounted { get; set; }
 
     /// Indicates whether the `amount` for this line already includes tax.
     /// 
     /// If this value is `true`, the final price of this line including tax will equal the value in `amount`. 
     /// 
     /// If this value is `null` or `false`, the final price will equal `amount` plus whatever taxes apply to this line.
-    global Boolean? taxIncluded { get; set; }
+    global Boolean taxIncluded { get; set; }
 
     /// Revenue Account (Customer Defined Field).
     /// 

@@ -14,7 +14,7 @@ global class AddressValidationInfo
 {
 
     /// Specify the text case for the validated address result. If not specified, will return uppercase.
-    global TextCase? textCase { get; set; }
+    global TextCase textCase { get; set; }
 
     /// First line of the street address
     global String line1 { get; set; }
@@ -53,8 +53,8 @@ global class AddressValidationInfo
     global String postalCode { get; set; }
 
     /// Geospatial latitude measurement, in Decimal Degrees floating point format.
-    global Decimal? latitude { get; set; }
+    global Decimal latitude { get; set; }
 
     /// Geospatial longitude measurement, in Decimal Degrees floating point format.
-    global Decimal? longitude { get; set; }
+    global Decimal longitude { get; set; }
 }

@@ -14,13 +14,13 @@ global class CompanyReturnSettingModel extends ErrorResult
 {
 
     /// The unique ID of this CompanyReturnsSetting
-    global Int64? id { get; set; }
+    global Integer id { get; set; }
 
     /// The CompanyReturn Id
-    global Int64 companyReturnId { get; set; }
+    global Integer companyReturnId { get; set; }
 
     /// The TaxFormCatalog filingQuestionId.
-    global Int64 filingQuestionId { get; set; }
+    global Integer filingQuestionId { get; set; }
 
     /// Filing question code as defined in TaxFormCatalog.
     global String filingQuestionCode { get; set; }
@@ -29,14 +29,14 @@ global class CompanyReturnSettingModel extends ErrorResult
     global String value { get; set; }
 
     /// The date when this record was created.
-    global DateTime? createdDate { get; set; }
+    global DateTime createdDate { get; set; }
 
     /// The User ID of the user who created this record.
-    global Integer? createdUserId { get; set; }
+    global Integer createdUserId { get; set; }
 
     /// The date/time when this record was last modified.
-    global DateTime? modifiedDate { get; set; }
+    global DateTime modifiedDate { get; set; }
 
     /// The user ID of the user who last modified this record.
-    global Integer? modifiedUserId { get; set; }
+    global Integer modifiedUserId { get; set; }
 }

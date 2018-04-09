@@ -23,5 +23,5 @@ global class LoginVerificationOutputModel extends ErrorResult
     global String message { get; set; }
 
     /// Indicates if the login was successful
-    global Boolean? loginSuccess { get; set; }
+    global Boolean loginSuccess { get; set; }
 }

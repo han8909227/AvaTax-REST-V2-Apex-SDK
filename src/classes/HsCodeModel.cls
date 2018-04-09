@@ -35,12 +35,12 @@ global class HsCodeModel extends ErrorResult
     /// A unique identifier for this harmonized tariff system code.
     /// 
     /// To search for a list of child codes underneath a specific HS code, search for codes where the child's `parentHsCodeId` value matches the parent's `id` value.
-    global Int64 id { get; set; }
+    global Integer id { get; set; }
 
     /// The unique ID number of the parent HS code or HS code prefix.
     /// 
     /// To search for a list of child codes underneath a specific HS code, search for codes where the child's `parentHsCodeId` value matches the parent's `id` value.
-    global Int64? parentHsCodeId { get; set; }
+    global Integer parentHsCodeId { get; set; }
 
     /// A human readable description that identifies Code descriptive text for this Section, Chapter, Heading, or Subheading.
     global String description { get; set; }
@@ -56,11 +56,11 @@ global class HsCodeModel extends ErrorResult
     /// date for which this code is considered valid.
     /// 
     /// If this value is null, this code can be used for any valid date earlier than its end date.
-    global DateTime? effDate { get; set; }
+    global DateTime effDate { get; set; }
 
     /// For codes that have been expired or defined on specific dates, this value indicates the latest
     /// date for which this code is considered valid.
     /// 
     /// If this value is null, this code can be used for any valid date later than its effective date.
-    global DateTime? endDate { get; set; }
+    global DateTime endDate { get; set; }
 }

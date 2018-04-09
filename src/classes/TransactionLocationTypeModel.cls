@@ -14,13 +14,13 @@ global class TransactionLocationTypeModel extends ErrorResult
 {
 
     /// Location type ID for this location type in transaction
-    global Int64? documentLocationTypeId { get; set; }
+    global Integer documentLocationTypeId { get; set; }
 
     /// Transaction ID
-    global Int64? documentId { get; set; }
+    global Integer documentId { get; set; }
 
     /// Address ID for the transaction
-    global Int64? documentAddressId { get; set; }
+    global Integer documentAddressId { get; set; }
 
     /// Location type code
     global String locationTypeCode { get; set; }

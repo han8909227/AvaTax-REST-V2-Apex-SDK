@@ -14,10 +14,10 @@ global class FundingStatusModel extends ErrorResult
 {
 
     /// The unique ID number of this funding request
-    global Int64? requestId { get; set; }
+    global Integer requestId { get; set; }
 
     /// SubledgerProfileID
-    global Integer? subledgerProfileID { get; set; }
+    global Integer subledgerProfileID { get; set; }
 
     /// CompanyID
     global String companyID { get; set; }
@@ -50,14 +50,14 @@ global class FundingStatusModel extends ErrorResult
     global String errorMessage { get; set; }
 
     /// LastPolled
-    global DateTime? lastPolled { get; set; }
+    global DateTime lastPolled { get; set; }
 
     /// LastSigned
-    global DateTime? lastSigned { get; set; }
+    global DateTime lastSigned { get; set; }
 
     /// LastActivated
-    global DateTime? lastActivated { get; set; }
+    global DateTime lastActivated { get; set; }
 
     /// TemplateRequestId
-    global Int64? templateRequestId { get; set; }
+    global Integer templateRequestId { get; set; }
 }

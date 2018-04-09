@@ -50,8 +50,8 @@ global class AddressInfo
     global String postalCode { get; set; }
 
     /// Geospatial latitude measurement, in Decimal Degrees floating point format.
-    global Decimal? latitude { get; set; }
+    global Decimal latitude { get; set; }
 
     /// Geospatial longitude measurement, in Decimal Degrees floating point format.
-    global Decimal? longitude { get; set; }
+    global Decimal longitude { get; set; }
 }

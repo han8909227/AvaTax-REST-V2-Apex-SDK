@@ -33,7 +33,7 @@ global class LocationQuestionModel extends ErrorResult
     global String jurisdictionName { get; set; }
 
     /// Indicates which type of jurisdiction requires this question
-    global JurisdictionType? jurisdictionType { get; set; }
+    global JurisdictionType jurisdictionType { get; set; }
 
     /// Indicates the country that this jurisdiction belongs to
     global String jurisdictionCountry { get; set; }

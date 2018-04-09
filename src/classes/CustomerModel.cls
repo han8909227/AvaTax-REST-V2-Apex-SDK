@@ -14,7 +14,7 @@ global class CustomerModel extends ErrorResult
 {
 
     /// Unique ID number of this customer.
-    global Integer? id { get; set; }
+    global Integer id { get; set; }
 
     /// The unique ID number of the AvaTax company that recorded this customer.
     global Integer companyId { get; set; }
@@ -63,13 +63,13 @@ global class CustomerModel extends ErrorResult
     global String contactName { get; set; }
 
     /// Date when this customer last executed a transaction.
-    global DateTime? lastTransaction { get; set; }
+    global DateTime lastTransaction { get; set; }
 
     /// The date when this record was created.
-    global DateTime? createdDate { get; set; }
+    global DateTime createdDate { get; set; }
 
     /// The date/time when this record was last modified.
-    global DateTime? modifiedDate { get; set; }
+    global DateTime modifiedDate { get; set; }
 
     /// Name or ISO 3166 code identifying the country.
     /// 
@@ -93,10 +93,10 @@ global class CustomerModel extends ErrorResult
     global String region { get; set; }
 
     /// True if this customer record is specifically used for bill-to purposes.
-    global Boolean? isBill { get; set; }
+    global Boolean isBill { get; set; }
 
     /// True if this customer record is specifically used for ship-to purposes.
-    global Boolean? isShip { get; set; }
+    global Boolean isShip { get; set; }
 
     /// For customers in the United States, this field is the federal taxpayer ID number. For businesses, this is 
     /// a Federal Employer Identification Number. For individuals, this will be a Social Security Number.

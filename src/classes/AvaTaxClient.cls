@@ -190,7 +190,7 @@ global class AvaTaxClient
         /// <param name="textCase">selectable text case for address validation</param>
         /// <param name="latitude">Geospatial latitude measurement</param>
         /// <param name="longitude">Geospatial longitude measurement</param>
-        public AddressResolutionModel ResolveAddress(String line1, String line2, String line3, String city, String region, String postalCode, String country, TextCase? textCase, Decimal? latitude, Decimal? longitude)
+        public AddressResolutionModel ResolveAddress(String line1, String line2, String line3, String city, String region, String postalCode, String country, TextCase textCase, Decimal latitude, Decimal longitude)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/addresses/resolve");
             path.AddQuery("line1", line1);
@@ -306,7 +306,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<AvaFileFormModel> QueryAvaFileForms(String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<AvaFileFormModel> QueryAvaFileForms(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/avafileforms");
             path.AddQuery("$filter", filter);
@@ -488,7 +488,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<BatchModel> ListBatchesByCompany(Integer companyId, String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<BatchModel> ListBatchesByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/batches");
             path.ApplyField("companyId", companyId);
@@ -532,7 +532,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<BatchModel> QueryBatches(String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<BatchModel> QueryBatches(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/batches");
             path.AddQuery("$filter", filter);
@@ -652,7 +652,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<CertExpressInvitationModel> ListCertExpressInvitations(Integer companyId, String include, String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<CertExpressInvitationModel> ListCertExpressInvitations(Integer companyId, String include, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certexpressinvites");
             path.ApplyField("companyId", companyId);
@@ -764,7 +764,7 @@ global class AvaTaxClient
         /// <param name="id">The unique ID number of this certificate</param>
         /// <param name="page">If you choose `$type`=`Jpeg`, you must specify which page number to retrieve.</param>
         /// <param name="type">The data format in which to retrieve the certificate image</param>
-        public FileResult DownloadCertificateImage(Integer companyId, Integer id, Integer? page, CertificatePreviewType? type)
+        public FileResult DownloadCertificateImage(Integer companyId, Integer id, Integer page, CertificatePreviewType type)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/{id}/attachment");
             path.ApplyField("companyId", companyId);
@@ -1013,7 +1013,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<CertificateModel> QueryCertificates(Integer companyId, String include, String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<CertificateModel> QueryCertificates(Integer companyId, String include, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates");
             path.ApplyField("companyId", companyId);
@@ -1534,7 +1534,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<CompanyModel> QueryCompanies(String include, String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<CompanyModel> QueryCompanies(String include, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies");
             path.AddQuery("$include", include);
@@ -1691,7 +1691,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<ContactModel> ListContactsByCompany(Integer companyId, String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<ContactModel> ListContactsByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/contacts");
             path.ApplyField("companyId", companyId);
@@ -1723,7 +1723,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<ContactModel> QueryContacts(String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<ContactModel> QueryContacts(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/contacts");
             path.AddQuery("$filter", filter);
@@ -1926,7 +1926,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<CertificateModel> ListCertificatesForCustomer(Integer companyId, String customerCode, String include, String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<CertificateModel> ListCertificatesForCustomer(Integer companyId, String customerCode, String include, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/customers/{customerCode}/certificates");
             path.ApplyField("companyId", companyId);
@@ -2008,7 +2008,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<CustomerModel> QueryCustomers(Integer companyId, String include, String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<CustomerModel> QueryCustomers(Integer companyId, String include, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/customers");
             path.ApplyField("companyId", companyId);
@@ -2129,7 +2129,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<SkyscraperStatusModel> GetLoginVerifierByForm(String form, String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<SkyscraperStatusModel> GetLoginVerifierByForm(String form, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/filingcalendars/loginverifiers/{form}");
             path.ApplyField("form", form);
@@ -2159,7 +2159,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<AvaFileFormModel> ListAvaFileForms(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<AvaFileFormModel> ListAvaFileForms(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/avafileforms");
             path.AddQuery("$filter", filter);
@@ -2189,7 +2189,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<CertificateAttributeModel> ListCertificateAttributes(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<CertificateAttributeModel> ListCertificateAttributes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/certificateattributes");
             path.AddQuery("$filter", filter);
@@ -2219,7 +2219,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<ExemptionReasonModel> ListCertificateExemptReasons(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<ExemptionReasonModel> ListCertificateExemptReasons(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/certificateexemptreasons");
             path.AddQuery("$filter", filter);
@@ -2249,7 +2249,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<ExposureZoneModel> ListCertificateExposureZones(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<ExposureZoneModel> ListCertificateExposureZones(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/certificateexposurezones");
             path.AddQuery("$filter", filter);
@@ -2275,7 +2275,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<CommunicationsTSPairModel> ListCommunicationsServiceTypes(Integer id, String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<CommunicationsTSPairModel> ListCommunicationsServiceTypes(Integer id, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/communications/transactiontypes/{id}/servicetypes");
             path.ApplyField("id", id);
@@ -2301,7 +2301,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<CommunicationsTransactionTypeModel> ListCommunicationsTransactionTypes(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<CommunicationsTransactionTypeModel> ListCommunicationsTransactionTypes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/communications/transactiontypes");
             path.AddQuery("$filter", filter);
@@ -2326,7 +2326,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<CommunicationsTSPairModel> ListCommunicationsTSPairs(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<CommunicationsTSPairModel> ListCommunicationsTSPairs(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/communications/tspairs");
             path.AddQuery("$filter", filter);
@@ -2352,7 +2352,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<IsoCountryModel> ListCountries(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<IsoCountryModel> ListCountries(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/countries");
             path.AddQuery("$filter", filter);
@@ -2383,7 +2383,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<CoverLetterModel> ListCoverLetters(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<CoverLetterModel> ListCoverLetters(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/coverletters");
             path.AddQuery("$filter", filter);
@@ -2416,7 +2416,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<HsCodeModel> ListCrossBorderCodes(String country, String hsCode, String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<HsCodeModel> ListCrossBorderCodes(String country, String hsCode, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/crossborder/{country}/{hsCode}");
             path.ApplyField("country", country);
@@ -2466,7 +2466,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<CurrencyModel> ListCurrencies(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<CurrencyModel> ListCurrencies(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/currencies");
             path.AddQuery("$filter", filter);
@@ -2494,7 +2494,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<EntityUseCodeModel> ListEntityUseCodes(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<EntityUseCodeModel> ListEntityUseCodes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/entityusecodes");
             path.AddQuery("$filter", filter);
@@ -2519,7 +2519,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<FilingFrequencyModel> ListFilingFrequencies(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<FilingFrequencyModel> ListFilingFrequencies(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/filingfrequencies");
             path.AddQuery("$filter", filter);
@@ -2546,7 +2546,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<JurisdictionModel> ListJurisdictions(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<JurisdictionModel> ListJurisdictions(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/jurisdictions");
             path.AddQuery("$filter", filter);
@@ -2583,7 +2583,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<JurisdictionOverrideModel> ListJurisdictionsByAddress(String line1, String line2, String line3, String city, String region, String postalCode, String country, String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<JurisdictionOverrideModel> ListJurisdictionsByAddress(String line1, String line2, String line3, String city, String region, String postalCode, String country, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/jurisdictionsnearaddress");
             path.AddQuery("line1", line1);
@@ -2628,7 +2628,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<LocationQuestionModel> ListLocationQuestionsByAddress(String line1, String line2, String line3, String city, String region, String postalCode, String country, Decimal? latitude, Decimal? longitude, String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<LocationQuestionModel> ListLocationQuestionsByAddress(String line1, String line2, String line3, String city, String region, String postalCode, String country, Decimal latitude, Decimal longitude, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/locationquestions");
             path.AddQuery("line1", line1);
@@ -2663,7 +2663,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<SkyscraperStatusModel> ListLoginVerifiers(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<SkyscraperStatusModel> ListLoginVerifiers(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/filingcalendars/loginverifiers");
             path.AddQuery("$filter", filter);
@@ -2689,7 +2689,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<NexusModel> ListNexus(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<NexusModel> ListNexus(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/nexus");
             path.AddQuery("$filter", filter);
@@ -2739,7 +2739,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<NexusModel> ListNexusByAddress(String line1, String line2, String line3, String city, String region, String postalCode, String country, String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<NexusModel> ListNexusByAddress(String line1, String line2, String line3, String city, String region, String postalCode, String country, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/nexus/byaddress");
             path.AddQuery("line1", line1);
@@ -2773,7 +2773,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<NexusModel> ListNexusByCountry(String country, String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<NexusModel> ListNexusByCountry(String country, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/nexus/{country}");
             path.ApplyField("country", country);
@@ -2802,7 +2802,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<NexusModel> ListNexusByCountryAndRegion(String country, String region, String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<NexusModel> ListNexusByCountryAndRegion(String country, String region, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/nexus/{country}/{region}");
             path.ApplyField("country", country);
@@ -2839,7 +2839,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public NexusByTaxFormModel ListNexusByFormCode(String formCode, String filter, Integer? top, Integer? skip, String orderBy)
+        public NexusByTaxFormModel ListNexusByFormCode(String formCode, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/nexus/byform/{formCode}");
             path.ApplyField("formCode", formCode);
@@ -2865,7 +2865,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<NexusTaxTypeGroupModel> ListNexusTaxTypeGroups(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<NexusTaxTypeGroupModel> ListNexusTaxTypeGroups(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/nexustaxtypegroups");
             path.AddQuery("$filter", filter);
@@ -2890,7 +2890,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<NoticeCustomerFundingOptionModel> ListNoticeCustomerFundingOptions(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<NoticeCustomerFundingOptionModel> ListNoticeCustomerFundingOptions(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/noticecustomerfundingoptions");
             path.AddQuery("$filter", filter);
@@ -2915,7 +2915,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<NoticeCustomerTypeModel> ListNoticeCustomerTypes(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<NoticeCustomerTypeModel> ListNoticeCustomerTypes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/noticecustomertypes");
             path.AddQuery("$filter", filter);
@@ -2940,7 +2940,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<NoticeFilingTypeModel> ListNoticeFilingtypes(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<NoticeFilingTypeModel> ListNoticeFilingtypes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/noticefilingtypes");
             path.AddQuery("$filter", filter);
@@ -2965,7 +2965,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<NoticePriorityModel> ListNoticePriorities(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<NoticePriorityModel> ListNoticePriorities(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/noticepriorities");
             path.AddQuery("$filter", filter);
@@ -2990,7 +2990,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<NoticeReasonModel> ListNoticeReasons(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<NoticeReasonModel> ListNoticeReasons(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/noticereasons");
             path.AddQuery("$filter", filter);
@@ -3015,7 +3015,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<NoticeResponsibilityModel> ListNoticeResponsibilities(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<NoticeResponsibilityModel> ListNoticeResponsibilities(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/noticeresponsibilities");
             path.AddQuery("$filter", filter);
@@ -3040,7 +3040,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<NoticeRootCauseModel> ListNoticeRootCauses(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<NoticeRootCauseModel> ListNoticeRootCauses(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/noticerootcauses");
             path.AddQuery("$filter", filter);
@@ -3065,7 +3065,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<NoticeStatusModel> ListNoticeStatuses(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<NoticeStatusModel> ListNoticeStatuses(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/noticestatuses");
             path.AddQuery("$filter", filter);
@@ -3090,7 +3090,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<NoticeTypeModel> ListNoticeTypes(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<NoticeTypeModel> ListNoticeTypes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/noticetypes");
             path.AddQuery("$filter", filter);
@@ -3116,7 +3116,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<ParameterModel> ListParameters(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<ParameterModel> ListParameters(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/parameters");
             path.AddQuery("$filter", filter);
@@ -3141,7 +3141,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<String> ListPermissions(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<String> ListPermissions(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/permissions");
             path.AddQuery("$filter", filter);
@@ -3165,7 +3165,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<PostalCodeModel> ListPostalCodes(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<PostalCodeModel> ListPostalCodes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/postalcodes");
             path.AddQuery("$filter", filter);
@@ -3197,7 +3197,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<PreferredProgramModel> ListPreferredPrograms(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<PreferredProgramModel> ListPreferredPrograms(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/preferredprograms");
             path.AddQuery("$filter", filter);
@@ -3223,7 +3223,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<RateTypeModel> ListRateTypesByCountry(String country, String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<RateTypeModel> ListRateTypesByCountry(String country, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/countries/{country}/ratetypes");
             path.ApplyField("country", country);
@@ -3250,7 +3250,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<IsoRegionModel> ListRegions(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<IsoRegionModel> ListRegions(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/regions");
             path.AddQuery("$filter", filter);
@@ -3277,7 +3277,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<IsoRegionModel> ListRegionsByCountry(String country, String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<IsoRegionModel> ListRegionsByCountry(String country, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/countries/{country}/regions");
             path.ApplyField("country", country);
@@ -3303,7 +3303,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<ResourceFileTypeModel> ListResourceFileTypes(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<ResourceFileTypeModel> ListResourceFileTypes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/resourcefiletypes");
             path.AddQuery("$filter", filter);
@@ -3329,7 +3329,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<SecurityRoleModel> ListSecurityRoles(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<SecurityRoleModel> ListSecurityRoles(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/securityroles");
             path.AddQuery("$filter", filter);
@@ -3356,7 +3356,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<SubscriptionTypeModel> ListSubscriptionTypes(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<SubscriptionTypeModel> ListSubscriptionTypes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/subscriptiontypes");
             path.AddQuery("$filter", filter);
@@ -3381,7 +3381,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<TaxAuthorityModel> ListTaxAuthorities(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<TaxAuthorityModel> ListTaxAuthorities(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/taxauthorities");
             path.AddQuery("$filter", filter);
@@ -3408,7 +3408,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<TaxAuthorityFormModel> ListTaxAuthorityForms(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<TaxAuthorityFormModel> ListTaxAuthorityForms(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/taxauthorityforms");
             path.AddQuery("$filter", filter);
@@ -3433,7 +3433,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<TaxAuthorityTypeModel> ListTaxAuthorityTypes(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<TaxAuthorityTypeModel> ListTaxAuthorityTypes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/taxauthoritytypes");
             path.AddQuery("$filter", filter);
@@ -3461,7 +3461,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<TaxCodeModel> ListTaxCodes(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<TaxCodeModel> ListTaxCodes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/taxcodes");
             path.AddQuery("$filter", filter);
@@ -3487,7 +3487,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public TaxCodeTypesModel ListTaxCodeTypes(String filter, Integer? top, Integer? skip, String orderBy)
+        public TaxCodeTypesModel ListTaxCodeTypes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/taxcodetypes");
             path.AddQuery("$filter", filter);
@@ -3512,7 +3512,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<FormMasterModel> ListTaxForms(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<FormMasterModel> ListTaxForms(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/taxforms");
             path.AddQuery("$filter", filter);
@@ -3537,7 +3537,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<TaxSubTypeModel> ListTaxSubTypes(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<TaxSubTypeModel> ListTaxSubTypes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/taxsubtypes");
             path.AddQuery("$filter", filter);
@@ -3562,7 +3562,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<TaxTypeGroupModel> ListTaxTypeGroups(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<TaxTypeGroupModel> ListTaxTypeGroups(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/taxtypegroups");
             path.AddQuery("$filter", filter);
@@ -3588,7 +3588,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<UomModel> ListUnitOfMeasurement(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<UomModel> ListUnitOfMeasurement(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/unitofmeasurements");
             path.AddQuery("$filter", filter);
@@ -3641,7 +3641,7 @@ global class AvaTaxClient
         /// 
         /// <param name="companyId">The unique ID number of the company that owns this DistanceThreshold</param>
         /// <param name="id">The unique ID number of the DistanceThreshold object you wish to delete.</param>
-        public List<ErrorDetail> DeleteDistanceThreshold(Integer companyId, Int64 id)
+        public List<ErrorDetail> DeleteDistanceThreshold(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/distancethresholds/{id}");
             path.ApplyField("companyId", companyId);
@@ -3669,7 +3669,7 @@ global class AvaTaxClient
         /// 
         /// <param name="companyId">The ID of the company that owns this DistanceThreshold object</param>
         /// <param name="id">The unique ID number referring to this DistanceThreshold object</param>
-        public CompanyDistanceThresholdModel GetDistanceThreshold(Integer companyId, Int64 id)
+        public CompanyDistanceThresholdModel GetDistanceThreshold(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/distancethresholds/{id}");
             path.ApplyField("companyId", companyId);
@@ -3697,7 +3697,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<CompanyDistanceThresholdModel> ListDistanceThresholds(Integer companyId, String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<CompanyDistanceThresholdModel> ListDistanceThresholds(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/distancethresholds");
             path.ApplyField("companyId", companyId);
@@ -3731,7 +3731,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<CompanyDistanceThresholdModel> QueryDistanceThresholds(String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<CompanyDistanceThresholdModel> QueryDistanceThresholds(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/distancethresholds");
             path.AddQuery("$filter", filter);
@@ -3762,7 +3762,7 @@ global class AvaTaxClient
         /// <param name="companyId">The unique ID number of the company that owns this DistanceThreshold object.</param>
         /// <param name="id">The unique ID number of the DistanceThreshold object to replace.</param>
         /// <param name="model">The new DistanceThreshold object to store.</param>
-        public CompanyDistanceThresholdModel UpdateDistanceThreshold(Integer companyId, Int64 id, CompanyDistanceThresholdModel model)
+        public CompanyDistanceThresholdModel UpdateDistanceThreshold(Integer companyId, Integer id, CompanyDistanceThresholdModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/distancethresholds/{id}");
             path.ApplyField("companyId", companyId);
@@ -4031,7 +4031,7 @@ global class AvaTaxClient
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         /// <param name="returnCountry">A comma separated list of countries</param>
         /// <param name="returnRegion">A comma separated list of regions</param>
-        public FetchResult<FilingCalendarModel> ListFilingCalendars(Integer companyId, String filter, Integer? top, Integer? skip, String orderBy, String returnCountry, String returnRegion)
+        public FetchResult<FilingCalendarModel> ListFilingCalendars(Integer companyId, String filter, Integer top, Integer skip, String orderBy, String returnCountry, String returnRegion)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingcalendars");
             path.ApplyField("companyId", companyId);
@@ -4061,7 +4061,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<FilingRequestModel> ListFilingRequests(Integer companyId, String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<FilingRequestModel> ListFilingRequests(Integer companyId, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingrequests");
             path.ApplyField("companyId", companyId);
@@ -4128,7 +4128,7 @@ global class AvaTaxClient
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         /// <param name="returnCountry">If specified, fetches only filing calendars that apply to tax filings in this specific country. Uses ISO 3166 country codes.</param>
         /// <param name="returnRegion">If specified, fetches only filing calendars that apply to tax filings in this specific region. Uses ISO 3166 region codes.</param>
-        public FetchResult<FilingCalendarModel> QueryFilingCalendars(String filter, Integer? top, Integer? skip, String orderBy, String returnCountry, String returnRegion)
+        public FetchResult<FilingCalendarModel> QueryFilingCalendars(String filter, Integer top, Integer skip, String orderBy, String returnCountry, String returnRegion)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/filingcalendars");
             path.AddQuery("$filter", filter);
@@ -4159,7 +4159,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<FilingRequestModel> QueryFilingRequests(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<FilingRequestModel> QueryFilingRequests(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/filingrequests");
             path.AddQuery("$filter", filter);
@@ -4260,7 +4260,7 @@ global class AvaTaxClient
         /// <param name="year">The year of the filing period to approve.</param>
         /// <param name="month">The month of the filing period to approve.</param>
         /// <param name="model">The approve request you wish to execute.</param>
-        public List<FilingModel> ApproveFilings(Integer companyId, Int16 year, Byte month, ApproveFilingsModel model)
+        public List<FilingModel> ApproveFilings(Integer companyId, Integer year, Byte month, ApproveFilingsModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/approve");
             path.ApplyField("companyId", companyId);
@@ -4294,7 +4294,7 @@ global class AvaTaxClient
         /// <param name="month">The month of the filing period to approve.</param>
         /// <param name="country">The two-character ISO-3166 code for the country.</param>
         /// <param name="model">The approve request you wish to execute.</param>
-        public List<FilingModel> ApproveFilingsCountry(Integer companyId, Int16 year, Byte month, String country, ApproveFilingsModel model)
+        public List<FilingModel> ApproveFilingsCountry(Integer companyId, Integer year, Byte month, String country, ApproveFilingsModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/approve");
             path.ApplyField("companyId", companyId);
@@ -4330,7 +4330,7 @@ global class AvaTaxClient
         /// <param name="country">The two-character ISO-3166 code for the country.</param>
         /// <param name="region">The two or three character region code for the region.</param>
         /// <param name="model">The approve request you wish to execute.</param>
-        public List<FilingModel> ApproveFilingsCountryRegion(Integer companyId, Int16 year, Byte month, String country, String region, ApproveFilingsModel model)
+        public List<FilingModel> ApproveFilingsCountryRegion(Integer companyId, Integer year, Byte month, String country, String region, ApproveFilingsModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/approve");
             path.ApplyField("companyId", companyId);
@@ -4367,7 +4367,7 @@ global class AvaTaxClient
         /// <param name="region">The two or three character region code for the region.</param>
         /// <param name="formCode">The unique code of the form being adjusted.</param>
         /// <param name="model">A list of Adjustments to be created for the specified filing.</param>
-        public List<FilingAdjustmentModel> CreateReturnAdjustment(Integer companyId, Int16 year, Byte month, String country, String region, String formCode, List<FilingAdjustmentModel> model)
+        public List<FilingAdjustmentModel> CreateReturnAdjustment(Integer companyId, Integer year, Byte month, String country, String region, String formCode, List<FilingAdjustmentModel> model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/{formCode}/adjust");
             path.ApplyField("companyId", companyId);
@@ -4404,7 +4404,7 @@ global class AvaTaxClient
         /// <param name="region">The two or three character region code for the region of the filing being changed.</param>
         /// <param name="formCode">The unique code of the form being changed.</param>
         /// <param name="model">A list of augmentations to be created for the specified filing.</param>
-        public List<FilingAugmentationModel> CreateReturnAugmentation(Integer companyId, Int16 year, Byte month, String country, String region, String formCode, List<FilingAugmentationModel> model)
+        public List<FilingAugmentationModel> CreateReturnAugmentation(Integer companyId, Integer year, Byte month, String country, String region, String formCode, List<FilingAugmentationModel> model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/{formCode}/augment");
             path.ApplyField("companyId", companyId);
@@ -4442,7 +4442,7 @@ global class AvaTaxClient
         /// <param name="region">The two or three character region code for the region.</param>
         /// <param name="formCode">The unique code of the form being adjusted.</param>
         /// <param name="model">A list of Payments to be created for the specified filing.</param>
-        public List<FilingPaymentModel> CreateReturnPayment(Integer companyId, Int16 year, Byte month, String country, String region, String formCode, List<FilingPaymentModel> model)
+        public List<FilingPaymentModel> CreateReturnPayment(Integer companyId, Integer year, Byte month, String country, String region, String formCode, List<FilingPaymentModel> model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/{formCode}/payment");
             path.ApplyField("companyId", companyId);
@@ -4475,7 +4475,7 @@ global class AvaTaxClient
         /// 
         /// <param name="companyId">The ID of the company that owns the filing being adjusted.</param>
         /// <param name="id">The ID of the adjustment being deleted.</param>
-        public List<ErrorDetail> DeleteReturnAdjustment(Integer companyId, Int64 id)
+        public List<ErrorDetail> DeleteReturnAdjustment(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/adjust/{id}");
             path.ApplyField("companyId", companyId);
@@ -4503,7 +4503,7 @@ global class AvaTaxClient
         /// 
         /// <param name="companyId">The ID of the company that owns the filing being changed.</param>
         /// <param name="id">The ID of the augmentation being added.</param>
-        public List<ErrorDetail> DeleteReturnAugmentation(Integer companyId, Int64 id)
+        public List<ErrorDetail> DeleteReturnAugmentation(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/augment/{id}");
             path.ApplyField("companyId", companyId);
@@ -4532,7 +4532,7 @@ global class AvaTaxClient
         /// 
         /// <param name="companyId">The ID of the company that owns the filing being adjusted.</param>
         /// <param name="id">The ID of the payment being deleted.</param>
-        public List<ErrorDetail> DeleteReturnPayment(Integer companyId, Int64 id)
+        public List<ErrorDetail> DeleteReturnPayment(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/payment/{id}");
             path.ApplyField("companyId", companyId);
@@ -4599,7 +4599,7 @@ global class AvaTaxClient
         /// <param name="companyId">The ID of the company that owns the filings.</param>
         /// <param name="filingReturnId">The unique id of the worksheet return.</param>
         /// <param name="fileId">The unique id of the document you are downloading</param>
-        public FileResult GetFilingAttachment(Integer companyId, Int64 filingReturnId, Int64? fileId)
+        public FileResult GetFilingAttachment(Integer companyId, Integer filingReturnId, Integer fileId)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{filingReturnId}/attachment");
             path.ApplyField("companyId", companyId);
@@ -4622,7 +4622,7 @@ global class AvaTaxClient
         /// <param name="companyId">The ID of the company that owns the filings.</param>
         /// <param name="year">The year of the filing period.</param>
         /// <param name="month">The two digit month of the filing period.</param>
-        public FileResult GetFilingAttachments(Integer companyId, Int16 year, Byte month)
+        public FileResult GetFilingAttachments(Integer companyId, Integer year, Byte month)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/attachments");
             path.ApplyField("companyId", companyId);
@@ -4645,7 +4645,7 @@ global class AvaTaxClient
         /// <param name="companyId">The ID of the company that owns the filings.</param>
         /// <param name="year">The year of the filing period.</param>
         /// <param name="month">The two digit month of the filing period.</param>
-        public FileResult GetFilingAttachmentsTraceFile(Integer companyId, Int16 year, Byte month)
+        public FileResult GetFilingAttachmentsTraceFile(Integer companyId, Integer year, Byte month)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/attachments/tracefile");
             path.ApplyField("companyId", companyId);
@@ -4690,7 +4690,7 @@ global class AvaTaxClient
         /// <param name="companyId">The ID of the company that owns the filings.</param>
         /// <param name="year">The year of the filing period.</param>
         /// <param name="month">The two digit month of the filing period.</param>
-        public FetchResult<FilingModel> GetFilings(Integer companyId, Int16 year, Byte month)
+        public FetchResult<FilingModel> GetFilings(Integer companyId, Integer year, Byte month)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}");
             path.ApplyField("companyId", companyId);
@@ -4715,7 +4715,7 @@ global class AvaTaxClient
         /// <param name="year">The year of the filing period.</param>
         /// <param name="month">The two digit month of the filing period.</param>
         /// <param name="country">The two-character ISO-3166 code for the country.</param>
-        public FetchResult<FilingModel> GetFilingsByCountry(Integer companyId, Int16 year, Byte month, String country)
+        public FetchResult<FilingModel> GetFilingsByCountry(Integer companyId, Integer year, Byte month, String country)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/{country}");
             path.ApplyField("companyId", companyId);
@@ -4742,7 +4742,7 @@ global class AvaTaxClient
         /// <param name="month">The two digit month of the filing period.</param>
         /// <param name="country">The two-character ISO-3166 code for the country.</param>
         /// <param name="region">The two or three character region code for the region.</param>
-        public FetchResult<FilingModel> GetFilingsByCountryRegion(Integer companyId, Int16 year, Byte month, String country, String region)
+        public FetchResult<FilingModel> GetFilingsByCountryRegion(Integer companyId, Integer year, Byte month, String country, String region)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}");
             path.ApplyField("companyId", companyId);
@@ -4771,7 +4771,7 @@ global class AvaTaxClient
         /// <param name="country">The two-character ISO-3166 code for the country.</param>
         /// <param name="region">The two or three character region code for the region.</param>
         /// <param name="formCode">The unique code of the form.</param>
-        public FetchResult<FilingModel> GetFilingsByReturnName(Integer companyId, Int16 year, Byte month, String country, String region, String formCode)
+        public FetchResult<FilingModel> GetFilingsByReturnName(Integer companyId, Integer year, Byte month, String country, String region, String formCode)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/{formCode}");
             path.ApplyField("companyId", companyId);
@@ -4802,7 +4802,7 @@ global class AvaTaxClient
         /// <param name="country">The country of the return(s) you are trying to retrieve</param>
         /// <param name="region">The region of the return(s) you are trying to retrieve</param>
         /// <param name="filingCalendarId">The filing calendar id of the return you are trying to retrieve</param>
-        public FetchResult<FilingReturnModelBasic> GetFilingsReturns(Integer companyId, Integer? endPeriodMonth, Integer? endPeriodYear, FilingFrequencyId? frequency, FilingStatusId? status, String country, String region, Int64? filingCalendarId)
+        public FetchResult<FilingReturnModelBasic> GetFilingsReturns(Integer companyId, Integer endPeriodMonth, Integer endPeriodYear, FilingFrequencyId frequency, FilingStatusId status, String country, String region, Integer filingCalendarId)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/returns");
             path.ApplyField("companyId", companyId);
@@ -4835,7 +4835,7 @@ global class AvaTaxClient
         /// <param name="year">The year of the filing period to be rebuilt.</param>
         /// <param name="month">The month of the filing period to be rebuilt.</param>
         /// <param name="model">The rebuild request you wish to execute.</param>
-        public FetchResult<FilingModel> RebuildFilings(Integer companyId, Int16 year, Byte month, RebuildFilingsModel model)
+        public FetchResult<FilingModel> RebuildFilings(Integer companyId, Integer year, Byte month, RebuildFilingsModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/rebuild");
             path.ApplyField("companyId", companyId);
@@ -4864,7 +4864,7 @@ global class AvaTaxClient
         /// <param name="month">The month of the filing period to be rebuilt.</param>
         /// <param name="country">The two-character ISO-3166 code for the country.</param>
         /// <param name="model">The rebuild request you wish to execute.</param>
-        public FetchResult<FilingModel> RebuildFilingsByCountry(Integer companyId, Int16 year, Byte month, String country, RebuildFilingsModel model)
+        public FetchResult<FilingModel> RebuildFilingsByCountry(Integer companyId, Integer year, Byte month, String country, RebuildFilingsModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/rebuild");
             path.ApplyField("companyId", companyId);
@@ -4895,7 +4895,7 @@ global class AvaTaxClient
         /// <param name="country">The two-character ISO-3166 code for the country.</param>
         /// <param name="region">The two or three character region code for the region.</param>
         /// <param name="model">The rebuild request you wish to execute.</param>
-        public FetchResult<FilingModel> RebuildFilingsByCountryRegion(Integer companyId, Int16 year, Byte month, String country, String region, RebuildFilingsModel model)
+        public FetchResult<FilingModel> RebuildFilingsByCountryRegion(Integer companyId, Integer year, Byte month, String country, String region, RebuildFilingsModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/rebuild");
             path.ApplyField("companyId", companyId);
@@ -4924,7 +4924,7 @@ global class AvaTaxClient
         /// <param name="companyId">The ID of the company that owns the filing being adjusted.</param>
         /// <param name="id">The ID of the adjustment being edited.</param>
         /// <param name="model">The updated Adjustment.</param>
-        public FilingAdjustmentModel UpdateReturnAdjustment(Integer companyId, Int64 id, FilingAdjustmentModel model)
+        public FilingAdjustmentModel UpdateReturnAdjustment(Integer companyId, Integer id, FilingAdjustmentModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/adjust/{id}");
             path.ApplyField("companyId", companyId);
@@ -4949,7 +4949,7 @@ global class AvaTaxClient
         /// <param name="companyId">The ID of the company that owns the filing being changed.</param>
         /// <param name="id">The ID of the augmentation being edited.</param>
         /// <param name="model">The updated Augmentation.</param>
-        public FilingModel UpdateReturnAugmentation(Integer companyId, Int64 id, FilingAugmentationModel model)
+        public FilingModel UpdateReturnAugmentation(Integer companyId, Integer id, FilingAugmentationModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/augment/{id}");
             path.ApplyField("companyId", companyId);
@@ -4975,7 +4975,7 @@ global class AvaTaxClient
         /// <param name="companyId">The ID of the company that owns the filing being adjusted.</param>
         /// <param name="id">The ID of the payment being edited.</param>
         /// <param name="model">The updated Payment.</param>
-        public FilingPaymentModel UpdateReturnPayment(Integer companyId, Int64 id, FilingPaymentModel model)
+        public FilingPaymentModel UpdateReturnPayment(Integer companyId, Integer id, FilingPaymentModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/payment/{id}");
             path.ApplyField("companyId", companyId);
@@ -5156,7 +5156,7 @@ global class AvaTaxClient
         /// This API requires a subscription to Avalara Managed Returns or SST Certified Service Provider.
         /// 
         /// <param name="id">The unique ID number of this funding request</param>
-        public FundingStatusModel ActivateFundingRequest(Int64 id)
+        public FundingStatusModel ActivateFundingRequest(Integer id)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/fundingrequests/{id}/widget");
             path.ApplyField("id", id);
@@ -5237,7 +5237,7 @@ global class AvaTaxClient
         /// 
         /// <param name="companyId">The ID of the company that owns this item.</param>
         /// <param name="id">The ID of the item you wish to delete.</param>
-        public List<ErrorDetail> DeleteItem(Integer companyId, Int64 id)
+        public List<ErrorDetail> DeleteItem(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/items/{id}");
             path.ApplyField("companyId", companyId);
@@ -5267,7 +5267,7 @@ global class AvaTaxClient
         /// 
         /// <param name="companyId">The ID of the company that owns this item object</param>
         /// <param name="id">The primary key of this item</param>
-        public ItemModel GetItem(Integer companyId, Int64 id)
+        public ItemModel GetItem(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/items/{id}");
             path.ApplyField("companyId", companyId);
@@ -5304,7 +5304,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<ItemModel> ListItemsByCompany(Integer companyId, String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<ItemModel> ListItemsByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/items");
             path.ApplyField("companyId", companyId);
@@ -5344,7 +5344,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<ItemModel> QueryItems(String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<ItemModel> QueryItems(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/items");
             path.AddQuery("$filter", filter);
@@ -5377,7 +5377,7 @@ global class AvaTaxClient
         /// <param name="companyId">The ID of the company that this item belongs to.</param>
         /// <param name="id">The ID of the item you wish to update</param>
         /// <param name="model">The item object you wish to update.</param>
-        public ItemModel UpdateItem(Integer companyId, Int64 id, ItemModel model)
+        public ItemModel UpdateItem(Integer companyId, Integer id, ItemModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/items/{id}");
             path.ApplyField("companyId", companyId);
@@ -5486,7 +5486,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<JurisdictionOverrideModel> ListJurisdictionOverridesByAccount(Integer accountId, String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<JurisdictionOverrideModel> ListJurisdictionOverridesByAccount(Integer accountId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/jurisdictionoverrides");
             path.ApplyField("accountId", accountId);
@@ -5521,7 +5521,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<JurisdictionOverrideModel> QueryJurisdictionOverrides(String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<JurisdictionOverrideModel> QueryJurisdictionOverrides(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/jurisdictionoverrides");
             path.AddQuery("$filter", filter);
@@ -5656,7 +5656,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<LocationModel> ListLocationsByCompany(Integer companyId, String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<LocationModel> ListLocationsByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/locations");
             path.ApplyField("companyId", companyId);
@@ -5694,7 +5694,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<LocationModel> QueryLocations(String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<LocationModel> QueryLocations(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/locations");
             path.AddQuery("$filter", filter);
@@ -5954,7 +5954,7 @@ global class AvaTaxClient
         /// 
         /// <param name="id">The unique ID number of the MultiDocument transaction to retrieve</param>
         /// <param name="include">Specifies objects to include in the response after transaction is created</param>
-        public MultiDocumentModel GetMultiDocumentTransactionById(Int64 id, String include)
+        public MultiDocumentModel GetMultiDocumentTransactionById(Integer id, String include)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/multidocument/{id}");
             path.ApplyField("id", id);
@@ -5995,7 +5995,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<MultiDocumentModel> ListMultiDocumentTransactions(String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<MultiDocumentModel> ListMultiDocumentTransactions(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/multidocument");
             path.AddQuery("$filter", filter);
@@ -6248,7 +6248,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<NexusModel> ListNexusByCompany(Integer companyId, String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<NexusModel> ListNexusByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/nexus");
             path.ApplyField("companyId", companyId);
@@ -6282,7 +6282,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<NexusModel> QueryNexus(String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<NexusModel> QueryNexus(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/nexus");
             path.AddQuery("$filter", filter);
@@ -6561,7 +6561,7 @@ global class AvaTaxClient
         /// 
         /// <param name="companyId">The ID of the company for this attachment.</param>
         /// <param name="id">The ResourceFileId of the attachment to download.</param>
-        public FileResult DownloadNoticeAttachment(Integer companyId, Int64 id)
+        public FileResult DownloadNoticeAttachment(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/files/{id}/attachment");
             path.ApplyField("companyId", companyId);
@@ -6706,7 +6706,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<NoticeModel> ListNoticesByCompany(Integer companyId, String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<NoticeModel> ListNoticesByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices");
             path.ApplyField("companyId", companyId);
@@ -6739,7 +6739,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<NoticeModel> QueryNotices(String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<NoticeModel> QueryNotices(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/notices");
             path.AddQuery("$filter", filter);
@@ -7002,7 +7002,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<AccountModel> QueryAccounts(String include, String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<AccountModel> QueryAccounts(String include, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts");
             path.AddQuery("$include", include);
@@ -7111,7 +7111,7 @@ global class AvaTaxClient
         /// This API works for all report types.
         /// 
         /// <param name="id">The unique ID number of this report</param>
-        public FileResult DownloadReport(Int64 id)
+        public FileResult DownloadReport(Integer id)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/reports/{id}/attachment");
             path.ApplyField("id", id);
@@ -7163,7 +7163,7 @@ global class AvaTaxClient
         /// This API call returns information about any report type.
         /// 
         /// <param name="id">The unique ID number of the report to retrieve</param>
-        public ReportModel GetReport(Int64 id)
+        public ReportModel GetReport(Integer id)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/reports/{id}");
             path.ApplyField("id", id);
@@ -7328,7 +7328,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<SettingModel> ListSettingsByCompany(Integer companyId, String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<SettingModel> ListSettingsByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/settings");
             path.ApplyField("companyId", companyId);
@@ -7364,7 +7364,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<SettingModel> QuerySettings(String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<SettingModel> QuerySettings(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/settings");
             path.AddQuery("$filter", filter);
@@ -7446,7 +7446,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<SubscriptionModel> ListSubscriptionsByAccount(Integer accountId, String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<SubscriptionModel> ListSubscriptionsByAccount(Integer accountId, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/subscriptions");
             path.ApplyField("accountId", accountId);
@@ -7476,7 +7476,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<SubscriptionModel> QuerySubscriptions(String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<SubscriptionModel> QuerySubscriptions(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/subscriptions");
             path.AddQuery("$filter", filter);
@@ -7584,7 +7584,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<TaxCodeModel> ListTaxCodesByCompany(Integer companyId, String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<TaxCodeModel> ListTaxCodesByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/taxcodes");
             path.ApplyField("companyId", companyId);
@@ -7618,7 +7618,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<TaxCodeModel> QueryTaxCodes(String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<TaxCodeModel> QueryTaxCodes(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/taxcodes");
             path.AddQuery("$filter", filter);
@@ -7712,7 +7712,7 @@ global class AvaTaxClient
         /// <param name="format">The format of the file (JSON by default)</param>
         /// <param name="partnerId">If specified, requests a custom partner-formatted version of the file.</param>
         /// <param name="includeJurisCodes">When true, the file will include jurisdiction codes in the result.</param>
-        public FileResult BuildTaxContentFileForLocation(Integer companyId, Integer id, DateTime? date, PointOfSaleFileType? format, PointOfSalePartnerId? partnerId, Boolean? includeJurisCodes)
+        public FileResult BuildTaxContentFileForLocation(Integer companyId, Integer id, DateTime date, PointOfSaleFileType format, PointOfSalePartnerId partnerId, Boolean includeJurisCodes)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/locations/{id}/pointofsaledata");
             path.ApplyField("companyId", companyId);
@@ -7854,7 +7854,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<TaxRuleModel> ListTaxRules(Integer companyId, String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<TaxRuleModel> ListTaxRules(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/taxrules");
             path.ApplyField("companyId", companyId);
@@ -7888,7 +7888,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<TaxRuleModel> QueryTaxRules(String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<TaxRuleModel> QueryTaxRules(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/taxrules");
             path.AddQuery("$filter", filter);
@@ -7988,7 +7988,7 @@ global class AvaTaxClient
         /// <param name="transactionCode">The transaction code to adjust</param>
         /// <param name="documentType">(Optional): The document type of the transaction to adjust.</param>
         /// <param name="model">The adjustment you wish to make</param>
-        public TransactionModel AdjustTransaction(String companyCode, String transactionCode, DocumentType? documentType, AdjustTransactionModel model)
+        public TransactionModel AdjustTransaction(String companyCode, String transactionCode, DocumentType documentType, AdjustTransactionModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions/{transactionCode}/adjust");
             path.ApplyField("companyCode", companyCode);
@@ -8114,7 +8114,7 @@ global class AvaTaxClient
         /// <param name="transactionCode">The transaction code to change</param>
         /// <param name="documentType">(Optional): The document type of the transaction to change document code. If not provided, the default is SalesInvoice.</param>
         /// <param name="model">The code change request you wish to execute</param>
-        public TransactionModel ChangeTransactionCode(String companyCode, String transactionCode, DocumentType? documentType, ChangeTransactionCodeModel model)
+        public TransactionModel ChangeTransactionCode(String companyCode, String transactionCode, DocumentType documentType, ChangeTransactionCodeModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions/{transactionCode}/changecode");
             path.ApplyField("companyCode", companyCode);
@@ -8146,7 +8146,7 @@ global class AvaTaxClient
         /// <param name="transactionCode">The transaction code to commit</param>
         /// <param name="documentType">(Optional): The document type of the transaction to commit. If not provided, the default is SalesInvoice.</param>
         /// <param name="model">The commit request you wish to execute</param>
-        public TransactionModel CommitTransaction(String companyCode, String transactionCode, DocumentType? documentType, CommitTransactionModel model)
+        public TransactionModel CommitTransaction(String companyCode, String transactionCode, DocumentType documentType, CommitTransactionModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions/{transactionCode}/commit");
             path.ApplyField("companyCode", companyCode);
@@ -8319,7 +8319,7 @@ global class AvaTaxClient
         /// <param name="transactionCode">The transaction code to retrieve</param>
         /// <param name="documentType">(Optional): The document type of the transaction to retrieve</param>
         /// <param name="include">Specifies objects to include in this fetch call</param>
-        public TransactionModel GetTransactionByCode(String companyCode, String transactionCode, DocumentType? documentType, String include)
+        public TransactionModel GetTransactionByCode(String companyCode, String transactionCode, DocumentType documentType, String include)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions/{transactionCode}");
             path.ApplyField("companyCode", companyCode);
@@ -8380,7 +8380,7 @@ global class AvaTaxClient
         /// 
         /// <param name="id">The unique ID number of the transaction to retrieve</param>
         /// <param name="include">Specifies objects to include in this fetch call</param>
-        public TransactionModel GetTransactionById(Int64 id, String include)
+        public TransactionModel GetTransactionById(Integer id, String include)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/{id}");
             path.ApplyField("id", id);
@@ -8424,7 +8424,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<TransactionModel> ListTransactionsByCompany(String companyCode, String include, String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<TransactionModel> ListTransactionsByCompany(String companyCode, String include, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions");
             path.ApplyField("companyCode", companyCode);
@@ -8460,7 +8460,7 @@ global class AvaTaxClient
         /// <param name="transactionCode">The transaction code to lock</param>
         /// <param name="documentType">(Optional): The document type of the transaction to lock. If not provided, the default is SalesInvoice.</param>
         /// <param name="model">The lock request you wish to execute</param>
-        public TransactionModel LockTransaction(String companyCode, String transactionCode, DocumentType? documentType, LockTransactionModel model)
+        public TransactionModel LockTransaction(String companyCode, String transactionCode, DocumentType documentType, LockTransactionModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions/{transactionCode}/lock");
             path.ApplyField("companyCode", companyCode);
@@ -8515,7 +8515,7 @@ global class AvaTaxClient
         /// <param name="documentType">(Optional): The document type of the transaction to refund. If not provided, the default is SalesInvoice.</param>
         /// <param name="useTaxDateOverride">(Optional): If set to true, processes refund using taxDateOverride rather than taxAmountOverride (Note: taxAmountOverride is not allowed for SST states).</param>
         /// <param name="model">Information about the refund to create</param>
-        public TransactionModel RefundTransaction(String companyCode, String transactionCode, String include, DocumentType? documentType, Boolean? useTaxDateOverride, RefundTransactionModel model)
+        public TransactionModel RefundTransaction(String companyCode, String transactionCode, String include, DocumentType documentType, Boolean useTaxDateOverride, RefundTransactionModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions/{transactionCode}/refund");
             path.ApplyField("companyCode", companyCode);
@@ -8549,7 +8549,7 @@ global class AvaTaxClient
         /// <param name="transactionCode">The transaction code to settle</param>
         /// <param name="documentType">(Optional): The document type of the transaction to settle. If not provided, the default is SalesInvoice.</param>
         /// <param name="model">The data from an external system to reconcile against AvaTax</param>
-        public TransactionModel SettleTransaction(String companyCode, String transactionCode, DocumentType? documentType, SettleTransactionModel model)
+        public TransactionModel SettleTransaction(String companyCode, String transactionCode, DocumentType documentType, SettleTransactionModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions/{transactionCode}/settle");
             path.ApplyField("companyCode", companyCode);
@@ -8579,7 +8579,7 @@ global class AvaTaxClient
         /// <param name="transactionCode">The transaction code to settle</param>
         /// <param name="documentType">(Optional): The document type of the transaction to verify. If not provided, the default is SalesInvoice.</param>
         /// <param name="model">The data from an external system to reconcile against AvaTax</param>
-        public TransactionModel VerifyTransaction(String companyCode, String transactionCode, DocumentType? documentType, VerifyTransactionModel model)
+        public TransactionModel VerifyTransaction(String companyCode, String transactionCode, DocumentType documentType, VerifyTransactionModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions/{transactionCode}/verify");
             path.ApplyField("companyCode", companyCode);
@@ -8611,7 +8611,7 @@ global class AvaTaxClient
         /// <param name="transactionCode">The transaction code to void</param>
         /// <param name="documentType">(Optional): The document type of the transaction to void. If not provided, the default is SalesInvoice.</param>
         /// <param name="model">The void request you wish to execute</param>
-        public TransactionModel VoidTransaction(String companyCode, String transactionCode, DocumentType? documentType, VoidTransactionModel model)
+        public TransactionModel VoidTransaction(String companyCode, String transactionCode, DocumentType documentType, VoidTransactionModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions/{transactionCode}/void");
             path.ApplyField("companyCode", companyCode);
@@ -8709,7 +8709,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<UPCModel> ListUPCsByCompany(Integer companyId, String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<UPCModel> ListUPCsByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/upcs");
             path.ApplyField("companyId", companyId);
@@ -8740,7 +8740,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<UPCModel> QueryUPCs(String filter, String include, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<UPCModel> QueryUPCs(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/upcs");
             path.AddQuery("$filter", filter);
@@ -8907,7 +8907,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<UserModel> ListUsersByAccount(Integer accountId, String include, String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<UserModel> ListUsersByAccount(Integer accountId, String include, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/users");
             path.ApplyField("accountId", accountId);
@@ -8943,7 +8943,7 @@ global class AvaTaxClient
         /// <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         /// <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         /// <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        public FetchResult<UserModel> QueryUsers(String include, String filter, Integer? top, Integer? skip, String orderBy)
+        public FetchResult<UserModel> QueryUsers(String include, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/users");
             path.AddQuery("$include", include);

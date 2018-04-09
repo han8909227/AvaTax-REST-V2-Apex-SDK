@@ -20,8 +20,8 @@ global class NoticeFilingTypeModel extends ErrorResult
     global String description { get; set; }
 
     /// A flag if the type is active
-    global Boolean? activeFlag { get; set; }
+    global Boolean activeFlag { get; set; }
 
     /// sort order of the types
-    global Integer? sortOrder { get; set; }
+    global Integer sortOrder { get; set; }
 }

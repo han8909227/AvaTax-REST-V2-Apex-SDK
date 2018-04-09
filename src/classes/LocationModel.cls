@@ -18,7 +18,7 @@ global class LocationModel extends ErrorResult
     global Integer id { get; set; }
 
     /// The unique ID number of the company that operates at this location.
-    global Integer? companyId { get; set; }
+    global Integer companyId { get; set; }
 
     /// A code that identifies this location. Must be unique within your company.
     global String locationCode { get; set; }
@@ -72,10 +72,10 @@ global class LocationModel extends ErrorResult
     global String country { get; set; }
 
     /// Set this flag to true to indicate that this is the default location for this company.
-    global Boolean? isDefault { get; set; }
+    global Boolean isDefault { get; set; }
 
     /// Set this flag to true to indicate that this location has been registered with a tax authority.
-    global Boolean? isRegistered { get; set; }
+    global Boolean isRegistered { get; set; }
 
     /// If this location has a different business name from its legal entity name, specify the "Doing Business As" name for this location.
     global String dbaName { get; set; }
@@ -84,28 +84,28 @@ global class LocationModel extends ErrorResult
     global String outletName { get; set; }
 
     /// The date when this location was opened for business, or null if not known.
-    global DateTime? effectiveDate { get; set; }
+    global DateTime effectiveDate { get; set; }
 
     /// If this place of business has closed, the date when this location closed business.
-    global DateTime? endDate { get; set; }
+    global DateTime endDate { get; set; }
 
     /// The most recent date when a transaction was processed for this location. Set by AvaTax.
-    global DateTime? lastTransactionDate { get; set; }
+    global DateTime lastTransactionDate { get; set; }
 
     /// The date when this location was registered with a tax authority. Not required.
-    global DateTime? registeredDate { get; set; }
+    global DateTime registeredDate { get; set; }
 
     /// The date when this record was created.
-    global DateTime? createdDate { get; set; }
+    global DateTime createdDate { get; set; }
 
     /// The User ID of the user who created this record.
-    global Integer? createdUserId { get; set; }
+    global Integer createdUserId { get; set; }
 
     /// The date/time when this record was last modified.
-    global DateTime? modifiedDate { get; set; }
+    global DateTime modifiedDate { get; set; }
 
     /// The user ID of the user who last modified this record.
-    global Integer? modifiedUserId { get; set; }
+    global Integer modifiedUserId { get; set; }
 
     /// Extra information required by certain jurisdictions for filing.
     /// For a list of settings recognized by Avalara, query the endpoint "/api/v2/definitions/locationquestions". 

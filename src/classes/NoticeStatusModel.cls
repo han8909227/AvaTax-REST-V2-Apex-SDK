@@ -20,8 +20,8 @@ global class NoticeStatusModel extends ErrorResult
     global String description { get; set; }
 
     /// True if a tax notice in this status is considered 'open' and has more work expected to be done before it is closed.
-    global Boolean? isOpen { get; set; }
+    global Boolean isOpen { get; set; }
 
     /// If a list of status values is to be displayed in a dropdown, they should be displayed in this numeric order.
-    global Integer? sortOrder { get; set; }
+    global Integer sortOrder { get; set; }
 }

@@ -14,46 +14,46 @@ global class FilingReturnModel extends ErrorResult
 {
 
     /// The unique ID number of this filing return.
-    global Int64? id { get; set; }
+    global Integer id { get; set; }
 
     /// The region id that this return belongs too
-    global Int64? filingRegionId { get; set; }
+    global Integer filingRegionId { get; set; }
 
     /// The unique ID number of the filing calendar associated with this return.
-    global Int64? filingCalendarId { get; set; }
+    global Integer filingCalendarId { get; set; }
 
     /// The resourceFileId of the return. Will be null if not available.
-    global Int64? resourceFileId { get; set; }
+    global Integer resourceFileId { get; set; }
 
     /// Tax Authority ID of this return
-    global Integer? taxAuthorityId { get; set; }
+    global Integer taxAuthorityId { get; set; }
 
     /// The current status of the filing return.
-    global FilingStatusId? status { get; set; }
+    global FilingStatusId status { get; set; }
 
     /// The filing frequency of the return.
-    global FilingFrequencyId? filingFrequency { get; set; }
+    global FilingFrequencyId filingFrequency { get; set; }
 
     /// The date the return was filed by Avalara.
-    global DateTime? filedDate { get; set; }
+    global DateTime filedDate { get; set; }
 
     /// The start date of this return
-    global DateTime? startPeriod { get; set; }
+    global DateTime startPeriod { get; set; }
 
     /// The end date of this return
-    global DateTime? endPeriod { get; set; }
+    global DateTime endPeriod { get; set; }
 
     /// The sales amount.
-    global Decimal? salesAmount { get; set; }
+    global Decimal salesAmount { get; set; }
 
     /// The filing type of the return.
-    global FilingTypeId? filingType { get; set; }
+    global FilingTypeId filingType { get; set; }
 
     /// The name of the form.
     global String formName { get; set; }
 
     /// The remittance amount of the return.
-    global Decimal? remitAmount { get; set; }
+    global Decimal remitAmount { get; set; }
 
     /// The unique code of the form.
     global String formCode { get; set; }
@@ -62,120 +62,120 @@ global class FilingReturnModel extends ErrorResult
     global String description { get; set; }
 
     /// The taxable amount.
-    global Decimal? taxableAmount { get; set; }
+    global Decimal taxableAmount { get; set; }
 
     /// The tax amount.
-    global Decimal? taxAmount { get; set; }
+    global Decimal taxAmount { get; set; }
 
     /// The amount collected by avalara for this return
-    global Decimal? collectAmount { get; set; }
+    global Decimal collectAmount { get; set; }
 
     /// The tax due amount.
-    global Decimal? taxDueAmount { get; set; }
+    global Decimal taxDueAmount { get; set; }
 
     /// The non-taxable amount.
-    global Decimal? nonTaxableAmount { get; set; }
+    global Decimal nonTaxableAmount { get; set; }
 
     /// The non-taxable due amount.
-    global Decimal? nonTaxableDueAmount { get; set; }
+    global Decimal nonTaxableDueAmount { get; set; }
 
     /// Consumer use tax liability during the period.
-    global Decimal? consumerUseTaxAmount { get; set; }
+    global Decimal consumerUseTaxAmount { get; set; }
 
     /// Consumer use tax liability accrued during the period.
-    global Decimal? consumerUseTaxDueAmount { get; set; }
+    global Decimal consumerUseTaxDueAmount { get; set; }
 
     /// Consumer use non-taxable amount.
-    global Decimal? consumerUseNonTaxableAmount { get; set; }
+    global Decimal consumerUseNonTaxableAmount { get; set; }
 
     /// Consumer use taxable amount.
-    global Decimal? consumerUseTaxableAmount { get; set; }
+    global Decimal consumerUseTaxableAmount { get; set; }
 
     /// Total amount of adjustments on this return
-    global Decimal? totalAdjustments { get; set; }
+    global Decimal totalAdjustments { get; set; }
 
     /// The amount of sales excluded from the liability calculation
-    global Decimal? excludedSalesAmount { get; set; }
+    global Decimal excludedSalesAmount { get; set; }
 
     /// The amount of non-taxable sales excluded from the liability calculation
-    global Decimal? excludedNonTaxableAmount { get; set; }
+    global Decimal excludedNonTaxableAmount { get; set; }
 
     /// The amount of tax excluded from the liability calculation
-    global Decimal? excludedTaxAmount { get; set; }
+    global Decimal excludedTaxAmount { get; set; }
 
     /// The amount of carry over sales applied to the liability calculation
-    global Decimal? carryOverSalesAmount { get; set; }
+    global Decimal carryOverSalesAmount { get; set; }
 
     /// The amount of carry over non taxable sales applied to the liability calculation
-    global Decimal? carryOverNonTaxableAmount { get; set; }
+    global Decimal carryOverNonTaxableAmount { get; set; }
 
     /// The amount of carry over sales tax applied to the liability calculation
-    global Decimal? carryOverTaxAmount { get; set; }
+    global Decimal carryOverTaxAmount { get; set; }
 
     /// The amount of carry over consumer use tax applied to the liability calculation
-    global Decimal? carryOverConsumerUseTaxAmount { get; set; }
+    global Decimal carryOverConsumerUseTaxAmount { get; set; }
 
     /// The total amount of total tax accrued in the current active period
-    global Decimal? taxAccrualAmount { get; set; }
+    global Decimal taxAccrualAmount { get; set; }
 
     /// The total amount of sales accrued in the current active period
-    global Decimal? salesAccrualAmount { get; set; }
+    global Decimal salesAccrualAmount { get; set; }
 
     /// The total amount of nontaxable sales accrued in the current active period
-    global Decimal? nonTaxableAccrualAmount { get; set; }
+    global Decimal nonTaxableAccrualAmount { get; set; }
 
     /// The total amount of sales tax accrued in the current active period
-    global Decimal? salesTaxAccrualAmount { get; set; }
+    global Decimal salesTaxAccrualAmount { get; set; }
 
     /// The total amount of sellers use tax accrued in the current active period
-    global Decimal? sellersUseTaxAccrualAmount { get; set; }
+    global Decimal sellersUseTaxAccrualAmount { get; set; }
 
     /// The total amount of consumer use tax accrued in the current active period
-    global Decimal? consumerUseTaxAccrualAmount { get; set; }
+    global Decimal consumerUseTaxAccrualAmount { get; set; }
 
     /// The total amount of consumer use taxable sales accrued in the current active period
-    global Decimal? consumerUseTaxableAccrualAmount { get; set; }
+    global Decimal consumerUseTaxableAccrualAmount { get; set; }
 
     /// The total amount of consumer use non taxable sales accrued in the current active period
-    global Decimal? consumerUseNonTaxableAccrualAmount { get; set; }
+    global Decimal consumerUseNonTaxableAccrualAmount { get; set; }
 
     /// The Adjustments for this return.
     global List<FilingAdjustmentModel> adjustments { get; set; }
 
     /// Total amount of augmentations on this return
-    global Decimal? totalAugmentations { get; set; }
+    global Decimal totalAugmentations { get; set; }
 
     /// The Augmentations for this return.
     global List<FilingAugmentationModel> augmentations { get; set; }
 
     /// Total amount of payments on this return
-    global Decimal? totalPayments { get; set; }
+    global Decimal totalPayments { get; set; }
 
     /// The payments for this return.
     global List<FilingPaymentModel> payments { get; set; }
 
     /// Accrual type of the return
-    global AccrualType? accrualType { get; set; }
+    global AccrualType accrualType { get; set; }
 
     /// The month of the filing period for this tax filing. 
     /// The filing period represents the year and month of the last day of taxes being reported on this filing. 
     /// For example, an annual tax filing for Jan-Dec 2015 would have a filing period of Dec 2015.
-    global Byte? month { get; set; }
+    global Byte month { get; set; }
 
     /// The year of the filing period for this tax filing.
     /// The filing period represents the year and month of the last day of taxes being reported on this filing. 
     /// For example, an annual tax filing for Jan-Dec 2015 would have a filing period of Dec 2015.
-    global Integer? year { get; set; }
+    global Integer year { get; set; }
 
     /// The attachments for this return.
     global List<FilingAttachmentModel> attachments { get; set; }
 
     /// The date when this record was created.
-    global DateTime? createdDate { get; set; }
+    global DateTime createdDate { get; set; }
 
     /// The User ID of the user who created this record.
-    global Integer? createdUserId { get; set; }
+    global Integer createdUserId { get; set; }
 
     /// The date/time when this record was last modified.
-    global DateTime? modifiedDate { get; set; }
+    global DateTime modifiedDate { get; set; }
 }

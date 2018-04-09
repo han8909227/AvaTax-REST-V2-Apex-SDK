@@ -17,7 +17,7 @@ global class FundingESignMethodReturn
     global String method { get; set; }
 
     /// JavaScriptReady
-    global Boolean? javaScriptReady { get; set; }
+    global Boolean javaScriptReady { get; set; }
 
     /// The actual javascript to use to render this object
     global String javaScript { get; set; }

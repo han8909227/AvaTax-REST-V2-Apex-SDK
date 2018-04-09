@@ -22,7 +22,7 @@ global class CommitMultiDocumentModel extends ErrorResult
     /// document types, see [DocumentType](https://developer.avalara.com/api-reference/avatax/rest/v2/models/enums/DocumentType/).
     /// 
     /// A MultiDocument transaction is uniquely identified by its `accountId`, `code`, and `type`.
-    global DocumentType? type { get; set; }
+    global DocumentType type { get; set; }
 
     /// Set this value to be `true` to commit this transaction.
     /// 

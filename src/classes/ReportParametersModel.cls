@@ -14,10 +14,10 @@ global class ReportParametersModel extends ErrorResult
 {
 
     /// The start date filter used for your report
-    global DateTime? startDate { get; set; }
+    global DateTime startDate { get; set; }
 
     /// The end date filter used for your report
-    global DateTime? endDate { get; set; }
+    global DateTime endDate { get; set; }
 
     /// The country filter used for your report
     global String country { get; set; }

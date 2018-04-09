@@ -31,10 +31,10 @@ global class NoticeModel extends ErrorResult
     global DateTime receivedDate { get; set; }
 
     /// The closed date of the notice
-    global DateTime? closedDate { get; set; }
+    global DateTime closedDate { get; set; }
 
     /// The total remmitance amount for the notice
-    global Decimal? totalRemit { get; set; }
+    global Decimal totalRemit { get; set; }
 
     /// NoticeCustomerTypeID can be retrieved from the definitions API
     global NoticeCustomerType customerTypeId { get; set; }
@@ -61,13 +61,13 @@ global class NoticeModel extends ErrorResult
     global String region { get; set; }
 
     /// The tax authority id of the notice
-    global Integer? taxAuthorityId { get; set; }
+    global Integer taxAuthorityId { get; set; }
 
     /// The filing frequency of the notice
-    global FilingFrequencyId? filingFrequency { get; set; }
+    global FilingFrequencyId filingFrequency { get; set; }
 
     /// The filing type of the notice
-    global TaxNoticeFilingTypeId? filingTypeId { get; set; }
+    global TaxNoticeFilingTypeId filingTypeId { get; set; }
 
     /// The ticket reference number of the notice
     global String ticketReferenceNo { get; set; }
@@ -91,13 +91,13 @@ global class NoticeModel extends ErrorResult
     global String reason { get; set; }
 
     /// The tax notice type id
-    global Integer? typeId { get; set; }
+    global Integer typeId { get; set; }
 
     /// The tax notice type description
     global String type { get; set; }
 
     /// The notice customer funding options
-    global FundingOption? customerFundingOptionId { get; set; }
+    global FundingOption customerFundingOptionId { get; set; }
 
     /// The priority of the notice
     global NoticePriorityId priorityId { get; set; }
@@ -109,31 +109,31 @@ global class NoticeModel extends ErrorResult
     global Boolean hideFromCustomer { get; set; }
 
     /// Expected resolution date of the notice
-    global DateTime? expectedResolutionDate { get; set; }
+    global DateTime expectedResolutionDate { get; set; }
 
     /// Indicator to show customer this resolution date
     global Boolean showResolutionDateToCustomer { get; set; }
 
     /// The unique ID number of the user that closed the notice
-    global Integer? closedByUserId { get; set; }
+    global Integer closedByUserId { get; set; }
 
     /// The user who created the notice
     global String createdByUserName { get; set; }
 
     /// The unique ID number of the user that owns the notice
-    global Integer? ownedByUserId { get; set; }
+    global Integer ownedByUserId { get; set; }
 
     /// The description of the notice
     global String description { get; set; }
 
     /// The ava file form id of the notice
-    global Integer? avaFileFormId { get; set; }
+    global Integer avaFileFormId { get; set; }
 
     /// The id of the revenue contact
-    global Integer? revenueContactId { get; set; }
+    global Integer revenueContactId { get; set; }
 
     /// The id of the compliance contact
-    global Integer? complianceContactId { get; set; }
+    global Integer complianceContactId { get; set; }
 
     /// The document reference of the notice
     global String documentReference { get; set; }
@@ -157,14 +157,14 @@ global class NoticeModel extends ErrorResult
     global List<NoticeRootCauseDetailModel> rootCause { get; set; }
 
     /// The date when this record was created.
-    global DateTime? createdDate { get; set; }
+    global DateTime createdDate { get; set; }
 
     /// The User ID of the user who created this record.
-    global Integer? createdUserId { get; set; }
+    global Integer createdUserId { get; set; }
 
     /// The date/time when this record was last modified.
-    global DateTime? modifiedDate { get; set; }
+    global DateTime modifiedDate { get; set; }
 
     /// The user ID of the user who last modified this record.
-    global Integer? modifiedUserId { get; set; }
+    global Integer modifiedUserId { get; set; }
 }

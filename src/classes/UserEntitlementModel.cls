@@ -17,8 +17,8 @@ global class UserEntitlementModel extends ErrorResult
     global List<String> permissions { get; set; }
 
     /// What access privileges does the current user have to see companies?
-    global CompanyAccessLevel? accessLevel { get; set; }
+    global CompanyAccessLevel accessLevel { get; set; }
 
     /// The identities of all companies this user is permitted to access
-    global List<Int32> companies { get; set; }
+    global Integer companies { get; set; }
 }
