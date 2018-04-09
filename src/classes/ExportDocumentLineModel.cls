@@ -23,9 +23,9 @@ global class ExportDocumentLineModel extends ErrorResult
     global DateTime endDate { get; set; }
 
     /// The transactions in the country you wish to run a report:
-    /// use "ALL" for all countries
-    /// use "ALL Non-US" for all international countries
-    /// or use a single 2-char ISO country code
+    // use "ALL" for all countries
+    // use "ALL Non-US" for all international countries
+    // or use a single 2-char ISO country code
     global String country { get; set; }
 
     /// The state associated with the transactions you wish to run a report on: use "ALL" for all states.

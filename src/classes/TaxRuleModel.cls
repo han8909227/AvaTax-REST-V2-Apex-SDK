@@ -20,11 +20,11 @@ global class TaxRuleModel extends ErrorResult
     global Integer companyId { get; set; }
 
     /// The unique ID number of the tax code for this rule.
-    /// When creating or updating a tax rule, you may specify either the taxCodeId value or the taxCode value.
+    // When creating or updating a tax rule, you may specify either the taxCodeId value or the taxCode value.
     global Integer taxCodeId { get; set; }
 
     /// The code string of the tax code for this rule.
-    /// When creating or updating a tax rule, you may specify either the taxCodeId value or the taxCode value.
+    // When creating or updating a tax rule, you may specify either the taxCodeId value or the taxCode value.
     global String taxCode { get; set; }
 
     /// For U.S. tax rules, this is the state's Federal Information Processing Standard (FIPS) code.
@@ -37,14 +37,14 @@ global class TaxRuleModel extends ErrorResult
     global String jurisCode { get; set; }
 
     /// (DEPRECATED) The type of the jurisdiction to which this tax rule applies.
-    /// NOTE: Use jurisdictionTypeId instead.
+    // NOTE: Use jurisdictionTypeId instead.
     global JurisTypeId jurisTypeId { get; set; }
 
     /// The type of the jurisdiction to which this tax rule applies.
     global JurisdictionType jurisdictionTypeId { get; set; }
 
     /// DEPRECATED - The type of customer usage to which this rule applies.
-    /// Please use entityUseCode instead.
+    // Please use entityUseCode instead.
     global String customerUsageType { get; set; }
 
     /// The type of customer usage to which this rule applies.
@@ -60,9 +60,9 @@ global class TaxRuleModel extends ErrorResult
     global String rateTypeCode { get; set; }
 
     /// This type value determines the behavior of the tax rule.
-    /// You can specify that this rule controls the product's taxability or exempt / nontaxable status, the product's rate 
-    /// (for example, if you have been granted an official ruling for your product's rate that differs from the official rate), 
-    /// or other types of behavior.
+    // You can specify that this rule controls the product's taxability or exempt / nontaxable status, the product's rate 
+    // (for example, if you have been granted an official ruling for your product's rate that differs from the official rate), 
+    // or other types of behavior.
     global TaxRuleTypeId taxRuleTypeId { get; set; }
 
     /// Set this value to true if this tax rule applies in all jurisdictions.
@@ -96,25 +96,25 @@ global class TaxRuleModel extends ErrorResult
     global Boolean isSTPro { get; set; }
 
     /// Name or ISO 3166 code identifying the country where this rule will apply.
-    /// 
-    /// This field supports many different country identifiers:
-    ///  * Two character ISO 3166 codes
-    ///  * Three character ISO 3166 codes
-    ///  * Fully spelled out names of the country in ISO supported languages
-    ///  * Common alternative spellings for many countries
-    /// 
-    /// For a full list of all supported codes and names, please see the Definitions API `ListCountries`.
+    // 
+    // This field supports many different country identifiers:
+    //  * Two character ISO 3166 codes
+    //  * Three character ISO 3166 codes
+    //  * Fully spelled out names of the country in ISO supported languages
+    //  * Common alternative spellings for many countries
+    // 
+    // For a full list of all supported codes and names, please see the Definitions API `ListCountries`.
     global String country { get; set; }
 
     /// Name or ISO 3166 code identifying the region where this rule will apply.
-    /// 
-    /// This field supports many different region identifiers:
-    ///  * Two and three character ISO 3166 region codes
-    ///  * Fully spelled out names of the region in ISO supported languages
-    ///  * Common alternative spellings for many regions
-    /// 
-    /// For a full list of all supported codes and names, please see the Definitions API `ListRegions`.
-    /// NOTE: Region is required for US and not required for non-US countries because the user may be either creating a Country-level or Region-level rule.
+    // 
+    // This field supports many different region identifiers:
+    //  * Two and three character ISO 3166 region codes
+    //  * Fully spelled out names of the region in ISO supported languages
+    //  * Common alternative spellings for many regions
+    // 
+    // For a full list of all supported codes and names, please see the Definitions API `ListRegions`.
+    // NOTE: Region is required for US and not required for non-US countries because the user may be either creating a Country-level or Region-level rule.
     global String region { get; set; }
 
     /// The sourcing types to which this rule applies.
@@ -145,8 +145,8 @@ global class TaxRuleModel extends ErrorResult
     global Integer rateTypeTaxTypeMappingId { get; set; }
 
     /// Indicates the expression to use to determine whether this tax rule generates a non-passthrough tax.
-    /// 
-    /// Non-passthrough taxes are taxes that cannot be charged to the customer.
+    // 
+    // Non-passthrough taxes are taxes that cannot be charged to the customer.
     global String nonPassthroughExpression { get; set; }
 
     /// The currency code to use for this rule.
@@ -156,8 +156,8 @@ global class TaxRuleModel extends ErrorResult
     global Integer preferredProgramId { get; set; }
 
     /// For tax rules that are calculated using units of measurement, this indicates the unit of measurement type
-    /// used to calculate the amounts for this rule.
-    /// 
-    /// For a list of units of measurement, please call `ListUnitsOfMeasurement()`.
+    // used to calculate the amounts for this rule.
+    // 
+    // For a list of units of measurement, please call `ListUnitsOfMeasurement()`.
     global Integer uomId { get; set; }
 }

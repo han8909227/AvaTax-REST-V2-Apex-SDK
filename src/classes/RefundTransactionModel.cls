@@ -17,23 +17,23 @@ global class RefundTransactionModel extends ErrorResult
     global String refundTransactionCode { get; set; }
 
     /// The date of the refund. For customers using Avalara's Managed Returns Service, this date controls the month in which the refund
-    /// transaction will be reported on a tax filing.
+    // transaction will be reported on a tax filing.
     global DateTime refundDate { get; set; }
 
     /// Type of this refund. 
-    /// 
-    /// To submit a full refund, specify `Full`. 
-    /// 
-    /// To refund only specific lines from the transaction, specify `Partial` and indicate the lines you wish to apply in the `refundLines` field.
-    /// 
-    /// To refund the tax that was paid in the previous transaction, specify `TaxOnly`.
-    /// 
-    /// To issue a percentage-based discount, specify `Percentage`.
+    // 
+    // To submit a full refund, specify `Full`. 
+    // 
+    // To refund only specific lines from the transaction, specify `Partial` and indicate the lines you wish to apply in the `refundLines` field.
+    // 
+    // To refund the tax that was paid in the previous transaction, specify `TaxOnly`.
+    // 
+    // To issue a percentage-based discount, specify `Percentage`.
     global RefundType refundType { get; set; }
 
     /// The percentage for refund.
-    /// 
-    /// This value only applies if you choose `refundType = Percentage` or `refundType = Partial`.
+    // 
+    // This value only applies if you choose `refundType = Percentage` or `refundType = Partial`.
     global Decimal refundPercentage { get; set; }
 
     /// If you chose a refund of type `Partial`, this indicates which lines from the original transaction are being refunded.

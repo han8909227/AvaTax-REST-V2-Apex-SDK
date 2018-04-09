@@ -41,19 +41,19 @@ global class CompanyModel extends ErrorResult
     global Boolean isActive { get; set; }
 
     /// For United States companies, this field contains your Taxpayer Identification Number. 
-    /// This is a nine digit number that is usually called an EIN for an Employer Identification Number if this company is a corporation, 
-    /// or SSN for a Social Security Number if this company is a person.
-    /// This value is required if you subscribe to Avalara Managed Returns or the SST Certified Service Provider services, 
-    /// but it is optional if you do not subscribe to either of those services.
+    // This is a nine digit number that is usually called an EIN for an Employer Identification Number if this company is a corporation, 
+    // or SSN for a Social Security Number if this company is a person.
+    // This value is required if you subscribe to Avalara Managed Returns or the SST Certified Service Provider services, 
+    // but it is optional if you do not subscribe to either of those services.
     global String taxpayerIdNumber { get; set; }
 
     /// Set this flag to true to give this company its own unique tax profile.
-    /// If this flag is true, this company will have its own Nexus, TaxRule, TaxCode, and Item definitions.
-    /// If this flag is false, this company will inherit all profile values from its parent.
+    // If this flag is true, this company will have its own Nexus, TaxRule, TaxCode, and Item definitions.
+    // If this flag is false, this company will inherit all profile values from its parent.
     global Boolean hasProfile { get; set; }
 
     /// Set this flag to true if this company must file its own tax returns.
-    /// For users who have Returns enabled, this flag turns on monthly Worksheet generation for the company.
+    // For users who have Returns enabled, this flag turns on monthly Worksheet generation for the company.
     global Boolean isReportingEntity { get; set; }
 
     /// If this company participates in Streamlined Sales Tax, this is the date when the company joined the SST program.
@@ -72,14 +72,14 @@ global class CompanyModel extends ErrorResult
     global Boolean warningsEnabled { get; set; }
 
     /// Set this flag to true to indicate that this company is a test company.
-    /// If you have Returns enabled, Test companies will not file tax returns and can be used for validation purposes.
+    // If you have Returns enabled, Test companies will not file tax returns and can be used for validation purposes.
     global Boolean isTest { get; set; }
 
     /// Used to apply tax detail dependency at a jurisdiction level.
     global TaxDependencyLevelId taxDependencyLevelId { get; set; }
 
     /// Set this value to true to indicate that you are still working to finish configuring this company.
-    /// While this value is true, no tax reporting will occur and the company will not be usable for transactions.
+    // While this value is true, no tax reporting will occur and the company will not be usable for transactions.
     global Boolean inProgress { get; set; }
 
     /// Business Identification No

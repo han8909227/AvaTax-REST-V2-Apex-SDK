@@ -9,9 +9,9 @@
  */
 
 /* This object is used to keep track of custom information about a company.
-    /// A setting can refer to any type of data you need to remember about this company object.
-    /// When creating this object, you may define your own "set", "name", and "value" parameters.
-    /// To define your own values, please choose a "set" name that begins with "X-" to indicate an extension. */
+    // A setting can refer to any type of data you need to remember about this company object.
+    // When creating this object, you may define your own "set", "name", and "value" parameters.
+    // To define your own values, please choose a "set" name that begins with "X-" to indicate an extension. */
 
 global class SettingModel extends ErrorResult
 {

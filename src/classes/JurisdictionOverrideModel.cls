@@ -9,9 +9,9 @@
  */
 
 /* Represents an override of tax jurisdictions for a specific address.
-    /// 
-    /// During the time period represented by EffDate through EndDate, all tax decisions for addresses matching
-    /// this override object will be assigned to the list of jurisdictions designated in this object. */
+    // 
+    // During the time period represented by EffDate through EndDate, all tax decisions for addresses matching
+    // this override object will be assigned to the list of jurisdictions designated in this object. */
 
 global class JurisdictionOverrideModel extends ErrorResult
 {
@@ -32,20 +32,20 @@ global class JurisdictionOverrideModel extends ErrorResult
     global String city { get; set; }
 
     /// Name or ISO 3166 code identifying the region within the country to be affected by this override.
-    /// 
-    /// Note that only United States addresses are affected by the jurisdiction override system.
-    /// 
-    /// This field supports many different region identifiers:
-    ///  * Two and three character ISO 3166 region codes
-    ///  * Fully spelled out names of the region in ISO supported languages
-    ///  * Common alternative spellings for many regions
-    /// 
-    /// For a full list of all supported codes and names, please see the Definitions API `ListRegions`.
+    // 
+    // Note that only United States addresses are affected by the jurisdiction override system.
+    // 
+    // This field supports many different region identifiers:
+    //  * Two and three character ISO 3166 region codes
+    //  * Fully spelled out names of the region in ISO supported languages
+    //  * Common alternative spellings for many regions
+    // 
+    // For a full list of all supported codes and names, please see the Definitions API `ListRegions`.
     global String region { get; set; }
 
     /// The two character ISO-3166 country code of the country affected by this override.
-    /// 
-    /// Note that only United States addresses are affected by the jurisdiction override system.
+    // 
+    // Note that only United States addresses are affected by the jurisdiction override system.
     global String country { get; set; }
 
     /// The postal code of the physical location affected by this override.

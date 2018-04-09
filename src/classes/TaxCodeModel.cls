@@ -9,7 +9,7 @@
  */
 
 /* Represents a tax code that can be applied to items on a transaction.
-    /// A tax code can have specific rules for specific jurisdictions that change the tax calculation behavior. */
+    // A tax code can have specific rules for specific jurisdictions that change the tax calculation behavior. */
 
 global class TaxCodeModel extends ErrorResult
 {
@@ -45,7 +45,7 @@ global class TaxCodeModel extends ErrorResult
     global Boolean isActive { get; set; }
 
     /// True if this tax code has been certified by the Streamlined Sales Tax governing board.
-    /// By default, you should leave this value empty.
+    // By default, you should leave this value empty.
     global Boolean isSSTCertified { get; set; }
 
     /// The date when this record was created.

@@ -9,7 +9,7 @@
  */
 
 /* Represents a commitment to file a tax return on a recurring basis.
-    /// Only used if you subscribe to Avalara Returns. */
+    // Only used if you subscribe to Avalara Returns. */
 
 global class FilingCalendarModel extends ErrorResult
 {
@@ -24,28 +24,28 @@ global class FilingCalendarModel extends ErrorResult
     global String returnName { get; set; }
 
     /// Name or ISO 3166 code identifying the country that issued the tax form for this filing calendar.
-    /// 
-    /// This field supports many different country identifiers:
-    ///  * Two character ISO 3166 codes
-    ///  * Three character ISO 3166 codes
-    ///  * Fully spelled out names of the country in ISO supported languages
-    ///  * Common alternative spellings for many countries
-    /// 
-    /// For a full list of all supported codes and names, please see the Definitions API `ListCountries`.
+    // 
+    // This field supports many different country identifiers:
+    //  * Two character ISO 3166 codes
+    //  * Three character ISO 3166 codes
+    //  * Fully spelled out names of the country in ISO supported languages
+    //  * Common alternative spellings for many countries
+    // 
+    // For a full list of all supported codes and names, please see the Definitions API `ListCountries`.
     global String formCountry { get; set; }
 
     /// Name or ISO 3166 code identifying the region that issued the tax form for this filing calendar.
-    /// 
-    /// This field supports many different region identifiers:
-    ///  * Two and three character ISO 3166 region codes
-    ///  * Fully spelled out names of the region in ISO supported languages
-    ///  * Common alternative spellings for many regions
-    /// 
-    /// For a full list of all supported codes and names, please see the Definitions API `ListRegions`.
+    // 
+    // This field supports many different region identifiers:
+    //  * Two and three character ISO 3166 region codes
+    //  * Fully spelled out names of the region in ISO supported languages
+    //  * Common alternative spellings for many regions
+    // 
+    // For a full list of all supported codes and names, please see the Definitions API `ListRegions`.
     global String formRegion { get; set; }
 
     /// The Avalara standard tax form code of the tax form for this filing calendar. The first two characters of the tax form code
-    /// are the ISO 3166 country code of the country that issued this form.
+    // are the ISO 3166 country code of the country that issued this form.
     global String taxFormCode { get; set; }
 
     /// If this calendar is for a location-specific tax return, specify the location code here. To file for all locations, leave this value NULL.
@@ -73,87 +73,87 @@ global class FilingCalendarModel extends ErrorResult
     global String employerIdentificationNumber { get; set; }
 
     /// DEPRECATED - The first line of the mailing address that will be used when filling out this tax return.
-    /// Field will be no longer be available after the 17.9 release.
+    // Field will be no longer be available after the 17.9 release.
     global String line1 { get; set; }
 
     /// DEPRECATED - The second line of the mailing address that will be used when filling out this tax return.
-    /// Please note that some tax forms do not support multiple address lines.
-    /// 
-    /// Field will be no longer be available after the 17.9 release.
+    // Please note that some tax forms do not support multiple address lines.
+    // 
+    // Field will be no longer be available after the 17.9 release.
     global String line2 { get; set; }
 
     /// DEPRECATED - The city name of the mailing address that will be used when filling out this tax return.
-    /// 
-    /// Field will be no longer be available after the 17.9 release.
+    // 
+    // Field will be no longer be available after the 17.9 release.
     global String city { get; set; }
 
     /// DEPRECATED - The state, region, or province of the mailing address that will be used when filling out this tax return.
-    /// 
-    /// Field will be no longer be available after the 17.9 release.
+    // 
+    // Field will be no longer be available after the 17.9 release.
     global String region { get; set; }
 
     /// DEPRECATED - The postal code or zip code of the mailing address that will be used when filling out this tax return.
-    /// 
-    /// Field will be no longer be available after the 17.9 release.
+    // 
+    // Field will be no longer be available after the 17.9 release.
     global String postalCode { get; set; }
 
     /// DEPRECATED - The two character ISO-3166 country code of the mailing address that will be used when filling out this tax return.
-    /// 
-    /// Field will be no longer be available after the 17.9 release.
+    // 
+    // Field will be no longer be available after the 17.9 release.
     global String country { get; set; }
 
     /// The first line of the mailing address that will be used when filling out this tax return.
     global String mailingAddressLine1 { get; set; }
 
     /// The second line of the mailing address that will be used when filling out this tax return.
-    /// Please note that some tax forms do not support multiple address lines.
+    // Please note that some tax forms do not support multiple address lines.
     global String mailingAddressLine2 { get; set; }
 
     /// The city name of the mailing address that will be used when filling out this tax return.
     global String mailingAddressCity { get; set; }
 
     /// Name or ISO 3166 code identifying the region of the mailing address that will be used when filling out this tax return.
-    /// 
-    /// This field supports many different region identifiers:
-    ///  * Two and three character ISO 3166 region codes
-    ///  * Fully spelled out names of the region in ISO supported languages
-    ///  * Common alternative spellings for many regions
-    /// 
-    /// For a full list of all supported codes and names, please see the Definitions API `ListRegions`.
+    // 
+    // This field supports many different region identifiers:
+    //  * Two and three character ISO 3166 region codes
+    //  * Fully spelled out names of the region in ISO supported languages
+    //  * Common alternative spellings for many regions
+    // 
+    // For a full list of all supported codes and names, please see the Definitions API `ListRegions`.
     global String mailingAddressRegion { get; set; }
 
     /// The postal code or zip code of the mailing address that will be used when filling out this tax return.
     global String mailingAddressPostalCode { get; set; }
 
     /// Name or ISO 3166 code identifying the country of the mailing address that will be used when filling out this tax return.
-    /// 
-    /// This field supports many different country identifiers:
-    ///  * Two character ISO 3166 codes
-    ///  * Three character ISO 3166 codes
-    ///  * Fully spelled out names of the country in ISO supported languages
-    ///  * Common alternative spellings for many countries
-    /// 
-    /// For a full list of all supported codes and names, please see the Definitions API `ListCountries`.
+    // 
+    // This field supports many different country identifiers:
+    //  * Two character ISO 3166 codes
+    //  * Three character ISO 3166 codes
+    //  * Fully spelled out names of the country in ISO supported languages
+    //  * Common alternative spellings for many countries
+    // 
+    // For a full list of all supported codes and names, please see the Definitions API `ListCountries`.
     global String mailingAddressCountry { get; set; }
 
     /// The phone number to be used when filing this return.
     global String phone { get; set; }
 
     /// Special filing instructions to be used when filing this return.
-    /// Please note that requesting special filing instructions may incur additional costs.
+    // Please note that requesting special filing instructions may incur additional costs.
     global String customerFilingInstructions { get; set; }
 
     /// The legal entity name to be used when filing this return.
     global String legalEntityName { get; set; }
 
     /// The earliest date for the tax period when this return should be filed.
-    /// This date specifies the earliest date for tax transactions that should be reported on this filing calendar.
-    /// Please note that tax is usually filed one month in arrears: for example, tax for January transactions is typically filed during the month of February.
+    // This date specifies the earliest date for tax transactions that should be reported on this filing calendar.
+    // Please note that tax is usually filed one month in arrears: for example, tax for January transactions is typically filed during the month of February.
     global DateTime effectiveDate { get; set; }
 
     /// The last date for the tax period when this return should be filed.
-    /// This date specifies the last date for tax transactions that should be reported on this filing calendar.
-    /// Please note that tax is usually filed one month in arrears: for example, tax for January transactions is typically filed during the month of February.
+    // This date specifies the last date for tax transactions that should be reported on this filing calendar.
+    // Please note that tax is usually filed one month in arrears: for example, tax for January transactions is typically filed during the month of February.
     global DateTime endDate { get; set; }
 
     /// The method to be used when filing this return.
@@ -166,7 +166,7 @@ global class FilingCalendarModel extends ErrorResult
     global String eFilePassword { get; set; }
 
     /// If you are required to prepay a percentage of taxes for future periods, please specify the percentage in whole numbers; 
-    /// for example, the value 90 would indicate 90%.
+    // for example, the value 90 would indicate 90%.
     global Byte prepayPercentage { get; set; }
 
     /// The type of tax to report on this return.

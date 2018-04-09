@@ -62,7 +62,7 @@ global class TransactionLineDetailModel extends ErrorResult
     global String stateAssignedNo { get; set; }
 
     /// (DEPRECATED) The type of the jurisdiction to which this tax detail applies.
-    /// NOTE: Use jurisdictionTypeId instead.
+    // NOTE: Use jurisdictionTypeId instead.
     global JurisTypeId jurisType { get; set; }
 
     /// The type of the jurisdiction in which this tax detail applies.
@@ -111,8 +111,8 @@ global class TransactionLineDetailModel extends ErrorResult
     global Integer taxRegionId { get; set; }
 
     /// The amount of tax that was calculated. This amount may be different if a tax override was used.
-    /// If the customer specified a tax override, this calculated tax value represents the amount of tax that would
-    /// have been charged if Avalara had calculated the tax for the rule.
+    // If the customer specified a tax override, this calculated tax value represents the amount of tax that would
+    // have been charged if Avalara had calculated the tax for the rule.
     global Decimal taxCalculated { get; set; }
 
     /// The amount of tax override that was specified for this tax line.
@@ -137,7 +137,7 @@ global class TransactionLineDetailModel extends ErrorResult
     global String unitOfBasis { get; set; }
 
     /// True if this value is a non-passthrough tax.
-    /// 
-    /// A non-passthrough tax is a tax that may not be charged to a customer; it must be paid directly by the company.
+    // 
+    // A non-passthrough tax is a tax that may not be charged to a customer; it must be paid directly by the company.
     global Boolean isNonPassThru { get; set; }
 }

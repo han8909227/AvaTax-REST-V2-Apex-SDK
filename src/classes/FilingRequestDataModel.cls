@@ -9,7 +9,7 @@
  */
 
 /* Represents a commitment to file a tax return on a recurring basis.
-    /// Only used if you subscribe to Avalara Returns. */
+    // Only used if you subscribe to Avalara Returns. */
 
 global class FilingRequestDataModel extends ErrorResult
 {
@@ -21,7 +21,7 @@ global class FilingRequestDataModel extends ErrorResult
     global String returnName { get; set; }
 
     /// The Avalara standard tax form code of the tax form for this filing calendar. The first two characters of the tax form code
-    /// are the ISO 3166 country code of the country that issued this form.
+    // are the ISO 3166 country code of the country that issued this form.
     global String taxFormCode { get; set; }
 
     /// The filing frequency of the request

@@ -9,10 +9,10 @@
  */
 
 /* A preferred program is a customs and/or duty program that can be used to handle cross-border transactions.
-    /// Customers who sign up for a preferred program may obtain better terms for their customs and duty payments.
-    /// 
-    /// To indicate that your company has signed up for a preferred program, specify the `code` value from this
-    /// object as the value for the `AvaTax.LC.PreferredProgram` parameter in your transaction. */
+    // Customers who sign up for a preferred program may obtain better terms for their customs and duty payments.
+    // 
+    // To indicate that your company has signed up for a preferred program, specify the `code` value from this
+    // object as the value for the `AvaTax.LC.PreferredProgram` parameter in your transaction. */
 
 global class PreferredProgramModel extends ErrorResult
 {
@@ -21,7 +21,7 @@ global class PreferredProgramModel extends ErrorResult
     global Integer id { get; set; }
 
     /// A code that identifies this preferred program. To select this program, specify this code
-    /// value in the `AvaTax.LC.PreferredProgram` parameter.
+    // value in the `AvaTax.LC.PreferredProgram` parameter.
     global String code { get; set; }
 
     /// The ISO 3166 country code for the origin permitted by this program
@@ -31,10 +31,10 @@ global class PreferredProgramModel extends ErrorResult
     global String destinationCountry { get; set; }
 
     /// The earliest date for which this preferred program can be used in AvaTax. If `null`, this preferred program
-    /// is valid for all dates earlier than `endDate`.
+    // is valid for all dates earlier than `endDate`.
     global DateTime effectiveDate { get; set; }
 
     /// The latest date for which this preferred program can be used in AvaTax. If `null`, this preferred program
-    /// is valid for all dates later than `effectiveDate`.
+    // is valid for all dates later than `effectiveDate`.
     global DateTime endDate { get; set; }
 }

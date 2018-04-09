@@ -20,7 +20,7 @@ global class LocationQuestionModel extends ErrorResult
     global String question { get; set; }
 
     /// If additional information is available about the location setting, this contains descriptive text to help
-    /// you identify the correct value to provide in this setting.
+    // you identify the correct value to provide in this setting.
     global String description { get; set; }
 
     /// If available, this regular expression will verify that the input from the user is in the expected format.

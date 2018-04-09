@@ -20,7 +20,7 @@ global class CycleEditOptionModel extends ErrorResult
     global String message { get; set; }
 
     /// Whether or not the user should be warned of a change, because some changes are risky and may be being done not in accordance with jurisdiction rules.
-    /// For example, user would be warned if user changes filing frequency to new frequency with a start date during an accrual month of the existing frequency.
+    // For example, user would be warned if user changes filing frequency to new frequency with a start date during an accrual month of the existing frequency.
     global Boolean customerMustApprove { get; set; }
 
     /// True if the filing calendar must be cloned to allow this change; false if the existing filing calendar can be changed itself.

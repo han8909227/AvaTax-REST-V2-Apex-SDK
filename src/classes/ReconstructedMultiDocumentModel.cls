@@ -9,7 +9,7 @@
  */
 
 /* Contains information about the original API request and response that created
-    /// a MultiDocument object. */
+    // a MultiDocument object. */
 
 global class ReconstructedMultiDocumentModel extends ErrorResult
 {

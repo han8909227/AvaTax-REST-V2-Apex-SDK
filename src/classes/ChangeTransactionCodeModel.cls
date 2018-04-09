@@ -9,8 +9,8 @@
  */
 
 /* Settle this transaction with your ledger by verifying its amounts.
-    /// If the transaction is not yet committed, you may specify the "commit" value to commit it to the ledger and allow it to be reported.
-    /// You may also optionally change the transaction's code by specifying the "newTransactionCode" value. */
+    // If the transaction is not yet committed, you may specify the "commit" value to commit it to the ledger and allow it to be reported.
+    // You may also optionally change the transaction's code by specifying the "newTransactionCode" value. */
 
 global class ChangeTransactionCodeModel extends ErrorResult
 {

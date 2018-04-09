@@ -9,17 +9,17 @@
  */
 
 /* Contains information about a company's exemption certificate status.
-    /// 
-    /// This model can be used to determine if your company is able to use the Customers, Certificates, and
-    /// CertExpressInvites APIs within AvaTax. */
+    // 
+    // This model can be used to determine if your company is able to use the Customers, Certificates, and
+    // CertExpressInvites APIs within AvaTax. */
 
 global class ProvisionStatusModel extends ErrorResult
 {
 
     /// The status of exemption certificate setup for this company.
-    /// 
-    /// If this value is `Finished`, this company will then be able to use the Customers, Certificates, and
-    /// CertExpressInvites APIs within AvaTax.
+    // 
+    // If this value is `Finished`, this company will then be able to use the Customers, Certificates, and
+    // CertExpressInvites APIs within AvaTax.
     global CertCaptureProvisionStatus status { get; set; }
 
     /// The accountId of the company represented by this status

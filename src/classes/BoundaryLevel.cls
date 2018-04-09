@@ -9,7 +9,7 @@
  */
 
 /* Jurisdiction boundary precision level found for address. This depends on the accuracy of the address
-    ///  as well as the precision level of the state provided jurisdiction boundaries. */
+    //  as well as the precision level of the state provided jurisdiction boundaries. */
 
 global enum BoundaryLevel
 {

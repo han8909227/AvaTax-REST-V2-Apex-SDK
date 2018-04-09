@@ -14,6 +14,6 @@ global class LockTransactionModel extends ErrorResult
 {
 
     /// Set this value to be true to commit this transaction.
-    /// Committing a transaction allows it to be reported on a tax return. Uncommitted transactions will not be reported.
+    // Committing a transaction allows it to be reported on a tax return. Uncommitted transactions will not be reported.
     global Boolean isLocked { get; set; }
 }

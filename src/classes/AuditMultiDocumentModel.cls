@@ -17,14 +17,14 @@ global class AuditMultiDocumentModel extends ErrorResult
     global ReconstructedMultiDocumentModel reconstructed { get; set; }
 
     /// Represents the unique code of this MultiDocument transaction.
-    /// 
-    /// A MultiDocument transaction is uniquely identified by its `accountId`, `code`, and `type`.
+    // 
+    // A MultiDocument transaction is uniquely identified by its `accountId`, `code`, and `type`.
     global String code { get; set; }
 
     /// Represents the document type of this MultiDocument transaction. For more information about
-    /// document types, see [DocumentType](https://developer.avalara.com/api-reference/avatax/rest/v2/models/enums/DocumentType/).
-    /// 
-    /// A MultiDocument transaction is uniquely identified by its `accountId`, `code`, and `type`.
+    // document types, see [DocumentType](https://developer.avalara.com/api-reference/avatax/rest/v2/models/enums/DocumentType/).
+    // 
+    // A MultiDocument transaction is uniquely identified by its `accountId`, `code`, and `type`.
     global DocumentType type { get; set; }
 
     /// Server timestamp, in UTC, of the date/time when the original transaction was created

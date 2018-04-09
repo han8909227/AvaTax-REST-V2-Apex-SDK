@@ -9,7 +9,7 @@
  */
 
 /* A location where this company does business.
-    /// Some jurisdictions may require you to list all locations where your company does business. */
+    // Some jurisdictions may require you to list all locations where your company does business. */
 
 global class LocationModel extends ErrorResult
 {
@@ -48,27 +48,27 @@ global class LocationModel extends ErrorResult
     global String county { get; set; }
 
     /// Name or ISO 3166 code identifying the region within the country of the physical address of this location.
-    /// 
-    /// This field supports many different region identifiers:
-    ///  * Two and three character ISO 3166 region codes
-    ///  * Fully spelled out names of the region in ISO supported languages
-    ///  * Common alternative spellings for many regions
-    /// 
-    /// For a full list of all supported codes and names, please see the Definitions API `ListRegions`.
+    // 
+    // This field supports many different region identifiers:
+    //  * Two and three character ISO 3166 region codes
+    //  * Fully spelled out names of the region in ISO supported languages
+    //  * Common alternative spellings for many regions
+    // 
+    // For a full list of all supported codes and names, please see the Definitions API `ListRegions`.
     global String region { get; set; }
 
     /// The postal code or zip code of the physical address of this location.
     global String postalCode { get; set; }
 
     /// Name or ISO 3166 code identifying the country of the physical address of this location.
-    /// 
-    /// This field supports many different country identifiers:
-    ///  * Two character ISO 3166 codes
-    ///  * Three character ISO 3166 codes
-    ///  * Fully spelled out names of the country in ISO supported languages
-    ///  * Common alternative spellings for many countries
-    /// 
-    /// For a full list of all supported codes and names, please see the Definitions API `ListCountries`.
+    // 
+    // This field supports many different country identifiers:
+    //  * Two character ISO 3166 codes
+    //  * Three character ISO 3166 codes
+    //  * Fully spelled out names of the country in ISO supported languages
+    //  * Common alternative spellings for many countries
+    // 
+    // For a full list of all supported codes and names, please see the Definitions API `ListCountries`.
     global String country { get; set; }
 
     /// Set this flag to true to indicate that this is the default location for this company.
@@ -108,7 +108,7 @@ global class LocationModel extends ErrorResult
     global Integer modifiedUserId { get; set; }
 
     /// Extra information required by certain jurisdictions for filing.
-    /// For a list of settings recognized by Avalara, query the endpoint "/api/v2/definitions/locationquestions". 
-    /// To determine the list of settings required for this location, query the endpoint "/api/v2/companies/(id)/locations/(id)/validate".
+    // For a list of settings recognized by Avalara, query the endpoint "/api/v2/definitions/locationquestions". 
+    // To determine the list of settings required for this location, query the endpoint "/api/v2/companies/(id)/locations/(id)/validate".
     global List<LocationSettingModel> settings { get; set; }
 }

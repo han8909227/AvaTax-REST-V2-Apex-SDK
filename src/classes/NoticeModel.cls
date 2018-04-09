@@ -9,8 +9,8 @@
  */
 
 /* Represents a letter received from a tax authority regarding tax filing.
-    /// These letters often have the warning "Notice" printed at the top, which is why
-    /// they are called "Notices". */
+    // These letters often have the warning "Notice" printed at the top, which is why
+    // they are called "Notices". */
 
 global class NoticeModel extends ErrorResult
 {
@@ -40,24 +40,24 @@ global class NoticeModel extends ErrorResult
     global NoticeCustomerType customerTypeId { get; set; }
 
     /// Name or ISO 3166 code identifying the country that sent this notice.
-    /// 
-    /// This field supports many different country identifiers:
-    ///  * Two character ISO 3166 codes
-    ///  * Three character ISO 3166 codes
-    ///  * Fully spelled out names of the country in ISO supported languages
-    ///  * Common alternative spellings for many countries
-    /// 
-    /// For a full list of all supported codes and names, please see the Definitions API `ListCountries`.
+    // 
+    // This field supports many different country identifiers:
+    //  * Two character ISO 3166 codes
+    //  * Three character ISO 3166 codes
+    //  * Fully spelled out names of the country in ISO supported languages
+    //  * Common alternative spellings for many countries
+    // 
+    // For a full list of all supported codes and names, please see the Definitions API `ListCountries`.
     global String country { get; set; }
 
     /// Name or ISO 3166 code identifying the region within the country that sent this notice.
-    /// 
-    /// This field supports many different region identifiers:
-    ///  * Two and three character ISO 3166 region codes
-    ///  * Fully spelled out names of the region in ISO supported languages
-    ///  * Common alternative spellings for many regions
-    /// 
-    /// For a full list of all supported codes and names, please see the Definitions API `ListRegions`.
+    // 
+    // This field supports many different region identifiers:
+    //  * Two and three character ISO 3166 region codes
+    //  * Fully spelled out names of the region in ISO supported languages
+    //  * Common alternative spellings for many regions
+    // 
+    // For a full list of all supported codes and names, please see the Definitions API `ListRegions`.
     global String region { get; set; }
 
     /// The tax authority id of the notice

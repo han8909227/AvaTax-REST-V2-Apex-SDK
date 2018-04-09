@@ -23,7 +23,7 @@ global class SubscriptionModel extends ErrorResult
     global Integer subscriptionTypeId { get; set; }
 
     /// A friendly description of the service that the account is subscribed to. You can either provide the subscription type Id or this but not both. If 
-    /// subscription type Id is provided, then this information is ignored and this field will be updated with the information from subscription type id.
+    // subscription type Id is provided, then this information is ignored and this field will be updated with the information from subscription type id.
     global String subscriptionDescription { get; set; }
 
     /// The date when the subscription began.

@@ -9,8 +9,8 @@
  */
 
 /* Indicates the behavior of a tax form for a company with multiple places of business.
-    ///  
-    ///  Some tax authorities require that a separate form must be filed for each place of business. */
+    //  
+    //  Some tax authorities require that a separate form must be filed for each place of business. */
 
 global enum OutletTypeId
 {

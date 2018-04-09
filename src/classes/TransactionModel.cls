@@ -32,15 +32,15 @@ global class TransactionModel extends ErrorResult
     global DocumentStatus status { get; set; }
 
     /// The type of the transaction. 
-    /// 
-    /// Transactions of type `SalesOrder`, `ReturnOrder`, and so on are temporary estimates and will not be saved.
-    /// 
-    /// Transactions of type `SalesInvoice, `ReturnInvoice`, and so on are permanent transactions that can be reported to tax authorities
-    /// if they are in status `Committed`.
-    /// 
-    /// A sales transaction represents a sale from the company to a customer. A purchase transaction represents a purchase made by the company.
-    /// A return transaction represents a customer who decided to request a refund after purchasing a product from the company. An inventory 
-    /// transfer transaction represents goods that were moved from one location of the company to another location without changing ownership.
+    // 
+    // Transactions of type `SalesOrder`, `ReturnOrder`, and so on are temporary estimates and will not be saved.
+    // 
+    // Transactions of type `SalesInvoice, `ReturnInvoice`, and so on are permanent transactions that can be reported to tax authorities
+    // if they are in status `Committed`.
+    // 
+    // A sales transaction represents a sale from the company to a customer. A purchase transaction represents a purchase made by the company.
+    // A return transaction represents a customer who decided to request a refund after purchasing a product from the company. An inventory 
+    // transfer transaction represents goods that were moved from one location of the company to another location without changing ownership.
     global DocumentType type { get; set; }
 
     /// If this transaction was created as part of a batch, this code indicates which batch.
@@ -50,22 +50,22 @@ global class TransactionModel extends ErrorResult
     global String currencyCode { get; set; }
 
     /// DEPRECATED - The customer usage type for this transaction. Customer usage types often affect exemption or taxability rules.
-    /// Please use entityUseCode instead.
+    // Please use entityUseCode instead.
     global String customerUsageType { get; set; }
 
     /// The entity use code for this transaction. Entity use codes often affect exemption or taxability rules.
     global String entityUseCode { get; set; }
 
     /// DEPRECATED - Please use `customerCode`.
-    /// 
-    /// This field has been renamed to `customerCode` to match documentation for other APIs related to exemption customers.
+    // 
+    // This field has been renamed to `customerCode` to match documentation for other APIs related to exemption customers.
     global String customerVendorCode { get; set; }
 
     /// Unique code identifying the customer that requested this transaction. 
-    /// 
-    /// When you specify a `customerCode`, AvaTax will look to see if a customer exists with this code in the exemption certificate system.
-    /// If that customer exists, and if that customer has uploaded an exemption certificate that applies to this transaction, the relevant
-    /// parts of this transaction that can use the exemption certificate will be treated as exempt.
+    // 
+    // When you specify a `customerCode`, AvaTax will look to see if a customer exists with this code in the exemption certificate system.
+    // If that customer exists, and if that customer has uploaded an exemption certificate that applies to this transaction, the relevant
+    // parts of this transaction that can use the exemption certificate will be treated as exempt.
     global String customerCode { get; set; }
 
     /// If this transaction was exempt, this field will contain the word "Exempt".
@@ -75,19 +75,19 @@ global class TransactionModel extends ErrorResult
     global Boolean reconciled { get; set; }
 
     /// (DEPRECATED) This field has been replaced by the reportingLocationCode field
-    /// In order to ensure consistency of field names, Please use reportingLocationCode instead.
+    // In order to ensure consistency of field names, Please use reportingLocationCode instead.
     global String locationCode { get; set; }
 
     /// For customers who use [location-based tax reporting](https://developer.avalara.com/avatax/dev-guide/locations/location-based-reporting), 
-    /// this field controls how this transaction will be filed for multi-location tax filings.
-    /// 
-    /// If you specify a non-null value for this field, AvaTax will ensure that this transaction is reported on the tax return associated 
-    /// with the [LocationModel](https://developer.avalara.com/api-reference/avatax/rest/v2/models/LocationModel/) identified by this code.
-    /// 
-    /// This field does not affect any addresses for the transaction. It only controls the tax filing behavior of this transaction.
-    /// 
-    /// If you are looking for information about how to set up addresses for a transaction, please see [Using Address Types](https://developer.avalara.com/avatax/dev-guide/customizing-transaction/address-types/) 
-    /// in the AvaTax Developer Guide.
+    // this field controls how this transaction will be filed for multi-location tax filings.
+    // 
+    // If you specify a non-null value for this field, AvaTax will ensure that this transaction is reported on the tax return associated 
+    // with the [LocationModel](https://developer.avalara.com/api-reference/avatax/rest/v2/models/LocationModel/) identified by this code.
+    // 
+    // This field does not affect any addresses for the transaction. It only controls the tax filing behavior of this transaction.
+    // 
+    // If you are looking for information about how to set up addresses for a transaction, please see [Using Address Types](https://developer.avalara.com/avatax/dev-guide/customizing-transaction/address-types/) 
+    // in the AvaTax Developer Guide.
     global String reportingLocationCode { get; set; }
 
     /// The customer-supplied purchase order number of this transaction.
@@ -142,7 +142,7 @@ global class TransactionModel extends ErrorResult
     global String country { get; set; }
 
     /// If this transaction was adjusted, this indicates the version number of this transaction. Incremented each time the transaction
-    /// is adjusted.
+    // is adjusted.
     global Integer version { get; set; }
 
     /// The software version used to calculate this transaction.
@@ -161,16 +161,16 @@ global class TransactionModel extends ErrorResult
     global Decimal exchangeRate { get; set; }
 
     /// By default, the value is null, when the value is null, the value can be set at nexus level and used.
-    /// If the value is not null, it will override the value at nexus level.
-    /// 
-    /// If true, this seller was considered the importer of record of a product shipped internationally.
-    /// 
-    /// If this transaction is not an international transaction, this field may be left blank.
-    /// 
-    /// The "importer of record" is liable to pay customs and import duties for products shipped internationally. If 
-    /// you specify that the seller is the importer of record, then estimates of customs and import duties will be added
-    /// as tax details to the transaction. Otherwise, the buyer is considered the importer of record, and customs
-    /// and import duties will not be added to the tax details for this transaction.
+    // If the value is not null, it will override the value at nexus level.
+    // 
+    // If true, this seller was considered the importer of record of a product shipped internationally.
+    // 
+    // If this transaction is not an international transaction, this field may be left blank.
+    // 
+    // The "importer of record" is liable to pay customs and import duties for products shipped internationally. If 
+    // you specify that the seller is the importer of record, then estimates of customs and import duties will be added
+    // as tax details to the transaction. Otherwise, the buyer is considered the importer of record, and customs
+    // and import duties will not be added to the tax details for this transaction.
     global Boolean isSellerImporterOfRecord { get; set; }
 
     /// Description of this transaction. Field permits unicode values.
@@ -195,9 +195,9 @@ global class TransactionModel extends ErrorResult
     global List<TransactionLineModel> lines { get; set; }
 
     /// A list of line items in this transaction. To fetch this list, add the query string `?$include=Addresses` to your URL.
-    /// 
-    /// For more information about transaction addresses, please see [Using Address Types](https://developer.avalara.com/avatax/dev-guide/customizing-transaction/address-types/) 
-    /// in the AvaTax Developer Guide.
+    // 
+    // For more information about transaction addresses, please see [Using Address Types](https://developer.avalara.com/avatax/dev-guide/customizing-transaction/address-types/) 
+    // in the AvaTax Developer Guide.
     global List<TransactionAddressModel> addresses { get; set; }
 
     /// A list of location types in this transaction. To fetch this list, add the query string `?$include=Addresses` to your URL.

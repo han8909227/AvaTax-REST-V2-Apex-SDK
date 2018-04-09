@@ -9,11 +9,11 @@
  */
 
 /* A MultiDocument transaction represents a sale or purchase that occurred between more than two companies.
-    /// 
-    /// A traditional transaction requires exactly two parties: a seller and a buyer. MultiDocument transactions can
-    /// involve a marketplace of vendors, each of which contributes some portion of the final transaction. Within
-    /// a MultiDocument transaction, each individual buyer and seller pair are matched up and converted to a separate
-    /// document. This separation of documents allows each seller to file their taxes separately. */
+    // 
+    // A traditional transaction requires exactly two parties: a seller and a buyer. MultiDocument transactions can
+    // involve a marketplace of vendors, each of which contributes some portion of the final transaction. Within
+    // a MultiDocument transaction, each individual buyer and seller pair are matched up and converted to a separate
+    // document. This separation of documents allows each seller to file their taxes separately. */
 
 global class MultiDocumentModel extends ErrorResult
 {
@@ -25,16 +25,16 @@ global class MultiDocumentModel extends ErrorResult
     global Integer accountId { get; set; }
 
     /// The transaction code of the MultiDocument transaction.
-    /// 
-    /// All individual transactions within this MultiDocument object will have this code as a prefix.
+    // 
+    // All individual transactions within this MultiDocument object will have this code as a prefix.
     global String code { get; set; }
 
     /// Indicates the type of MultiDocument transaction. Common values are:
-    /// 
-    /// * SalesOrder - An estimate that is not permanently recorded
-    /// * SalesInvoice - An invoice that can be reported on a tax return
-    /// 
-    /// For more information about document types, see [DocumentType](https://developer.avalara.com/api-reference/avatax/rest/v2/models/enums/DocumentType/)
+    // 
+    // * SalesOrder - An estimate that is not permanently recorded
+    // * SalesInvoice - An invoice that can be reported on a tax return
+    // 
+    // For more information about document types, see [DocumentType](https://developer.avalara.com/api-reference/avatax/rest/v2/models/enums/DocumentType/)
     global DocumentType type { get; set; }
 
     /// The user ID of the user who created this record.

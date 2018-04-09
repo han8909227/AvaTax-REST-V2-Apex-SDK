@@ -23,11 +23,11 @@ global class ItemModel extends ErrorResult
     global String itemCode { get; set; }
 
     /// The unique ID number of the tax code that is applied when selling this item.
-    /// When creating or updating an item, you can either specify the Tax Code ID number or the Tax Code string; you do not need to specify both values.
+    // When creating or updating an item, you can either specify the Tax Code ID number or the Tax Code string; you do not need to specify both values.
     global Integer taxCodeId { get; set; }
 
     /// The unique code string of the Tax Code that is applied when selling this item.
-    /// When creating or updating an item, you can either specify the Tax Code ID number or the Tax Code string; you do not need to specify both values.
+    // When creating or updating an item, you can either specify the Tax Code ID number or the Tax Code string; you do not need to specify both values.
     global String taxCode { get; set; }
 
     /// A friendly description of this item in your product catalog.

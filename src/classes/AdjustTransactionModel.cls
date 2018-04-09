@@ -17,8 +17,8 @@ global class AdjustTransactionModel extends ErrorResult
     global AdjustmentReason adjustmentReason { get; set; }
 
     /// If the AdjustmentReason is "Other", specify the reason here.
-    /// 
-    /// This is required when the AdjustmentReason is 8 (Other).
+    // 
+    // This is required when the AdjustmentReason is 8 (Other).
     global String adjustmentDescription { get; set; }
 
     /// Replace the current transaction with tax data calculated for this new transaction
