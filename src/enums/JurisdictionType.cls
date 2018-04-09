@@ -8,7 +8,7 @@
  *
  */
 
-/// Jurisdiction Type
+/* Jurisdiction Type */
 
 global enum JurisdictionType
 {

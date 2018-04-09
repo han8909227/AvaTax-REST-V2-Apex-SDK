@@ -8,7 +8,7 @@
  *
  */
 
-/// Cycle Safe Expiration results.
+/* Cycle Safe Expiration results. */
 
 global class CycleExpireModel extends ErrorResult
 {

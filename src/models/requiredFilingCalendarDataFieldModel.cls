@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a verification request using Skyscraper for a company
+/* Represents a verification request using Skyscraper for a company */
 
 global class requiredFilingCalendarDataFieldModel extends ErrorResult
 {

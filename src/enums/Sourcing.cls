@@ -8,7 +8,7 @@
  *
  */
 
-/// Sourcing
+/* Sourcing */
 
 global enum Sourcing
 {

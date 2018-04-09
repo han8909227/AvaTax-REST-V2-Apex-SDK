@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents one line item in a MultiDocument transaction
+/* Represents one line item in a MultiDocument transaction */
 
 global class MultiDocumentLineItemModel extends ErrorResult
 {

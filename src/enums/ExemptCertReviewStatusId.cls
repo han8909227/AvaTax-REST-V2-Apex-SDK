@@ -8,7 +8,7 @@
  *
  */
 
-/// Exempt certificate review status
+/* Exempt certificate review status */
 
 global enum ExemptCertReviewStatusId
 {

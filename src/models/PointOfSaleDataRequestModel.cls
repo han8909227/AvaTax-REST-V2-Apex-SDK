@@ -8,7 +8,7 @@
  *
  */
 
-/// Point-of-Sale Data Request Model
+/* Point-of-Sale Data Request Model */
 
 global class PointOfSaleDataRequestModel extends ErrorResult
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// Exempt Cert type
+/* Exempt Cert type */
 
 global enum ExemptCertTypeId
 {

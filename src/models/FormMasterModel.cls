@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents information about a tax form known to Avalara
+/* Represents information about a tax form known to Avalara */
 
 global class FormMasterModel extends ErrorResult
 {

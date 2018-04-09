@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents information about a newly created account
+/* Represents information about a newly created account */
 
 global class NewAccountModel extends ErrorResult
 {

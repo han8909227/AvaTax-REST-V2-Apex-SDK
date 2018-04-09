@@ -8,7 +8,7 @@
  *
  */
 
-/// Choice of rounding level for a transaction
+/* Choice of rounding level for a transaction */
 
 global enum RoundingLevelId
 {

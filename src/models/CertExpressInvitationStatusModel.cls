@@ -8,7 +8,7 @@
  *
  */
 
-/// Represent what is the current status of certificate request
+/* Represent what is the current status of certificate request */
 
 global class CertExpressInvitationStatusModel extends ErrorResult
 {

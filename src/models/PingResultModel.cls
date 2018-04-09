@@ -8,7 +8,7 @@
  *
  */
 
-/// Ping Result Model
+/* Ping Result Model */
 
 global class PingResultModel extends ErrorResult
 {

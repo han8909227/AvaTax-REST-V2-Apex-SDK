@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents estimated financial results from responding to a tax notice.
+/* Represents estimated financial results from responding to a tax notice. */
 
 global class NoticeFinanceModel extends ErrorResult
 {

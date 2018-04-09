@@ -8,7 +8,7 @@
  *
  */
 
-/// Accrual types
+/* Accrual types */
 
 global enum AccrualType
 {

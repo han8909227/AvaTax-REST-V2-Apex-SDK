@@ -8,7 +8,7 @@
  *
  */
 
-/// Bulk lock documents model
+/* Bulk lock documents model */
 
 global class BulkLockTransactionModel extends ErrorResult
 {

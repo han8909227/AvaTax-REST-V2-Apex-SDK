@@ -8,7 +8,7 @@
  *
  */
 
-/// 
+/*  */
 
 global class CompanyReturnSettingModel extends ErrorResult
 {

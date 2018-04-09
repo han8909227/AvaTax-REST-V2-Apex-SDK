@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents one line item in a transaction
+/* Represents one line item in a transaction */
 
 global class LineItemModel extends ErrorResult
 {

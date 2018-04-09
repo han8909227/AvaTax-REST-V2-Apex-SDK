@@ -8,8 +8,8 @@
  *
  */
 
-/// The date filter type for report
-    ///  "RD" for Reporting Date, "DD" for Document Date, "TD" for Tax Date, "PD" for Payment Date
+/* The date filter type for report
+    ///  "RD" for Reporting Date, "DD" for Document Date, "TD" for Tax Date, "PD" for Payment Date */
 
 global enum ReportDateFilter
 {

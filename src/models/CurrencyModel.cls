@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents an ISO 4217 currency code used for designating the currency of a transaction.
+/* Represents an ISO 4217 currency code used for designating the currency of a transaction. */
 
 global class CurrencyModel extends ErrorResult
 {

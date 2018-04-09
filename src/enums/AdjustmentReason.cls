@@ -8,7 +8,7 @@
  *
  */
 
-/// Indicates the type of adjustment that was performed on a transaction
+/* Indicates the type of adjustment that was performed on a transaction */
 
 global enum AdjustmentReason
 {

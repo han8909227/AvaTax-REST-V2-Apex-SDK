@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a transaction/service type pair for telecommunications tax
+/* Represents a transaction/service type pair for telecommunications tax */
 
 global class CommunicationsTSPairModel extends ErrorResult
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a PostalCode and its associated data like: country, region, effective dates, etc.
+/* Represents a PostalCode and its associated data like: country, region, effective dates, etc. */
 
 global class PostalCodeModel extends ErrorResult
 {

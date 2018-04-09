@@ -8,10 +8,10 @@
  *
  */
 
-/// Contains information about a company's exemption certificate status.
+/* Contains information about a company's exemption certificate status.
     /// 
     /// This model can be used to determine if your company is able to use the Customers, Certificates, and
-    /// CertExpressInvites APIs within AvaTax.
+    /// CertExpressInvites APIs within AvaTax. */
 
 global class ProvisionStatusModel extends ErrorResult
 {

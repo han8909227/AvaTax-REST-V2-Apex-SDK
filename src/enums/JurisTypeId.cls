@@ -8,7 +8,7 @@
  *
  */
 
-/// Types of jurisdiction referenced in a transaction
+/* Types of jurisdiction referenced in a transaction */
 
 global enum JurisTypeId
 {

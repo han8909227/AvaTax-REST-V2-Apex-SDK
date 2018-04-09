@@ -8,7 +8,7 @@
  *
  */
 
-/// Model to specify lines to be removed
+/* Model to specify lines to be removed */
 
 global class RemoveTransactionLineModel extends ErrorResult
 {

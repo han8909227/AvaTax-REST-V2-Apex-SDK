@@ -8,7 +8,7 @@
  *
  */
 
-/// Service modes for tax calculation when using an AvaLocal server.
+/* Service modes for tax calculation when using an AvaLocal server. */
 
 global enum ServiceMode
 {

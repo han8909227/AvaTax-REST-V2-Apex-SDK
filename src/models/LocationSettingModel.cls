@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents the answer to one local jurisdiction question for a location.
+/* Represents the answer to one local jurisdiction question for a location. */
 
 global class LocationSettingModel extends ErrorResult
 {

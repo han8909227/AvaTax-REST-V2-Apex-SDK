@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents the type of service or subscription given to a user
+/* Represents the type of service or subscription given to a user */
 
 global enum ServiceTypeId
 {

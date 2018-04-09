@@ -8,7 +8,7 @@
  *
  */
 
-/// Create or adjust transaction model
+/* Create or adjust transaction model */
 
 global class CreateOrAdjustTransactionModel extends ErrorResult
 {

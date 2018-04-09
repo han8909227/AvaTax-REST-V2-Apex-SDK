@@ -8,7 +8,7 @@
  *
  */
 
-/// A list of possible AvaFile filing types for tax notices.
+/* A list of possible AvaFile filing types for tax notices. */
 
 global enum TaxNoticeFilingTypeId
 {

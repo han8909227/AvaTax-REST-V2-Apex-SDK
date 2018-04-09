@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents the type of welcome email for the users
+/* Represents the type of welcome email for the users */
 
 global enum WelcomeEmail
 {

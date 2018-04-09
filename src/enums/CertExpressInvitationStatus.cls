@@ -8,7 +8,7 @@
  *
  */
 
-/// Indicates the status of a CertExpress invitation link.
+/* Indicates the status of a CertExpress invitation link. */
 
 global enum CertExpressInvitationStatus
 {

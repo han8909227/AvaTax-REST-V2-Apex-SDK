@@ -8,7 +8,7 @@
  *
  */
 
-/// Coordinate Info
+/* Coordinate Info */
 
 global class CoordinateInfo
 {

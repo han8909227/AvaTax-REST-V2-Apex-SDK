@@ -8,7 +8,7 @@
  *
  */
 
-/// Tax Authority Type Model
+/* Tax Authority Type Model */
 
 global class TaxAuthorityTypeModel extends ErrorResult
 {

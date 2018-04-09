@@ -8,7 +8,7 @@
  *
  */
 
-/// Options for expiring a filing calendar.
+/* Options for expiring a filing calendar. */
 
 global class CycleExpireOptionModel extends ErrorResult
 {

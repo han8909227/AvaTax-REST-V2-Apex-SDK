@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a group of tax types
+/* Represents a group of tax types */
 
 global class NexusTaxTypeGroupModel extends ErrorResult
 {

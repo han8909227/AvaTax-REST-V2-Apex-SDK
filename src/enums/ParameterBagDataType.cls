@@ -8,7 +8,7 @@
  *
  */
 
-/// The data type that must be passed in a parameter bag
+/* The data type that must be passed in a parameter bag */
 
 global enum ParameterBagDataType
 {

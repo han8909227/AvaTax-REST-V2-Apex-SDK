@@ -8,7 +8,7 @@
  *
  */
 
-/// Status of an Avalara Managed Returns funding configuration for a company
+/* Status of an Avalara Managed Returns funding configuration for a company */
 
 global class FundingConfigurationModel extends ErrorResult
 {

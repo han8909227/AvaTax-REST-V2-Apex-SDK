@@ -8,9 +8,9 @@
  *
  */
 
-/// An exemption reason defines why a certificate allows a customer to be exempt
+/* An exemption reason defines why a certificate allows a customer to be exempt
     /// for purposes of tax calculation. For a full list of defined exemption reasons,
-    /// please call the `ListCertificateExemptionReasons` API.
+    /// please call the `ListCertificateExemptionReasons` API. */
 
 global class ExemptionReasonModel extends ErrorResult
 {

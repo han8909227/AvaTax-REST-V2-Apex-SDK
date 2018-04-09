@@ -8,7 +8,7 @@
  *
  */
 
-/// FilingFrequency Model
+/* FilingFrequency Model */
 
 global class FilingFrequencyModel extends ErrorResult
 {

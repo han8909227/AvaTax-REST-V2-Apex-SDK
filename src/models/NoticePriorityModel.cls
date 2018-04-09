@@ -8,7 +8,7 @@
  *
  */
 
-/// Tax Notice Priority Model
+/* Tax Notice Priority Model */
 
 global class NoticePriorityModel extends ErrorResult
 {

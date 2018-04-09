@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents one configuration setting for this company
+/* Represents one configuration setting for this company */
 
 global class CompanyConfigurationModel extends ErrorResult
 {

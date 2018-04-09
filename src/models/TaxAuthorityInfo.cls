@@ -8,7 +8,7 @@
  *
  */
 
-/// Information about a tax authority relevant for an address.
+/* Information about a tax authority relevant for an address. */
 
 global class TaxAuthorityInfo
 {

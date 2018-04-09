@@ -8,7 +8,7 @@
  *
  */
 
-/// The output DocumentType for a report
+/* The output DocumentType for a report */
 
 global enum ReportDocType
 {

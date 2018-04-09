@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a tax override for a transaction
+/* Represents a tax override for a transaction */
 
 global class TaxOverrideModel extends ErrorResult
 {

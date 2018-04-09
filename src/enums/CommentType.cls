@@ -8,7 +8,7 @@
  *
  */
 
-/// Comment Types
+/* Comment Types */
 
 global enum CommentType
 {

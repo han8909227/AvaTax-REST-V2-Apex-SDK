@@ -8,7 +8,7 @@
  *
  */
 
-/// Describes nexus type id
+/* Describes nexus type id */
 
 global enum LocalNexusTypeId
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a batch of uploaded documents.
+/* Represents a batch of uploaded documents. */
 
 global class BatchModel extends ErrorResult
 {

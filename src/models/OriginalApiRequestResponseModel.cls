@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents the exact API request and response from the original transaction API call, if available
+/* Represents the exact API request and response from the original transaction API call, if available */
 
 global class OriginalApiRequestResponseModel extends ErrorResult
 {

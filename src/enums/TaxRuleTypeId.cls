@@ -8,7 +8,7 @@
  *
  */
 
-/// TaxRuleTypeId
+/* TaxRuleTypeId */
 
 global enum TaxRuleTypeId
 {

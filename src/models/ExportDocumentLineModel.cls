@@ -8,7 +8,7 @@
  *
  */
 
-/// An input model for executing a report detailed to the document line level
+/* An input model for executing a report detailed to the document line level */
 
 global class ExportDocumentLineModel extends ErrorResult
 {

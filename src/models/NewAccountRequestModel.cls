@@ -8,8 +8,8 @@
  *
  */
 
-/// Represents a request for a new account with Avalara for a new subscriber.
-    /// Contains information about the account requested and the rate plan selected.
+/* Represents a request for a new account with Avalara for a new subscriber.
+    /// Contains information about the account requested and the rate plan selected. */
 
 global class NewAccountRequestModel extends ErrorResult
 {

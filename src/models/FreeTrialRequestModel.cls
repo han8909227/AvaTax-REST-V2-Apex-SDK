@@ -8,8 +8,8 @@
  *
  */
 
-/// Represents a request for a free trial account for AvaTax.
-    /// Free trial accounts are only available on the Sandbox environment.
+/* Represents a request for a free trial account for AvaTax.
+    /// Free trial accounts are only available on the Sandbox environment. */
 
 global class FreeTrialRequestModel extends ErrorResult
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a region, province, or state within a country
+/* Represents a region, province, or state within a country */
 
 global class IsoRegionModel extends ErrorResult
 {

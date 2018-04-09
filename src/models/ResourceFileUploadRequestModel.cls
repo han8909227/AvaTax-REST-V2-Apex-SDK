@@ -8,7 +8,7 @@
  *
  */
 
-/// A request to upload a file to Resource Files
+/* A request to upload a file to Resource Files */
 
 global class ResourceFileUploadRequestModel extends ErrorResult
 {

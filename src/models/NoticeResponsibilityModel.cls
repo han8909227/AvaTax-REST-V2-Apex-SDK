@@ -8,7 +8,7 @@
  *
  */
 
-/// NoticeResponsibility Model
+/* NoticeResponsibility Model */
 
 global class NoticeResponsibilityModel extends ErrorResult
 {

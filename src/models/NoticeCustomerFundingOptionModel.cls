@@ -8,7 +8,7 @@
  *
  */
 
-/// Tax Authority Model
+/* Tax Authority Model */
 
 global class NoticeCustomerFundingOptionModel extends ErrorResult
 {

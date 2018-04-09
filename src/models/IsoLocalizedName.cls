@@ -8,8 +8,8 @@
  *
  */
 
-/// Represents a language-specific localized name of a particular geographic entity such
-    /// as a country or a region.
+/* Represents a language-specific localized name of a particular geographic entity such
+    /// as a country or a region. */
 
 global class IsoLocalizedName
 {

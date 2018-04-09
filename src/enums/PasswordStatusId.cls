@@ -8,7 +8,7 @@
  *
  */
 
-/// PasswordStatusId
+/* PasswordStatusId */
 
 global enum PasswordStatusId
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// Document Status
+/* Document Status */
 
 global enum DocumentStatus
 {

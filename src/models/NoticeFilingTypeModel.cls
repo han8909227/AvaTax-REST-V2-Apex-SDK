@@ -8,7 +8,7 @@
  *
  */
 
-/// Tax Notice FilingType Model
+/* Tax Notice FilingType Model */
 
 global class NoticeFilingTypeModel extends ErrorResult
 {

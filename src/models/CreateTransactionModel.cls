@@ -8,7 +8,7 @@
  *
  */
 
-/// Create a transaction
+/* Create a transaction */
 
 global class CreateTransactionModel extends ErrorResult
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// An account user who is permitted to use AvaTax.
+/* An account user who is permitted to use AvaTax. */
 
 global class UserModel extends ErrorResult
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// Type of certificate preview to download
+/* Type of certificate preview to download */
 
 global enum CertificatePreviewType
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// TaxDependencyLevelId
+/* TaxDependencyLevelId */
 
 global enum TaxDependencyLevelId
 {

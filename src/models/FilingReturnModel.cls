@@ -8,7 +8,7 @@
  *
  */
 
-/// Filing Returns Model
+/* Filing Returns Model */
 
 global class FilingReturnModel extends ErrorResult
 {

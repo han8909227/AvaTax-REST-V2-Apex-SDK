@@ -8,7 +8,7 @@
  *
  */
 
-/// Model to add specific lines to exising transaction
+/* Model to add specific lines to exising transaction */
 
 global class AddTransactionLineModel extends ErrorResult
 {

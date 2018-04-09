@@ -8,7 +8,7 @@
  *
  */
 
-/// 
+/*  */
 
 global class FundingInitiateModel extends ErrorResult
 {

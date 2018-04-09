@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a validated address
+/* Represents a validated address */
 
 global class ValidatedAddressInfo
 {

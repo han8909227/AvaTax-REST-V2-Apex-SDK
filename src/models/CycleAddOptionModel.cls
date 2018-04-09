@@ -8,7 +8,7 @@
  *
  */
 
-/// Model with options for adding a new filing calendar
+/* Model with options for adding a new filing calendar */
 
 global class CycleAddOptionModel extends ErrorResult
 {

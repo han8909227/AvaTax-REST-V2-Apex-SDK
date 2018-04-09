@@ -8,7 +8,7 @@
  *
  */
 
-/// Commit this MultiDocument object so that all transactions within it can be reported on a tax filing.
+/* Commit this MultiDocument object so that all transactions within it can be reported on a tax filing. */
 
 global class CommitMultiDocumentModel extends ErrorResult
 {

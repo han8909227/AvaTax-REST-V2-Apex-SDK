@@ -8,7 +8,7 @@
  *
  */
 
-/// 
+/*  */
 
 global enum PointOfSalePartnerId
 {

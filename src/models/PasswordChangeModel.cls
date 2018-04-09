@@ -8,7 +8,7 @@
  *
  */
 
-/// Password Change Model
+/* Password Change Model */
 
 global class PasswordChangeModel extends ErrorResult
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// Commit this transaction as permanent
+/* Commit this transaction as permanent */
 
 global class LockTransactionModel extends ErrorResult
 {

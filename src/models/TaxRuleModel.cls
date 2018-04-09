@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a tax rule that changes the behavior of Avalara's tax engine for certain products in certain jurisdictions.
+/* Represents a tax rule that changes the behavior of Avalara's tax engine for certain products in certain jurisdictions. */
 
 global class TaxRuleModel extends ErrorResult
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a service that this account has subscribed to.
+/* Represents a service that this account has subscribed to. */
 
 global class SubscriptionModel extends ErrorResult
 {

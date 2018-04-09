@@ -8,7 +8,7 @@
  *
  */
 
-/// A contact person for a company.
+/* A contact person for a company. */
 
 global class ContactModel extends ErrorResult
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a base address element.
+/* Represents a base address element. */
 
 global class AddressInfo
 {

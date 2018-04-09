@@ -8,7 +8,7 @@
  *
  */
 
-/// Information about a previously created transaction
+/* Information about a previously created transaction */
 
 global class AuditTransactionModel extends ErrorResult
 {

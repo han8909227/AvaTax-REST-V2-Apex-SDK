@@ -8,7 +8,7 @@
  *
  */
 
-/// A model for return payments.
+/* A model for return payments. */
 
 global class FilingPaymentModel extends ErrorResult
 {

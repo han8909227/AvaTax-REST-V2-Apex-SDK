@@ -8,7 +8,7 @@
  *
  */
 
-/// One Universal Product Code object as defined for your company.
+/* One Universal Product Code object as defined for your company. */
 
 global class UPCModel extends ErrorResult
 {

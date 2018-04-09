@@ -8,7 +8,7 @@
  *
  */
 
-/// An extra property that can change the behavior of tax transactions.
+/* An extra property that can change the behavior of tax transactions. */
 
 global class ParameterModel extends ErrorResult
 {

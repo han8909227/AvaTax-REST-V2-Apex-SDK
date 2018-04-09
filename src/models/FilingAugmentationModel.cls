@@ -8,7 +8,7 @@
  *
  */
 
-/// A model for return augmentations.
+/* A model for return augmentations. */
 
 global class FilingAugmentationModel extends ErrorResult
 {

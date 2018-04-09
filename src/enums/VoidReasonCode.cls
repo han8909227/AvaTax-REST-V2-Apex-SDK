@@ -8,7 +8,7 @@
  *
  */
 
-/// Reason code for voiding or cancelling a transaction
+/* Reason code for voiding or cancelling a transaction */
 
 global enum VoidReasonCode
 {

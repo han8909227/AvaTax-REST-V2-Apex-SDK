@@ -8,7 +8,7 @@
  *
  */
 
-/// Identifies all nexus that match a particular tax form
+/* Identifies all nexus that match a particular tax form */
 
 global class NexusByTaxFormModel extends ErrorResult
 {

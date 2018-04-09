@@ -8,7 +8,7 @@
  *
  */
 
-/// A list of possible Due Date Types
+/* A list of possible Due Date Types */
 
 global enum DueDateTypeId
 {

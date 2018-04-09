@@ -8,7 +8,7 @@
  *
  */
 
-/// Regions
+/* Regions */
 
 global class FilingRegionModel extends ErrorResult
 {

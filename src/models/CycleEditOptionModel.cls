@@ -8,7 +8,7 @@
  *
  */
 
-/// Model with options for actual filing calendar output based on user edits to filing calendar.
+/* Model with options for actual filing calendar output based on user edits to filing calendar. */
 
 global class CycleEditOptionModel extends ErrorResult
 {

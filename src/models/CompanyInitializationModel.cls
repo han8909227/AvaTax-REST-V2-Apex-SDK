@@ -8,7 +8,7 @@
  *
  */
 
-/// Company Initialization Model
+/* Company Initialization Model */
 
 global class CompanyInitializationModel extends ErrorResult
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// An individual tax detail element. Represents the amount of tax calculated for a particular jurisdiction, for a particular line in an invoice.
+/* An individual tax detail element. Represents the amount of tax calculated for a particular jurisdiction, for a particular line in an invoice. */
 
 global class TransactionLineDetailModel extends ErrorResult
 {

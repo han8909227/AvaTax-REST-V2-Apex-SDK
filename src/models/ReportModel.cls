@@ -8,7 +8,7 @@
  *
  */
 
-/// A model for displaying report task metadata
+/* A model for displaying report task metadata */
 
 global class ReportModel extends ErrorResult
 {

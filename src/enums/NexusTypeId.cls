@@ -8,7 +8,7 @@
  *
  */
 
-/// Describes the different types of statuses which describe an entity (company).
+/* Describes the different types of statuses which describe an entity (company). */
 
 global enum NexusTypeId
 {

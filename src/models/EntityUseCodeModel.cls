@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a code describing the intended use for a product that may affect its taxability
+/* Represents a code describing the intended use for a product that may affect its taxability */
 
 global class EntityUseCodeModel extends ErrorResult
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// An AvaTax account.
+/* An AvaTax account. */
 
 global class AccountModel extends ErrorResult
 {

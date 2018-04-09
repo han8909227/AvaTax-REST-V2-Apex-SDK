@@ -8,7 +8,7 @@
  *
  */
 
-/// A list of possible AvaFile Form Types.
+/* A list of possible AvaFile Form Types. */
 
 global enum FormTypeId
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// Summary information about an overall transaction.
+/* Summary information about an overall transaction. */
 
 global class TransactionSummary
 {

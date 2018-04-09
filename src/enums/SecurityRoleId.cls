@@ -8,7 +8,7 @@
  *
  */
 
-/// Permission level of a user
+/* Permission level of a user */
 
 global enum SecurityRoleId
 {

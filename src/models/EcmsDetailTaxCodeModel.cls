@@ -8,7 +8,7 @@
  *
  */
 
-/// 
+/*  */
 
 global class EcmsDetailTaxCodeModel extends ErrorResult
 {

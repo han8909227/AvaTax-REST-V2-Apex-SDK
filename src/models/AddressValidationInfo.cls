@@ -8,7 +8,7 @@
  *
  */
 
-/// TextCase info for input address
+/* TextCase info for input address */
 
 global class AddressValidationInfo
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// Approve a set of filings.
+/* Approve a set of filings. */
 
 global class ApproveFilingsModel extends ErrorResult
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// Returns information about transactions that were locked
+/* Returns information about transactions that were locked */
 
 global class BulkLockTransactionResult
 {

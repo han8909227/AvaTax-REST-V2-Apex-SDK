@@ -8,7 +8,7 @@
  *
  */
 
-/// Filing Request Status types
+/* Filing Request Status types */
 
 global enum FilingRequestStatus
 {

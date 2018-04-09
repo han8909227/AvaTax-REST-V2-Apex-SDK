@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents information about location types stored in a line
+/* Represents information about location types stored in a line */
 
 global class TransactionLineLocationTypeModel extends ErrorResult
 {

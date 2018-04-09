@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents an ECMS record, used internally by AvaTax to track information about exemptions.
+/* Represents an ECMS record, used internally by AvaTax to track information about exemptions. */
 
 global class EcmsDetailModel extends ErrorResult
 {

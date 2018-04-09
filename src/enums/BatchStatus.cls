@@ -8,7 +8,7 @@
  *
  */
 
-/// The status of a batch file
+/* The status of a batch file */
 
 global enum BatchStatus
 {

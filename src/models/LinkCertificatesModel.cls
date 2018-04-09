@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a customer to whom you sell products and/or services.
+/* Represents a customer to whom you sell products and/or services. */
 
 global class LinkCertificatesModel extends ErrorResult
 {

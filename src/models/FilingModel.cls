@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a listing of all tax calculation data for filings and for accruing to future filings.
+/* Represents a listing of all tax calculation data for filings and for accruing to future filings. */
 
 global class FilingModel extends ErrorResult
 {

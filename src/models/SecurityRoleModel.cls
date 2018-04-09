@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a single security role.
+/* Represents a single security role. */
 
 global class SecurityRoleModel extends ErrorResult
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// Different types of formats allowed for exporting a report
+/* Different types of formats allowed for exporting a report */
 
 global enum ReportFormat
 {

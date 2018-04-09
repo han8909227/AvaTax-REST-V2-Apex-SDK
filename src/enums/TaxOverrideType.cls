@@ -8,7 +8,7 @@
  *
  */
 
-/// TaxOverride reasons
+/* TaxOverride reasons */
 
 global enum TaxOverrideType
 {

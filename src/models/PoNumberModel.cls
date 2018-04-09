@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a purchase order number for a transaction
+/* Represents a purchase order number for a transaction */
 
 global class PoNumberModel extends ErrorResult
 {

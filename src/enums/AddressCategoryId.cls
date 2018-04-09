@@ -8,7 +8,7 @@
  *
  */
 
-/// The type of address represented by this object
+/* The type of address represented by this object */
 
 global enum AddressCategoryId
 {

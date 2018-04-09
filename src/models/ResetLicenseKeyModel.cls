@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a license key reset request.
+/* Represents a license key reset request. */
 
 global class ResetLicenseKeyModel extends ErrorResult
 {

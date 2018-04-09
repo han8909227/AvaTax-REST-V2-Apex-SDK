@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a declaration of nexus within a particular taxing jurisdiction.
+/* Represents a declaration of nexus within a particular taxing jurisdiction. */
 
 global class NexusModel extends ErrorResult
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// Resource File Type Model
+/* Resource File Type Model */
 
 global class ResourceFileTypeModel extends ErrorResult
 {

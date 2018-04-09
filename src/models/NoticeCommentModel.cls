@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents communication between Avalara and the company regarding the processing of a tax notice.
+/* Represents communication between Avalara and the company regarding the processing of a tax notice. */
 
 global class NoticeCommentModel extends ErrorResult
 {

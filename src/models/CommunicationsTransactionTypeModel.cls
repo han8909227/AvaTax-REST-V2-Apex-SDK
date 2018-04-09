@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents information about a type of telecommunications transaction
+/* Represents information about a type of telecommunications transaction */
 
 global class CommunicationsTransactionTypeModel extends ErrorResult
 {

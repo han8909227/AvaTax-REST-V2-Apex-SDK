@@ -8,7 +8,7 @@
  *
  */
 
-/// Company Address Information
+/* Company Address Information */
 
 global class CompanyAddress
 {

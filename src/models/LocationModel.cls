@@ -8,8 +8,8 @@
  *
  */
 
-/// A location where this company does business.
-    /// Some jurisdictions may require you to list all locations where your company does business.
+/* A location where this company does business.
+    /// Some jurisdictions may require you to list all locations where your company does business. */
 
 global class LocationModel extends ErrorResult
 {

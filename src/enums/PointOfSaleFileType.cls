@@ -8,7 +8,7 @@
  *
  */
 
-/// Type of file request
+/* Type of file request */
 
 global enum PointOfSaleFileType
 {

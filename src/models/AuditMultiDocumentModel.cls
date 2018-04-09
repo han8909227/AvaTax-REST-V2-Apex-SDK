@@ -8,7 +8,7 @@
  *
  */
 
-/// Information about a previously created MultiDocument transaction
+/* Information about a previously created MultiDocument transaction */
 
 global class AuditMultiDocumentModel extends ErrorResult
 {

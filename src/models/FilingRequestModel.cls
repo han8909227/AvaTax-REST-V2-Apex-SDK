@@ -8,8 +8,8 @@
  *
  */
 
-/// Represents a commitment to file a tax return on a recurring basis.
-    /// Only used if you subscribe to Avalara Returns.
+/* Represents a commitment to file a tax return on a recurring basis.
+    /// Only used if you subscribe to Avalara Returns. */
 
 global class FilingRequestModel extends ErrorResult
 {

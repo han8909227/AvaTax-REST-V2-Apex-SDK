@@ -8,7 +8,7 @@
  *
  */
 
-/// Indicates the type of payments
+/* Indicates the type of payments */
 
 global enum PaymentType
 {

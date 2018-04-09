@@ -8,7 +8,7 @@
  *
  */
 
-/// Filing Status
+/* Filing Status */
 
 global enum FilingStatusId
 {

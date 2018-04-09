@@ -8,10 +8,10 @@
  *
  */
 
-/// Settle this transaction with your ledger by executing one or many actions against that transaction. 
+/* Settle this transaction with your ledger by executing one or many actions against that transaction. 
     /// 
     /// You may use this endpoint to verify the transaction, change the transaction's code, and commit the transaction for reporting purposes.
-    /// This endpoint may be used to execute any or all of these actions at once.
+    /// This endpoint may be used to execute any or all of these actions at once. */
 
 global class SettleTransactionModel extends ErrorResult
 {

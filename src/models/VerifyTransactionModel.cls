@@ -8,11 +8,11 @@
  *
  */
 
-/// Verify this transaction by matching it to values in your accounting system.
+/* Verify this transaction by matching it to values in your accounting system.
     /// 
     /// You may specify one or more of the following fields to verify: `date`, `totalAmount`, or `totalTax`.
     /// This call will report an error if there is any difference between the data stored in AvaTax and
-    /// the data stored in your accounting system.
+    /// the data stored in your accounting system. */
 
 global class VerifyTransactionModel extends ErrorResult
 {

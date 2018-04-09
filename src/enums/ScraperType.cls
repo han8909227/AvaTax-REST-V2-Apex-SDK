@@ -8,7 +8,7 @@
  *
  */
 
-/// Type of verification task
+/* Type of verification task */
 
 global enum ScraperType
 {

@@ -8,8 +8,8 @@
  *
  */
 
-/// Information about Avalara-defined tax code types.
-    /// This list is used when creating tax codes and tax rules.
+/* Information about Avalara-defined tax code types.
+    /// This list is used when creating tax codes and tax rules. */
 
 global class TaxCodeTypesModel extends ErrorResult
 {

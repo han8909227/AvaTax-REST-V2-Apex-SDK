@@ -8,12 +8,12 @@
  *
  */
 
-/// A MultiDocument transaction represents a sale or purchase that occurred between more than two companies.
+/* A MultiDocument transaction represents a sale or purchase that occurred between more than two companies.
     /// 
     /// A traditional transaction requires exactly two parties: a seller and a buyer. MultiDocument transactions can
     /// involve a marketplace of vendors, each of which contributes some portion of the final transaction. Within
     /// a MultiDocument transaction, each individual buyer and seller pair are matched up and converted to a separate
-    /// document. This separation of documents allows each seller to file their taxes separately.
+    /// document. This separation of documents allows each seller to file their taxes separately. */
 
 global class CreateMultiDocumentModel extends ErrorResult
 {

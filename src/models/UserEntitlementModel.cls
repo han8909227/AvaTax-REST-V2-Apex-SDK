@@ -8,7 +8,7 @@
  *
  */
 
-/// User Entitlement Model
+/* User Entitlement Model */
 
 global class UserEntitlementModel extends ErrorResult
 {

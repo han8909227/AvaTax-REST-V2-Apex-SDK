@@ -8,7 +8,7 @@
  *
  */
 
-/// A company and account
+/* A company and account */
 
 global class MrsCompanyModel extends ErrorResult
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// Commit this transaction as permanent so that it can be reported on a tax filing.
+/* Commit this transaction as permanent so that it can be reported on a tax filing. */
 
 global class CommitTransactionModel extends ErrorResult
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// Indicates what level of auditing information is available for a transaction
+/* Indicates what level of auditing information is available for a transaction */
 
 global enum ApiCallStatus
 {

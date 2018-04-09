@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a error code message
+/* Represents a error code message */
 
 global enum ErrorCodeId
 {

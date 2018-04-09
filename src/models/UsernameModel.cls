@@ -8,7 +8,7 @@
  *
  */
 
-/// Information about a username.
+/* Information about a username. */
 
 global class UsernameModel extends ErrorResult
 {

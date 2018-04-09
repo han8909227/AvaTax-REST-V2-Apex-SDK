@@ -8,9 +8,9 @@
  *
  */
 
-/// Information about a physical area or zone in which a certificate can apply.
+/* Information about a physical area or zone in which a certificate can apply.
     /// An exposure zone for an exemption certificate will generally be a tax authority such
-    /// as a state, country, or local government entity.
+    /// as a state, country, or local government entity. */
 
 global class ExposureZoneModel extends ErrorResult
 {

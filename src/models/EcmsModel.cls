@@ -8,7 +8,7 @@
  *
  */
 
-/// Exempt certificate
+/* Exempt certificate */
 
 global class EcmsModel extends ErrorResult
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a tax type group
+/* Represents a tax type group */
 
 global class TaxTypeGroupModel extends ErrorResult
 {

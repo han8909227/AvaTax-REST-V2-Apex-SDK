@@ -8,7 +8,7 @@
  *
  */
 
-/// The type of data contained in this batch
+/* The type of data contained in this batch */
 
 global enum BatchType
 {

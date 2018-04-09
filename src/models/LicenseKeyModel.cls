@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a license key for this account.
+/* Represents a license key for this account. */
 
 global class LicenseKeyModel extends ErrorResult
 {

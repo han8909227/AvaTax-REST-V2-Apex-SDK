@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents the type of authentication provided to the API call
+/* Represents the type of authentication provided to the API call */
 
 global enum AuthenticationTypeId
 {

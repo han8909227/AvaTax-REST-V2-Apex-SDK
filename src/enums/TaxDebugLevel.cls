@@ -8,7 +8,7 @@
  *
  */
 
-/// Indicates the level of detail requested from a tax API call
+/* Indicates the level of detail requested from a tax API call */
 
 global enum TaxDebugLevel
 {

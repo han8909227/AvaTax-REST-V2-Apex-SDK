@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents information about a single legal taxing jurisdiction
+/* Represents information about a single legal taxing jurisdiction */
 
 global class JurisdictionModel extends ErrorResult
 {

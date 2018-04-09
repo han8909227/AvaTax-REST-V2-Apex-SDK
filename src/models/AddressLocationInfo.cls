@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents an address to resolve.
+/* Represents an address to resolve. */
 
 global class AddressLocationInfo
 {

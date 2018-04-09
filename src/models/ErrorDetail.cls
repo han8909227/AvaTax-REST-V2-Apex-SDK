@@ -8,7 +8,7 @@
  *
  */
 
-/// Message object
+/* Message object */
 
 global class ErrorDetail
 {

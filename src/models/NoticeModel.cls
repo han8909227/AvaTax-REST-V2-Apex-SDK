@@ -8,9 +8,9 @@
  *
  */
 
-/// Represents a letter received from a tax authority regarding tax filing.
+/* Represents a letter received from a tax authority regarding tax filing.
     /// These letters often have the warning "Notice" printed at the top, which is why
-    /// they are called "Notices".
+    /// they are called "Notices". */
 
 global class NoticeModel extends ErrorResult
 {

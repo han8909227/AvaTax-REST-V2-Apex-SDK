@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents the different types of transactions that AvaTax can process.
+/* Represents the different types of transactions that AvaTax can process. */
 
 global enum DocumentType
 {

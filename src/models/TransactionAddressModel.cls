@@ -8,7 +8,7 @@
  *
  */
 
-/// An address used within this transaction.
+/* An address used within this transaction. */
 
 global class TransactionAddressModel extends ErrorResult
 {

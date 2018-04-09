@@ -8,12 +8,12 @@
  *
  */
 
-/// Verify that a MultiDocument object matches the information in your accounting system.
+/* Verify that a MultiDocument object matches the information in your accounting system.
     /// 
     /// If all attributes of the MultiDocument object match the values in your request, the
     /// MultiDocument object will be moved to the document status `Posted`.
     /// 
-    /// For more information on document status, see [DocumentStatus](https://developer.avalara.com/api-reference/avatax/rest/v2/models/enums/DocumentStatus/).
+    /// For more information on document status, see [DocumentStatus](https://developer.avalara.com/api-reference/avatax/rest/v2/models/enums/DocumentStatus/). */
 
 global class VerifyMultiDocumentModel extends ErrorResult
 {

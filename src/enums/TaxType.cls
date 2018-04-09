@@ -8,7 +8,7 @@
  *
  */
 
-/// Tax type
+/* Tax type */
 
 global enum TaxType
 {

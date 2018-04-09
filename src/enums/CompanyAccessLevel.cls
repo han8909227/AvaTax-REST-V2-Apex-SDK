@@ -8,7 +8,7 @@
  *
  */
 
-/// Indicates the level of companies that can be accessed
+/* Indicates the level of companies that can be accessed */
 
 global enum CompanyAccessLevel
 {

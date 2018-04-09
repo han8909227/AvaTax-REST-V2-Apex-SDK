@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a form that can be filed with a tax authority.
+/* Represents a form that can be filed with a tax authority. */
 
 global class TaxAuthorityFormModel extends ErrorResult
 {

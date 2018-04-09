@@ -8,7 +8,7 @@
  *
  */
 
-/// A model for return adjustments.
+/* A model for return adjustments. */
 
 global class FilingAdjustmentModel extends ErrorResult
 {

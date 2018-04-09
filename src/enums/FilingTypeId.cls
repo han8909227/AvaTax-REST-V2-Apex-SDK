@@ -8,7 +8,7 @@
  *
  */
 
-/// A list of possible AvaFile filing types.
+/* A list of possible AvaFile filing types. */
 
 global enum FilingTypeId
 {

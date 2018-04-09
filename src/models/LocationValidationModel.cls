@@ -8,7 +8,7 @@
  *
  */
 
-/// Tells you whether this location object has been correctly set up to the local jurisdiction's standards
+/* Tells you whether this location object has been correctly set up to the local jurisdiction's standards */
 
 global class LocationValidationModel extends ErrorResult
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// Address Resolution Model
+/* Address Resolution Model */
 
 global class AddressResolutionModel extends ErrorResult
 {

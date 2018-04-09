@@ -8,7 +8,7 @@
  *
  */
 
-/// NoticeRootCause Model
+/* NoticeRootCause Model */
 
 global class NoticeRootCauseModel extends ErrorResult
 {

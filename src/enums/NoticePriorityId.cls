@@ -8,7 +8,7 @@
  *
  */
 
-/// Filing Frequency types
+/* Filing Frequency types */
 
 global enum NoticePriorityId
 {

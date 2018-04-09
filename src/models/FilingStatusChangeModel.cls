@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a change request for filing status for a company
+/* Represents a change request for filing status for a company */
 
 global class FilingStatusChangeModel extends ErrorResult
 {

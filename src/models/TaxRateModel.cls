@@ -8,7 +8,7 @@
  *
  */
 
-/// Contains information about the general tangible personal property sales tax rates for this jurisdiction.
+/* Contains information about the general tangible personal property sales tax rates for this jurisdiction.
     /// 
     /// This rate is calculated by making assumptions about the tax calculation process. It does not account for:
     /// 
@@ -19,7 +19,7 @@
     /// * And many more custom use cases.
     /// 
     /// To upgrade to a fully-featured and accurate tax process that handles these scenarios correctly, please
-    /// contact Avalara to upgrade to AvaTax!
+    /// contact Avalara to upgrade to AvaTax! */
 
 global class TaxRateModel extends ErrorResult
 {

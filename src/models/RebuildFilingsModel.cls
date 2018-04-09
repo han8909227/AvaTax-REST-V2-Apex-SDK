@@ -8,7 +8,7 @@
  *
  */
 
-/// Rebuild a set of filings.
+/* Rebuild a set of filings. */
 
 global class RebuildFilingsModel extends ErrorResult
 {

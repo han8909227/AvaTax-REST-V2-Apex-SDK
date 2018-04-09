@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a tax subtype
+/* Represents a tax subtype */
 
 global class TaxSubTypeModel extends ErrorResult
 {

@@ -8,9 +8,9 @@
  *
  */
 
-/// The "Unit of Measurement" model captures information about a type of measurement. Types of measurement refer to 
+/* The "Unit of Measurement" model captures information about a type of measurement. Types of measurement refer to 
     /// different scales for the same dimension. For example, measurements of type "Distance" may include units of measurement
-    /// such as meters, feet, inches, and miles.
+    /// such as meters, feet, inches, and miles. */
 
 global class UomModel extends ErrorResult
 {

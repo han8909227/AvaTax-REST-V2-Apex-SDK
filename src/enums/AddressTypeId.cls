@@ -8,7 +8,7 @@
  *
  */
 
-/// Indicates whether this address refers to a person or an business
+/* Indicates whether this address refers to a person or an business */
 
 global enum AddressTypeId
 {

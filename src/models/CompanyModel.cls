@@ -8,7 +8,7 @@
  *
  */
 
-/// A company or business entity.
+/* A company or business entity. */
 
 global class CompanyModel extends ErrorResult
 {

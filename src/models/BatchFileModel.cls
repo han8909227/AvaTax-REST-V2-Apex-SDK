@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents one file in a batch upload.
+/* Represents one file in a batch upload. */
 
 global class BatchFileModel extends ErrorResult
 {

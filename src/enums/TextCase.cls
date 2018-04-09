@@ -8,7 +8,7 @@
  *
  */
 
-/// Casing to use for validation result
+/* Casing to use for validation result */
 
 global enum TextCase
 {

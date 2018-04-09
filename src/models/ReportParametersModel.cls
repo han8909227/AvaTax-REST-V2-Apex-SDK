@@ -8,7 +8,7 @@
  *
  */
 
-/// The output model for report parameter definitions
+/* The output model for report parameter definitions */
 
 global class ReportParametersModel extends ErrorResult
 {

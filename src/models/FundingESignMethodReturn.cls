@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents the current status of a funding ESign method
+/* Represents the current status of a funding ESign method */
 
 global class FundingESignMethodReturn
 {

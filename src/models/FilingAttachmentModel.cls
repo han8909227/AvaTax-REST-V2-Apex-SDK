@@ -8,7 +8,7 @@
  *
  */
 
-/// An attachment associated with a filing return
+/* An attachment associated with a filing return */
 
 global class FilingAttachmentModel extends ErrorResult
 {

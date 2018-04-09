@@ -8,7 +8,7 @@
  *
  */
 
-/// Describes an element in the harmonized tariff system.
+/* Describes an element in the harmonized tariff system.
     /// 
     /// According to the [United States International Trade Commission](https://www.usitc.gov), the harmonized tariff schedule is defined as follows:
     /// 
@@ -18,7 +18,7 @@
     /// "headings." The 6-, 8- and 10-digit classifications are called "subheadings."
     /// 
     /// Within AvaTax, the `HsCodeModel` object can refer to sections, chapters, headings, subheadings, or articles. Each object represents one
-    /// classification. Many of these objects have child objects underneath them; these child objects are more specific than their parent objects.
+    /// classification. Many of these objects have child objects underneath them; these child objects are more specific than their parent objects. */
 
 global class HsCodeModel extends ErrorResult
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// Indicates the rounding behavior of a form
+/* Indicates the rounding behavior of a form */
 
 global enum RoundingTypeId
 {

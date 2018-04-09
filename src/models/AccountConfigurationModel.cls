@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents one configuration setting for this account
+/* Represents one configuration setting for this account */
 
 global class AccountConfigurationModel extends ErrorResult
 {

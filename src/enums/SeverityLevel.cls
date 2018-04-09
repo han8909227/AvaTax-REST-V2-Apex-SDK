@@ -8,7 +8,7 @@
  *
  */
 
-/// Severity of message
+/* Severity of message */
 
 global enum SeverityLevel
 {

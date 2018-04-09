@@ -8,7 +8,7 @@
  *
  */
 
-/// This object represents a single transaction; for example, a sales invoice or purchase order.
+/* This object represents a single transaction; for example, a sales invoice or purchase order. */
 
 global class TransactionModel extends ErrorResult
 {

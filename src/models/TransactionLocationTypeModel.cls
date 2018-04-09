@@ -8,7 +8,7 @@
  *
  */
 
-/// Information about a location type
+/* Information about a location type */
 
 global class TransactionLocationTypeModel extends ErrorResult
 {

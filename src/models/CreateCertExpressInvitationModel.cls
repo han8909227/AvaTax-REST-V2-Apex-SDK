@@ -8,11 +8,11 @@
  *
  */
 
-/// Represents an invitation for a customer to use CertExpress to self-report their own certificates.
+/* Represents an invitation for a customer to use CertExpress to self-report their own certificates.
     /// This invitation is delivered by your choice of method, or you can present a hyperlink to the user
     /// directly in your connector. Your customer will be redirected to https://app.certexpress.com/ where
     /// they can follow a step-by-step guide to enter information about their exemption certificates. The
-    /// certificates entered will be recorded and automatically linked to their customer record.
+    /// certificates entered will be recorded and automatically linked to their customer record. */
 
 global class CreateCertExpressInvitationModel extends ErrorResult
 {

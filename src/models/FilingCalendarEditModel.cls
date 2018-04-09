@@ -8,7 +8,7 @@
  *
  */
 
-/// An edit to be made on a filing calendar.
+/* An edit to be made on a filing calendar. */
 
 global class FilingCalendarEditModel extends ErrorResult
 {

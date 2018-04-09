@@ -8,7 +8,7 @@
  *
  */
 
-/// A request to void a previously created transaction
+/* A request to void a previously created transaction */
 
 global class VoidTransactionModel extends ErrorResult
 {

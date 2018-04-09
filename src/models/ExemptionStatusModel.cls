@@ -8,7 +8,7 @@
  *
  */
 
-/// Indicates the customer's exemption status in a specific country and region.
+/* Indicates the customer's exemption status in a specific country and region. */
 
 global class ExemptionStatusModel extends ErrorResult
 {

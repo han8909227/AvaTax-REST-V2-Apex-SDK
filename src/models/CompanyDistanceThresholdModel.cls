@@ -8,7 +8,7 @@
  *
  */
 
-/// A company-distance-threshold model indicates the distance between a company
+/* A company-distance-threshold model indicates the distance between a company
     /// and the taxing borders of various countries. Distance thresholds are necessary
     /// to correctly calculate some value-added taxes.
     /// 
@@ -24,7 +24,7 @@
     /// as to whether you have exceeded this threshold is maintained in this object. 
     /// 
     /// By default, you are considered to have exceeded tax thresholds. If you wish to change this default, you can create 
-    /// a company-distance-threshold object to select the correct behavior for this origin/destination tax calculation process.
+    /// a company-distance-threshold object to select the correct behavior for this origin/destination tax calculation process. */
 
 global class CompanyDistanceThresholdModel extends ErrorResult
 {

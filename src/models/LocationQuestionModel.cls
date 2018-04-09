@@ -8,7 +8,7 @@
  *
  */
 
-/// Information about questions that the local jurisdictions require for each location
+/* Information about questions that the local jurisdictions require for each location */
 
 global class LocationQuestionModel extends ErrorResult
 {

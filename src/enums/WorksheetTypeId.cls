@@ -8,7 +8,7 @@
  *
  */
 
-/// Filing worksheet Type
+/* Filing worksheet Type */
 
 global enum WorksheetTypeId
 {

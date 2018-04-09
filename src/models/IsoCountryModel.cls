@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents an ISO 3166 recognized country
+/* Represents an ISO 3166 recognized country */
 
 global class IsoCountryModel extends ErrorResult
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// Refund types
+/* Refund types */
 
 global enum RefundType
 {

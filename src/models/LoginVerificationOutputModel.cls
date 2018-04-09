@@ -8,7 +8,7 @@
  *
  */
 
-/// This is the output model coming from skyscraper services
+/* This is the output model coming from skyscraper services */
 
 global class LoginVerificationOutputModel extends ErrorResult
 {

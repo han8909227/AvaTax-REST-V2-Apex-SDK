@@ -8,7 +8,7 @@
  *
  */
 
-/// The way of delivering request
+/* The way of delivering request */
 
 global enum CertificateRequestDeliveryMethod
 {

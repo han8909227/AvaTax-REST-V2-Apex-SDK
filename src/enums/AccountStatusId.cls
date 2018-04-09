@@ -8,7 +8,7 @@
  *
  */
 
-/// Status of an Avalara account
+/* Status of an Avalara account */
 
 global enum AccountStatusId
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a request to activate an account by reading and accepting its terms and conditions.
+/* Represents a request to activate an account by reading and accepting its terms and conditions. */
 
 global class ActivateAccountModel extends ErrorResult
 {

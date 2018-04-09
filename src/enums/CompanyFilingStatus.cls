@@ -8,7 +8,7 @@
  *
  */
 
-/// Indicates whether Avalara Managed Returns has begun filing for this company.
+/* Indicates whether Avalara Managed Returns has begun filing for this company. */
 
 global enum CompanyFilingStatus
 {

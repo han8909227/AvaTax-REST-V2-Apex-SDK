@@ -8,7 +8,7 @@
  *
  */
 
-/// Informational or warning messages returned by AvaTax with a transaction
+/* Informational or warning messages returned by AvaTax with a transaction */
 
 global class AvaTaxMessage
 {

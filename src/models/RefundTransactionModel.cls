@@ -8,7 +8,7 @@
  *
  */
 
-/// Refund a committed transaction
+/* Refund a committed transaction */
 
 global class RefundTransactionModel extends ErrorResult
 {

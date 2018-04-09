@@ -8,7 +8,7 @@
  *
  */
 
-/// Results of the Worksheet Checkup report
+/* Results of the Worksheet Checkup report */
 
 global class FilingsCheckupModel extends ErrorResult
 {

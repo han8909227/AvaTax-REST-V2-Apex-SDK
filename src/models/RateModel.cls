@@ -8,7 +8,7 @@
  *
  */
 
-/// Indicates one element of a sales tax rate.
+/* Indicates one element of a sales tax rate. */
 
 global class RateModel extends ErrorResult
 {

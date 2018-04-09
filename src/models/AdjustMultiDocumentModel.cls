@@ -8,7 +8,7 @@
  *
  */
 
-/// Replace an existing MultiDocument transaction recorded in AvaTax with a new one.
+/* Replace an existing MultiDocument transaction recorded in AvaTax with a new one. */
 
 global class AdjustMultiDocumentModel extends ErrorResult
 {

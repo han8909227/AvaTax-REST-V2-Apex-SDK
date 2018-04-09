@@ -8,7 +8,7 @@
  *
  */
 
-/// One line item on this transaction.
+/* One line item on this transaction. */
 
 global class TransactionLineModel extends ErrorResult
 {

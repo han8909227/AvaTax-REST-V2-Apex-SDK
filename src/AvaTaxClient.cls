@@ -14,12 +14,14 @@
 
 global class AvaTaxClient
 {
-        /// Returns the version number of the API used to generate this class
+        // Returns the version number of the API used to generate this class
         global static string API_VERSION { get { return "18.3.1-176"; } }
+		private string credentials;
+		private string clientHeader;
+		private String envUri;
 
 
         /// Reset this account's license key
-        ///
         /// Resets the existing license key for this account to a new key.
         /// 
         /// To reset your account, you must specify the ID of the account you wish to reset and confirm the action.
@@ -39,12 +41,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{id}/resetlicensekey");
             path.ApplyField("id", id);
-            return (LicenseKeyModel) restCall("POST", path.relativePath, model, LicenseKeyModel.class.getName());
+            LicenseKeyModel responseModel = null;
+            responseModel = restCall("POST", path, model, LicenseKeyModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (LicenseKeyModel)System.JSON.deserialize(res.getBody(), LicenseKeyModel.class);
+            }
+            return responseModel
         }
 
 
         /// Activate an account by accepting terms and conditions
-        ///
         /// Activate the account specified by the unique accountId number.
         /// 
         /// This activation request can only be called by account administrators. You must indicate 
@@ -64,12 +71,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{id}/activate");
             path.ApplyField("id", id);
             path.AddQuery("$include", include);
-            return (AccountModel) restCall("POST", path.relativePath, model, AccountModel.class.getName());
+            AccountModel responseModel = null;
+            responseModel = restCall("POST", path, model, AccountModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (AccountModel)System.JSON.deserialize(res.getBody(), AccountModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve a single account
-        ///
         /// Get the account object identified by this URL.
         /// You may use the '$include' parameter to fetch additional nested data:
         /// 
@@ -83,12 +95,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{id}");
             path.ApplyField("id", id);
             path.AddQuery("$include", include);
-            return (AccountModel) restCall("GET", path.relativePath, null, AccountModel.class.getName());
+            AccountModel responseModel = null;
+            responseModel = restCall("GET", path, null, AccountModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (AccountModel)System.JSON.deserialize(res.getBody(), AccountModel.class);
+            }
+            return responseModel
         }
 
 
         /// Get configuration settings for this account
-        ///
         /// Retrieve a list of all configuration settings tied to this account.
         /// 
         /// Configuration settings provide you with the ability to control features of your account and of your
@@ -107,12 +124,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{id}/configuration");
             path.ApplyField("id", id);
-            return (List<AccountConfigurationModel>) restCall("GET", path.relativePath, null, List<AccountConfigurationModel>.class.getName());
+            httpResponse res = restCallForList("GET", path, null);
+            List<AccountConfigurationModel> retVal = new List<AccountConfigurationModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<AccountConfigurationModel>)System.JSON.deserialize(res.getBody(), List<AccountConfigurationModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Change configuration settings for this account
-        ///
         /// Update configuration settings tied to this account.
         /// 
         /// Configuration settings provide you with the ability to control features of your account and of your
@@ -132,12 +158,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{id}/configuration");
             path.ApplyField("id", id);
-            return (List<AccountConfigurationModel>) restCall("POST", path.relativePath, model, List<AccountConfigurationModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<AccountConfigurationModel> retVal = new List<AccountConfigurationModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<AccountConfigurationModel>)System.JSON.deserialize(res.getBody(), List<AccountConfigurationModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Retrieve geolocation information for a specified address
-        ///
         /// Resolve an address against Avalara's address-validation system. If the address can be resolved, this API 
         /// provides the latitude and longitude of the resolved location. The value 'resolutionQuality' can be used 
         /// to identify how closely this address can be located. If the address cannot be clearly located, use the 
@@ -168,12 +203,17 @@ global class AvaTaxClient
             path.AddQuery("textCase", textCase);
             path.AddQuery("latitude", latitude);
             path.AddQuery("longitude", longitude);
-            return (AddressResolutionModel) restCall("GET", path.relativePath, null, AddressResolutionModel.class.getName());
+            AddressResolutionModel responseModel = null;
+            responseModel = restCall("GET", path, null, AddressResolutionModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (AddressResolutionModel)System.JSON.deserialize(res.getBody(), AddressResolutionModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve geolocation information for a specified address
-        ///
         /// Resolve an address against Avalara's address-validation system. If the address can be resolved, this API 
         /// provides the latitude and longitude of the resolved location. The value 'resolutionQuality' can be used 
         /// to identify how closely this address can be located. If the address cannot be clearly located, use the 
@@ -185,12 +225,17 @@ global class AvaTaxClient
         public AddressResolutionModel ResolveAddressPost(AddressValidationInfo model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/addresses/resolve");
-            return (AddressResolutionModel) restCall("POST", path.relativePath, model, AddressResolutionModel.class.getName());
+            AddressResolutionModel responseModel = null;
+            responseModel = restCall("POST", path, model, AddressResolutionModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (AddressResolutionModel)System.JSON.deserialize(res.getBody(), AddressResolutionModel.class);
+            }
+            return responseModel
         }
 
 
         /// Create a new AvaFileForm
-        ///
         /// Create one or more AvaFileForms
         /// A 'AvaFileForm' represents a form supported by our returns team
         /// 
@@ -198,12 +243,21 @@ global class AvaTaxClient
         public List<AvaFileFormModel> CreateAvaFileForms(List<AvaFileFormModel> model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/avafileforms");
-            return (List<AvaFileFormModel>) restCall("POST", path.relativePath, model, List<AvaFileFormModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<AvaFileFormModel> retVal = new List<AvaFileFormModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<AvaFileFormModel>)System.JSON.deserialize(res.getBody(), List<AvaFileFormModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Delete a single AvaFileForm
-        ///
         /// Marks the existing AvaFileForm object at this URL as deleted.
         /// 
         /// <param name="id">The ID of the AvaFileForm you wish to delete.</param>
@@ -211,12 +265,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/avafileforms/{id}");
             path.ApplyField("id", id);
-            return (List<ErrorDetail>) restCall("DELETE", path.relativePath, null, List<ErrorDetail>.class.getName());
+            httpResponse res = restCallForList("DELETE", path, null);
+            List<ErrorDetail> retVal = new List<ErrorDetail>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ErrorDetail>)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Retrieve a single AvaFileForm
-        ///
         /// Get the AvaFileForm object identified by this URL.
         /// 
         /// <param name="id">The primary key of this AvaFileForm</param>
@@ -224,12 +287,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/avafileforms/{id}");
             path.ApplyField("id", id);
-            return (AvaFileFormModel) restCall("GET", path.relativePath, null, AvaFileFormModel.class.getName());
+            AvaFileFormModel responseModel = null;
+            responseModel = restCall("GET", path, null, AvaFileFormModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (AvaFileFormModel)System.JSON.deserialize(res.getBody(), AvaFileFormModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all AvaFileForms
-        ///
         /// Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         /// Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         /// 
@@ -246,12 +314,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<AvaFileFormModel>) restCall("GET", path.relativePath, null, FetchResult<AvaFileFormModel>.class.getName());
+            FetchResult<AvaFileFormModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<AvaFileFormModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<AvaFileFormModel>)System.JSON.deserialize(res.getBody(), FetchResult<AvaFileFormModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Update a AvaFileForm
-        ///
         /// All data from the existing object will be replaced with data in the object you PUT. 
         /// To set a field's value to null, you may either set its value to null or omit that field from the object you post.
         /// 
@@ -261,12 +334,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/avafileforms/{id}");
             path.ApplyField("id", id);
-            return (AvaFileFormModel) restCall("PUT", path.relativePath, model, AvaFileFormModel.class.getName());
+            AvaFileFormModel responseModel = null;
+            responseModel = restCall("PUT", path, model, AvaFileFormModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (AvaFileFormModel)System.JSON.deserialize(res.getBody(), AvaFileFormModel.class);
+            }
+            return responseModel
         }
 
 
         /// Create a new batch
-        ///
         /// Create one or more new batch objects attached to this company.
         /// 
         /// Each batch object may have one or more file objects (currently only one file is supported).
@@ -288,12 +366,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/batches");
             path.ApplyField("companyId", companyId);
-            return (List<BatchModel>) restCall("POST", path.relativePath, model, List<BatchModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<BatchModel> retVal = new List<BatchModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<BatchModel>)System.JSON.deserialize(res.getBody(), List<BatchModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Delete a single batch
-        ///
         /// 
         /// 
         /// <param name="companyId">The ID of the company that owns this batch.</param>
@@ -303,12 +390,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/batches/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (List<ErrorDetail>) restCall("DELETE", path.relativePath, null, List<ErrorDetail>.class.getName());
+            httpResponse res = restCallForList("DELETE", path, null);
+            List<ErrorDetail> retVal = new List<ErrorDetail>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ErrorDetail>)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Download a single batch file
-        ///
         /// Download a single batch file identified by this URL.
         /// 
         /// <param name="companyId">The ID of the company that owns this batch</param>
@@ -320,12 +416,16 @@ global class AvaTaxClient
             path.ApplyField("companyId", companyId);
             path.ApplyField("batchId", batchId);
             path.ApplyField("id", id);
-            return restCallForList("GET", path, null);
+            responseFile = ("GET", path, null);
+            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
+            {
+                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
+            }
+            return responseFile
         }
 
 
         /// Retrieve a single batch
-        ///
         /// Get the batch object identified by this URL. A batch object is a large 
         /// collection of API calls stored in a compact file.
         /// 
@@ -349,12 +449,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/batches/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (BatchModel) restCall("GET", path.relativePath, null, BatchModel.class.getName());
+            BatchModel responseModel = null;
+            responseModel = restCall("GET", path, null, BatchModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (BatchModel)System.JSON.deserialize(res.getBody(), BatchModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all batches for this company
-        ///
         /// List all batch objects attached to the specified company.
         /// 
         /// A batch object is a large collection of API calls stored in a compact file.
@@ -392,12 +497,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<BatchModel>) restCall("GET", path.relativePath, null, FetchResult<BatchModel>.class.getName());
+            FetchResult<BatchModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<BatchModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<BatchModel>)System.JSON.deserialize(res.getBody(), FetchResult<BatchModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all batches
-        ///
         /// Get multiple batch objects across all companies.
         /// 
         /// A batch object is a large collection of API calls stored in a compact file.
@@ -430,12 +540,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<BatchModel>) restCall("GET", path.relativePath, null, FetchResult<BatchModel>.class.getName());
+            FetchResult<BatchModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<BatchModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<BatchModel>)System.JSON.deserialize(res.getBody(), FetchResult<BatchModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Create a CertExpress invitation
-        ///
         /// Creates an invitation for a customer to self-report certificates using the CertExpress website.
         /// 
         /// This invitation is delivered by your choice of method, or you can present a hyperlink to the user
@@ -460,12 +575,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/customers/{customerCode}/certexpressinvites");
             path.ApplyField("companyId", companyId);
             path.ApplyField("customerCode", customerCode);
-            return (List<CertExpressInvitationStatusModel>) restCall("POST", path.relativePath, model, List<CertExpressInvitationStatusModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<CertExpressInvitationStatusModel> retVal = new List<CertExpressInvitationStatusModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<CertExpressInvitationStatusModel>)System.JSON.deserialize(res.getBody(), List<CertExpressInvitationStatusModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Retrieve a single CertExpress invitation
-        ///
         /// Retrieve an existing CertExpress invitation sent to a customer.
         /// 
         /// A CertExpression invitation allows a customer to follow a helpful step-by-step guide to provide information
@@ -493,12 +617,17 @@ global class AvaTaxClient
             path.ApplyField("customerCode", customerCode);
             path.ApplyField("id", id);
             path.AddQuery("$include", include);
-            return (CertExpressInvitationModel) restCall("GET", path.relativePath, null, CertExpressInvitationModel.class.getName());
+            CertExpressInvitationModel responseModel = null;
+            responseModel = restCall("GET", path, null, CertExpressInvitationModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (CertExpressInvitationModel)System.JSON.deserialize(res.getBody(), CertExpressInvitationModel.class);
+            }
+            return responseModel
         }
 
 
         /// List CertExpress invitations
-        ///
         /// Retrieve CertExpress invitations sent by this company.
         /// 
         /// A CertExpression invitation allows a customer to follow a helpful step-by-step guide to provide information
@@ -532,12 +661,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<CertExpressInvitationModel>) restCall("GET", path.relativePath, null, FetchResult<CertExpressInvitationModel>.class.getName());
+            FetchResult<CertExpressInvitationModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<CertExpressInvitationModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<CertExpressInvitationModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertExpressInvitationModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Create certificates for this company
-        ///
         /// Record one or more certificates document for this company.
         /// 
         /// A certificate is a document stored in either AvaTax Exemptions or CertCapture. The certificate document
@@ -564,12 +698,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates");
             path.ApplyField("companyId", companyId);
-            return (List<CertificateModel>) restCall("POST", path.relativePath, model, List<CertificateModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<CertificateModel> retVal = new List<CertificateModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<CertificateModel>)System.JSON.deserialize(res.getBody(), List<CertificateModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Revoke and delete a certificate
-        ///
         /// Revoke the certificate identified by this URL, then delete it.
         /// 
         /// A certificate is a document stored in either AvaTax Exemptions or CertCapture. The certificate document
@@ -591,12 +734,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (CertificateModel) restCall("DELETE", path.relativePath, null, CertificateModel.class.getName());
+            CertificateModel responseModel = null;
+            responseModel = restCall("DELETE", path, null, CertificateModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (CertificateModel)System.JSON.deserialize(res.getBody(), CertificateModel.class);
+            }
+            return responseModel
         }
 
 
         /// Download an image for this certificate
-        ///
         /// Download an image or PDF file for this certificate.
         /// 
         /// This API can be used to download either a single-page preview of the certificate or a full PDF document.
@@ -623,12 +771,16 @@ global class AvaTaxClient
             path.ApplyField("id", id);
             path.AddQuery("$page", page);
             path.AddQuery("$type", type);
-            return restCallForList("GET", path, null);
+            responseFile = ("GET", path, null);
+            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
+            {
+                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
+            }
+            return responseFile
         }
 
 
         /// Retrieve a single certificate
-        ///
         /// Get the current certificate identified by this URL.
         /// 
         /// A certificate is a document stored in either AvaTax Exemptions or CertCapture. The certificate document
@@ -660,12 +812,17 @@ global class AvaTaxClient
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
             path.AddQuery("$include", include);
-            return (CertificateModel) restCall("GET", path.relativePath, null, CertificateModel.class.getName());
+            CertificateModel responseModel = null;
+            responseModel = restCall("GET", path, null, CertificateModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (CertificateModel)System.JSON.deserialize(res.getBody(), CertificateModel.class);
+            }
+            return responseModel
         }
 
 
         /// Check a company's exemption certificate status.
-        ///
         /// Checks whether this company is configured to use exemption certificates in AvaTax.
         /// 
         /// Exemption certificates are tracked through a different auditable data store than the one that 
@@ -679,12 +836,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/setup");
             path.ApplyField("companyId", companyId);
-            return (ProvisionStatusModel) restCall("GET", path.relativePath, null, ProvisionStatusModel.class.getName());
+            ProvisionStatusModel responseModel = null;
+            responseModel = restCall("GET", path, null, ProvisionStatusModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (ProvisionStatusModel)System.JSON.deserialize(res.getBody(), ProvisionStatusModel.class);
+            }
+            return responseModel
         }
 
 
         /// Link attributes to a certificate
-        ///
         /// Link one or many attributes to a certificate.
         /// 
         /// A certificate may have multiple attributes that control its behavior. You may link or unlink attributes to a
@@ -708,12 +870,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/{id}/attributes/link");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (FetchResult<CertificateAttributeModel>) restCall("POST", path.relativePath, model, FetchResult<CertificateAttributeModel>.class.getName());
+            FetchResult<CertificateAttributeModel> responseModel = null;
+            responseModel = restCall("POST", path, model, FetchResult<CertificateAttributeModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<CertificateAttributeModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateAttributeModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Link customers to a certificate
-        ///
         /// Link one or more customers to an existing certificate.
         /// 
         /// Customers and certificates must be linked before a customer can make use of a certificate to obtain
@@ -738,12 +905,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/{id}/customers/link");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (FetchResult<CustomerModel>) restCall("POST", path.relativePath, model, FetchResult<CustomerModel>.class.getName());
+            FetchResult<CustomerModel> responseModel = null;
+            responseModel = restCall("POST", path, model, FetchResult<CustomerModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<CustomerModel>)System.JSON.deserialize(res.getBody(), FetchResult<CustomerModel>.class);
+            }
+            return responseModel
         }
 
 
         /// List all attributes applied to this certificate
-        ///
         /// Retrieve the list of attributes that are linked to this certificate.
         /// 
         /// A certificate may have multiple attributes that control its behavior. You may link or unlink attributes to a
@@ -766,12 +938,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/{id}/attributes");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (FetchResult<CertificateAttributeModel>) restCall("GET", path.relativePath, null, FetchResult<CertificateAttributeModel>.class.getName());
+            FetchResult<CertificateAttributeModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<CertificateAttributeModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<CertificateAttributeModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateAttributeModel>.class);
+            }
+            return responseModel
         }
 
 
         /// List customers linked to this certificate
-        ///
         /// List all customers linked to this certificate.
         /// 
         /// Customers must be linked to a certificate in order to make use of its tax exemption features. You
@@ -797,12 +974,17 @@ global class AvaTaxClient
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
             path.AddQuery("$include", include);
-            return (FetchResult<CustomerModel>) restCall("GET", path.relativePath, null, FetchResult<CustomerModel>.class.getName());
+            FetchResult<CustomerModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<CustomerModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<CustomerModel>)System.JSON.deserialize(res.getBody(), FetchResult<CustomerModel>.class);
+            }
+            return responseModel
         }
 
 
         /// List all certificates for a company
-        ///
         /// List all certificates recorded by a company
         /// 
         /// A certificate is a document stored in either AvaTax Exemptions or CertCapture. The certificate document
@@ -840,12 +1022,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<CertificateModel>) restCall("GET", path.relativePath, null, FetchResult<CertificateModel>.class.getName());
+            FetchResult<CertificateModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<CertificateModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<CertificateModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Request setup of exemption certificates for this company.
-        ///
         /// Requests the setup of exemption certificates for this company.
         /// 
         /// Exemption certificates are tracked through a different auditable data store than the one that 
@@ -861,12 +1048,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/setup");
             path.ApplyField("companyId", companyId);
-            return (ProvisionStatusModel) restCall("POST", path.relativePath, null, ProvisionStatusModel.class.getName());
+            ProvisionStatusModel responseModel = null;
+            responseModel = restCall("POST", path, null, ProvisionStatusModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (ProvisionStatusModel)System.JSON.deserialize(res.getBody(), ProvisionStatusModel.class);
+            }
+            return responseModel
         }
 
 
         /// Unlink attributes from a certificate
-        ///
         /// Unlink one or many attributes from a certificate.
         /// 
         /// A certificate may have multiple attributes that control its behavior. You may link or unlink attributes to a
@@ -890,12 +1082,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/{id}/attributes/unlink");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (FetchResult<CertificateAttributeModel>) restCall("POST", path.relativePath, model, FetchResult<CertificateAttributeModel>.class.getName());
+            FetchResult<CertificateAttributeModel> responseModel = null;
+            responseModel = restCall("POST", path, model, FetchResult<CertificateAttributeModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<CertificateAttributeModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateAttributeModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Unlink customers from a certificate
-        ///
         /// Unlinks one or more customers from a certificate.
         /// 
         /// Unlinking a certificate from a customer will prevent the certificate from being used to generate
@@ -921,12 +1118,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/{id}/customers/unlink");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (FetchResult<CustomerModel>) restCall("POST", path.relativePath, model, FetchResult<CustomerModel>.class.getName());
+            FetchResult<CustomerModel> responseModel = null;
+            responseModel = restCall("POST", path, model, FetchResult<CustomerModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<CustomerModel>)System.JSON.deserialize(res.getBody(), FetchResult<CustomerModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Update a single certificate
-        ///
         /// Replace the certificate identified by this URL with a new one.
         /// 
         /// A certificate is a document stored in either AvaTax Exemptions or CertCapture. The certificate document
@@ -947,12 +1149,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (CertificateModel) restCall("PUT", path.relativePath, model, CertificateModel.class.getName());
+            CertificateModel responseModel = null;
+            responseModel = restCall("PUT", path, model, CertificateModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (CertificateModel)System.JSON.deserialize(res.getBody(), CertificateModel.class);
+            }
+            return responseModel
         }
 
 
         /// Upload an image or PDF attachment for this certificate
-        ///
         /// Upload an image or PDF attachment for this certificate.
         /// 
         /// Image attachments can be of the format `PDF`, `JPEG`, `TIFF`, or `PNG`. To upload a multi-page image, please
@@ -976,12 +1183,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/{id}/attachment");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return restCallForList("POST", path, null);
+            String responseModel = null;
+            responseModel = restCall("POST", path, null, String.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (String)System.JSON.deserialize(res.getBody(), String.class);
+            }
+            return responseModel
         }
 
 
         /// Change the filing status of this company
-        ///
         /// Changes the current filing status of this company.
         /// 
         /// For customers using Avalara's Managed Returns Service, each company within their account can request
@@ -1002,12 +1214,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{id}/filingstatus");
             path.ApplyField("id", id);
-            return restCallForList("POST", path, model);
+            String responseModel = null;
+            responseModel = restCall("POST", path, model, String.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (String)System.JSON.deserialize(res.getBody(), String.class);
+            }
+            return responseModel
         }
 
 
         /// Quick setup for a company with a single physical address
-        ///
         /// Shortcut to quickly setup a single-physical-location company with critical information and activate it.
         /// This API provides quick and simple company setup functionality and does the following things:
         ///  
@@ -1025,12 +1242,17 @@ global class AvaTaxClient
         public CompanyModel CompanyInitialize(CompanyInitializationModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/initialize");
-            return (CompanyModel) restCall("POST", path.relativePath, model, CompanyModel.class.getName());
+            CompanyModel responseModel = null;
+            responseModel = restCall("POST", path, model, CompanyModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (CompanyModel)System.JSON.deserialize(res.getBody(), CompanyModel.class);
+            }
+            return responseModel
         }
 
 
         /// Create new companies
-        ///
         /// Create one or more new company objects.
         /// A 'company' represents a single corporation or individual that is registered to handle transactional taxes.
         /// You may attach nested data objects such as contacts, locations, and nexus with this CREATE call, and those objects will be created with the company.
@@ -1039,12 +1261,21 @@ global class AvaTaxClient
         public List<CompanyModel> CreateCompanies(List<CompanyModel> model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies");
-            return (List<CompanyModel>) restCall("POST", path.relativePath, model, List<CompanyModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<CompanyModel> retVal = new List<CompanyModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<CompanyModel>)System.JSON.deserialize(res.getBody(), List<CompanyModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Request managed returns funding setup for a company
-        ///
         /// This API is available by invitation only.
         /// Companies that use the Avalara Managed Returns or the SST Certified Service Provider services are 
         /// required to setup their funding configuration before Avalara can begin filing tax returns on their 
@@ -1062,12 +1293,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{id}/funding/setup");
             path.ApplyField("id", id);
-            return (FundingStatusModel) restCall("POST", path.relativePath, model, FundingStatusModel.class.getName());
+            FundingStatusModel responseModel = null;
+            responseModel = restCall("POST", path, model, FundingStatusModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FundingStatusModel)System.JSON.deserialize(res.getBody(), FundingStatusModel.class);
+            }
+            return responseModel
         }
 
 
         /// Delete a single company
-        ///
         /// Deleting a company will delete all child companies, and all users attached to this company.
         /// 
         /// <param name="id">The ID of the company you wish to delete.</param>
@@ -1075,12 +1311,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{id}");
             path.ApplyField("id", id);
-            return (List<ErrorDetail>) restCall("DELETE", path.relativePath, null, List<ErrorDetail>.class.getName());
+            httpResponse res = restCallForList("DELETE", path, null);
+            List<ErrorDetail> retVal = new List<ErrorDetail>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ErrorDetail>)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Check the funding configuration of a company
-        ///
         /// This API is available by invitation only.
         /// Requires a subscription to Avalara Managed Returns or SST Certified Service Provider.
         /// Returns the funding configuration of the requested company.
@@ -1091,12 +1336,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/funding/configuration");
             path.ApplyField("companyId", companyId);
-            return (FundingConfigurationModel) restCall("GET", path.relativePath, null, FundingConfigurationModel.class.getName());
+            FundingConfigurationModel responseModel = null;
+            responseModel = restCall("GET", path, null, FundingConfigurationModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FundingConfigurationModel)System.JSON.deserialize(res.getBody(), FundingConfigurationModel.class);
+            }
+            return responseModel
         }
 
 
         /// Check the funding configuration of a company
-        ///
         /// This API is available by invitation only.
         /// Requires a subscription to Avalara Managed Returns or SST Certified Service Provider.
         /// Returns the funding configuration of the requested company.
@@ -1109,12 +1359,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/funding/configurations");
             path.ApplyField("companyId", companyId);
             path.AddQuery("currency", currency);
-            return (List<FundingConfigurationModel>) restCall("GET", path.relativePath, null, List<FundingConfigurationModel>.class.getName());
+            httpResponse res = restCallForList("GET", path, null);
+            List<FundingConfigurationModel> retVal = new List<FundingConfigurationModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<FundingConfigurationModel>)System.JSON.deserialize(res.getBody(), List<FundingConfigurationModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Retrieve a single company
-        ///
         /// Get the company object identified by this URL.
         /// A 'company' represents a single corporation or individual that is registered to handle transactional taxes.
         /// You may specify one or more of the following values in the '$include' parameter to fetch additional nested data, using commas to separate multiple values:
@@ -1138,12 +1397,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{id}");
             path.ApplyField("id", id);
             path.AddQuery("$include", include);
-            return (CompanyModel) restCall("GET", path.relativePath, null, CompanyModel.class.getName());
+            CompanyModel responseModel = null;
+            responseModel = restCall("GET", path, null, CompanyModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (CompanyModel)System.JSON.deserialize(res.getBody(), CompanyModel.class);
+            }
+            return responseModel
         }
 
 
         /// Get configuration settings for this company
-        ///
         /// Retrieve a list of all configuration settings tied to this company.
         /// 
         /// Configuration settings provide you with the ability to control features of your account and of your
@@ -1162,12 +1426,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{id}/configuration");
             path.ApplyField("id", id);
-            return (List<CompanyConfigurationModel>) restCall("GET", path.relativePath, null, List<CompanyConfigurationModel>.class.getName());
+            httpResponse res = restCallForList("GET", path, null);
+            List<CompanyConfigurationModel> retVal = new List<CompanyConfigurationModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<CompanyConfigurationModel>)System.JSON.deserialize(res.getBody(), List<CompanyConfigurationModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Get this company's filing status
-        ///
         /// Retrieve the current filing status of this company.
         /// 
         /// For customers using Avalara's Managed Returns Service, each company within their account can request
@@ -1187,12 +1460,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{id}/filingstatus");
             path.ApplyField("id", id);
-            return restCallForList("GET", path, null);
+            String responseModel = null;
+            responseModel = restCall("GET", path, null, String.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (String)System.JSON.deserialize(res.getBody(), String.class);
+            }
+            return responseModel
         }
 
 
         /// Check managed returns funding status for a company
-        ///
         /// This API is available by invitation only.
         /// Requires a subscription to Avalara Managed Returns or SST Certified Service Provider.
         /// Returns a list of funding setup requests and their current status.
@@ -1203,12 +1481,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{id}/funding");
             path.ApplyField("id", id);
-            return (List<FundingStatusModel>) restCall("GET", path.relativePath, null, List<FundingStatusModel>.class.getName());
+            httpResponse res = restCallForList("GET", path, null);
+            List<FundingStatusModel> retVal = new List<FundingStatusModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<FundingStatusModel>)System.JSON.deserialize(res.getBody(), List<FundingStatusModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Retrieve a list of MRS Companies with account
-        ///
         /// This API is available by invitation only.
         /// 
         /// Get a list of companies with an active MRS service.
@@ -1216,12 +1503,17 @@ global class AvaTaxClient
         public FetchResult<MrsCompanyModel> ListMrsCompanies()
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/mrs");
-            return (FetchResult<MrsCompanyModel>) restCall("GET", path.relativePath, null, FetchResult<MrsCompanyModel>.class.getName());
+            FetchResult<MrsCompanyModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<MrsCompanyModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<MrsCompanyModel>)System.JSON.deserialize(res.getBody(), FetchResult<MrsCompanyModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all companies
-        ///
         /// Get multiple company objects.
         /// A 'company' represents a single corporation or individual that is registered to handle transactional taxes.
         /// Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
@@ -1250,12 +1542,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<CompanyModel>) restCall("GET", path.relativePath, null, FetchResult<CompanyModel>.class.getName());
+            FetchResult<CompanyModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<CompanyModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<CompanyModel>)System.JSON.deserialize(res.getBody(), FetchResult<CompanyModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Change configuration settings for this account
-        ///
         /// Update configuration settings tied to this account.
         /// 
         /// Configuration settings provide you with the ability to control features of your account and of your
@@ -1275,12 +1572,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{id}/configuration");
             path.ApplyField("id", id);
-            return (List<CompanyConfigurationModel>) restCall("POST", path.relativePath, model, List<CompanyConfigurationModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<CompanyConfigurationModel> retVal = new List<CompanyConfigurationModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<CompanyConfigurationModel>)System.JSON.deserialize(res.getBody(), List<CompanyConfigurationModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Update a single company
-        ///
         /// Replace the existing company object at this URL with an updated object.
         /// A 'company' represents a single corporation or individual that is registered to handle transactional taxes.
         /// All data from the existing object will be replaced with data in the object you PUT. 
@@ -1292,12 +1598,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{id}");
             path.ApplyField("id", id);
-            return (CompanyModel) restCall("PUT", path.relativePath, model, CompanyModel.class.getName());
+            CompanyModel responseModel = null;
+            responseModel = restCall("PUT", path, model, CompanyModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (CompanyModel)System.JSON.deserialize(res.getBody(), CompanyModel.class);
+            }
+            return responseModel
         }
 
 
         /// Create a new contact
-        ///
         /// Create one or more new contact objects.
         /// A 'contact' is a person associated with a company who is designated to handle certain responsibilities of
         /// a tax collecting and filing entity.
@@ -1308,12 +1619,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/contacts");
             path.ApplyField("companyId", companyId);
-            return (List<ContactModel>) restCall("POST", path.relativePath, model, List<ContactModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<ContactModel> retVal = new List<ContactModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ContactModel>)System.JSON.deserialize(res.getBody(), List<ContactModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Delete a single contact
-        ///
         /// Mark the existing contact object at this URL as deleted.
         /// 
         /// <param name="companyId">The ID of the company that owns this contact.</param>
@@ -1323,12 +1643,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/contacts/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (List<ErrorDetail>) restCall("DELETE", path.relativePath, null, List<ErrorDetail>.class.getName());
+            httpResponse res = restCallForList("DELETE", path, null);
+            List<ErrorDetail> retVal = new List<ErrorDetail>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ErrorDetail>)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Retrieve a single contact
-        ///
         /// Get the contact object identified by this URL.
         /// A 'contact' is a person associated with a company who is designated to handle certain responsibilities of
         /// a tax collecting and filing entity.
@@ -1340,12 +1669,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/contacts/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (ContactModel) restCall("GET", path.relativePath, null, ContactModel.class.getName());
+            ContactModel responseModel = null;
+            responseModel = restCall("GET", path, null, ContactModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (ContactModel)System.JSON.deserialize(res.getBody(), ContactModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve contacts for this company
-        ///
         /// List all contact objects assigned to this company.
         /// 
         /// Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
@@ -1366,12 +1700,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<ContactModel>) restCall("GET", path.relativePath, null, FetchResult<ContactModel>.class.getName());
+            FetchResult<ContactModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<ContactModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<ContactModel>)System.JSON.deserialize(res.getBody(), FetchResult<ContactModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all contacts
-        ///
         /// Get multiple contact objects across all companies.
         /// A 'contact' is a person associated with a company who is designated to handle certain responsibilities of
         /// a tax collecting and filing entity.
@@ -1392,12 +1731,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<ContactModel>) restCall("GET", path.relativePath, null, FetchResult<ContactModel>.class.getName());
+            FetchResult<ContactModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<ContactModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<ContactModel>)System.JSON.deserialize(res.getBody(), FetchResult<ContactModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Update a single contact
-        ///
         /// Replace the existing contact object at this URL with an updated object.
         /// A 'contact' is a person associated with a company who is designated to handle certain responsibilities of
         /// a tax collecting and filing entity.
@@ -1412,12 +1756,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/contacts/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (ContactModel) restCall("PUT", path.relativePath, model, ContactModel.class.getName());
+            ContactModel responseModel = null;
+            responseModel = restCall("PUT", path, model, ContactModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (ContactModel)System.JSON.deserialize(res.getBody(), ContactModel.class);
+            }
+            return responseModel
         }
 
 
         /// Create customers for this company
-        ///
         /// Create one or more customers for this company.
         /// 
         /// A customer object defines information about a person or business that purchases products from your
@@ -1437,12 +1786,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/customers");
             path.ApplyField("companyId", companyId);
-            return (List<CustomerModel>) restCall("POST", path.relativePath, model, List<CustomerModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<CustomerModel> retVal = new List<CustomerModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<CustomerModel>)System.JSON.deserialize(res.getBody(), List<CustomerModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Delete a customer record
-        ///
         /// Deletes the customer object referenced by this URL.
         /// 
         /// A customer object defines information about a person or business that purchases products from your
@@ -1463,12 +1821,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/customers/{customerCode}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("customerCode", customerCode);
-            return (CustomerModel) restCall("DELETE", path.relativePath, null, CustomerModel.class.getName());
+            CustomerModel responseModel = null;
+            responseModel = restCall("DELETE", path, null, CustomerModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (CustomerModel)System.JSON.deserialize(res.getBody(), CustomerModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve a single customer
-        ///
         /// Retrieve the customer identified by this URL.
         /// 
         /// A customer object defines information about a person or business that purchases products from your
@@ -1496,12 +1859,17 @@ global class AvaTaxClient
             path.ApplyField("companyId", companyId);
             path.ApplyField("customerCode", customerCode);
             path.AddQuery("$include", include);
-            return (CustomerModel) restCall("GET", path.relativePath, null, CustomerModel.class.getName());
+            CustomerModel responseModel = null;
+            responseModel = restCall("GET", path, null, CustomerModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (CustomerModel)System.JSON.deserialize(res.getBody(), CustomerModel.class);
+            }
+            return responseModel
         }
 
 
         /// Link certificates to a customer
-        ///
         /// Link one or more certificates to a customer.
         /// 
         /// A customer object defines information about a person or business that purchases products from your
@@ -1523,12 +1891,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/customers/{customerCode}/certificates/link");
             path.ApplyField("companyId", companyId);
             path.ApplyField("customerCode", customerCode);
-            return (FetchResult<CertificateModel>) restCall("POST", path.relativePath, model, FetchResult<CertificateModel>.class.getName());
+            FetchResult<CertificateModel> responseModel = null;
+            responseModel = restCall("POST", path, model, FetchResult<CertificateModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<CertificateModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateModel>.class);
+            }
+            return responseModel
         }
 
 
         /// List certificates linked to a customer
-        ///
         /// List all certificates linked to a customer.
         /// 
         /// A customer object defines information about a person or business that purchases products from your
@@ -1563,12 +1936,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<CertificateModel>) restCall("GET", path.relativePath, null, FetchResult<CertificateModel>.class.getName());
+            FetchResult<CertificateModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<CertificateModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<CertificateModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateModel>.class);
+            }
+            return responseModel
         }
 
 
         /// List active certificates for a location
-        ///
         /// List valid certificates linked to a customer in a particular country and region.
         /// 
         /// This API is intended to help identify whether a customer has already provided a certificate that
@@ -1596,12 +1974,17 @@ global class AvaTaxClient
             path.ApplyField("customerCode", customerCode);
             path.ApplyField("country", country);
             path.ApplyField("region", region);
-            return (ExemptionStatusModel) restCall("GET", path.relativePath, null, ExemptionStatusModel.class.getName());
+            ExemptionStatusModel responseModel = null;
+            responseModel = restCall("GET", path, null, ExemptionStatusModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (ExemptionStatusModel)System.JSON.deserialize(res.getBody(), ExemptionStatusModel.class);
+            }
+            return responseModel
         }
 
 
         /// List all customers for this company
-        ///
         /// List all customers recorded by this company matching the specified criteria.
         /// 
         /// A customer object defines information about a person or business that purchases products from your
@@ -1634,12 +2017,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<CustomerModel>) restCall("GET", path.relativePath, null, FetchResult<CustomerModel>.class.getName());
+            FetchResult<CustomerModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<CustomerModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<CustomerModel>)System.JSON.deserialize(res.getBody(), FetchResult<CustomerModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Unlink certificates from a customer
-        ///
         /// Remove one or more certificates to a customer.
         /// 
         /// A customer object defines information about a person or business that purchases products from your
@@ -1661,12 +2049,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/customers/{customerCode}/certificates/unlink");
             path.ApplyField("companyId", companyId);
             path.ApplyField("customerCode", customerCode);
-            return (FetchResult<CertificateModel>) restCall("POST", path.relativePath, model, FetchResult<CertificateModel>.class.getName());
+            FetchResult<CertificateModel> responseModel = null;
+            responseModel = restCall("POST", path, model, FetchResult<CertificateModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<CertificateModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Update a single customer
-        ///
         /// Replace the customer object at this URL with a new record.
         /// 
         /// A customer object defines information about a person or business that purchases products from your
@@ -1688,12 +2081,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/customers/{customerCode}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("customerCode", customerCode);
-            return (CustomerModel) restCall("PUT", path.relativePath, model, CustomerModel.class.getName());
+            CustomerModel responseModel = null;
+            responseModel = restCall("PUT", path, model, CustomerModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (CustomerModel)System.JSON.deserialize(res.getBody(), CustomerModel.class);
+            }
+            return responseModel
         }
 
 
         /// Lists all parents of an HS Code.
-        ///
         /// Retrieves the specified HS code and all of its parents, reflecting all sections, chapters, headings, and subheadings
         /// 
         /// a list of HS Codes that are the parents and information branches of the HS Code for the given 
@@ -1712,12 +2110,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/crossborder/{country}/{hsCode}/hierarchy");
             path.ApplyField("country", country);
             path.ApplyField("hsCode", hsCode);
-            return (FetchResult<HsCodeModel>) restCall("GET", path.relativePath, null, FetchResult<HsCodeModel>.class.getName());
+            FetchResult<HsCodeModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<HsCodeModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<HsCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<HsCodeModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Test whether a form supports online login verification
-        ///
         /// This API is intended to be useful to identify whether the user should be allowed
         /// to automatically verify their login and password.
         /// 
@@ -1734,12 +2137,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<SkyscraperStatusModel>) restCall("GET", path.relativePath, null, FetchResult<SkyscraperStatusModel>.class.getName());
+            FetchResult<SkyscraperStatusModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<SkyscraperStatusModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<SkyscraperStatusModel>)System.JSON.deserialize(res.getBody(), FetchResult<SkyscraperStatusModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of the AvaFile Forms available
-        ///
         /// This API is deprecated. 
         /// 
         /// Please use the ListTaxForms API.
@@ -1758,12 +2166,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<AvaFileFormModel>) restCall("GET", path.relativePath, null, FetchResult<AvaFileFormModel>.class.getName());
+            FetchResult<AvaFileFormModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<AvaFileFormModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<AvaFileFormModel>)System.JSON.deserialize(res.getBody(), FetchResult<AvaFileFormModel>.class);
+            }
+            return responseModel
         }
 
 
         /// List certificate attributes used by a company
-        ///
         /// List the certificate attributes defined by a company.
         /// 
         /// A certificate may have multiple attributes that control its behavior. You may apply or remove attributes to a
@@ -1783,12 +2196,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<CertificateAttributeModel>) restCall("GET", path.relativePath, null, FetchResult<CertificateAttributeModel>.class.getName());
+            FetchResult<CertificateAttributeModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<CertificateAttributeModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<CertificateAttributeModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateAttributeModel>.class);
+            }
+            return responseModel
         }
 
 
         /// List certificate attributes used by a company
-        ///
         /// List the certificate exempt reasons defined by a company.
         /// 
         /// An exemption reason defines why a certificate allows a customer to be exempt
@@ -1808,12 +2226,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<ExemptionReasonModel>) restCall("GET", path.relativePath, null, FetchResult<ExemptionReasonModel>.class.getName());
+            FetchResult<ExemptionReasonModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<ExemptionReasonModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<ExemptionReasonModel>)System.JSON.deserialize(res.getBody(), FetchResult<ExemptionReasonModel>.class);
+            }
+            return responseModel
         }
 
 
         /// List certificate exposure zones used by a company
-        ///
         /// List the certificate exposure zones defined by a company.
         /// 
         /// An exposure zone is a location where a certificate can be valid. Exposure zones may indicate a taxing
@@ -1833,12 +2256,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<ExposureZoneModel>) restCall("GET", path.relativePath, null, FetchResult<ExposureZoneModel>.class.getName());
+            FetchResult<ExposureZoneModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<ExposureZoneModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<ExposureZoneModel>)System.JSON.deserialize(res.getBody(), FetchResult<ExposureZoneModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of communications transactiontypes
-        ///
         /// Returns full list of communications transaction types which
         /// are accepted in communication tax calculation requests.
         /// 
@@ -1855,12 +2283,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<CommunicationsTSPairModel>) restCall("GET", path.relativePath, null, FetchResult<CommunicationsTSPairModel>.class.getName());
+            FetchResult<CommunicationsTSPairModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<CommunicationsTSPairModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<CommunicationsTSPairModel>)System.JSON.deserialize(res.getBody(), FetchResult<CommunicationsTSPairModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of communications transactiontypes
-        ///
         /// Returns full list of communications transaction types which
         /// are accepted in communication tax calculation requests.
         /// 
@@ -1875,12 +2308,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<CommunicationsTransactionTypeModel>) restCall("GET", path.relativePath, null, FetchResult<CommunicationsTransactionTypeModel>.class.getName());
+            FetchResult<CommunicationsTransactionTypeModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<CommunicationsTransactionTypeModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<CommunicationsTransactionTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<CommunicationsTransactionTypeModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of communications transaction/service type pairs
-        ///
         /// Returns full list of communications transaction/service type pairs which
         /// are accepted in communication tax calculation requests.
         /// 
@@ -1895,12 +2333,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<CommunicationsTSPairModel>) restCall("GET", path.relativePath, null, FetchResult<CommunicationsTSPairModel>.class.getName());
+            FetchResult<CommunicationsTSPairModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<CommunicationsTSPairModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<CommunicationsTSPairModel>)System.JSON.deserialize(res.getBody(), FetchResult<CommunicationsTSPairModel>.class);
+            }
+            return responseModel
         }
 
 
         /// List all ISO 3166 countries
-        ///
         /// Returns a list of all ISO 3166 country codes, and their US English friendly names.
         /// This API is intended to be useful when presenting a dropdown box in your website to allow customers to select a country for 
         /// a shipping address.
@@ -1916,12 +2359,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<IsoCountryModel>) restCall("GET", path.relativePath, null, FetchResult<IsoCountryModel>.class.getName());
+            FetchResult<IsoCountryModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<IsoCountryModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<IsoCountryModel>)System.JSON.deserialize(res.getBody(), FetchResult<IsoCountryModel>.class);
+            }
+            return responseModel
         }
 
 
         /// List certificate exposure zones used by a company
-        ///
         /// List available cover letters that can be used when sending invitation to use CertExpress to upload certificates.
         /// 
         /// The CoverLetter model represents a message sent along with an invitation to use CertExpress to
@@ -1942,12 +2390,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<CoverLetterModel>) restCall("GET", path.relativePath, null, FetchResult<CoverLetterModel>.class.getName());
+            FetchResult<CoverLetterModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<CoverLetterModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<CoverLetterModel>)System.JSON.deserialize(res.getBody(), FetchResult<CoverLetterModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Lists the next level of HS Codes given a destination country and HS Code prefix.
-        ///
         /// Retrieves a list of HS Codes that are the children of the prefix for the given destination country, if 
         /// additional children are available. 
         /// 
@@ -1972,12 +2425,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<HsCodeModel>) restCall("GET", path.relativePath, null, FetchResult<HsCodeModel>.class.getName());
+            FetchResult<HsCodeModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<HsCodeModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<HsCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<HsCodeModel>.class);
+            }
+            return responseModel
         }
 
 
         /// List top level HS Code Sections.
-        ///
         /// Returns the full list of top level HS Code Sections. Sections are the broadest level of detail for 
         /// classifying tariff codes and the items to which they apply. HS Codes are organized 
         /// by Section/Chapter/Heading/Subheading/Classification.
@@ -1988,12 +2446,17 @@ global class AvaTaxClient
         public FetchResult<HsCodeModel> ListCrossBorderSections()
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/crossborder/sections");
-            return (FetchResult<HsCodeModel>) restCall("GET", path.relativePath, null, FetchResult<HsCodeModel>.class.getName());
+            FetchResult<HsCodeModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<HsCodeModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<HsCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<HsCodeModel>.class);
+            }
+            return responseModel
         }
 
 
         /// List all ISO 4217 currencies supported by AvaTax.
-        ///
         /// Lists all ISO 4217 currencies supported by AvaTax.
         /// 
         /// This API produces a list of currency codes that can be used when calling AvaTax. The values from this API can be used to fill out the
@@ -2010,12 +2473,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<CurrencyModel>) restCall("GET", path.relativePath, null, FetchResult<CurrencyModel>.class.getName());
+            FetchResult<CurrencyModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<CurrencyModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<CurrencyModel>)System.JSON.deserialize(res.getBody(), FetchResult<CurrencyModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported entity use codes
-        ///
         /// Returns the full list of Avalara-supported entity use codes.
         /// Entity/Use Codes are definitions of the entity who is purchasing something, or the purpose for which the transaction
         /// is occurring. This information is generally used to determine taxability of the product.
@@ -2033,12 +2501,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<EntityUseCodeModel>) restCall("GET", path.relativePath, null, FetchResult<EntityUseCodeModel>.class.getName());
+            FetchResult<EntityUseCodeModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<EntityUseCodeModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<EntityUseCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<EntityUseCodeModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported filing frequencies.
-        ///
         /// Returns the full list of Avalara-supported filing frequencies.
         /// This API is intended to be useful to identify all the different filing frequencies that can be used in notices.
         /// 
@@ -2053,12 +2526,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<FilingFrequencyModel>) restCall("GET", path.relativePath, null, FetchResult<FilingFrequencyModel>.class.getName());
+            FetchResult<FilingFrequencyModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<FilingFrequencyModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<FilingFrequencyModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingFrequencyModel>.class);
+            }
+            return responseModel
         }
 
 
         /// List jurisdictions based on the filter provided
-        ///
         /// Returns a list of all Avalara-supported taxing jurisdictions.
         /// 
         /// This API allows you to examine all Avalara-supported jurisdictions. You can filter your search by supplying
@@ -2075,12 +2553,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<JurisdictionModel>) restCall("GET", path.relativePath, null, FetchResult<JurisdictionModel>.class.getName());
+            FetchResult<JurisdictionModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<JurisdictionModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<JurisdictionModel>)System.JSON.deserialize(res.getBody(), FetchResult<JurisdictionModel>.class);
+            }
+            return responseModel
         }
 
 
         /// List jurisdictions near a specific address
-        ///
         /// Returns a list of all Avalara-supported taxing jurisdictions that apply to this address.
         /// 
         /// This API allows you to identify which jurisdictions are nearby a specific address according to the best available geocoding information.
@@ -2114,12 +2597,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<JurisdictionOverrideModel>) restCall("GET", path.relativePath, null, FetchResult<JurisdictionOverrideModel>.class.getName());
+            FetchResult<JurisdictionOverrideModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<JurisdictionOverrideModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<JurisdictionOverrideModel>)System.JSON.deserialize(res.getBody(), FetchResult<JurisdictionOverrideModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the list of questions that are required for a tax location
-        ///
         /// Returns the list of additional questions you must answer when declaring a location in certain taxing jurisdictions.
         /// Some tax jurisdictions require that you register or provide additional information to configure each physical place where
         /// your company does business.
@@ -2156,12 +2644,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<LocationQuestionModel>) restCall("GET", path.relativePath, null, FetchResult<LocationQuestionModel>.class.getName());
+            FetchResult<LocationQuestionModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<LocationQuestionModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<LocationQuestionModel>)System.JSON.deserialize(res.getBody(), FetchResult<LocationQuestionModel>.class);
+            }
+            return responseModel
         }
 
 
         /// List all forms where logins can be verified automatically
-        ///
         /// List all forms where logins can be verified automatically.
         /// This API is intended to be useful to identify whether the user should be allowed
         /// to automatically verify their login and password.
@@ -2177,12 +2670,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<SkyscraperStatusModel>) restCall("GET", path.relativePath, null, FetchResult<SkyscraperStatusModel>.class.getName());
+            FetchResult<SkyscraperStatusModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<SkyscraperStatusModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<SkyscraperStatusModel>)System.JSON.deserialize(res.getBody(), FetchResult<SkyscraperStatusModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported nexus for all countries and regions.
-        ///
         /// Returns the full list of all Avalara-supported nexus for all countries and regions. 
         /// 
         /// This API is intended to be useful if your user interface needs to display a selectable list of nexus.
@@ -2198,12 +2696,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<NexusModel>) restCall("GET", path.relativePath, null, FetchResult<NexusModel>.class.getName());
+            FetchResult<NexusModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<NexusModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<NexusModel>)System.JSON.deserialize(res.getBody(), FetchResult<NexusModel>.class);
+            }
+            return responseModel
         }
 
 
         /// List all nexus that apply to a specific address.
-        ///
         /// Returns a list of all Avalara-supported taxing jurisdictions that apply to this address.
         /// This API allows you to identify which tax authorities apply to a physical location, salesperson address, or point of sale.
         /// In general, it is usually expected that a company will declare nexus in all the jurisdictions that apply to each physical address
@@ -2250,12 +2753,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<NexusModel>) restCall("GET", path.relativePath, null, FetchResult<NexusModel>.class.getName());
+            FetchResult<NexusModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<NexusModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<NexusModel>)System.JSON.deserialize(res.getBody(), FetchResult<NexusModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported nexus for a country.
-        ///
         /// Returns all Avalara-supported nexus for the specified country.
         /// 
         /// This API is intended to be useful if your user interface needs to display a selectable list of nexus filtered by country.
@@ -2273,12 +2781,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<NexusModel>) restCall("GET", path.relativePath, null, FetchResult<NexusModel>.class.getName());
+            FetchResult<NexusModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<NexusModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<NexusModel>)System.JSON.deserialize(res.getBody(), FetchResult<NexusModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported nexus for a country and region.
-        ///
         /// Returns all Avalara-supported nexus for the specified country and region.
         /// 
         /// This API is intended to be useful if your user interface needs to display a selectable list of nexus filtered by country and region.
@@ -2298,12 +2811,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<NexusModel>) restCall("GET", path.relativePath, null, FetchResult<NexusModel>.class.getName());
+            FetchResult<NexusModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<NexusModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<NexusModel>)System.JSON.deserialize(res.getBody(), FetchResult<NexusModel>.class);
+            }
+            return responseModel
         }
 
 
         /// List nexus related to a tax form
-        ///
         /// Retrieves a list of nexus related to a tax form.
         /// 
         /// The concept of `Nexus` indicates a place where your company has sufficient physical presence and is obligated
@@ -2329,12 +2847,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (NexusByTaxFormModel) restCall("GET", path.relativePath, null, NexusByTaxFormModel.class.getName());
+            NexusByTaxFormModel responseModel = null;
+            responseModel = restCall("GET", path, null, NexusByTaxFormModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (NexusByTaxFormModel)System.JSON.deserialize(res.getBody(), NexusByTaxFormModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of nexus tax type groups
-        ///
         /// Returns the full list of Avalara-supported nexus tax type groups
         /// This API is intended to be useful to identify all the different tax sub-types.
         /// 
@@ -2349,12 +2872,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<NexusTaxTypeGroupModel>) restCall("GET", path.relativePath, null, FetchResult<NexusTaxTypeGroupModel>.class.getName());
+            FetchResult<NexusTaxTypeGroupModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<NexusTaxTypeGroupModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<NexusTaxTypeGroupModel>)System.JSON.deserialize(res.getBody(), FetchResult<NexusTaxTypeGroupModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported tax notice customer funding options.
-        ///
         /// Returns the full list of Avalara-supported tax notice customer funding options.
         /// This API is intended to be useful to identify all the different notice customer funding options that can be used in notices.
         /// 
@@ -2369,12 +2897,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<NoticeCustomerFundingOptionModel>) restCall("GET", path.relativePath, null, FetchResult<NoticeCustomerFundingOptionModel>.class.getName());
+            FetchResult<NoticeCustomerFundingOptionModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<NoticeCustomerFundingOptionModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<NoticeCustomerFundingOptionModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeCustomerFundingOptionModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported tax notice customer types.
-        ///
         /// Returns the full list of Avalara-supported tax notice customer types.
         /// This API is intended to be useful to identify all the different notice customer types.
         /// 
@@ -2389,12 +2922,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<NoticeCustomerTypeModel>) restCall("GET", path.relativePath, null, FetchResult<NoticeCustomerTypeModel>.class.getName());
+            FetchResult<NoticeCustomerTypeModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<NoticeCustomerTypeModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<NoticeCustomerTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeCustomerTypeModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported tax notice filing types.
-        ///
         /// Returns the full list of Avalara-supported tax notice filing types.
         /// This API is intended to be useful to identify all the different notice filing types that can be used in notices.
         /// 
@@ -2409,12 +2947,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<NoticeFilingTypeModel>) restCall("GET", path.relativePath, null, FetchResult<NoticeFilingTypeModel>.class.getName());
+            FetchResult<NoticeFilingTypeModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<NoticeFilingTypeModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<NoticeFilingTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeFilingTypeModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported tax notice priorities.
-        ///
         /// Returns the full list of Avalara-supported tax notice priorities.
         /// This API is intended to be useful to identify all the different notice priorities that can be used in notices.
         /// 
@@ -2429,12 +2972,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<NoticePriorityModel>) restCall("GET", path.relativePath, null, FetchResult<NoticePriorityModel>.class.getName());
+            FetchResult<NoticePriorityModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<NoticePriorityModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<NoticePriorityModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticePriorityModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported tax notice reasons.
-        ///
         /// Returns the full list of Avalara-supported tax notice reasons.
         /// This API is intended to be useful to identify all the different tax notice reasons.
         /// 
@@ -2449,12 +2997,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<NoticeReasonModel>) restCall("GET", path.relativePath, null, FetchResult<NoticeReasonModel>.class.getName());
+            FetchResult<NoticeReasonModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<NoticeReasonModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<NoticeReasonModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeReasonModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported tax notice responsibility ids
-        ///
         /// Returns the full list of Avalara-supported tax notice responsibility ids
         /// This API is intended to be useful to identify all the different tax notice responsibilities.
         /// 
@@ -2469,12 +3022,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<NoticeResponsibilityModel>) restCall("GET", path.relativePath, null, FetchResult<NoticeResponsibilityModel>.class.getName());
+            FetchResult<NoticeResponsibilityModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<NoticeResponsibilityModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<NoticeResponsibilityModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeResponsibilityModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported tax notice root causes
-        ///
         /// Returns the full list of Avalara-supported tax notice root causes
         /// This API is intended to be useful to identify all the different tax notice root causes.
         /// 
@@ -2489,12 +3047,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<NoticeRootCauseModel>) restCall("GET", path.relativePath, null, FetchResult<NoticeRootCauseModel>.class.getName());
+            FetchResult<NoticeRootCauseModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<NoticeRootCauseModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<NoticeRootCauseModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeRootCauseModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported tax notice statuses.
-        ///
         /// Returns the full list of Avalara-supported tax notice statuses.
         /// This API is intended to be useful to identify all the different tax notice statuses.
         /// 
@@ -2509,12 +3072,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<NoticeStatusModel>) restCall("GET", path.relativePath, null, FetchResult<NoticeStatusModel>.class.getName());
+            FetchResult<NoticeStatusModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<NoticeStatusModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<NoticeStatusModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeStatusModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported tax notice types.
-        ///
         /// Returns the full list of Avalara-supported tax notice types.
         /// This API is intended to be useful to identify all the different notice types that can be used in notices.
         /// 
@@ -2529,12 +3097,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<NoticeTypeModel>) restCall("GET", path.relativePath, null, FetchResult<NoticeTypeModel>.class.getName());
+            FetchResult<NoticeTypeModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<NoticeTypeModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<NoticeTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeTypeModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported extra parameters for creating transactions.
-        ///
         /// Returns the full list of Avalara-supported extra parameters for the 'Create Transaction' API call.
         /// This list of parameters is available for use when configuring your transaction.
         /// Some parameters are only available for use if you have subscribed to certain features of AvaTax.
@@ -2550,12 +3123,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<ParameterModel>) restCall("GET", path.relativePath, null, FetchResult<ParameterModel>.class.getName());
+            FetchResult<ParameterModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<ParameterModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<ParameterModel>)System.JSON.deserialize(res.getBody(), FetchResult<ParameterModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported permissions
-        ///
         /// Returns the full list of Avalara-supported permission types.
         /// This API is intended to be useful to identify the capabilities of a particular user logon.
         /// 
@@ -2570,12 +3148,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<String>) restCall("GET", path.relativePath, null, FetchResult<String>.class.getName());
+            FetchResult<String> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<String>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<String>)System.JSON.deserialize(res.getBody(), FetchResult<String>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported postal codes.
-        ///
         /// Retrieves the list of Avalara-supported postal codes.
         /// 
         /// <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
@@ -2589,12 +3172,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<PostalCodeModel>) restCall("GET", path.relativePath, null, FetchResult<PostalCodeModel>.class.getName());
+            FetchResult<PostalCodeModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<PostalCodeModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<PostalCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<PostalCodeModel>.class);
+            }
+            return responseModel
         }
 
 
         /// List all customs duty programs recognized by AvaTax
-        ///
         /// List all preferred customs duty programs recognized by AvaTax.
         /// 
         /// A customs duty program is an optional program you can use to obtain favorable treatment from customs and duty agents.
@@ -2616,12 +3204,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<PreferredProgramModel>) restCall("GET", path.relativePath, null, FetchResult<PreferredProgramModel>.class.getName());
+            FetchResult<PreferredProgramModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<PreferredProgramModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<PreferredProgramModel>)System.JSON.deserialize(res.getBody(), FetchResult<PreferredProgramModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of rate types for each country
-        ///
         /// Returns the full list of Avalara-supported rate type file types
         /// This API is intended to be useful to identify all the different rate types.
         /// 
@@ -2638,12 +3231,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<RateTypeModel>) restCall("GET", path.relativePath, null, FetchResult<RateTypeModel>.class.getName());
+            FetchResult<RateTypeModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<RateTypeModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<RateTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<RateTypeModel>.class);
+            }
+            return responseModel
         }
 
 
         /// List all ISO 3166 regions
-        ///
         /// Returns a list of all ISO 3166 region codes and their US English friendly names.
         /// This API is intended to be useful when presenting a dropdown box in your website to allow customers to select a region 
         /// within the country for a shipping addresses.
@@ -2659,12 +3257,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<IsoRegionModel>) restCall("GET", path.relativePath, null, FetchResult<IsoRegionModel>.class.getName());
+            FetchResult<IsoRegionModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<IsoRegionModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<IsoRegionModel>)System.JSON.deserialize(res.getBody(), FetchResult<IsoRegionModel>.class);
+            }
+            return responseModel
         }
 
 
         /// List all ISO 3166 regions for a country
-        ///
         /// Returns a list of all ISO 3166 region codes for a specific country code, and their US English friendly names.
         /// This API is intended to be useful when presenting a dropdown box in your website to allow customers to select a region 
         /// within the country for a shipping addresses.
@@ -2682,12 +3285,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<IsoRegionModel>) restCall("GET", path.relativePath, null, FetchResult<IsoRegionModel>.class.getName());
+            FetchResult<IsoRegionModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<IsoRegionModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<IsoRegionModel>)System.JSON.deserialize(res.getBody(), FetchResult<IsoRegionModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported resource file types
-        ///
         /// Returns the full list of Avalara-supported resource file types
         /// This API is intended to be useful to identify all the different resource file types.
         /// 
@@ -2702,12 +3310,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<ResourceFileTypeModel>) restCall("GET", path.relativePath, null, FetchResult<ResourceFileTypeModel>.class.getName());
+            FetchResult<ResourceFileTypeModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<ResourceFileTypeModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<ResourceFileTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<ResourceFileTypeModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported permissions
-        ///
         /// Returns the full list of Avalara-supported permission types.
         /// This API is intended to be useful when designing a user interface for selecting the security role of a user account.
         /// Some security roles are restricted for Avalara internal use.
@@ -2723,12 +3336,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<SecurityRoleModel>) restCall("GET", path.relativePath, null, FetchResult<SecurityRoleModel>.class.getName());
+            FetchResult<SecurityRoleModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<SecurityRoleModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<SecurityRoleModel>)System.JSON.deserialize(res.getBody(), FetchResult<SecurityRoleModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported subscription types
-        ///
         /// Returns the full list of Avalara-supported subscription types.
         /// This API is intended to be useful for identifying which features you have added to your account.
         /// You may always contact Avalara's sales department for information on available products or services.
@@ -2745,12 +3363,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<SubscriptionTypeModel>) restCall("GET", path.relativePath, null, FetchResult<SubscriptionTypeModel>.class.getName());
+            FetchResult<SubscriptionTypeModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<SubscriptionTypeModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<SubscriptionTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<SubscriptionTypeModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported tax authorities.
-        ///
         /// Returns the full list of Avalara-supported tax authorities.
         /// This API is intended to be useful to identify all the different authorities that receive tax.
         /// 
@@ -2765,12 +3388,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<TaxAuthorityModel>) restCall("GET", path.relativePath, null, FetchResult<TaxAuthorityModel>.class.getName());
+            FetchResult<TaxAuthorityModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<TaxAuthorityModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<TaxAuthorityModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxAuthorityModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported forms for each tax authority.
-        ///
         /// Returns the full list of Avalara-supported forms for each tax authority.
         /// This list represents tax forms that Avalara recognizes.
         /// Customers who subscribe to Avalara Managed Returns Service can request these forms to be filed automatically 
@@ -2787,12 +3415,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<TaxAuthorityFormModel>) restCall("GET", path.relativePath, null, FetchResult<TaxAuthorityFormModel>.class.getName());
+            FetchResult<TaxAuthorityFormModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<TaxAuthorityFormModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<TaxAuthorityFormModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxAuthorityFormModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported tax authority types.
-        ///
         /// Returns the full list of Avalara-supported tax authority types.
         /// This API is intended to be useful to identify all the different authority types.
         /// 
@@ -2807,12 +3440,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<TaxAuthorityTypeModel>) restCall("GET", path.relativePath, null, FetchResult<TaxAuthorityTypeModel>.class.getName());
+            FetchResult<TaxAuthorityTypeModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<TaxAuthorityTypeModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<TaxAuthorityTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxAuthorityTypeModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported tax codes.
-        ///
         /// Retrieves the list of Avalara-supported system tax codes.
         /// A 'TaxCode' represents a uniquely identified type of product, good, or service.
         /// Avalara supports correct tax rates and taxability rules for all TaxCodes in all supported jurisdictions.
@@ -2830,12 +3468,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<TaxCodeModel>) restCall("GET", path.relativePath, null, FetchResult<TaxCodeModel>.class.getName());
+            FetchResult<TaxCodeModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<TaxCodeModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<TaxCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxCodeModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of Avalara-supported tax code types.
-        ///
         /// Returns the full list of recognized tax code types.
         /// A 'Tax Code Type' represents a broad category of tax codes, and is less detailed than a single TaxCode.
         /// This API is intended to be useful for broadly searching for tax codes by tax code type.
@@ -2851,12 +3494,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (TaxCodeTypesModel) restCall("GET", path.relativePath, null, TaxCodeTypesModel.class.getName());
+            TaxCodeTypesModel responseModel = null;
+            responseModel = restCall("GET", path, null, TaxCodeTypesModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (TaxCodeTypesModel)System.JSON.deserialize(res.getBody(), TaxCodeTypesModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of the Tax Forms available
-        ///
         /// Returns the full list of Avalara-supported Tax Forms
         /// This API is intended to be useful to identify all the different Tax Forms
         /// 
@@ -2871,12 +3519,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<FormMasterModel>) restCall("GET", path.relativePath, null, FetchResult<FormMasterModel>.class.getName());
+            FetchResult<FormMasterModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<FormMasterModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<FormMasterModel>)System.JSON.deserialize(res.getBody(), FetchResult<FormMasterModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of tax sub types
-        ///
         /// Returns the full list of Avalara-supported tax sub-types
         /// This API is intended to be useful to identify all the different tax sub-types.
         /// 
@@ -2891,12 +3544,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<TaxSubTypeModel>) restCall("GET", path.relativePath, null, FetchResult<TaxSubTypeModel>.class.getName());
+            FetchResult<TaxSubTypeModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<TaxSubTypeModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<TaxSubTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxSubTypeModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve the full list of tax type groups
-        ///
         /// Returns the full list of Avalara-supported tax type groups
         /// This API is intended to be useful to identify all the different tax type groups.
         /// 
@@ -2911,12 +3569,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<TaxTypeGroupModel>) restCall("GET", path.relativePath, null, FetchResult<TaxTypeGroupModel>.class.getName());
+            FetchResult<TaxTypeGroupModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<TaxTypeGroupModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<TaxTypeGroupModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxTypeGroupModel>.class);
+            }
+            return responseModel
         }
 
 
         /// List all defined units of measurement
-        ///
         /// List all units of measurement systems defined by Avalara.
         /// 
         /// A unit of measurement system is a method of measuring a quantity, such as distance, mass, or others.
@@ -2932,12 +3595,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<UomModel>) restCall("GET", path.relativePath, null, FetchResult<UomModel>.class.getName());
+            FetchResult<UomModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<UomModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<UomModel>)System.JSON.deserialize(res.getBody(), FetchResult<UomModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Create one or more DistanceThreshold objects
-        ///
         /// Create one or more DistanceThreshold objects for this company.
         /// 
         /// A company-distance-threshold model indicates the distance between a company
@@ -2950,12 +3618,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/distancethresholds");
             path.ApplyField("companyId", companyId);
-            return (List<CompanyDistanceThresholdModel>) restCall("POST", path.relativePath, model, List<CompanyDistanceThresholdModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<CompanyDistanceThresholdModel> retVal = new List<CompanyDistanceThresholdModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<CompanyDistanceThresholdModel>)System.JSON.deserialize(res.getBody(), List<CompanyDistanceThresholdModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Delete a single DistanceThreshold object
-        ///
         /// Marks the DistanceThreshold object identified by this URL as deleted.
         /// 
         /// A company-distance-threshold model indicates the distance between a company
@@ -2969,12 +3646,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/distancethresholds/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (List<ErrorDetail>) restCall("DELETE", path.relativePath, null, List<ErrorDetail>.class.getName());
+            httpResponse res = restCallForList("DELETE", path, null);
+            List<ErrorDetail> retVal = new List<ErrorDetail>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ErrorDetail>)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Retrieve a single DistanceThreshold
-        ///
         /// Retrieves a single DistanceThreshold object defined by this URL.
         /// 
         /// A company-distance-threshold model indicates the distance between a company
@@ -2988,12 +3674,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/distancethresholds/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (CompanyDistanceThresholdModel) restCall("GET", path.relativePath, null, CompanyDistanceThresholdModel.class.getName());
+            CompanyDistanceThresholdModel responseModel = null;
+            responseModel = restCall("GET", path, null, CompanyDistanceThresholdModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (CompanyDistanceThresholdModel)System.JSON.deserialize(res.getBody(), CompanyDistanceThresholdModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all DistanceThresholds for this company.
-        ///
         /// Lists all DistanceThreshold objects that belong to this company.
         /// 
         /// A company-distance-threshold model indicates the distance between a company
@@ -3015,12 +3706,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<CompanyDistanceThresholdModel>) restCall("GET", path.relativePath, null, FetchResult<CompanyDistanceThresholdModel>.class.getName());
+            FetchResult<CompanyDistanceThresholdModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<CompanyDistanceThresholdModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<CompanyDistanceThresholdModel>)System.JSON.deserialize(res.getBody(), FetchResult<CompanyDistanceThresholdModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all DistanceThreshold objects
-        ///
         /// Lists all DistanceThreshold objects that belong to this account.
         /// 
         /// A company-distance-threshold model indicates the distance between a company
@@ -3043,12 +3739,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<CompanyDistanceThresholdModel>) restCall("GET", path.relativePath, null, FetchResult<CompanyDistanceThresholdModel>.class.getName());
+            FetchResult<CompanyDistanceThresholdModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<CompanyDistanceThresholdModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<CompanyDistanceThresholdModel>)System.JSON.deserialize(res.getBody(), FetchResult<CompanyDistanceThresholdModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Update a DistanceThreshold object
-        ///
         /// Replace the existing DistanceThreshold object at this URL with an updated object.
         /// 
         /// A company-distance-threshold model indicates the distance between a company
@@ -3066,12 +3767,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/distancethresholds/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (CompanyDistanceThresholdModel) restCall("PUT", path.relativePath, model, CompanyDistanceThresholdModel.class.getName());
+            CompanyDistanceThresholdModel responseModel = null;
+            responseModel = restCall("PUT", path, model, CompanyDistanceThresholdModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (CompanyDistanceThresholdModel)System.JSON.deserialize(res.getBody(), CompanyDistanceThresholdModel.class);
+            }
+            return responseModel
         }
 
 
         /// Approve existing Filing Request
-        ///
         /// This API is available by invitation only.
         /// A "filing request" represents a request to change an existing filing calendar. Filing requests
         /// are reviewed and validated by Avalara Compliance before being implemented.
@@ -3084,12 +3790,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingrequests/{id}/approve");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (FilingRequestModel) restCall("POST", path.relativePath, null, FilingRequestModel.class.getName());
+            FilingRequestModel responseModel = null;
+            responseModel = restCall("POST", path, null, FilingRequestModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FilingRequestModel)System.JSON.deserialize(res.getBody(), FilingRequestModel.class);
+            }
+            return responseModel
         }
 
 
         /// Cancel existing Filing Request
-        ///
         /// This API is available by invitation only.
         /// A "filing request" represents a request to change an existing filing calendar. Filing requests
         /// are reviewed and validated by Avalara Compliance before being implemented.
@@ -3101,12 +3812,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingrequests/{id}/cancel");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (FilingRequestModel) restCall("POST", path.relativePath, null, FilingRequestModel.class.getName());
+            FilingRequestModel responseModel = null;
+            responseModel = restCall("POST", path, null, FilingRequestModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FilingRequestModel)System.JSON.deserialize(res.getBody(), FilingRequestModel.class);
+            }
+            return responseModel
         }
 
 
         /// Create a new filing request to cancel a filing calendar
-        ///
         /// This API is available by invitation only.
         /// 
         /// A "filing request" represents a request to change an existing filing calendar. Filing requests
@@ -3120,12 +3836,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingcalendars/{id}/cancel/request");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (FilingRequestModel) restCall("POST", path.relativePath, model, FilingRequestModel.class.getName());
+            FilingRequestModel responseModel = null;
+            responseModel = restCall("POST", path, model, FilingRequestModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FilingRequestModel)System.JSON.deserialize(res.getBody(), FilingRequestModel.class);
+            }
+            return responseModel
         }
 
 
         /// Create a filing calendar
-        ///
         /// This API is available by invitation only and only available for users with Compliance access
         /// A "filing request" represents information that compliance uses to file a return
         /// 
@@ -3135,12 +3856,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingcalendars");
             path.ApplyField("companyId", companyId);
-            return (FilingCalendarModel) restCall("POST", path.relativePath, model, FilingCalendarModel.class.getName());
+            FilingCalendarModel responseModel = null;
+            responseModel = restCall("POST", path, model, FilingCalendarModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FilingCalendarModel)System.JSON.deserialize(res.getBody(), FilingCalendarModel.class);
+            }
+            return responseModel
         }
 
 
         /// Create a new filing request to create a filing calendar
-        ///
         /// This API is available by invitation only.
         /// A "filing request" represents a request to change an existing filing calendar. Filing requests
         /// are reviewed and validated by Avalara Compliance before being implemented.
@@ -3151,12 +3877,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingcalendars/add/request");
             path.ApplyField("companyId", companyId);
-            return (FilingRequestModel) restCall("POST", path.relativePath, model, FilingRequestModel.class.getName());
+            FilingRequestModel responseModel = null;
+            responseModel = restCall("POST", path, model, FilingRequestModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FilingRequestModel)System.JSON.deserialize(res.getBody(), FilingRequestModel.class);
+            }
+            return responseModel
         }
 
 
         /// Returns a list of options for adding the specified form.
-        ///
         /// This API is available by invitation only.
         /// 
         /// <param name="companyId">The unique ID of the company that owns the filing calendar object</param>
@@ -3166,12 +3897,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingcalendars/add/options");
             path.ApplyField("companyId", companyId);
             path.AddQuery("formCode", formCode);
-            return (List<CycleAddOptionModel>) restCall("GET", path.relativePath, null, List<CycleAddOptionModel>.class.getName());
+            httpResponse res = restCallForList("GET", path, null);
+            List<CycleAddOptionModel> retVal = new List<CycleAddOptionModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<CycleAddOptionModel>)System.JSON.deserialize(res.getBody(), List<CycleAddOptionModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Indicates when changes are allowed to be made to a filing calendar.
-        ///
         /// This API is available by invitation only.
         /// 
         /// <param name="companyId">The unique ID of the company that owns the filing calendar object</param>
@@ -3182,12 +3922,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingcalendars/{id}/edit/options");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (CycleEditOptionModel) restCall("POST", path.relativePath, model, CycleEditOptionModel.class.getName());
+            CycleEditOptionModel responseModel = null;
+            responseModel = restCall("POST", path, model, CycleEditOptionModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (CycleEditOptionModel)System.JSON.deserialize(res.getBody(), CycleEditOptionModel.class);
+            }
+            return responseModel
         }
 
 
         /// Returns a list of options for expiring a filing calendar
-        ///
         /// This API is available by invitation only.
         /// 
         /// <param name="companyId">The unique ID of the company that owns the filing calendar object</param>
@@ -3197,12 +3942,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingcalendars/{id}/cancel/options");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (CycleExpireModel) restCall("GET", path.relativePath, null, CycleExpireModel.class.getName());
+            CycleExpireModel responseModel = null;
+            responseModel = restCall("GET", path, null, CycleExpireModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (CycleExpireModel)System.JSON.deserialize(res.getBody(), CycleExpireModel.class);
+            }
+            return responseModel
         }
 
 
         /// Delete a single filing calendar.
-        ///
         /// This API is available by invitation only.
         /// Mark the existing notice object at this URL as deleted.
         /// A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
@@ -3215,12 +3965,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingcalendars/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (List<ErrorDetail>) restCall("DELETE", path.relativePath, null, List<ErrorDetail>.class.getName());
+            httpResponse res = restCallForList("DELETE", path, null);
+            List<ErrorDetail> retVal = new List<ErrorDetail>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ErrorDetail>)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Retrieve a single filing calendar
-        ///
         /// This API is available by invitation only.
         /// 
         /// <param name="companyId">The ID of the company that owns this filing calendar</param>
@@ -3230,12 +3989,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingcalendars/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (FilingCalendarModel) restCall("GET", path.relativePath, null, FilingCalendarModel.class.getName());
+            FilingCalendarModel responseModel = null;
+            responseModel = restCall("GET", path, null, FilingCalendarModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FilingCalendarModel)System.JSON.deserialize(res.getBody(), FilingCalendarModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve a single filing request
-        ///
         /// This API is available by invitation only.
         /// A "filing request" represents a request to change an existing filing calendar. Filing requests
         /// are reviewed and validated by Avalara Compliance before being implemented.
@@ -3247,12 +4011,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingrequests/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (FilingRequestModel) restCall("GET", path.relativePath, null, FilingRequestModel.class.getName());
+            FilingRequestModel responseModel = null;
+            responseModel = restCall("GET", path, null, FilingRequestModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FilingRequestModel)System.JSON.deserialize(res.getBody(), FilingRequestModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all filing calendars for this company
-        ///
         /// This API is available by invitation only.
         /// 
         /// <param name="companyId">The ID of the company that owns these batches</param>
@@ -3272,12 +4041,17 @@ global class AvaTaxClient
             path.AddQuery("$orderBy", orderBy);
             path.AddQuery("returnCountry", returnCountry);
             path.AddQuery("returnRegion", returnRegion);
-            return (FetchResult<FilingCalendarModel>) restCall("GET", path.relativePath, null, FetchResult<FilingCalendarModel>.class.getName());
+            FetchResult<FilingCalendarModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<FilingCalendarModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<FilingCalendarModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingCalendarModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all filing requests for this company
-        ///
         /// This API is available by invitation only.
         /// A "filing request" represents a request to change an existing filing calendar. Filing requests
         /// are reviewed and validated by Avalara Compliance before being implemented.
@@ -3295,12 +4069,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<FilingRequestModel>) restCall("GET", path.relativePath, null, FetchResult<FilingRequestModel>.class.getName());
+            FetchResult<FilingRequestModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<FilingRequestModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<FilingRequestModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingRequestModel>.class);
+            }
+            return responseModel
         }
 
 
         /// New request for getting for validating customer's login credentials
-        ///
         /// This API is available by invitation only.
         /// 
         /// This API verifies that a customer has submitted correct login credentials for a tax authority's online filing system.
@@ -3309,12 +4088,17 @@ global class AvaTaxClient
         public LoginVerificationOutputModel LoginVerificationRequest(LoginVerificationInputModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/filingcalendars/credentials/verify");
-            return (LoginVerificationOutputModel) restCall("POST", path.relativePath, model, LoginVerificationOutputModel.class.getName());
+            LoginVerificationOutputModel responseModel = null;
+            responseModel = restCall("POST", path, model, LoginVerificationOutputModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (LoginVerificationOutputModel)System.JSON.deserialize(res.getBody(), LoginVerificationOutputModel.class);
+            }
+            return responseModel
         }
 
 
         /// Gets the request status and Login Result
-        ///
         /// This API is available by invitation only.
         /// 
         /// This API checks the status of a login verification request. It may only be called by authorized users from the account 
@@ -3325,12 +4109,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/filingcalendars/credentials/{jobId}");
             path.ApplyField("jobId", jobId);
-            return (LoginVerificationOutputModel) restCall("GET", path.relativePath, null, LoginVerificationOutputModel.class.getName());
+            LoginVerificationOutputModel responseModel = null;
+            responseModel = restCall("GET", path, null, LoginVerificationOutputModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (LoginVerificationOutputModel)System.JSON.deserialize(res.getBody(), LoginVerificationOutputModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all filing calendars
-        ///
         /// This API is available by invitation only.
         /// 
         /// <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
@@ -3348,12 +4137,17 @@ global class AvaTaxClient
             path.AddQuery("$orderBy", orderBy);
             path.AddQuery("returnCountry", returnCountry);
             path.AddQuery("returnRegion", returnRegion);
-            return (FetchResult<FilingCalendarModel>) restCall("GET", path.relativePath, null, FetchResult<FilingCalendarModel>.class.getName());
+            FetchResult<FilingCalendarModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<FilingCalendarModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<FilingCalendarModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingCalendarModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all filing requests
-        ///
         /// This API is available by invitation only.
         /// A "filing request" represents a request to change an existing filing calendar. Filing requests
         /// are reviewed and validated by Avalara Compliance before being implemented.
@@ -3372,12 +4166,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<FilingRequestModel>) restCall("GET", path.relativePath, null, FetchResult<FilingRequestModel>.class.getName());
+            FetchResult<FilingRequestModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<FilingRequestModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<FilingRequestModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingRequestModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Create a new filing request to edit a filing calendar
-        ///
         /// This API is available by invitation only.
         /// 
         /// A "filing request" represents a request to change an existing filing calendar. Filing requests
@@ -3394,12 +4193,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingcalendars/{id}/edit/request");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (FilingRequestModel) restCall("POST", path.relativePath, model, FilingRequestModel.class.getName());
+            FilingRequestModel responseModel = null;
+            responseModel = restCall("POST", path, model, FilingRequestModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FilingRequestModel)System.JSON.deserialize(res.getBody(), FilingRequestModel.class);
+            }
+            return responseModel
         }
 
 
         /// Edit existing Filing Calendar
-        ///
         /// This API is available by invitation only.
         /// 
         /// <param name="companyId">The unique ID of the company that owns the filing request object</param>
@@ -3410,12 +4214,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingcalendars/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (FilingCalendarModel) restCall("PUT", path.relativePath, model, FilingCalendarModel.class.getName());
+            FilingCalendarModel responseModel = null;
+            responseModel = restCall("PUT", path, model, FilingCalendarModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FilingCalendarModel)System.JSON.deserialize(res.getBody(), FilingCalendarModel.class);
+            }
+            return responseModel
         }
 
 
         /// Edit existing Filing Request
-        ///
         /// This API is available by invitation only.
         /// A "filing request" represents a request to change an existing filing calendar. Filing requests
         /// are reviewed and validated by Avalara Compliance before being implemented.
@@ -3428,12 +4237,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingrequests/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (FilingRequestModel) restCall("PUT", path.relativePath, model, FilingRequestModel.class.getName());
+            FilingRequestModel responseModel = null;
+            responseModel = restCall("PUT", path, model, FilingRequestModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FilingRequestModel)System.JSON.deserialize(res.getBody(), FilingRequestModel.class);
+            }
+            return responseModel
         }
 
 
         /// Approve all filings for the specified company in the given filing period.
-        ///
         /// This API is available by invitation only.
         /// Approving a return means the customer is ready to let Avalara file that return.
         /// Customer either approves themselves from admin console, 
@@ -3452,12 +4266,21 @@ global class AvaTaxClient
             path.ApplyField("companyId", companyId);
             path.ApplyField("year", year);
             path.ApplyField("month", month);
-            return (List<FilingModel>) restCall("POST", path.relativePath, model, List<FilingModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<FilingModel> retVal = new List<FilingModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<FilingModel>)System.JSON.deserialize(res.getBody(), List<FilingModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Approve all filings for the specified company in the given filing period and country.
-        ///
         /// This API is available by invitation only.
         /// Approving a return means the customer is ready to let Avalara file that return.
         /// Customer either approves themselves from admin console, 
@@ -3478,12 +4301,21 @@ global class AvaTaxClient
             path.ApplyField("year", year);
             path.ApplyField("month", month);
             path.ApplyField("country", country);
-            return (List<FilingModel>) restCall("POST", path.relativePath, model, List<FilingModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<FilingModel> retVal = new List<FilingModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<FilingModel>)System.JSON.deserialize(res.getBody(), List<FilingModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Approve all filings for the specified company in the given filing period, country and region.
-        ///
         /// This API is available by invitation only.
         /// Approving a return means the customer is ready to let Avalara file that return.
         /// Customer either approves themselves from admin console, 
@@ -3506,12 +4338,21 @@ global class AvaTaxClient
             path.ApplyField("month", month);
             path.ApplyField("country", country);
             path.ApplyField("region", region);
-            return (List<FilingModel>) restCall("POST", path.relativePath, model, List<FilingModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<FilingModel> retVal = new List<FilingModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<FilingModel>)System.JSON.deserialize(res.getBody(), List<FilingModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Add an adjustment to a given filing.
-        ///
         /// This API is available by invitation only.
         /// An "Adjustment" is usually an increase or decrease to customer funding to Avalara,
         /// such as early filer discount amounts that are refunded to the customer, or efile fees from websites. 
@@ -3535,12 +4376,21 @@ global class AvaTaxClient
             path.ApplyField("country", country);
             path.ApplyField("region", region);
             path.ApplyField("formCode", formCode);
-            return (List<FilingAdjustmentModel>) restCall("POST", path.relativePath, model, List<FilingAdjustmentModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<FilingAdjustmentModel> retVal = new List<FilingAdjustmentModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<FilingAdjustmentModel>)System.JSON.deserialize(res.getBody(), List<FilingAdjustmentModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Add an augmentation for a given filing.
-        ///
         /// This API is available by invitation only.
         /// An "Augmentation" is a manually added increase or decrease in tax liability, by either customer or Avalara 
         /// usually due to customer wanting to report tax Avatax does not support, e.g. bad debts, rental tax.
@@ -3563,12 +4413,21 @@ global class AvaTaxClient
             path.ApplyField("country", country);
             path.ApplyField("region", region);
             path.ApplyField("formCode", formCode);
-            return (List<FilingAugmentationModel>) restCall("POST", path.relativePath, model, List<FilingAugmentationModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<FilingAugmentationModel> retVal = new List<FilingAugmentationModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<FilingAugmentationModel>)System.JSON.deserialize(res.getBody(), List<FilingAugmentationModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Add an payment to a given filing.
-        ///
         /// This API is available by invitation only.
         /// An "Payment" is usually an increase or decrease to customer funding to Avalara,
         /// such as early filer discount amounts that are refunded to the customer, or efile fees from websites. 
@@ -3592,12 +4451,21 @@ global class AvaTaxClient
             path.ApplyField("country", country);
             path.ApplyField("region", region);
             path.ApplyField("formCode", formCode);
-            return (List<FilingPaymentModel>) restCall("POST", path.relativePath, model, List<FilingPaymentModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<FilingPaymentModel> retVal = new List<FilingPaymentModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<FilingPaymentModel>)System.JSON.deserialize(res.getBody(), List<FilingPaymentModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Delete an adjustment for a given filing.
-        ///
         /// This API is available by invitation only.
         /// An "Adjustment" is usually an increase or decrease to customer funding to Avalara,
         /// such as early filer discount amounts that are refunded to the customer, or efile fees from websites. 
@@ -3612,12 +4480,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/adjust/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (List<ErrorDetail>) restCall("DELETE", path.relativePath, null, List<ErrorDetail>.class.getName());
+            httpResponse res = restCallForList("DELETE", path, null);
+            List<ErrorDetail> retVal = new List<ErrorDetail>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ErrorDetail>)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Delete an augmentation for a given filing.
-        ///
         /// This API is available by invitation only.
         /// An "Augmentation" is a manually added increase or decrease in tax liability, by either customer or Avalara 
         /// usually due to customer wanting to report tax Avatax does not support, e.g. bad debts, rental tax.
@@ -3631,12 +4508,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/augment/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (List<ErrorDetail>) restCall("DELETE", path.relativePath, null, List<ErrorDetail>.class.getName());
+            httpResponse res = restCallForList("DELETE", path, null);
+            List<ErrorDetail> retVal = new List<ErrorDetail>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ErrorDetail>)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Delete an payment for a given filing.
-        ///
         /// This API is available by invitation only.
         /// An "Payment" is usually an increase or decrease to customer funding to Avalara,
         /// such as early filer discount amounts that are refunded to the customer, or efile fees from websites. 
@@ -3651,12 +4537,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/payment/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (List<ErrorDetail>) restCall("DELETE", path.relativePath, null, List<ErrorDetail>.class.getName());
+            httpResponse res = restCallForList("DELETE", path, null);
+            List<ErrorDetail> retVal = new List<ErrorDetail>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ErrorDetail>)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Retrieve worksheet checkup report for company and filing period.
-        ///
         /// This API is available by invitation only.
         /// 
         /// <param name="filingsId">The unique id of the worksheet.</param>
@@ -3666,12 +4561,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{filingsId}/checkup");
             path.ApplyField("filingsId", filingsId);
             path.ApplyField("companyId", companyId);
-            return (FilingsCheckupModel) restCall("GET", path.relativePath, null, FilingsCheckupModel.class.getName());
+            FilingsCheckupModel responseModel = null;
+            responseModel = restCall("GET", path, null, FilingsCheckupModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FilingsCheckupModel)System.JSON.deserialize(res.getBody(), FilingsCheckupModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve worksheet checkup report for company and filing period.
-        ///
         /// This API is available by invitation only.
         /// 
         /// <param name="companyId">The unique ID of the company that owns the worksheets object.</param>
@@ -3683,12 +4583,17 @@ global class AvaTaxClient
             path.ApplyField("companyId", companyId);
             path.ApplyField("year", year);
             path.ApplyField("month", month);
-            return (FilingsCheckupModel) restCall("GET", path.relativePath, null, FilingsCheckupModel.class.getName());
+            FilingsCheckupModel responseModel = null;
+            responseModel = restCall("GET", path, null, FilingsCheckupModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FilingsCheckupModel)System.JSON.deserialize(res.getBody(), FilingsCheckupModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve a single attachment for a filing
-        ///
         /// This API is available by invitation only.
         /// 
         /// <param name="companyId">The ID of the company that owns the filings.</param>
@@ -3700,12 +4605,16 @@ global class AvaTaxClient
             path.ApplyField("companyId", companyId);
             path.ApplyField("filingReturnId", filingReturnId);
             path.AddQuery("fileId", fileId);
-            return restCallForList("GET", path, null);
+            responseFile = ("GET", path, null);
+            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
+            {
+                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
+            }
+            return responseFile
         }
 
 
         /// Retrieve a list of filings for the specified company in the year and month of a given filing period.
-        ///
         /// This API is available by invitation only.
         /// A "filing period" is the year and month of the date of the latest customer transaction allowed to be reported on a filing, 
         /// based on filing frequency of filing.
@@ -3719,12 +4628,16 @@ global class AvaTaxClient
             path.ApplyField("companyId", companyId);
             path.ApplyField("year", year);
             path.ApplyField("month", month);
-            return restCallForList("GET", path, null);
+            responseFile = ("GET", path, null);
+            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
+            {
+                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
+            }
+            return responseFile
         }
 
 
         /// Retrieve a single trace file for a company filing period
-        ///
         /// This API is available by invitation only.
         /// A "filing period" is the year and month of the date of the latest customer transaction allowed to be reported on a filing, 
         /// based on filing frequency of filing.
@@ -3738,12 +4651,16 @@ global class AvaTaxClient
             path.ApplyField("companyId", companyId);
             path.ApplyField("year", year);
             path.ApplyField("month", month);
-            return restCallForList("GET", path, null);
+            responseFile = ("GET", path, null);
+            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
+            {
+                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
+            }
+            return responseFile
         }
 
 
         /// Retrieve a filing for the specified company and id.
-        ///
         /// This API is available by invitation only.
         /// A "filing period" is the year and month of the date of the latest customer transaction allowed to be reported on a filing, 
         /// based on filing frequency of filing.
@@ -3755,12 +4672,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/returns/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (FetchResult<FilingReturnModel>) restCall("GET", path.relativePath, null, FetchResult<FilingReturnModel>.class.getName());
+            FetchResult<FilingReturnModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<FilingReturnModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<FilingReturnModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingReturnModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve a list of filings for the specified company in the year and month of a given filing period.
-        ///
         /// This API is available by invitation only.
         /// A "filing period" is the year and month of the date of the latest customer transaction allowed to be reported on a filing, 
         /// based on filing frequency of filing.
@@ -3774,12 +4696,17 @@ global class AvaTaxClient
             path.ApplyField("companyId", companyId);
             path.ApplyField("year", year);
             path.ApplyField("month", month);
-            return (FetchResult<FilingModel>) restCall("GET", path.relativePath, null, FetchResult<FilingModel>.class.getName());
+            FetchResult<FilingModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<FilingModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<FilingModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve a list of filings for the specified company in the given filing period and country.
-        ///
         /// This API is available by invitation only.
         /// A "filing period" is the year and month of the date of the latest customer transaction allowed to be reported on a filing, 
         /// based on filing frequency of filing.
@@ -3795,12 +4722,17 @@ global class AvaTaxClient
             path.ApplyField("year", year);
             path.ApplyField("month", month);
             path.ApplyField("country", country);
-            return (FetchResult<FilingModel>) restCall("GET", path.relativePath, null, FetchResult<FilingModel>.class.getName());
+            FetchResult<FilingModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<FilingModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<FilingModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve a list of filings for the specified company in the filing period, country and region.
-        ///
         /// This API is available by invitation only.
         /// A "filing period" is the year and month of the date of the latest customer transaction allowed to be reported on a filing, 
         /// based on filing frequency of filing.
@@ -3818,12 +4750,17 @@ global class AvaTaxClient
             path.ApplyField("month", month);
             path.ApplyField("country", country);
             path.ApplyField("region", region);
-            return (FetchResult<FilingModel>) restCall("GET", path.relativePath, null, FetchResult<FilingModel>.class.getName());
+            FetchResult<FilingModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<FilingModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<FilingModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve a list of filings for the specified company in the given filing period, country, region and form.
-        ///
         /// This API is available by invitation only.
         /// A "filing period" is the year and month of the date of the latest customer transaction allowed to be reported on a filing, 
         /// based on filing frequency of filing.
@@ -3843,13 +4780,18 @@ global class AvaTaxClient
             path.ApplyField("country", country);
             path.ApplyField("region", region);
             path.ApplyField("formCode", formCode);
-            return (FetchResult<FilingModel>) restCall("GET", path.relativePath, null, FetchResult<FilingModel>.class.getName());
+            FetchResult<FilingModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<FilingModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<FilingModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve a list of filings for the specified company in the year and month of a given filing period. 
         /// This gets the basic information from the filings and doesn't include anything extra.
-        ///
         /// 
         /// 
         /// <param name="companyId">The ID of the company that owns these batches</param>
@@ -3871,12 +4813,17 @@ global class AvaTaxClient
             path.AddQuery("country", country);
             path.AddQuery("region", region);
             path.AddQuery("filingCalendarId", filingCalendarId);
-            return (FetchResult<FilingReturnModelBasic>) restCall("GET", path.relativePath, null, FetchResult<FilingReturnModelBasic>.class.getName());
+            FetchResult<FilingReturnModelBasic> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<FilingReturnModelBasic>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<FilingReturnModelBasic>)System.JSON.deserialize(res.getBody(), FetchResult<FilingReturnModelBasic>.class);
+            }
+            return responseModel
         }
 
 
         /// Rebuild a set of filings for the specified company in the given filing period.
-        ///
         /// This API is available by invitation only.
         /// Rebuilding a return means re-creating or updating the amounts to be filed (worksheet) for a filing.
         /// Rebuilding has to be done whenever a customer adds transactions to a filing.
@@ -3894,12 +4841,17 @@ global class AvaTaxClient
             path.ApplyField("companyId", companyId);
             path.ApplyField("year", year);
             path.ApplyField("month", month);
-            return (FetchResult<FilingModel>) restCall("POST", path.relativePath, model, FetchResult<FilingModel>.class.getName());
+            FetchResult<FilingModel> responseModel = null;
+            responseModel = restCall("POST", path, model, FetchResult<FilingModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<FilingModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Rebuild a set of filings for the specified company in the given filing period and country.
-        ///
         /// This API is available by invitation only.
         /// Rebuilding a return means re-creating or updating the amounts to be filed (worksheet) for a filing.
         /// Rebuilding has to be done whenever a customer adds transactions to a filing.
@@ -3919,12 +4871,17 @@ global class AvaTaxClient
             path.ApplyField("year", year);
             path.ApplyField("month", month);
             path.ApplyField("country", country);
-            return (FetchResult<FilingModel>) restCall("POST", path.relativePath, model, FetchResult<FilingModel>.class.getName());
+            FetchResult<FilingModel> responseModel = null;
+            responseModel = restCall("POST", path, model, FetchResult<FilingModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<FilingModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Rebuild a set of filings for the specified company in the given filing period, country and region.
-        ///
         /// This API is available by invitation only.audit.CheckAuthorizationReturns(null, companyId);
         /// Rebuilding a return means re-creating or updating the amounts to be filed for a filing.
         /// Rebuilding has to be done whenever a customer adds transactions to a filing. 
@@ -3946,12 +4903,17 @@ global class AvaTaxClient
             path.ApplyField("month", month);
             path.ApplyField("country", country);
             path.ApplyField("region", region);
-            return (FetchResult<FilingModel>) restCall("POST", path.relativePath, model, FetchResult<FilingModel>.class.getName());
+            FetchResult<FilingModel> responseModel = null;
+            responseModel = restCall("POST", path, model, FetchResult<FilingModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<FilingModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Edit an adjustment for a given filing.
-        ///
         /// This API is available by invitation only.
         /// An "Adjustment" is usually an increase or decrease to customer funding to Avalara,
         /// such as early filer discount amounts that are refunded to the customer, or efile fees from websites. 
@@ -3967,12 +4929,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/adjust/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (FilingAdjustmentModel) restCall("PUT", path.relativePath, model, FilingAdjustmentModel.class.getName());
+            FilingAdjustmentModel responseModel = null;
+            responseModel = restCall("PUT", path, model, FilingAdjustmentModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FilingAdjustmentModel)System.JSON.deserialize(res.getBody(), FilingAdjustmentModel.class);
+            }
+            return responseModel
         }
 
 
         /// Edit an augmentation for a given filing.
-        ///
         /// This API is available by invitation only.
         /// An "Augmentation" is a manually added increase or decrease in tax liability, by either customer or Avalara 
         /// usually due to customer wanting to report tax Avatax does not support, e.g. bad debts, rental tax.
@@ -3987,12 +4954,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/augment/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (FilingModel) restCall("PUT", path.relativePath, model, FilingModel.class.getName());
+            FilingModel responseModel = null;
+            responseModel = restCall("PUT", path, model, FilingModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FilingModel)System.JSON.deserialize(res.getBody(), FilingModel.class);
+            }
+            return responseModel
         }
 
 
         /// Edit an payment for a given filing.
-        ///
         /// This API is available by invitation only.
         /// An "Payment" is usually an increase or decrease to customer funding to Avalara,
         /// such as early filer discount amounts that are refunded to the customer, or efile fees from websites. 
@@ -4008,12 +4980,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/payment/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (FilingPaymentModel) restCall("PUT", path.relativePath, model, FilingPaymentModel.class.getName());
+            FilingPaymentModel responseModel = null;
+            responseModel = restCall("PUT", path, model, FilingPaymentModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FilingPaymentModel)System.JSON.deserialize(res.getBody(), FilingPaymentModel.class);
+            }
+            return responseModel
         }
 
 
         /// FREE API - Request a free trial of AvaTax
-        ///
         /// Call this API to obtain a free AvaTax sandbox account.
         /// 
         /// This API is free to use. No authentication credentials are required to call this API.
@@ -4031,12 +5008,17 @@ global class AvaTaxClient
         public NewAccountModel RequestFreeTrial(FreeTrialRequestModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/freetrials/request");
-            return (NewAccountModel) restCall("POST", path.relativePath, model, NewAccountModel.class.getName());
+            NewAccountModel responseModel = null;
+            responseModel = restCall("POST", path, model, NewAccountModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (NewAccountModel)System.JSON.deserialize(res.getBody(), NewAccountModel.class);
+            }
+            return responseModel
         }
 
 
         /// FREE API - Sales tax rates for a specified address
-        ///
         /// # Free-To-Use
         /// 
         /// The TaxRates API is a free-to-use, no cost option for estimating sales tax rates.
@@ -4095,12 +5077,17 @@ global class AvaTaxClient
             path.AddQuery("region", region);
             path.AddQuery("postalCode", postalCode);
             path.AddQuery("country", country);
-            return (TaxRateModel) restCall("GET", path.relativePath, null, TaxRateModel.class.getName());
+            TaxRateModel responseModel = null;
+            responseModel = restCall("GET", path, null, TaxRateModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (TaxRateModel)System.JSON.deserialize(res.getBody(), TaxRateModel.class);
+            }
+            return responseModel
         }
 
 
         /// FREE API - Sales tax rates for a specified country and postal code. This API is only available for US postal codes.
-        ///
         /// # Free-To-Use
         /// 
         /// This API is only available for a US postal codes.
@@ -4144,12 +5131,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/taxrates/bypostalcode");
             path.AddQuery("country", country);
             path.AddQuery("postalCode", postalCode);
-            return (TaxRateModel) restCall("GET", path.relativePath, null, TaxRateModel.class.getName());
+            TaxRateModel responseModel = null;
+            responseModel = restCall("GET", path, null, TaxRateModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (TaxRateModel)System.JSON.deserialize(res.getBody(), TaxRateModel.class);
+            }
+            return responseModel
         }
 
 
         /// Request the javascript for a funding setup widget
-        ///
         /// This API is available by invitation only.
         /// Companies that use the Avalara Managed Returns or the SST Certified Service Provider services are 
         /// required to setup their funding configuration before Avalara can begin filing tax returns on their 
@@ -4168,12 +5160,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/fundingrequests/{id}/widget");
             path.ApplyField("id", id);
-            return (FundingStatusModel) restCall("GET", path.relativePath, null, FundingStatusModel.class.getName());
+            FundingStatusModel responseModel = null;
+            responseModel = restCall("GET", path, null, FundingStatusModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FundingStatusModel)System.JSON.deserialize(res.getBody(), FundingStatusModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve status about a funding setup request
-        ///
         /// This API is available by invitation only.
         /// Companies that use the Avalara Managed Returns or the SST Certified Service Provider services are 
         /// required to setup their funding configuration before Avalara can begin filing tax returns on their 
@@ -4190,12 +5187,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/fundingrequests/{id}");
             path.ApplyField("id", id);
-            return (FundingStatusModel) restCall("GET", path.relativePath, null, FundingStatusModel.class.getName());
+            FundingStatusModel responseModel = null;
+            responseModel = restCall("GET", path, null, FundingStatusModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FundingStatusModel)System.JSON.deserialize(res.getBody(), FundingStatusModel.class);
+            }
+            return responseModel
         }
 
 
         /// Create a new item
-        ///
         /// Creates one or more new item objects attached to this company.
         /// 
         /// Items are a way of separating your tax calculation process from your tax configuration details. If you choose, you
@@ -4210,12 +5212,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/items");
             path.ApplyField("companyId", companyId);
-            return (List<ItemModel>) restCall("POST", path.relativePath, model, List<ItemModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<ItemModel> retVal = new List<ItemModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ItemModel>)System.JSON.deserialize(res.getBody(), List<ItemModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Delete a single item
-        ///
         /// Marks the item object at this URL as deleted.
         /// 
         /// Items are a way of separating your tax calculation process from your tax configuration details. If you choose, you
@@ -4231,12 +5242,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/items/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (List<ErrorDetail>) restCall("DELETE", path.relativePath, null, List<ErrorDetail>.class.getName());
+            httpResponse res = restCallForList("DELETE", path, null);
+            List<ErrorDetail> retVal = new List<ErrorDetail>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ErrorDetail>)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Retrieve a single item
-        ///
         /// Get the item object identified by this URL.
         /// 
         /// Items are a way of separating your tax calculation process from your tax configuration details. If you choose, you
@@ -4252,12 +5272,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/items/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (ItemModel) restCall("GET", path.relativePath, null, ItemModel.class.getName());
+            ItemModel responseModel = null;
+            responseModel = restCall("GET", path, null, ItemModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (ItemModel)System.JSON.deserialize(res.getBody(), ItemModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve items for this company
-        ///
         /// List all items defined for the current company.
         /// 
         /// Items are a way of separating your tax calculation process from your tax configuration details. If you choose, you
@@ -4288,12 +5313,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<ItemModel>) restCall("GET", path.relativePath, null, FetchResult<ItemModel>.class.getName());
+            FetchResult<ItemModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<ItemModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<ItemModel>)System.JSON.deserialize(res.getBody(), FetchResult<ItemModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all items
-        ///
         /// Get multiple item objects across all companies.
         /// 
         /// Items are a way of separating your tax calculation process from your tax configuration details. If you choose, you
@@ -4322,12 +5352,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<ItemModel>) restCall("GET", path.relativePath, null, FetchResult<ItemModel>.class.getName());
+            FetchResult<ItemModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<ItemModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<ItemModel>)System.JSON.deserialize(res.getBody(), FetchResult<ItemModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Update a single item
-        ///
         /// Replace the existing `Item` object at this URL with an updated object.
         /// 
         /// Items are a way of separating your tax calculation process from your tax configuration details. If you choose, you
@@ -4347,12 +5382,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/items/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (ItemModel) restCall("PUT", path.relativePath, model, ItemModel.class.getName());
+            ItemModel responseModel = null;
+            responseModel = restCall("PUT", path, model, ItemModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (ItemModel)System.JSON.deserialize(res.getBody(), ItemModel.class);
+            }
+            return responseModel
         }
 
 
         /// Create one or more overrides
-        ///
         /// Creates one or more jurisdiction override objects for this account.
         /// 
         /// A Jurisdiction Override is a configuration setting that allows you to select the taxing
@@ -4366,12 +5406,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/jurisdictionoverrides");
             path.ApplyField("accountId", accountId);
-            return (List<JurisdictionOverrideModel>) restCall("POST", path.relativePath, model, List<JurisdictionOverrideModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<JurisdictionOverrideModel> retVal = new List<JurisdictionOverrideModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<JurisdictionOverrideModel>)System.JSON.deserialize(res.getBody(), List<JurisdictionOverrideModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Delete a single override
-        ///
         /// Marks the item object at this URL as deleted.
         /// 
         /// <param name="accountId">The ID of the account that owns this override</param>
@@ -4381,12 +5430,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/jurisdictionoverrides/{id}");
             path.ApplyField("accountId", accountId);
             path.ApplyField("id", id);
-            return (List<ErrorDetail>) restCall("DELETE", path.relativePath, null, List<ErrorDetail>.class.getName());
+            httpResponse res = restCallForList("DELETE", path, null);
+            List<ErrorDetail> retVal = new List<ErrorDetail>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ErrorDetail>)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Retrieve a single override
-        ///
         /// Get the item object identified by this URL.
         /// 
         /// A Jurisdiction Override is a configuration setting that allows you to select the taxing
@@ -4401,12 +5459,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/jurisdictionoverrides/{id}");
             path.ApplyField("accountId", accountId);
             path.ApplyField("id", id);
-            return (JurisdictionOverrideModel) restCall("GET", path.relativePath, null, JurisdictionOverrideModel.class.getName());
+            JurisdictionOverrideModel responseModel = null;
+            responseModel = restCall("GET", path, null, JurisdictionOverrideModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (JurisdictionOverrideModel)System.JSON.deserialize(res.getBody(), JurisdictionOverrideModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve overrides for this account
-        ///
         /// List all jurisdiction override objects defined for this account.
         /// 
         /// A Jurisdiction Override is a configuration setting that allows you to select the taxing
@@ -4432,12 +5495,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<JurisdictionOverrideModel>) restCall("GET", path.relativePath, null, FetchResult<JurisdictionOverrideModel>.class.getName());
+            FetchResult<JurisdictionOverrideModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<JurisdictionOverrideModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<JurisdictionOverrideModel>)System.JSON.deserialize(res.getBody(), FetchResult<JurisdictionOverrideModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all overrides
-        ///
         /// Get multiple jurisdiction override objects across all companies.
         /// 
         /// A Jurisdiction Override is a configuration setting that allows you to select the taxing
@@ -4461,12 +5529,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<JurisdictionOverrideModel>) restCall("GET", path.relativePath, null, FetchResult<JurisdictionOverrideModel>.class.getName());
+            FetchResult<JurisdictionOverrideModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<JurisdictionOverrideModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<JurisdictionOverrideModel>)System.JSON.deserialize(res.getBody(), FetchResult<JurisdictionOverrideModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Update a single jurisdictionoverride
-        ///
         /// Replace the existing jurisdictionoverride object at this URL with an updated object.
         /// 
         /// <param name="accountId">The ID of the account that this jurisdictionoverride belongs to.</param>
@@ -4477,12 +5550,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/jurisdictionoverrides/{id}");
             path.ApplyField("accountId", accountId);
             path.ApplyField("id", id);
-            return (JurisdictionOverrideModel) restCall("PUT", path.relativePath, model, JurisdictionOverrideModel.class.getName());
+            JurisdictionOverrideModel responseModel = null;
+            responseModel = restCall("PUT", path, model, JurisdictionOverrideModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (JurisdictionOverrideModel)System.JSON.deserialize(res.getBody(), JurisdictionOverrideModel.class);
+            }
+            return responseModel
         }
 
 
         /// Create a new location
-        ///
         /// Create one or more new location objects attached to this company.
         /// 
         /// <param name="companyId">The ID of the company that owns this location.</param>
@@ -4491,12 +5569,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/locations");
             path.ApplyField("companyId", companyId);
-            return (List<LocationModel>) restCall("POST", path.relativePath, model, List<LocationModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<LocationModel> retVal = new List<LocationModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<LocationModel>)System.JSON.deserialize(res.getBody(), List<LocationModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Delete a single location
-        ///
         /// Mark the location object at this URL as deleted.
         /// 
         /// <param name="companyId">The ID of the company that owns this location.</param>
@@ -4506,12 +5593,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/locations/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (List<ErrorDetail>) restCall("DELETE", path.relativePath, null, List<ErrorDetail>.class.getName());
+            httpResponse res = restCallForList("DELETE", path, null);
+            List<ErrorDetail> retVal = new List<ErrorDetail>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ErrorDetail>)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Retrieve a single location
-        ///
         /// Get the location object identified by this URL.
         /// An 'Location' represents a physical address where a company does business.
         /// Many taxing authorities require that you define a list of all locations where your company does business.
@@ -4531,12 +5627,17 @@ global class AvaTaxClient
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
             path.AddQuery("$include", include);
-            return (LocationModel) restCall("GET", path.relativePath, null, LocationModel.class.getName());
+            LocationModel responseModel = null;
+            responseModel = restCall("GET", path, null, LocationModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (LocationModel)System.JSON.deserialize(res.getBody(), LocationModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve locations for this company
-        ///
         /// List all location objects defined for this company.
         /// An 'Location' represents a physical address where a company does business.
         /// Many taxing authorities require that you define a list of all locations where your company does business.
@@ -4564,12 +5665,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<LocationModel>) restCall("GET", path.relativePath, null, FetchResult<LocationModel>.class.getName());
+            FetchResult<LocationModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<LocationModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<LocationModel>)System.JSON.deserialize(res.getBody(), FetchResult<LocationModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all locations
-        ///
         /// Get multiple location objects across all companies.
         /// An 'Location' represents a physical address where a company does business.
         /// Many taxing authorities require that you define a list of all locations where your company does business.
@@ -4596,12 +5702,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<LocationModel>) restCall("GET", path.relativePath, null, FetchResult<LocationModel>.class.getName());
+            FetchResult<LocationModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<LocationModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<LocationModel>)System.JSON.deserialize(res.getBody(), FetchResult<LocationModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Update a single location
-        ///
         /// Replace the existing location object at this URL with an updated object.
         /// All data from the existing object will be replaced with data in the object you PUT. 
         /// To set a field's value to null, you may either set its value to null or omit that field from the object you post.
@@ -4614,12 +5725,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/locations/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (LocationModel) restCall("PUT", path.relativePath, model, LocationModel.class.getName());
+            LocationModel responseModel = null;
+            responseModel = restCall("PUT", path, model, LocationModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (LocationModel)System.JSON.deserialize(res.getBody(), LocationModel.class);
+            }
+            return responseModel
         }
 
 
         /// Validate the location against local requirements
-        ///
         /// Returns validation information for this location.
         /// This API call is intended to compare this location against the currently known taxing authority rules and regulations,
         /// and provide information about what additional work is required to completely setup this location.
@@ -4631,12 +5747,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/locations/{id}/validate");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (LocationValidationModel) restCall("GET", path.relativePath, null, LocationValidationModel.class.getName());
+            LocationValidationModel responseModel = null;
+            responseModel = restCall("GET", path, null, LocationValidationModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (LocationValidationModel)System.JSON.deserialize(res.getBody(), LocationValidationModel.class);
+            }
+            return responseModel
         }
 
 
         /// Adjust a MultiDocument transaction
-        ///
         /// Adjusts the current MultiDocument transaction uniquely identified by this URL.
         /// 
         /// A transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like
@@ -4658,12 +5779,17 @@ global class AvaTaxClient
             path.ApplyField("code", code);
             path.ApplyField("type", type);
             path.AddQuery("include", include);
-            return (MultiDocumentModel) restCall("POST", path.relativePath, model, MultiDocumentModel.class.getName());
+            MultiDocumentModel responseModel = null;
+            responseModel = restCall("POST", path, model, MultiDocumentModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
+            }
+            return responseModel
         }
 
 
         /// Get audit information about a MultiDocument transaction
-        ///
         /// Retrieve audit information about a MultiDocument transaction stored in AvaTax.
         ///  
         /// The audit API retrieves audit information related to a specific MultiDocument transaction. This audit 
@@ -4686,12 +5812,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/multidocument/{code}/type/{type}/audit");
             path.ApplyField("code", code);
             path.ApplyField("type", type);
-            return (AuditMultiDocumentModel) restCall("GET", path.relativePath, null, AuditMultiDocumentModel.class.getName());
+            AuditMultiDocumentModel responseModel = null;
+            responseModel = restCall("GET", path, null, AuditMultiDocumentModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (AuditMultiDocumentModel)System.JSON.deserialize(res.getBody(), AuditMultiDocumentModel.class);
+            }
+            return responseModel
         }
 
 
         /// Commit a MultiDocument transaction
-        ///
         /// Marks a list of transactions by changing its status to `Committed`.
         /// 
         /// Transactions that are committed are available to be reported to a tax authority by Avalara Managed Returns.
@@ -4705,12 +5836,17 @@ global class AvaTaxClient
         public MultiDocumentModel CommitMultiDocumentTransaction(CommitMultiDocumentModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/multidocument/commit");
-            return (MultiDocumentModel) restCall("POST", path.relativePath, model, MultiDocumentModel.class.getName());
+            MultiDocumentModel responseModel = null;
+            responseModel = restCall("POST", path, model, MultiDocumentModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
+            }
+            return responseModel
         }
 
 
         /// Create a new MultiDocument transaction
-        ///
         /// Records a new MultiDocument transaction in AvaTax.
         /// 
         /// A traditional transaction requires exactly two parties: a seller and a buyer. MultiDocument transactions can
@@ -4750,12 +5886,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/multidocument");
             path.AddQuery("$include", include);
-            return (MultiDocumentModel) restCall("POST", path.relativePath, model, MultiDocumentModel.class.getName());
+            MultiDocumentModel responseModel = null;
+            responseModel = restCall("POST", path, model, MultiDocumentModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve a MultiDocument transaction
-        ///
         /// Get the current MultiDocument transaction identified by this URL.
         /// 
         /// If this transaction was adjusted, the return value of this API will be the current transaction with this code.
@@ -4778,12 +5919,17 @@ global class AvaTaxClient
             path.ApplyField("code", code);
             path.ApplyField("type", type);
             path.AddQuery("$include", include);
-            return (MultiDocumentModel) restCall("GET", path.relativePath, null, MultiDocumentModel.class.getName());
+            MultiDocumentModel responseModel = null;
+            responseModel = restCall("GET", path, null, MultiDocumentModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve a MultiDocument transaction by ID
-        ///
         /// Get the unique MultiDocument transaction identified by this URL.
         /// 
         /// A traditional transaction requires exactly two parties: a seller and a buyer. MultiDocument transactions can
@@ -4813,12 +5959,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/multidocument/{id}");
             path.ApplyField("id", id);
             path.AddQuery("$include", include);
-            return (MultiDocumentModel) restCall("GET", path.relativePath, null, MultiDocumentModel.class.getName());
+            MultiDocumentModel responseModel = null;
+            responseModel = restCall("GET", path, null, MultiDocumentModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all MultiDocument transactions
-        ///
         /// List all MultiDocument transactions within this account.
         /// 
         /// This endpoint is limited to returning 1,000 MultiDocument transactions at a time. To retrieve more than 1,000 MultiDocument
@@ -4852,12 +6003,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<MultiDocumentModel>) restCall("GET", path.relativePath, null, FetchResult<MultiDocumentModel>.class.getName());
+            FetchResult<MultiDocumentModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<MultiDocumentModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<MultiDocumentModel>)System.JSON.deserialize(res.getBody(), FetchResult<MultiDocumentModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Create a refund for a MultiDocument transaction
-        ///
         /// Create a refund for a MultiDocument transaction.
         /// 
         /// A traditional transaction requires exactly two parties: a seller and a buyer. MultiDocument transactions can
@@ -4905,12 +6061,17 @@ global class AvaTaxClient
             path.ApplyField("code", code);
             path.ApplyField("type", type);
             path.AddQuery("$include", include);
-            return (MultiDocumentModel) restCall("POST", path.relativePath, model, MultiDocumentModel.class.getName());
+            MultiDocumentModel responseModel = null;
+            responseModel = restCall("POST", path, model, MultiDocumentModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
+            }
+            return responseModel
         }
 
 
         /// Verify a MultiDocument transaction
-        ///
         /// Verifies that the MultiDocument transaction uniquely identified by this URL matches certain expected values.
         /// 
         /// If the transaction does not match these expected values, this API will return an error code indicating which value did not match.
@@ -4922,12 +6083,17 @@ global class AvaTaxClient
         public MultiDocumentModel VerifyMultiDocumentTransaction(VerifyMultiDocumentModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/multidocument/verify");
-            return (MultiDocumentModel) restCall("POST", path.relativePath, model, MultiDocumentModel.class.getName());
+            MultiDocumentModel responseModel = null;
+            responseModel = restCall("POST", path, model, MultiDocumentModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
+            }
+            return responseModel
         }
 
 
         /// Void a MultiDocument transaction
-        ///
         /// Voids the current transaction uniquely identified by this URL.
         /// 
         /// A transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like
@@ -4946,12 +6112,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/multidocument/{code}/type/{type}/void");
             path.ApplyField("code", code);
             path.ApplyField("type", type);
-            return (MultiDocumentModel) restCall("POST", path.relativePath, model, MultiDocumentModel.class.getName());
+            MultiDocumentModel responseModel = null;
+            responseModel = restCall("POST", path, model, MultiDocumentModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
+            }
+            return responseModel
         }
 
 
         /// Create a new nexus
-        ///
         /// Creates one or more new nexus objects attached to this company.
         /// The concept of 'Nexus' indicates a place where your company has sufficient physical presence and is obligated
         /// to collect and remit transaction-based taxes.
@@ -4968,12 +6139,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/nexus");
             path.ApplyField("companyId", companyId);
-            return (List<NexusModel>) restCall("POST", path.relativePath, model, List<NexusModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<NexusModel> retVal = new List<NexusModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<NexusModel>)System.JSON.deserialize(res.getBody(), List<NexusModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Delete a single nexus
-        ///
         /// Marks the existing nexus object at this URL as deleted.
         /// Please allow 1 minute to stop collecting tax in your transaction on the deleted Nexus.
         /// 
@@ -4984,12 +6164,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/nexus/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (List<ErrorDetail>) restCall("DELETE", path.relativePath, null, List<ErrorDetail>.class.getName());
+            httpResponse res = restCallForList("DELETE", path, null);
+            List<ErrorDetail> retVal = new List<ErrorDetail>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ErrorDetail>)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Retrieve a single nexus
-        ///
         /// Get the nexus object identified by this URL.
         /// The concept of 'Nexus' indicates a place where your company has sufficient physical presence and is obligated
         /// to collect and remit transaction-based taxes.
@@ -5003,12 +6192,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/nexus/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (NexusModel) restCall("GET", path.relativePath, null, NexusModel.class.getName());
+            NexusModel responseModel = null;
+            responseModel = restCall("GET", path, null, NexusModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (NexusModel)System.JSON.deserialize(res.getBody(), NexusModel.class);
+            }
+            return responseModel
         }
 
 
         /// List company nexus related to a tax form
-        ///
         /// Retrieves a list of nexus related to a tax form.
         /// 
         /// The concept of `Nexus` indicates a place where your company has sufficient physical presence and is obligated
@@ -5028,12 +6222,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/nexus/byform/{formCode}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("formCode", formCode);
-            return (NexusByTaxFormModel) restCall("GET", path.relativePath, null, NexusByTaxFormModel.class.getName());
+            NexusByTaxFormModel responseModel = null;
+            responseModel = restCall("GET", path, null, NexusByTaxFormModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (NexusByTaxFormModel)System.JSON.deserialize(res.getBody(), NexusByTaxFormModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve nexus for this company
-        ///
         /// List all nexus objects defined for this company.
         /// The concept of 'Nexus' indicates a place where your company has sufficient physical presence and is obligated
         /// to collect and remit transaction-based taxes.
@@ -5058,12 +6257,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<NexusModel>) restCall("GET", path.relativePath, null, FetchResult<NexusModel>.class.getName());
+            FetchResult<NexusModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<NexusModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<NexusModel>)System.JSON.deserialize(res.getBody(), FetchResult<NexusModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all nexus
-        ///
         /// Get multiple nexus objects across all companies.
         /// The concept of 'Nexus' indicates a place where your company has sufficient physical presence and is obligated
         /// to collect and remit transaction-based taxes.
@@ -5086,12 +6290,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<NexusModel>) restCall("GET", path.relativePath, null, FetchResult<NexusModel>.class.getName());
+            FetchResult<NexusModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<NexusModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<NexusModel>)System.JSON.deserialize(res.getBody(), FetchResult<NexusModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Update a single nexus
-        ///
         /// Replace the existing nexus object at this URL with an updated object.
         /// The concept of 'Nexus' indicates a place where your company has sufficient physical presence and is obligated
         /// to collect and remit transaction-based taxes.
@@ -5112,12 +6321,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/nexus/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (NexusModel) restCall("PUT", path.relativePath, model, NexusModel.class.getName());
+            NexusModel responseModel = null;
+            responseModel = restCall("PUT", path, model, NexusModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (NexusModel)System.JSON.deserialize(res.getBody(), NexusModel.class);
+            }
+            return responseModel
         }
 
 
         /// Create a new notice comment.
-        ///
         /// This API is available by invitation only.
         /// 'Notice comments' are updates by the notice team on the work to be done and that has been done so far on a notice.
         /// A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
@@ -5131,12 +6345,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{id}/comments");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (List<NoticeCommentModel>) restCall("POST", path.relativePath, model, List<NoticeCommentModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<NoticeCommentModel> retVal = new List<NoticeCommentModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<NoticeCommentModel>)System.JSON.deserialize(res.getBody(), List<NoticeCommentModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Create a new notice finance details.
-        ///
         /// This API is available by invitation only.
         /// 'Notice finance details' is the categorical breakdown of the total charge levied by the tax authority on our customer,
         /// as broken down in our "notice log" found in Workflow. Main examples of the categories are 'Tax Due', 'Interest', 'Penalty', 'Total Abated'.
@@ -5151,12 +6374,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{id}/financedetails");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (List<NoticeFinanceModel>) restCall("POST", path.relativePath, model, List<NoticeFinanceModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<NoticeFinanceModel> retVal = new List<NoticeFinanceModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<NoticeFinanceModel>)System.JSON.deserialize(res.getBody(), List<NoticeFinanceModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Create a new notice responsibility.
-        ///
         /// This API is available by invitation only.
         /// 'Notice comments' are updates by the notice team on the work to be done and that has been done so far on a notice.
         /// A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
@@ -5170,12 +6402,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{id}/responsibilities");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (List<NoticeResponsibilityDetailModel>) restCall("POST", path.relativePath, model, List<NoticeResponsibilityDetailModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<NoticeResponsibilityDetailModel> retVal = new List<NoticeResponsibilityDetailModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<NoticeResponsibilityDetailModel>)System.JSON.deserialize(res.getBody(), List<NoticeResponsibilityDetailModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Create a new notice root cause.
-        ///
         /// This API is available by invitation only.
         /// 'Notice root causes' are are those who are responsible for the notice.
         /// A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
@@ -5189,12 +6430,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{id}/rootcauses");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (List<NoticeRootCauseDetailModel>) restCall("POST", path.relativePath, model, List<NoticeRootCauseDetailModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<NoticeRootCauseDetailModel> retVal = new List<NoticeRootCauseDetailModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<NoticeRootCauseDetailModel>)System.JSON.deserialize(res.getBody(), List<NoticeRootCauseDetailModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Create a new notice.
-        ///
         /// This API is available by invitation only.
         /// Create one or more new notice objects.
         /// A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
@@ -5206,12 +6456,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices");
             path.ApplyField("companyId", companyId);
-            return (List<NoticeModel>) restCall("POST", path.relativePath, model, List<NoticeModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<NoticeModel> retVal = new List<NoticeModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<NoticeModel>)System.JSON.deserialize(res.getBody(), List<NoticeModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Delete a single notice.
-        ///
         /// This API is available by invitation only.
         /// Mark the existing notice object at this URL as deleted.
         /// A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
@@ -5224,12 +6483,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (List<ErrorDetail>) restCall("DELETE", path.relativePath, null, List<ErrorDetail>.class.getName());
+            httpResponse res = restCallForList("DELETE", path, null);
+            List<ErrorDetail> retVal = new List<ErrorDetail>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ErrorDetail>)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Delete a single responsibility
-        ///
         /// This API is available by invitation only.
         /// Mark the existing notice object at this URL as deleted.
         /// A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
@@ -5244,12 +6512,21 @@ global class AvaTaxClient
             path.ApplyField("companyId", companyId);
             path.ApplyField("noticeId", noticeId);
             path.ApplyField("id", id);
-            return (List<ErrorDetail>) restCall("DELETE", path.relativePath, null, List<ErrorDetail>.class.getName());
+            httpResponse res = restCallForList("DELETE", path, null);
+            List<ErrorDetail> retVal = new List<ErrorDetail>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ErrorDetail>)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Delete a single root cause.
-        ///
         /// This API is available by invitation only.
         /// Mark the existing notice object at this URL as deleted.
         /// A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
@@ -5264,12 +6541,21 @@ global class AvaTaxClient
             path.ApplyField("companyId", companyId);
             path.ApplyField("noticeId", noticeId);
             path.ApplyField("id", id);
-            return (List<ErrorDetail>) restCall("DELETE", path.relativePath, null, List<ErrorDetail>.class.getName());
+            httpResponse res = restCallForList("DELETE", path, null);
+            List<ErrorDetail> retVal = new List<ErrorDetail>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ErrorDetail>)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Retrieve a single attachment
-        ///
         /// This API is available by invitation only.
         /// Get the file attachment identified by this URL.
         /// 
@@ -5280,12 +6566,16 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/files/{id}/attachment");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return restCallForList("GET", path, null);
+            responseFile = ("GET", path, null);
+            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
+            {
+                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
+            }
+            return responseFile
         }
 
 
         /// Retrieve a single notice.
-        ///
         /// This API is available by invitation only.
         /// Get the tax notice object identified by this URL.
         /// A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
@@ -5298,12 +6588,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (NoticeModel) restCall("GET", path.relativePath, null, NoticeModel.class.getName());
+            NoticeModel responseModel = null;
+            responseModel = restCall("GET", path, null, NoticeModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (NoticeModel)System.JSON.deserialize(res.getBody(), NoticeModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve notice comments for a specific notice.
-        ///
         /// This API is available by invitation only.
         /// 'Notice comments' are updates by the notice team on the work to be done and that has been done so far on a notice.
         /// A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
@@ -5316,12 +6611,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{id}/comments");
             path.ApplyField("id", id);
             path.ApplyField("companyId", companyId);
-            return (FetchResult<NoticeCommentModel>) restCall("GET", path.relativePath, null, FetchResult<NoticeCommentModel>.class.getName());
+            FetchResult<NoticeCommentModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<NoticeCommentModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<NoticeCommentModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeCommentModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve notice finance details for a specific notice.
-        ///
         /// This API is available by invitation only.
         /// 'Notice finance details' is the categorical breakdown of the total charge levied by the tax authority on our customer,
         /// as broken down in our "notice log" found in Workflow. Main examples of the categories are 'Tax Due', 'Interest', 'Penalty', 'Total Abated'.
@@ -5335,12 +6635,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{id}/financedetails");
             path.ApplyField("id", id);
             path.ApplyField("companyId", companyId);
-            return (FetchResult<NoticeFinanceModel>) restCall("GET", path.relativePath, null, FetchResult<NoticeFinanceModel>.class.getName());
+            FetchResult<NoticeFinanceModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<NoticeFinanceModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<NoticeFinanceModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeFinanceModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve notice responsibilities for a specific notice.
-        ///
         /// This API is available by invitation only.
         /// 'Notice responsibilities' are are those who are responsible for the notice.
         /// A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
@@ -5353,12 +6658,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{id}/responsibilities");
             path.ApplyField("id", id);
             path.ApplyField("companyId", companyId);
-            return (FetchResult<NoticeResponsibilityDetailModel>) restCall("GET", path.relativePath, null, FetchResult<NoticeResponsibilityDetailModel>.class.getName());
+            FetchResult<NoticeResponsibilityDetailModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<NoticeResponsibilityDetailModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<NoticeResponsibilityDetailModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeResponsibilityDetailModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve notice root causes for a specific notice.
-        ///
         /// This API is available by invitation only.
         /// 'Notice root causes' are are those who are responsible for the notice.
         /// A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
@@ -5371,12 +6681,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{id}/rootcauses");
             path.ApplyField("id", id);
             path.ApplyField("companyId", companyId);
-            return (FetchResult<NoticeRootCauseDetailModel>) restCall("GET", path.relativePath, null, FetchResult<NoticeRootCauseDetailModel>.class.getName());
+            FetchResult<NoticeRootCauseDetailModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<NoticeRootCauseDetailModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<NoticeRootCauseDetailModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeRootCauseDetailModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve notices for a company.
-        ///
         /// This API is available by invitation only.
         /// List all tax notice objects assigned to this company.
         /// A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
@@ -5400,12 +6715,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<NoticeModel>) restCall("GET", path.relativePath, null, FetchResult<NoticeModel>.class.getName());
+            FetchResult<NoticeModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<NoticeModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<NoticeModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all notices.
-        ///
         /// This API is available by invitation only.
         /// Get multiple notice objects across all companies.
         /// A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
@@ -5427,12 +6747,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<NoticeModel>) restCall("GET", path.relativePath, null, FetchResult<NoticeModel>.class.getName());
+            FetchResult<NoticeModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<NoticeModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<NoticeModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Update a single notice.
-        ///
         /// This API is available by invitation only.
         /// Replace the existing notice object at this URL with an updated object.
         /// A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
@@ -5448,12 +6773,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (NoticeModel) restCall("PUT", path.relativePath, model, NoticeModel.class.getName());
+            NoticeModel responseModel = null;
+            responseModel = restCall("PUT", path, model, NoticeModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (NoticeModel)System.JSON.deserialize(res.getBody(), NoticeModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve a single attachment
-        ///
         /// This API is available by invitation only.
         /// Get the file attachment identified by this URL.
         /// 
@@ -5463,12 +6793,16 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/files/attachment");
             path.ApplyField("companyId", companyId);
-            return restCallForList("POST", path, model);
+            responseFile = ("POST", path, model);
+            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
+            {
+                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
+            }
+            return responseFile
         }
 
 
         /// Request a new Avalara account
-        ///
         /// This API is for use by partner onboarding services customers only.
         /// 
         /// Avalara invites select partners to refer new customers to the AvaTax service using the onboarding features
@@ -5488,12 +6822,17 @@ global class AvaTaxClient
         public NewAccountModel RequestNewAccount(NewAccountRequestModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/request");
-            return (NewAccountModel) restCall("POST", path.relativePath, model, NewAccountModel.class.getName());
+            NewAccountModel responseModel = null;
+            responseModel = restCall("POST", path, model, NewAccountModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (NewAccountModel)System.JSON.deserialize(res.getBody(), NewAccountModel.class);
+            }
+            return responseModel
         }
 
 
         /// Change Password
-        ///
         /// # For Registrar Use Only
         /// This API is for use by Avalara Registrar administrative users only.
         /// 
@@ -5505,12 +6844,17 @@ global class AvaTaxClient
         public String ChangePassword(PasswordChangeModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/passwords");
-            return restCallForList("PUT", path, model);
+            String responseModel = null;
+            responseModel = restCall("PUT", path, model, String.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (String)System.JSON.deserialize(res.getBody(), String.class);
+            }
+            return responseModel
         }
 
 
         /// Create a new account
-        ///
         /// # For Registrar Use Only
         /// This API is for use by Avalara Registrar administrative users only.
         /// 
@@ -5521,12 +6865,17 @@ global class AvaTaxClient
         public AccountModel CreateAccount(AccountModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts");
-            return (AccountModel) restCall("POST", path.relativePath, model, AccountModel.class.getName());
+            AccountModel responseModel = null;
+            responseModel = restCall("POST", path, model, AccountModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (AccountModel)System.JSON.deserialize(res.getBody(), AccountModel.class);
+            }
+            return responseModel
         }
 
 
         /// Create a new subscription
-        ///
         /// # For Registrar Use Only
         /// This API is for use by Avalara Registrar administrative users only.
         /// 
@@ -5540,12 +6889,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/subscriptions");
             path.ApplyField("accountId", accountId);
-            return (List<SubscriptionModel>) restCall("POST", path.relativePath, model, List<SubscriptionModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<SubscriptionModel> retVal = new List<SubscriptionModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<SubscriptionModel>)System.JSON.deserialize(res.getBody(), List<SubscriptionModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Delete a single account
-        ///
         /// # For Registrar Use Only
         /// This API is for use by Avalara Registrar administrative users only.
         /// 
@@ -5557,12 +6915,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{id}");
             path.ApplyField("id", id);
-            return (List<ErrorDetail>) restCall("DELETE", path.relativePath, null, List<ErrorDetail>.class.getName());
+            httpResponse res = restCallForList("DELETE", path, null);
+            List<ErrorDetail> retVal = new List<ErrorDetail>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ErrorDetail>)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Delete a single subscription
-        ///
         /// # For Registrar Use Only
         /// This API is for use by Avalara Registrar administrative users only.
         /// 
@@ -5575,12 +6942,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/subscriptions/{id}");
             path.ApplyField("accountId", accountId);
             path.ApplyField("id", id);
-            return (List<ErrorDetail>) restCall("DELETE", path.relativePath, null, List<ErrorDetail>.class.getName());
+            httpResponse res = restCallForList("DELETE", path, null);
+            List<ErrorDetail> retVal = new List<ErrorDetail>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ErrorDetail>)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Delete a single user
-        ///
         /// # For Registrar Use Only
         /// This API is for use by Avalara Registrar administrative users only.
         /// 
@@ -5593,12 +6969,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/users/{id}");
             path.ApplyField("id", id);
             path.ApplyField("accountId", accountId);
-            return (List<ErrorDetail>) restCall("DELETE", path.relativePath, null, List<ErrorDetail>.class.getName());
+            httpResponse res = restCallForList("DELETE", path, null);
+            List<ErrorDetail> retVal = new List<ErrorDetail>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ErrorDetail>)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Retrieve all accounts
-        ///
         /// # For Registrar Use Only
         /// This API is for use by Avalara Registrar administrative users only.
         /// 
@@ -5625,12 +7010,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<AccountModel>) restCall("GET", path.relativePath, null, FetchResult<AccountModel>.class.getName());
+            FetchResult<AccountModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<AccountModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<AccountModel>)System.JSON.deserialize(res.getBody(), FetchResult<AccountModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Reset a user's password programmatically
-        ///
         /// # For Registrar Use Only
         /// This API is for use by Avalara Registrar administrative users only.
         /// 
@@ -5644,12 +7034,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/passwords/{userId}/reset");
             path.ApplyField("userId", userId);
-            return restCallForList("POST", path, model);
+            String responseModel = null;
+            responseModel = restCall("POST", path, model, String.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (String)System.JSON.deserialize(res.getBody(), String.class);
+            }
+            return responseModel
         }
 
 
         /// Update a single account
-        ///
         /// # For Registrar Use Only
         /// This API is for use by Avalara Registrar administrative users only.
         /// 
@@ -5661,12 +7056,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{id}");
             path.ApplyField("id", id);
-            return (AccountModel) restCall("PUT", path.relativePath, model, AccountModel.class.getName());
+            AccountModel responseModel = null;
+            responseModel = restCall("PUT", path, model, AccountModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (AccountModel)System.JSON.deserialize(res.getBody(), AccountModel.class);
+            }
+            return responseModel
         }
 
 
         /// Update a single subscription
-        ///
         /// # For Registrar Use Only
         /// This API is for use by Avalara Registrar administrative users only.
         /// 
@@ -5684,12 +7084,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/subscriptions/{id}");
             path.ApplyField("accountId", accountId);
             path.ApplyField("id", id);
-            return (SubscriptionModel) restCall("PUT", path.relativePath, model, SubscriptionModel.class.getName());
+            SubscriptionModel responseModel = null;
+            responseModel = restCall("PUT", path, model, SubscriptionModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (SubscriptionModel)System.JSON.deserialize(res.getBody(), SubscriptionModel.class);
+            }
+            return responseModel
         }
 
 
         /// Download a report
-        ///
         /// This API downloads the file associated with a report.
         /// 
         /// If the report is not yet complete, you will receive a `ReportNotFinished` error. To check if a report is complete,
@@ -5710,12 +7115,16 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/reports/{id}/attachment");
             path.ApplyField("id", id);
-            return restCallForList("GET", path, null);
+            responseFile = ("GET", path, null);
+            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
+            {
+                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
+            }
+            return responseFile
         }
 
 
         /// Intiate and download an ExportDocumentLine report
-        ///
         /// This API is deprecated. 
         /// 
         /// Please use the asynchronous reports APIs:
@@ -5731,12 +7140,16 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/reports/exportdocumentline");
             path.ApplyField("companyId", companyId);
-            return restCallForList("POST", path, model);
+            responseFile = ("POST", path, model);
+            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
+            {
+                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
+            }
+            return responseFile
         }
 
 
         /// Retrieve a single report
-        ///
         /// Retrieve a single report by its unique ID number.
         /// 
         /// Reports are run as asynchronous report tasks on the server. When complete, the report file will be available for download
@@ -5754,12 +7167,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/reports/{id}");
             path.ApplyField("id", id);
-            return (ReportModel) restCall("GET", path.relativePath, null, ReportModel.class.getName());
+            ReportModel responseModel = null;
+            responseModel = restCall("GET", path, null, ReportModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (ReportModel)System.JSON.deserialize(res.getBody(), ReportModel.class);
+            }
+            return responseModel
         }
 
 
         /// Initiate an ExportDocumentLine report task
-        ///
         /// Begins running an `ExportDocumentLine` report task and returns the identity of the report.
         /// 
         /// Reports are run as asynchronous report tasks on the server. When complete, the report file will be available for download
@@ -5778,12 +7196,16 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/reports/exportdocumentline/initiate");
             path.ApplyField("companyId", companyId);
-            return restCallForList("POST", path, model);
+            responseFile = ("POST", path, model);
+            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
+            {
+                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
+            }
+            return responseFile
         }
 
 
         /// List all report tasks for account
-        ///
         /// List all report tasks for your account.
         /// 
         /// Reports are run as asynchronous report tasks on the server. When complete, the report file will be available for download
@@ -5799,12 +7221,17 @@ global class AvaTaxClient
         public FetchResult<ReportModel> ListReports()
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/reports");
-            return (FetchResult<ReportModel>) restCall("GET", path.relativePath, null, FetchResult<ReportModel>.class.getName());
+            FetchResult<ReportModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<ReportModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<ReportModel>)System.JSON.deserialize(res.getBody(), FetchResult<ReportModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Create a new setting
-        ///
         /// Create one or more new setting objects attached to this company.
         /// A 'setting' is a piece of user-defined data that can be attached to a company, and it provides you the ability to store information
         /// not defined or managed by Avalara.
@@ -5819,12 +7246,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/settings");
             path.ApplyField("companyId", companyId);
-            return (List<SettingModel>) restCall("POST", path.relativePath, model, List<SettingModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<SettingModel> retVal = new List<SettingModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<SettingModel>)System.JSON.deserialize(res.getBody(), List<SettingModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Delete a single setting
-        ///
         /// Mark the setting object at this URL as deleted.
         /// 
         /// <param name="companyId">The ID of the company that owns this setting.</param>
@@ -5834,12 +7270,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/settings/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (List<ErrorDetail>) restCall("DELETE", path.relativePath, null, List<ErrorDetail>.class.getName());
+            httpResponse res = restCallForList("DELETE", path, null);
+            List<ErrorDetail> retVal = new List<ErrorDetail>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ErrorDetail>)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Retrieve a single setting
-        ///
         /// Get a single setting object by its unique ID.
         /// A 'setting' is a piece of user-defined data that can be attached to a company, and it provides you the ability to store information
         /// not defined or managed by Avalara.
@@ -5855,12 +7300,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/settings/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (SettingModel) restCall("GET", path.relativePath, null, SettingModel.class.getName());
+            SettingModel responseModel = null;
+            responseModel = restCall("GET", path, null, SettingModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (SettingModel)System.JSON.deserialize(res.getBody(), SettingModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all settings for this company
-        ///
         /// List all setting objects attached to this company.
         /// A 'setting' is a piece of user-defined data that can be attached to a company, and it provides you the ability to store information
         /// not defined or managed by Avalara.
@@ -5887,12 +7337,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<SettingModel>) restCall("GET", path.relativePath, null, FetchResult<SettingModel>.class.getName());
+            FetchResult<SettingModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<SettingModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<SettingModel>)System.JSON.deserialize(res.getBody(), FetchResult<SettingModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all settings
-        ///
         /// Get multiple setting objects across all companies.
         /// A 'setting' is a piece of user-defined data that can be attached to a company, and it provides you the ability to store information
         /// not defined or managed by Avalara.
@@ -5917,12 +7372,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<SettingModel>) restCall("GET", path.relativePath, null, FetchResult<SettingModel>.class.getName());
+            FetchResult<SettingModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<SettingModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<SettingModel>)System.JSON.deserialize(res.getBody(), FetchResult<SettingModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Update a single setting
-        ///
         /// Replace the existing setting object at this URL with an updated object.
         /// A 'setting' is a piece of user-defined data that can be attached to a company, and it provides you the ability to store information
         /// not defined or managed by Avalara.
@@ -5941,12 +7401,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/settings/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (SettingModel) restCall("PUT", path.relativePath, model, SettingModel.class.getName());
+            SettingModel responseModel = null;
+            responseModel = restCall("PUT", path, model, SettingModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (SettingModel)System.JSON.deserialize(res.getBody(), SettingModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve a single subscription
-        ///
         /// Get the subscription object identified by this URL.
         /// A 'subscription' indicates a licensed subscription to a named Avalara service.
         /// To request or remove subscriptions, please contact Avalara sales or your customer account manager.
@@ -5958,12 +7423,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/subscriptions/{id}");
             path.ApplyField("accountId", accountId);
             path.ApplyField("id", id);
-            return (SubscriptionModel) restCall("GET", path.relativePath, null, SubscriptionModel.class.getName());
+            SubscriptionModel responseModel = null;
+            responseModel = restCall("GET", path, null, SubscriptionModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (SubscriptionModel)System.JSON.deserialize(res.getBody(), SubscriptionModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve subscriptions for this account
-        ///
         /// List all subscription objects attached to this account.
         /// A 'subscription' indicates a licensed subscription to a named Avalara service.
         /// To request or remove subscriptions, please contact Avalara sales or your customer account manager.
@@ -5984,12 +7454,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<SubscriptionModel>) restCall("GET", path.relativePath, null, FetchResult<SubscriptionModel>.class.getName());
+            FetchResult<SubscriptionModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<SubscriptionModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<SubscriptionModel>)System.JSON.deserialize(res.getBody(), FetchResult<SubscriptionModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all subscriptions
-        ///
         /// Get multiple subscription objects across all accounts.
         /// A 'subscription' indicates a licensed subscription to a named Avalara service.
         /// To request or remove subscriptions, please contact Avalara sales or your customer account manager.
@@ -6008,12 +7483,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<SubscriptionModel>) restCall("GET", path.relativePath, null, FetchResult<SubscriptionModel>.class.getName());
+            FetchResult<SubscriptionModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<SubscriptionModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<SubscriptionModel>)System.JSON.deserialize(res.getBody(), FetchResult<SubscriptionModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Create a new tax code
-        ///
         /// Create one or more new taxcode objects attached to this company.
         /// A 'TaxCode' represents a uniquely identified type of product, good, or service.
         /// Avalara supports correct tax rates and taxability rules for all TaxCodes in all supported jurisdictions.
@@ -6026,12 +7506,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/taxcodes");
             path.ApplyField("companyId", companyId);
-            return (List<TaxCodeModel>) restCall("POST", path.relativePath, model, List<TaxCodeModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<TaxCodeModel> retVal = new List<TaxCodeModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<TaxCodeModel>)System.JSON.deserialize(res.getBody(), List<TaxCodeModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Delete a single tax code
-        ///
         /// Marks the existing TaxCode object at this URL as deleted.
         /// 
         /// <param name="companyId">The ID of the company that owns this tax code.</param>
@@ -6041,12 +7530,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/taxcodes/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (List<ErrorDetail>) restCall("DELETE", path.relativePath, null, List<ErrorDetail>.class.getName());
+            httpResponse res = restCallForList("DELETE", path, null);
+            List<ErrorDetail> retVal = new List<ErrorDetail>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ErrorDetail>)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Retrieve a single tax code
-        ///
         /// Get the taxcode object identified by this URL.
         /// A 'TaxCode' represents a uniquely identified type of product, good, or service.
         /// Avalara supports correct tax rates and taxability rules for all TaxCodes in all supported jurisdictions.
@@ -6060,12 +7558,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/taxcodes/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (TaxCodeModel) restCall("GET", path.relativePath, null, TaxCodeModel.class.getName());
+            TaxCodeModel responseModel = null;
+            responseModel = restCall("GET", path, null, TaxCodeModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (TaxCodeModel)System.JSON.deserialize(res.getBody(), TaxCodeModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve tax codes for this company
-        ///
         /// List all taxcode objects attached to this company.
         /// A 'TaxCode' represents a uniquely identified type of product, good, or service.
         /// Avalara supports correct tax rates and taxability rules for all TaxCodes in all supported jurisdictions.
@@ -6090,12 +7593,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<TaxCodeModel>) restCall("GET", path.relativePath, null, FetchResult<TaxCodeModel>.class.getName());
+            FetchResult<TaxCodeModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<TaxCodeModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<TaxCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxCodeModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all tax codes
-        ///
         /// Get multiple taxcode objects across all companies.
         /// A 'TaxCode' represents a uniquely identified type of product, good, or service.
         /// Avalara supports correct tax rates and taxability rules for all TaxCodes in all supported jurisdictions.
@@ -6118,12 +7626,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<TaxCodeModel>) restCall("GET", path.relativePath, null, FetchResult<TaxCodeModel>.class.getName());
+            FetchResult<TaxCodeModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<TaxCodeModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<TaxCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxCodeModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Update a single tax code
-        ///
         /// Replace the existing taxcode object at this URL with an updated object.
         /// A 'TaxCode' represents a uniquely identified type of product, good, or service.
         /// Avalara supports correct tax rates and taxability rules for all TaxCodes in all supported jurisdictions.
@@ -6140,12 +7653,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/taxcodes/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (TaxCodeModel) restCall("PUT", path.relativePath, model, TaxCodeModel.class.getName());
+            TaxCodeModel responseModel = null;
+            responseModel = restCall("PUT", path, model, TaxCodeModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (TaxCodeModel)System.JSON.deserialize(res.getBody(), TaxCodeModel.class);
+            }
+            return responseModel
         }
 
 
         /// Build a multi-location tax content file
-        ///
         /// Builds a tax content file containing information useful for a retail point-of-sale solution.
         /// 
         /// This file contains tax rates and rules for items and locations that can be used
@@ -6164,12 +7682,16 @@ global class AvaTaxClient
         public FileResult BuildTaxContentFile(PointOfSaleDataRequestModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/pointofsaledata/build");
-            return restCallForList("POST", path, model);
+            responseFile = ("POST", path, model);
+            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
+            {
+                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
+            }
+            return responseFile
         }
 
 
         /// Build a tax content file for a single location
-        ///
         /// Builds a tax content file containing information useful for a retail point-of-sale solution.
         /// 
         /// This file contains tax rates and rules for all items for a single location. Data from this API
@@ -6199,12 +7721,16 @@ global class AvaTaxClient
             path.AddQuery("format", format);
             path.AddQuery("partnerId", partnerId);
             path.AddQuery("includeJurisCodes", includeJurisCodes);
-            return restCallForList("GET", path, null);
+            responseFile = ("GET", path, null);
+            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
+            {
+                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
+            }
+            return responseFile
         }
 
 
         /// Download a file listing tax rates by postal code
-        ///
         /// Download a CSV file containing all five digit postal codes in the United States and their sales
         /// and use tax rates for tangible personal property.
         /// 
@@ -6228,12 +7754,16 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/taxratesbyzipcode/download/{date}");
             path.ApplyField("date", date);
-            return restCallForList("GET", path, null);
+            responseFile = ("GET", path, null);
+            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
+            {
+                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
+            }
+            return responseFile
         }
 
 
         /// Create a new tax rule
-        ///
         /// Create one or more new taxrule objects attached to this company.
         /// A tax rule represents a custom taxability rule for a product or service sold by your company.
         /// If you have obtained a custom tax ruling from an auditor that changes the behavior of certain goods or services
@@ -6246,12 +7776,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/taxrules");
             path.ApplyField("companyId", companyId);
-            return (List<TaxRuleModel>) restCall("POST", path.relativePath, model, List<TaxRuleModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<TaxRuleModel> retVal = new List<TaxRuleModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<TaxRuleModel>)System.JSON.deserialize(res.getBody(), List<TaxRuleModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Delete a single tax rule
-        ///
         /// Mark the TaxRule identified by this URL as deleted.
         /// 
         /// <param name="companyId">The ID of the company that owns this tax rule.</param>
@@ -6261,12 +7800,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/taxrules/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (List<ErrorDetail>) restCall("DELETE", path.relativePath, null, List<ErrorDetail>.class.getName());
+            httpResponse res = restCallForList("DELETE", path, null);
+            List<ErrorDetail> retVal = new List<ErrorDetail>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ErrorDetail>)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Retrieve a single tax rule
-        ///
         /// Get the taxrule object identified by this URL.
         /// A tax rule represents a custom taxability rule for a product or service sold by your company.
         /// If you have obtained a custom tax ruling from an auditor that changes the behavior of certain goods or services
@@ -6280,12 +7828,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/taxrules/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (TaxRuleModel) restCall("GET", path.relativePath, null, TaxRuleModel.class.getName());
+            TaxRuleModel responseModel = null;
+            responseModel = restCall("GET", path, null, TaxRuleModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (TaxRuleModel)System.JSON.deserialize(res.getBody(), TaxRuleModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve tax rules for this company
-        ///
         /// List all taxrule objects attached to this company.
         /// A tax rule represents a custom taxability rule for a product or service sold by your company.
         /// If you have obtained a custom tax ruling from an auditor that changes the behavior of certain goods or services
@@ -6310,12 +7863,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<TaxRuleModel>) restCall("GET", path.relativePath, null, FetchResult<TaxRuleModel>.class.getName());
+            FetchResult<TaxRuleModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<TaxRuleModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<TaxRuleModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxRuleModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all tax rules
-        ///
         /// Get multiple taxrule objects across all companies.
         /// A tax rule represents a custom taxability rule for a product or service sold by your company.
         /// If you have obtained a custom tax ruling from an auditor that changes the behavior of certain goods or services
@@ -6338,12 +7896,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<TaxRuleModel>) restCall("GET", path.relativePath, null, FetchResult<TaxRuleModel>.class.getName());
+            FetchResult<TaxRuleModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<TaxRuleModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<TaxRuleModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxRuleModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Update a single tax rule
-        ///
         /// Replace the existing taxrule object at this URL with an updated object.
         /// A tax rule represents a custom taxability rule for a product or service sold by your company.
         /// If you have obtained a custom tax ruling from an auditor that changes the behavior of certain goods or services
@@ -6360,12 +7923,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/taxrules/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (TaxRuleModel) restCall("PUT", path.relativePath, model, TaxRuleModel.class.getName());
+            TaxRuleModel responseModel = null;
+            responseModel = restCall("PUT", path, model, TaxRuleModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (TaxRuleModel)System.JSON.deserialize(res.getBody(), TaxRuleModel.class);
+            }
+            return responseModel
         }
 
 
         /// Add lines to an existing unlocked transaction
-        ///
         /// Add lines to an existing unlocked transaction.
         ///  
         ///  The `AddLines` API allows you to add additional transaction lines to existing transaction, so that customer will
@@ -6393,12 +7961,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/transactions/lines/add");
             path.AddQuery("$include", include);
-            return (TransactionModel) restCall("POST", path.relativePath, model, TransactionModel.class.getName());
+            TransactionModel responseModel = null;
+            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
+            }
+            return responseModel
         }
 
 
         /// Correct a previously created transaction
-        ///
         /// Replaces the current transaction uniquely identified by this URL with a new transaction.
         /// 
         /// A transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like
@@ -6421,12 +7994,17 @@ global class AvaTaxClient
             path.ApplyField("companyCode", companyCode);
             path.ApplyField("transactionCode", transactionCode);
             path.AddQuery("documentType", documentType);
-            return (TransactionModel) restCall("POST", path.relativePath, model, TransactionModel.class.getName());
+            TransactionModel responseModel = null;
+            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
+            }
+            return responseModel
         }
 
 
         /// Get audit information about a transaction
-        ///
         /// Retrieve audit information about a transaction stored in AvaTax.
         ///  
         /// The `AuditTransaction` API retrieves audit information related to a specific transaction. This audit 
@@ -6450,12 +8028,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions/{transactionCode}/audit");
             path.ApplyField("companyCode", companyCode);
             path.ApplyField("transactionCode", transactionCode);
-            return (AuditTransactionModel) restCall("GET", path.relativePath, null, AuditTransactionModel.class.getName());
+            AuditTransactionModel responseModel = null;
+            responseModel = restCall("GET", path, null, AuditTransactionModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (AuditTransactionModel)System.JSON.deserialize(res.getBody(), AuditTransactionModel.class);
+            }
+            return responseModel
         }
 
 
         /// Get audit information about a transaction
-        ///
         /// Retrieve audit information about a transaction stored in AvaTax.
         ///  
         /// The `AuditTransaction` API retrieves audit information related to a specific transaction. This audit 
@@ -6481,12 +8064,17 @@ global class AvaTaxClient
             path.ApplyField("companyCode", companyCode);
             path.ApplyField("transactionCode", transactionCode);
             path.ApplyField("documentType", documentType);
-            return (AuditTransactionModel) restCall("GET", path.relativePath, null, AuditTransactionModel.class.getName());
+            AuditTransactionModel responseModel = null;
+            responseModel = restCall("GET", path, null, AuditTransactionModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (AuditTransactionModel)System.JSON.deserialize(res.getBody(), AuditTransactionModel.class);
+            }
+            return responseModel
         }
 
 
         /// Lock a set of documents
-        ///
         /// This API is available by invitation only.
         /// 
         /// Lock a set of transactions uniquely identified by DocumentIds provided. This API allows locking multiple documents at once.
@@ -6499,12 +8087,17 @@ global class AvaTaxClient
         public BulkLockTransactionResult BulkLockTransaction(BulkLockTransactionModel model)
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/lock");
-            return (BulkLockTransactionResult) restCall("POST", path.relativePath, model, BulkLockTransactionResult.class.getName());
+            BulkLockTransactionResult responseModel = null;
+            responseModel = restCall("POST", path, model, BulkLockTransactionResult.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (BulkLockTransactionResult)System.JSON.deserialize(res.getBody(), BulkLockTransactionResult.class);
+            }
+            return responseModel
         }
 
 
         /// Change a transaction's code
-        ///
         /// Renames a transaction uniquely identified by this URL by changing its `code` value.
         /// 
         /// This API is available as long as the transaction is in `saved` or `posted` status. When a transaction
@@ -6527,12 +8120,17 @@ global class AvaTaxClient
             path.ApplyField("companyCode", companyCode);
             path.ApplyField("transactionCode", transactionCode);
             path.AddQuery("documentType", documentType);
-            return (TransactionModel) restCall("POST", path.relativePath, model, TransactionModel.class.getName());
+            TransactionModel responseModel = null;
+            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
+            }
+            return responseModel
         }
 
 
         /// Commit a transaction for reporting
-        ///
         /// Marks a transaction by changing its status to `Committed`.
         /// 
         /// Transactions that are committed are available to be reported to a tax authority by Avalara Managed Returns.
@@ -6554,12 +8152,17 @@ global class AvaTaxClient
             path.ApplyField("companyCode", companyCode);
             path.ApplyField("transactionCode", transactionCode);
             path.AddQuery("documentType", documentType);
-            return (TransactionModel) restCall("POST", path.relativePath, model, TransactionModel.class.getName());
+            TransactionModel responseModel = null;
+            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
+            }
+            return responseModel
         }
 
 
         /// Create or adjust a transaction
-        ///
         /// Records a new transaction or adjust an existing transaction in AvaTax.
         /// 
         /// The `CreateOrAdjustTransaction` endpoint is used to create a new transaction or update an existing one. This API
@@ -6595,12 +8198,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/createoradjust");
             path.AddQuery("$include", include);
-            return (TransactionModel) restCall("POST", path.relativePath, model, TransactionModel.class.getName());
+            TransactionModel responseModel = null;
+            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
+            }
+            return responseModel
         }
 
 
         /// Create a new transaction
-        ///
         /// Records a new transaction in AvaTax.
         /// 
         /// A transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like
@@ -6642,12 +8250,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/create");
             path.AddQuery("$include", include);
-            return (TransactionModel) restCall("POST", path.relativePath, model, TransactionModel.class.getName());
+            TransactionModel responseModel = null;
+            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
+            }
+            return responseModel
         }
 
 
         /// Remove lines from an existing unlocked transaction
-        ///
         /// Remove lines to an existing unlocked transaction.
         ///  
         ///  The `DeleteLines` API allows you to remove transaction lines from existing unlocked transaction, so that customer will
@@ -6672,12 +8285,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/transactions/lines/delete");
             path.AddQuery("$include", include);
-            return (TransactionModel) restCall("POST", path.relativePath, model, TransactionModel.class.getName());
+            TransactionModel responseModel = null;
+            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve a single transaction by code
-        ///
         /// Get the current transaction identified by this company code, transaction code, and document type.
         /// 
         /// A transaction is uniquely identified by `companyCode`, `code` (often called Transaction Code), and `documentType`. 
@@ -6708,12 +8326,17 @@ global class AvaTaxClient
             path.ApplyField("transactionCode", transactionCode);
             path.AddQuery("documentType", documentType);
             path.AddQuery("$include", include);
-            return (TransactionModel) restCall("GET", path.relativePath, null, TransactionModel.class.getName());
+            TransactionModel responseModel = null;
+            responseModel = restCall("GET", path, null, TransactionModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve a single transaction by code
-        ///
         /// DEPRECATED: Please use the `GetTransactionByCode` API instead.
         /// 
         /// <param name="companyCode">The company code of the company that recorded this transaction</param>
@@ -6727,12 +8350,17 @@ global class AvaTaxClient
             path.ApplyField("transactionCode", transactionCode);
             path.ApplyField("documentType", documentType);
             path.AddQuery("$include", include);
-            return (TransactionModel) restCall("GET", path.relativePath, null, TransactionModel.class.getName());
+            TransactionModel responseModel = null;
+            responseModel = restCall("GET", path, null, TransactionModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve a single transaction by ID
-        ///
         /// Get the unique transaction identified by this URL.
         /// 
         /// This endpoint retrieves the exact transaction identified by this ID number even if that transaction was later adjusted
@@ -6757,12 +8385,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/{id}");
             path.ApplyField("id", id);
             path.AddQuery("$include", include);
-            return (TransactionModel) restCall("GET", path.relativePath, null, TransactionModel.class.getName());
+            TransactionModel responseModel = null;
+            responseModel = restCall("GET", path, null, TransactionModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all transactions
-        ///
         /// List all transactions attached to this company.
         /// 
         /// This endpoint is limited to returning 1,000 transactions at a time maximum.
@@ -6800,12 +8433,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<TransactionModel>) restCall("GET", path.relativePath, null, FetchResult<TransactionModel>.class.getName());
+            FetchResult<TransactionModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<TransactionModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<TransactionModel>)System.JSON.deserialize(res.getBody(), FetchResult<TransactionModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Lock a single transaction
-        ///
         /// Lock a transaction uniquely identified by this URL. 
         /// 
         /// This API is mainly used for connector developer to simulate what happens when Returns product locks a document.
@@ -6828,12 +8466,17 @@ global class AvaTaxClient
             path.ApplyField("companyCode", companyCode);
             path.ApplyField("transactionCode", transactionCode);
             path.AddQuery("documentType", documentType);
-            return (TransactionModel) restCall("POST", path.relativePath, model, TransactionModel.class.getName());
+            TransactionModel responseModel = null;
+            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
+            }
+            return responseModel
         }
 
 
         /// Create a refund for a transaction
-        ///
         /// Create a refund for a transaction.
         /// 
         /// The `RefundTransaction` API allows you to quickly and easily create a `ReturnInvoice` representing a refund
@@ -6880,12 +8523,17 @@ global class AvaTaxClient
             path.AddQuery("$include", include);
             path.AddQuery("documentType", documentType);
             path.AddQuery("useTaxDateOverride", useTaxDateOverride);
-            return (TransactionModel) restCall("POST", path.relativePath, model, TransactionModel.class.getName());
+            TransactionModel responseModel = null;
+            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
+            }
+            return responseModel
         }
 
 
         /// Perform multiple actions on a transaction
-        ///
         /// Performs one or more actions against the current transaction uniquely identified by this URL.
         /// 
         /// The `SettleTransaction` API call can perform the work of `ChangeCode`, `VerifyTransaction`, and `CommitTransaction`.
@@ -6907,12 +8555,17 @@ global class AvaTaxClient
             path.ApplyField("companyCode", companyCode);
             path.ApplyField("transactionCode", transactionCode);
             path.AddQuery("documentType", documentType);
-            return (TransactionModel) restCall("POST", path.relativePath, model, TransactionModel.class.getName());
+            TransactionModel responseModel = null;
+            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
+            }
+            return responseModel
         }
 
 
         /// Verify a transaction
-        ///
         /// Verifies that the transaction uniquely identified by this URL matches certain expected values.
         /// 
         /// If the transaction does not match these expected values, this API will return an error code indicating which value did not match.
@@ -6932,12 +8585,17 @@ global class AvaTaxClient
             path.ApplyField("companyCode", companyCode);
             path.ApplyField("transactionCode", transactionCode);
             path.AddQuery("documentType", documentType);
-            return (TransactionModel) restCall("POST", path.relativePath, model, TransactionModel.class.getName());
+            TransactionModel responseModel = null;
+            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
+            }
+            return responseModel
         }
 
 
         /// Void a transaction
-        ///
         /// Voids the current transaction uniquely identified by this URL.
         /// 
         /// A transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like
@@ -6959,12 +8617,17 @@ global class AvaTaxClient
             path.ApplyField("companyCode", companyCode);
             path.ApplyField("transactionCode", transactionCode);
             path.AddQuery("documentType", documentType);
-            return (TransactionModel) restCall("POST", path.relativePath, model, TransactionModel.class.getName());
+            TransactionModel responseModel = null;
+            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
+            }
+            return responseModel
         }
 
 
         /// Create a new UPC
-        ///
         /// Create one or more new UPC objects attached to this company.
         /// A UPC represents a single UPC code in your catalog and matches this product to the tax code identified by this UPC.
         /// 
@@ -6974,12 +8637,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/upcs");
             path.ApplyField("companyId", companyId);
-            return (List<UPCModel>) restCall("POST", path.relativePath, model, List<UPCModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<UPCModel> retVal = new List<UPCModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<UPCModel>)System.JSON.deserialize(res.getBody(), List<UPCModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Delete a single UPC
-        ///
         /// Marks the UPC object identified by this URL as deleted.
         /// 
         /// <param name="companyId">The ID of the company that owns this UPC.</param>
@@ -6989,12 +8661,21 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/upcs/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (List<ErrorDetail>) restCall("DELETE", path.relativePath, null, List<ErrorDetail>.class.getName());
+            httpResponse res = restCallForList("DELETE", path, null);
+            List<ErrorDetail> retVal = new List<ErrorDetail>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<ErrorDetail>)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Retrieve a single UPC
-        ///
         /// Get the UPC object identified by this URL.
         /// A UPC represents a single UPC code in your catalog and matches this product to the tax code identified by this UPC.
         /// 
@@ -7005,12 +8686,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/upcs/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (UPCModel) restCall("GET", path.relativePath, null, UPCModel.class.getName());
+            UPCModel responseModel = null;
+            responseModel = restCall("GET", path, null, UPCModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (UPCModel)System.JSON.deserialize(res.getBody(), UPCModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve UPCs for this company
-        ///
         /// List all UPC objects attached to this company.
         /// A UPC represents a single UPC code in your catalog and matches this product to the tax code identified by this UPC.
         /// 
@@ -7032,12 +8718,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<UPCModel>) restCall("GET", path.relativePath, null, FetchResult<UPCModel>.class.getName());
+            FetchResult<UPCModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<UPCModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<UPCModel>)System.JSON.deserialize(res.getBody(), FetchResult<UPCModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all UPCs
-        ///
         /// Get multiple UPC objects across all companies.
         /// A UPC represents a single UPC code in your catalog and matches this product to the tax code identified by this UPC.
         /// 
@@ -7057,12 +8748,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<UPCModel>) restCall("GET", path.relativePath, null, FetchResult<UPCModel>.class.getName());
+            FetchResult<UPCModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<UPCModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<UPCModel>)System.JSON.deserialize(res.getBody(), FetchResult<UPCModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Update a single UPC
-        ///
         /// Replace the existing UPC object at this URL with an updated object.
         /// A UPC represents a single UPC code in your catalog and matches this product to the tax code identified by this UPC.
         /// All data from the existing object will be replaced with data in the object you PUT. 
@@ -7076,12 +8772,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/upcs/{id}");
             path.ApplyField("companyId", companyId);
             path.ApplyField("id", id);
-            return (UPCModel) restCall("PUT", path.relativePath, model, UPCModel.class.getName());
+            UPCModel responseModel = null;
+            responseModel = restCall("PUT", path, model, UPCModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (UPCModel)System.JSON.deserialize(res.getBody(), UPCModel.class);
+            }
+            return responseModel
         }
 
 
         /// Create new users
-        ///
         /// Create one or more new user objects attached to this account.
         /// 
         /// A user represents one person with access privileges to make API calls and work with a specific account.
@@ -7098,12 +8799,21 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/users");
             path.ApplyField("accountId", accountId);
-            return (List<UserModel>) restCall("POST", path.relativePath, model, List<UserModel>.class.getName());
+            httpResponse res = restCallForList("POST", path, model);
+            List<UserModel> retVal = new List<UserModel>();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = restCallForList(List<UserModel>)System.JSON.deserialize(res.getBody(), List<UserModel>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            return retVal
         }
 
 
         /// Retrieve a single user
-        ///
         /// Get the user object identified by this URL.
         /// A user represents one person with access privileges to make API calls and work with a specific account.
         /// 
@@ -7116,12 +8826,17 @@ global class AvaTaxClient
             path.ApplyField("id", id);
             path.ApplyField("accountId", accountId);
             path.AddQuery("$include", include);
-            return (UserModel) restCall("GET", path.relativePath, null, UserModel.class.getName());
+            UserModel responseModel = null;
+            responseModel = restCall("GET", path, null, UserModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (UserModel)System.JSON.deserialize(res.getBody(), UserModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all entitlements for a single user
-        ///
         /// Return a list of all entitlements to which this user has rights to access.
         /// Entitlements are a list of specified API calls the user is permitted to make, a list of identifier numbers for companies the user is 
         /// allowed to use, and an access level identifier that indicates what types of access roles the user is allowed to use.
@@ -7145,12 +8860,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/users/{id}/entitlements");
             path.ApplyField("id", id);
             path.ApplyField("accountId", accountId);
-            return (UserEntitlementModel) restCall("GET", path.relativePath, null, UserEntitlementModel.class.getName());
+            UserEntitlementModel responseModel = null;
+            responseModel = restCall("GET", path, null, UserEntitlementModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (UserEntitlementModel)System.JSON.deserialize(res.getBody(), UserEntitlementModel.class);
+            }
+            return responseModel
         }
 
 
         /// Get information about a username.
-        ///
         /// You may call this API prior to creating a user, to check if a particular username is available for use. Using this API, you can 
         /// present a friendly experience prior to attempting to create a new user object.
         /// 
@@ -7161,12 +8881,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/usernames");
             path.AddQuery("username", username);
-            return (UsernameModel) restCall("GET", path.relativePath, null, UsernameModel.class.getName());
+            UsernameModel responseModel = null;
+            responseModel = restCall("GET", path, null, UsernameModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (UsernameModel)System.JSON.deserialize(res.getBody(), UsernameModel.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve users for this account
-        ///
         /// List all user objects attached to this account.
         /// A user represents one person with access privileges to make API calls and work with a specific account.
         /// 
@@ -7191,12 +8916,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<UserModel>) restCall("GET", path.relativePath, null, FetchResult<UserModel>.class.getName());
+            FetchResult<UserModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<UserModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<UserModel>)System.JSON.deserialize(res.getBody(), FetchResult<UserModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Retrieve all users
-        ///
         /// Get multiple user objects across all accounts.
         /// 
         /// A user represents one person or set of credentials with access privileges to make API calls and work with a specific account. A user can be authenticated
@@ -7221,12 +8951,17 @@ global class AvaTaxClient
             path.AddQuery("$top", top);
             path.AddQuery("$skip", skip);
             path.AddQuery("$orderBy", orderBy);
-            return (FetchResult<UserModel>) restCall("GET", path.relativePath, null, FetchResult<UserModel>.class.getName());
+            FetchResult<UserModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<UserModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<UserModel>)System.JSON.deserialize(res.getBody(), FetchResult<UserModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Update a single user
-        ///
         /// Replace the existing user object at this URL with an updated object.
         /// A user represents one person with access privileges to make API calls and work with a specific account.
         /// All data from the existing object will be replaced with data in the object you PUT. 
@@ -7240,12 +8975,17 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/users/{id}");
             path.ApplyField("id", id);
             path.ApplyField("accountId", accountId);
-            return (UserModel) restCall("PUT", path.relativePath, model, UserModel.class.getName());
+            UserModel responseModel = null;
+            responseModel = restCall("PUT", path, model, UserModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (UserModel)System.JSON.deserialize(res.getBody(), UserModel.class);
+            }
+            return responseModel
         }
 
 
         /// Checks if the current user is subscribed to a specific service
-        ///
         /// Returns a subscription object for the current account, or 404 Not Found if this subscription is not enabled for this account.
         /// This API call is intended to allow you to identify whether you have the necessary account configuration to access certain
         /// features of AvaTax, and would be useful in debugging access privilege problems.
@@ -7255,12 +8995,17 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/utilities/subscriptions/{serviceTypeId}");
             path.ApplyField("serviceTypeId", serviceTypeId);
-            return (SubscriptionModel) restCall("GET", path.relativePath, null, SubscriptionModel.class.getName());
+            SubscriptionModel responseModel = null;
+            responseModel = restCall("GET", path, null, SubscriptionModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (SubscriptionModel)System.JSON.deserialize(res.getBody(), SubscriptionModel.class);
+            }
+            return responseModel
         }
 
 
         /// List all services to which the current user is subscribed
-        ///
         /// Returns the list of all subscriptions enabled for the current account.
         /// This API is intended to help you determine whether you have the necessary subscription to use certain API calls
         /// within AvaTax.
@@ -7268,12 +9013,17 @@ global class AvaTaxClient
         public FetchResult<SubscriptionModel> ListMySubscriptions()
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/utilities/subscriptions");
-            return (FetchResult<SubscriptionModel>) restCall("GET", path.relativePath, null, FetchResult<SubscriptionModel>.class.getName());
+            FetchResult<SubscriptionModel> responseModel = null;
+            responseModel = restCall("GET", path, null, FetchResult<SubscriptionModel>.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (FetchResult<SubscriptionModel>)System.JSON.deserialize(res.getBody(), FetchResult<SubscriptionModel>.class);
+            }
+            return responseModel
         }
 
 
         /// Tests connectivity and version of the service
-        ///
         /// This API helps diagnose connectivity problems between your application and AvaTax; you may call this API even 
         /// if you do not have verified connection credentials.
         /// The results of this API call will help you determine whether your computer can contact AvaTax via the network,
@@ -7283,7 +9033,138 @@ global class AvaTaxClient
         public PingResultModel Ping()
         {
             AvaTaxPath path = new AvaTaxPath("/api/v2/utilities/ping");
-            return (PingResultModel) restCall("GET", path.relativePath, null, PingResultModel.class.getName());
+            PingResultModel responseModel = null;
+            responseModel = restCall("GET", path, null, PingResultModel.class.getName());
+            if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
+            {
+                responseModel.result = (PingResultModel)System.JSON.deserialize(res.getBody(), PingResultModel.class);
+            }
+            return responseModel
         }
+
+	global AvaTaxClient(string appName, string appVersion, string machineName, AvaTaxEnvironment environment)
+	{
+	WithClientIdentifier(appName, appVersion, machineName);
+
+	if(environment==AvaTaxEnvironment.Sandbox) 
+	{
+		envUri = Constants.AVATAX_SANDBOX_URL;
+	} else if(environment==AvaTaxEnvironment.Production)
+	{
+		envUri = Constants.AVATAX_PRODUCTION_URL;
+	}         
+	}
+        
+	global AvaTaxClient WithClientIdentifier(string appName, string appVersion, string machineName)
+	{
+	String templateString = '{0}; {1}; {2}; {3}; {4}';
+	String[] arguments = new String[]{appName, appVersion, 'ApexRestClient', API_VERSION, machineName};
+	clientHeader = String.Format(templateString,arguments);
+	return this;
+	}
+    
+	global AvaTaxClient(string appName, string appVersion, string machineName, String customEnvironment)
+	{
+	WithClientIdentifier(appName, appVersion, machineName);
+	envUri = customEnvironment;
+	}
+    
+	global AvaTaxClient WithSecurity(string headerString)
+	{
+	credentials = headerString;
+	return this;
+	}
+
+	global AvaTaxClient WithSecurity(string username, string password)
+	{
+	String templateString = '{0}:{1}';
+	String[] arguments = new String[]{username, password};
+	String combined = String.Format(templateString,arguments);
+        
+        
+	Blob Integers = Blob.valueOf(combined);
+	String base64 = EncodingUtil.base64Encode(Integers);
+	return WithSecurity('Basic ' + base64);
+	}
+    
+	global AvaTaxClient WithSecurity(integer accountId, string licenseKey)
+	{
+	String templateString = '{0}:{1}';
+	String[] arguments = new String[]{String.valueOf(accountId), licenseKey};
+	String combined = String.Format(templateString,arguments);
+	Blob Integers = Blob.valueOf(combined);
+	String base64 = EncodingUtil.base64Encode(Integers);
+	return WithSecurity('Basic ' + base64);
+	}
+    
+	global AvaTaxClient WithBearerToken(string bearerToken)
+	{
+	WithSecurity('Bearer' + bearerToken);
+	return this;
+	}
+	global Object restCall(String method, String relativePath, Object model,String type)
+	{
+	Http http = new Http();
+	HttpRequest httpRequest = new HttpRequest();
+	httpRequest.setEndpoint(envUri+relativePath);
+	HttpRequest.setMethod(method);
+	httpRequest.setHeader('Authorization', credentials);
+	httpRequest.setHeader('X-Avalara-Client', clientHeader);
+	httpRequest.setHeader('Accept', 'application/json');
+	httpRequest.setHeader('Content-Type', 'application/json');
+        	    
+    string finalRequest = JSON.serialize(model);
+    finalRequest = finalRequest.replace('documentDate', 'date');
+    finalRequest = 	finalRequest.replace('commitDocument', 'commit');
+    finalRequest = 	finalRequest.replace('commitTransaction', 'commit');
+    finalRequest = 	finalRequest.replace('lineNumber', 'number');
+        	
+        
+    if (model != null) 
+	{
+		httpRequest.setBody(finalRequest);
+	}
+            
+	HttpResponse httpResponse = http.send(httpRequest);
+	System.Type sType = System.Type.forName(type); 
+	String finalHttpResponse = httpResponse.getBody();
+	finalHttpResponse = finalHttpResponse.replace('AvaTax.Communications.TransactionType', 'TransactionType');
+	finalHttpResponse = finalHttpResponse.replace('AvaTax.Communications.ServiceType', 'ServiceType');
+	finalHttpResponse = finalHttpResponse.replace('@recordsetCount', 'count');
+	finalHttpResponse = finalHttpResponse.replace('@nextLink', 'nextLink');
+    finalHttpResponse = finalHttpResponse.replace('@transactionDate', 'date');
+    	   
+	Object obj;
+	if (finalHttpResponse != '')
+	{
+		obj = System.JSON.deserialize(finalHttpResponse, sType);
+		((ErrorResult)obj).statusCode=httpResponse.getStatusCode();
+	}
+            
+	return obj;
+	}
+    
+	global HttpResponse restCallForList(String method, String relativePath, Object model)
+	{
+
+	Http http = new Http();
+	HttpRequest httpRequest = new HttpRequest();
+	httpRequest.setEndpoint(envUri+relativePath);
+	HttpRequest.setMethod(method);
+	httpRequest.setHeader('Authorization', credentials);
+	httpRequest.setHeader('X-Avalara-Client', clientHeader);
+	httpRequest.setHeader('Accept', 'application/json');
+	httpRequest.setHeader('Content-Type', 'application/json');
+	if (model != null) 
+	{
+		httpRequest.setBody(JSON.serialize(model));
+	}
+            
+	HttpResponse httpResponse = http.send(httpRequest);
+	httpResponse.getBody().replace('AvaTax.Communications.TransactionType', 'TransactionType');
+	httpResponse.getBody().replace('AvaTax.Communications.ServiceType', 'ServiceType');
+            
+	return httpResponse;
+	}
 
 }

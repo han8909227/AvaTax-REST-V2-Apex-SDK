@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents a list of statuses of returns available in skyscraper
+/* Represents a list of statuses of returns available in skyscraper */
 
 global class SkyscraperStatusModel extends ErrorResult
 {

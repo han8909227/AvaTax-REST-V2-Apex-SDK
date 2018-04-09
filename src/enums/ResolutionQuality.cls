@@ -8,7 +8,7 @@
  *
  */
 
-/// The address resolution quality of an address validation result
+/* The address resolution quality of an address validation result */
 
 global enum ResolutionQuality
 {

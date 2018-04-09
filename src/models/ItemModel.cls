@@ -8,7 +8,7 @@
  *
  */
 
-/// Represents an item in your company's product catalog.
+/* Represents an item in your company's product catalog. */
 
 global class ItemModel extends ErrorResult
 {

@@ -8,7 +8,7 @@
  *
  */
 
-/// Rate type Model
+/* Rate type Model */
 
 global class RateTypeModel extends ErrorResult
 {

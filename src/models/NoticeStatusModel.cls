@@ -8,7 +8,7 @@
  *
  */
 
-/// Tax Notice Status Model
+/* Tax Notice Status Model */
 
 global class NoticeStatusModel extends ErrorResult
 {

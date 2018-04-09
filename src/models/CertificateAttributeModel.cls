@@ -8,9 +8,9 @@
  *
  */
 
-/// A certificate attribute can be thought of as a feature or flag that is applied to a certificate.
+/* A certificate attribute can be thought of as a feature or flag that is applied to a certificate.
     /// A single certificate can be linked to zero, one, or many certificate attributes. The full list of 
-    /// attributes can be obtained by calling the `ListCertificateAttributes` API.
+    /// attributes can be obtained by calling the `ListCertificateAttributes` API. */
 
 global class CertificateAttributeModel extends ErrorResult
 {

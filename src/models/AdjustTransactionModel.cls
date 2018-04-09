@@ -8,7 +8,7 @@
  *
  */
 
-/// Replace an existing transaction recorded in AvaTax with a new one.
+/* Replace an existing transaction recorded in AvaTax with a new one. */
 
 global class AdjustTransactionModel extends ErrorResult
 {
