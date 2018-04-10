@@ -23,7 +23,7 @@
 global class HsCodeModel extends ErrorResult
 {
 
-    /// The harmonized tariff system code for this section and chapter. 
+    // The harmonized tariff system code for this section and chapter. 
     // 
     // A full HS code contains more than six characters. Partial HS codes with two, four, or six characters may have child codes underneath them.
     // A child code is one that contains greater specificity than a parent code. It is recommended that when you identify a product you use
@@ -32,33 +32,33 @@ global class HsCodeModel extends ErrorResult
     // Top level sections do not have HS Codes.
     global String hsCode { get; set; }
 
-    /// A unique identifier for this harmonized tariff system code.
+    // A unique identifier for this harmonized tariff system code.
     // 
     // To search for a list of child codes underneath a specific HS code, search for codes where the child's `parentHsCodeId` value matches the parent's `id` value.
     global Integer id { get; set; }
 
-    /// The unique ID number of the parent HS code or HS code prefix.
+    // The unique ID number of the parent HS code or HS code prefix.
     // 
     // To search for a list of child codes underneath a specific HS code, search for codes where the child's `parentHsCodeId` value matches the parent's `id` value.
     global Integer parentHsCodeId { get; set; }
 
-    /// A human readable description that identifies Code descriptive text for this Section, Chapter, Heading, or Subheading.
+    // A human readable description that identifies Code descriptive text for this Section, Chapter, Heading, or Subheading.
     global String description { get; set; }
 
-    /// The system to which this HS code belongs.
+    // The system to which this HS code belongs.
     global String system { get; set; }
 
-    /// The destination country identified with this HS Code. This value applies when certain products are classified in specific ways by
+    // The destination country identified with this HS Code. This value applies when certain products are classified in specific ways by
     // bilateral trade agreements.
     global String destinationCountry { get; set; }
 
-    /// For codes that have been expired or defined on specific dates, this value indicates the earliest
+    // For codes that have been expired or defined on specific dates, this value indicates the earliest
     // date for which this code is considered valid.
     // 
     // If this value is null, this code can be used for any valid date earlier than its end date.
     global DateTime effDate { get; set; }
 
-    /// For codes that have been expired or defined on specific dates, this value indicates the latest
+    // For codes that have been expired or defined on specific dates, this value indicates the latest
     // date for which this code is considered valid.
     // 
     // If this value is null, this code can be used for any valid date later than its effective date.

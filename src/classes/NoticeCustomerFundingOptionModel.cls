@@ -13,15 +13,15 @@
 global class NoticeCustomerFundingOptionModel extends ErrorResult
 {
 
-    /// The unique ID number of this tax notice customer FundingOption.
+    // The unique ID number of this tax notice customer FundingOption.
     global Integer id { get; set; }
 
-    /// The description name of this tax authority FundingOption.
+    // The description name of this tax authority FundingOption.
     global String description { get; set; }
 
-    /// A flag if the FundingOption is active
+    // A flag if the FundingOption is active
     global Boolean activeFlag { get; set; }
 
-    /// sort order of the FundingOptions
+    // sort order of the FundingOptions
     global Integer sortOrder { get; set; }
 }

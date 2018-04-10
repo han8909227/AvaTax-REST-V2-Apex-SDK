@@ -18,30 +18,30 @@
 global class VerifyMultiDocumentModel extends ErrorResult
 {
 
-    /// Represents the unique code of this MultiDocument transaction.
+    // Represents the unique code of this MultiDocument transaction.
     // 
     // A MultiDocument transaction is uniquely identified by its `accountId`, `code`, and `type`.
     global String code { get; set; }
 
-    /// Represents the document type of this MultiDocument transaction. For more information about
+    // Represents the document type of this MultiDocument transaction. For more information about
     // document types, see [DocumentType](https://developer.avalara.com/api-reference/avatax/rest/v2/models/enums/DocumentType/).
     // 
     // A MultiDocument transaction is uniquely identified by its `accountId`, `code`, and `type`.
     global DocumentType type { get; set; }
 
-    /// Set this value if you wish to verify a match between `verifyTransactionDate` and
+    // Set this value if you wish to verify a match between `verifyTransactionDate` and
     // the `documentDate` value on the transaction recorded in AvaTax.
     // 
     // If you leave this field empty, we will skip verification for this field.
     global DateTime verifyTransactionDate { get; set; }
 
-    /// Set this value if you wish to verify a match between `verifyTotalAmount` and
+    // Set this value if you wish to verify a match between `verifyTotalAmount` and
     // the `totalAmount` value on the transaction recorded in AvaTax.
     // 
     // If you leave this field empty, we will skip verification for this field.
     global Decimal verifyTotalAmount { get; set; }
 
-    /// Set this value if you wish to verify a match between `verifyTotalTax` and
+    // Set this value if you wish to verify a match between `verifyTotalTax` and
     // the `totalTax` value on the transaction recorded in AvaTax.
     // 
     // If you leave this field empty, we will skip verification for this field.

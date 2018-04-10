@@ -13,30 +13,30 @@
 global class ReportParametersModel extends ErrorResult
 {
 
-    /// The start date filter used for your report
+    // The start date filter used for your report
     global DateTime startDate { get; set; }
 
-    /// The end date filter used for your report
+    // The end date filter used for your report
     global DateTime endDate { get; set; }
 
-    /// The country filter used for your report
+    // The country filter used for your report
     global String country { get; set; }
 
-    /// The state filter used for your report
+    // The state filter used for your report
     global String state { get; set; }
 
-    /// The date type filter used for your report
+    // The date type filter used for your report
     global String dateFilter { get; set; }
 
-    /// The doc type filter used for your report
+    // The doc type filter used for your report
     global String docType { get; set; }
 
-    /// The date format used for your report
+    // The date format used for your report
     global String dateFormat { get; set; }
 
-    /// The culture used your report
+    // The culture used your report
     global String culture { get; set; }
 
-    /// The currency code used for your report
+    // The currency code used for your report
     global String currencyCode { get; set; }
 }

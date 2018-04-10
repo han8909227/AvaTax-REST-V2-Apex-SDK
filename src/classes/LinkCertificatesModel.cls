@@ -13,6 +13,6 @@
 global class LinkCertificatesModel extends ErrorResult
 {
 
-    /// An array of certificate ID numbers to link
+    // An array of certificate ID numbers to link
     global Integer certificates { get; set; }
 }

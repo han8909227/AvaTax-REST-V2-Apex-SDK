@@ -27,21 +27,21 @@
 global class AddressesModel extends ErrorResult
 {
 
-    /// If this transaction occurred at a retail point-of-sale location, provide that single address here and leave
+    // If this transaction occurred at a retail point-of-sale location, provide that single address here and leave
     // all other address types null.
     global AddressLocationInfo singleLocation { get; set; }
 
-    /// The origination address where the products were shipped from, or from where the services originated.
+    // The origination address where the products were shipped from, or from where the services originated.
     global AddressLocationInfo shipFrom { get; set; }
 
-    /// The destination address where the products were shipped to, or where the services were delivered.
+    // The destination address where the products were shipped to, or where the services were delivered.
     global AddressLocationInfo shipTo { get; set; }
 
-    /// The place of business where you receive the customer's order. This address type is valid in the United States only
+    // The place of business where you receive the customer's order. This address type is valid in the United States only
     // and only applies to tangible personal property.
     global AddressLocationInfo pointOfOrderOrigin { get; set; }
 
-    /// The place of business where you accept/approve the customer’s order,
+    // The place of business where you accept/approve the customer’s order,
     // thereby becoming contractually obligated to make the sale. This address type is valid in the United States only
     // and only applies to tangible personal property.
     global AddressLocationInfo pointOfOrderAcceptance { get; set; }

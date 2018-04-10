@@ -13,6 +13,6 @@
 global class VoidTransactionModel extends ErrorResult
 {
 
-    /// Please specify the reason for voiding or cancelling this transaction
+    // Please specify the reason for voiding or cancelling this transaction
     global VoidReasonCode code { get; set; }
 }

@@ -13,6 +13,6 @@
 global class FilingStatusChangeModel extends ErrorResult
 {
 
-    /// Indicates the filing status you are requesting for this company
+    // Indicates the filing status you are requesting for this company
     global CompanyFilingStatus requestedStatus { get; set; }
 }

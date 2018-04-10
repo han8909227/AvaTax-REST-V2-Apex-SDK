@@ -13,10 +13,10 @@
 global enum TextCase
 {
 
-    /// Upper case
+    // Upper case
     Upper,
 
-    /// Mixed Case
+    // Mixed Case
     Mixed,
 
 }

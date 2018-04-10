@@ -15,16 +15,16 @@
 global class CertificateAttributeModel extends ErrorResult
 {
 
-    /// A unique ID number representing this certificate attribute.
+    // A unique ID number representing this certificate attribute.
     global Integer id { get; set; }
 
-    /// A friendly readable name for this certificate attribute.
+    // A friendly readable name for this certificate attribute.
     global String name { get; set; }
 
-    /// A full help text description of the certificate attribute.
+    // A full help text description of the certificate attribute.
     global String description { get; set; }
 
-    /// This value is true if this is a system-defined certificate attribute. System-defined attributes
+    // This value is true if this is a system-defined certificate attribute. System-defined attributes
     // cannot be modified or deleted on the CertCapture website.
     global Boolean isSystemCode { get; set; }
 }

@@ -13,21 +13,21 @@
 global class IsoCountryModel extends ErrorResult
 {
 
-    /// The two character ISO 3166 country code
+    // The two character ISO 3166 country code
     global String code { get; set; }
 
-    /// The three character ISO 3166 country code
+    // The three character ISO 3166 country code
     global String alpha3Code { get; set; }
 
-    /// The full name of this country in uppercase.
+    // The full name of this country in uppercase.
     // 
     // For names in proper or formal case, or for names in other languages, please examine the `localizedNames` element for an appropriate name.
     global String name { get; set; }
 
-    /// True if this country is a member of the European Union
+    // True if this country is a member of the European Union
     global Boolean isEuropeanUnion { get; set; }
 
-    /// A list of localized names in a variety of languages.
+    // A list of localized names in a variety of languages.
     // 
     // This list is maintained by the International Standards Organization.
     global List<IsoLocalizedName> localizedNames { get; set; }

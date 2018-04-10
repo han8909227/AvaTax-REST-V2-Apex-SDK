@@ -13,13 +13,13 @@
 global enum FilingOptionTypeId
 {
 
-    /// Denotes the tax return is being filed on paper.
+    // Denotes the tax return is being filed on paper.
     Paper,
 
-    /// Denotes the form can be efiled optionally.
+    // Denotes the form can be efiled optionally.
     OptionalEfile,
 
-    /// Denotes the form is being filed via efile.
+    // Denotes the form is being filed via efile.
     MandatoryEfile,
 
 }

@@ -13,15 +13,15 @@
 global class TransactionLocationTypeModel extends ErrorResult
 {
 
-    /// Location type ID for this location type in transaction
+    // Location type ID for this location type in transaction
     global Integer documentLocationTypeId { get; set; }
 
-    /// Transaction ID
+    // Transaction ID
     global Integer documentId { get; set; }
 
-    /// Address ID for the transaction
+    // Address ID for the transaction
     global Integer documentAddressId { get; set; }
 
-    /// Location type code
+    // Location type code
     global String locationTypeCode { get; set; }
 }

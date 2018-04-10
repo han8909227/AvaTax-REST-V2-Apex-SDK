@@ -18,9 +18,9 @@
 global class CustomFieldModel extends ErrorResult
 {
 
-    /// The name of the custom field.
+    // The name of the custom field.
     global String name { get; set; }
 
-    /// The value of the custom field.
+    // The value of the custom field.
     global String value { get; set; }
 }

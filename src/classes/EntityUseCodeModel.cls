@@ -13,15 +13,15 @@
 global class EntityUseCodeModel extends ErrorResult
 {
 
-    /// The Avalara-recognized entity use code for this definition
+    // The Avalara-recognized entity use code for this definition
     global String code { get; set; }
 
-    /// The name of this entity use code
+    // The name of this entity use code
     global String name { get; set; }
 
-    /// Text describing the meaning of this use code
+    // Text describing the meaning of this use code
     global String description { get; set; }
 
-    /// A list of countries where this use code is valid
+    // A list of countries where this use code is valid
     global List<String> validCountries { get; set; }
 }

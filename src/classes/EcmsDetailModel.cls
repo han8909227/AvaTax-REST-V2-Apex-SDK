@@ -13,16 +13,16 @@
 global class EcmsDetailModel extends ErrorResult
 {
 
-    /// detail id
+    // detail id
     global Integer exemptCertDetailId { get; set; }
 
-    /// exempt certificate id
+    // exempt certificate id
     global Integer exemptCertId { get; set; }
 
-    /// State FIPS
+    // State FIPS
     global String stateFips { get; set; }
 
-    /// Name or ISO 3166 code identifying the region within the country.
+    // Name or ISO 3166 code identifying the region within the country.
     // 
     // This field supports many different region identifiers:
     //  * Two and three character ISO 3166 region codes
@@ -32,10 +32,10 @@ global class EcmsDetailModel extends ErrorResult
     // For a full list of all supported codes and names, please see the Definitions API `ListRegions`.
     global String region { get; set; }
 
-    /// ID number
+    // ID number
     global String idNo { get; set; }
 
-    /// Name or ISO 3166 code identifying the country.
+    // Name or ISO 3166 code identifying the country.
     // 
     // This field supports many different country identifiers:
     //  * Two character ISO 3166 codes
@@ -46,15 +46,15 @@ global class EcmsDetailModel extends ErrorResult
     // For a full list of all supported codes and names, please see the Definitions API `ListCountries`.
     global String country { get; set; }
 
-    /// End date of this exempt certificate
+    // End date of this exempt certificate
     global DateTime endDate { get; set; }
 
-    /// ID type of this exempt certificate
+    // ID type of this exempt certificate
     global String idType { get; set; }
 
-    /// Is the tax code list an exculsion list?
+    // Is the tax code list an exculsion list?
     global Byte isTaxCodeListExclusionList { get; set; }
 
-    /// optional: list of tax code associated with this exempt certificate detail
+    // optional: list of tax code associated with this exempt certificate detail
     global List<EcmsDetailTaxCodeModel> taxCodes { get; set; }
 }

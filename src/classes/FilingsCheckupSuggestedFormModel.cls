@@ -13,18 +13,18 @@
 global class FilingsCheckupSuggestedFormModel extends ErrorResult
 {
 
-    /// Tax Authority ID of the suggested form returned
+    // Tax Authority ID of the suggested form returned
     global Integer taxAuthorityId { get; set; }
 
-    /// Country of the suggested form returned
+    // Country of the suggested form returned
     global String country { get; set; }
 
-    /// Region of the suggested form returned
+    // Region of the suggested form returned
     global String region { get; set; }
 
-    /// 
+    // 
     global String returnName { get; set; }
 
-    /// Name of the suggested form returned
+    // Name of the suggested form returned
     global String taxFormCode { get; set; }
 }

@@ -13,40 +13,40 @@
 global enum ResolutionQuality
 {
 
-    /// Location was not geocoded
+    // Location was not geocoded
     NotCoded,
 
-    /// Location was already geocoded on the request
+    // Location was already geocoded on the request
     External,
 
-    /// Avalara-defined country centroid
+    // Avalara-defined country centroid
     CountryCentroid,
 
-    /// Avalara-defined state / province centroid
+    // Avalara-defined state / province centroid
     RegionCentroid,
 
-    /// Geocoded at a level more coarse than a PostalCentroid1
+    // Geocoded at a level more coarse than a PostalCentroid1
     PartialCentroid,
 
-    /// Largest postal code (zip5 in US, left three in CA, etc
+    // Largest postal code (zip5 in US, left three in CA, etc
     PostalCentroidGood,
 
-    /// Better postal code (zip7 in US)
+    // Better postal code (zip7 in US)
     PostalCentroidBetter,
 
-    /// Best postal code (zip9 in US, complete postal code elsewhere)
+    // Best postal code (zip9 in US, complete postal code elsewhere)
     PostalCentroidBest,
 
-    /// Nearest intersection
+    // Nearest intersection
     Intersection,
 
-    /// Interpolated to rooftop
+    // Interpolated to rooftop
     Interpolated,
 
-    /// Assumed to be rooftop level, non-interpolated
+    // Assumed to be rooftop level, non-interpolated
     Rooftop,
 
-    /// Pulled from a static list of geocodes for specific jurisdictions
+    // Pulled from a static list of geocodes for specific jurisdictions
     Constant,
 
 }

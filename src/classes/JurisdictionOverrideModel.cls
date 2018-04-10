@@ -16,22 +16,22 @@
 global class JurisdictionOverrideModel extends ErrorResult
 {
 
-    /// The unique ID number of this override.
+    // The unique ID number of this override.
     global Integer id { get; set; }
 
-    /// The unique ID number assigned to this account.
+    // The unique ID number assigned to this account.
     global Integer accountId { get; set; }
 
-    /// A description of why this jurisdiction override was created.
+    // A description of why this jurisdiction override was created.
     global String description { get; set; }
 
-    /// The street address of the physical location affected by this override.
+    // The street address of the physical location affected by this override.
     global String line1 { get; set; }
 
-    /// The city address of the physical location affected by this override.
+    // The city address of the physical location affected by this override.
     global String city { get; set; }
 
-    /// Name or ISO 3166 code identifying the region within the country to be affected by this override.
+    // Name or ISO 3166 code identifying the region within the country to be affected by this override.
     // 
     // Note that only United States addresses are affected by the jurisdiction override system.
     // 
@@ -43,41 +43,41 @@ global class JurisdictionOverrideModel extends ErrorResult
     // For a full list of all supported codes and names, please see the Definitions API `ListRegions`.
     global String region { get; set; }
 
-    /// The two character ISO-3166 country code of the country affected by this override.
+    // The two character ISO-3166 country code of the country affected by this override.
     // 
     // Note that only United States addresses are affected by the jurisdiction override system.
     global String country { get; set; }
 
-    /// The postal code of the physical location affected by this override.
+    // The postal code of the physical location affected by this override.
     global String postalCode { get; set; }
 
-    /// The date when this override first takes effect. Set this value to null to affect all dates up to the end date.
+    // The date when this override first takes effect. Set this value to null to affect all dates up to the end date.
     global DateTime effectiveDate { get; set; }
 
-    /// The date when this override will cease to take effect. Set this value to null to never expire.
+    // The date when this override will cease to take effect. Set this value to null to never expire.
     global DateTime endDate { get; set; }
 
-    /// The date when this record was created.
+    // The date when this record was created.
     global DateTime createdDate { get; set; }
 
-    /// The User ID of the user who created this record.
+    // The User ID of the user who created this record.
     global Integer createdUserId { get; set; }
 
-    /// The date/time when this record was last modified.
+    // The date/time when this record was last modified.
     global DateTime modifiedDate { get; set; }
 
-    /// The user ID of the user who last modified this record.
+    // The user ID of the user who last modified this record.
     global Integer modifiedUserId { get; set; }
 
-    /// A list of the tax jurisdictions that will be assigned to this overridden address.
+    // A list of the tax jurisdictions that will be assigned to this overridden address.
     global List<JurisdictionModel> jurisdictions { get; set; }
 
-    /// The TaxRegionId of the new location affected by this jurisdiction override.
+    // The TaxRegionId of the new location affected by this jurisdiction override.
     global Integer taxRegionId { get; set; }
 
-    /// The boundary level of this override
+    // The boundary level of this override
     global BoundaryLevel boundaryLevel { get; set; }
 
-    /// True if this is a default boundary
+    // True if this is a default boundary
     global Boolean isDefault { get; set; }
 }

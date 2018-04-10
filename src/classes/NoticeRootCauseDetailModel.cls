@@ -13,15 +13,15 @@
 global class NoticeRootCauseDetailModel extends ErrorResult
 {
 
-    /// The unique ID number of this filing frequency.
+    // The unique ID number of this filing frequency.
     global Integer id { get; set; }
 
-    /// TaxNoticeId
+    // TaxNoticeId
     global Integer noticeId { get; set; }
 
-    /// TaxNoticeRootCauseId
+    // TaxNoticeRootCauseId
     global Integer taxNoticeRootCauseId { get; set; }
 
-    /// The description name of this root cause
+    // The description name of this root cause
     global String description { get; set; }
 }

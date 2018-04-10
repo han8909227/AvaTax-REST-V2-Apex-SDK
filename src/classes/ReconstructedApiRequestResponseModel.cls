@@ -17,6 +17,6 @@
 global class ReconstructedApiRequestResponseModel extends ErrorResult
 {
 
-    /// API request
+    // API request
     global CreateTransactionModel request { get; set; }
 }

@@ -13,12 +13,12 @@
 global class RateTypeModel extends ErrorResult
 {
 
-    /// The unique ID number of this rate type.
+    // The unique ID number of this rate type.
     global String id { get; set; }
 
-    /// Description of this rate type.
+    // Description of this rate type.
     global String description { get; set; }
 
-    /// Country code for this rate type
+    // Country code for this rate type
     global String country { get; set; }
 }

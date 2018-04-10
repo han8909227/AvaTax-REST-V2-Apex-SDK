@@ -13,14 +13,14 @@
 global class AdjustMultiDocumentModel extends ErrorResult
 {
 
-    /// A reason code indicating why this adjustment was made
+    // A reason code indicating why this adjustment was made
     global AdjustmentReason adjustmentReason { get; set; }
 
-    /// If the AdjustmentReason is "Other", specify the reason here.
+    // If the AdjustmentReason is "Other", specify the reason here.
     // 
     // This is required when the AdjustmentReason is 8 (Other).
     global String adjustDescription { get; set; }
 
-    /// Replace the current MultiDocument transaction with tax data calculated for this new MultiDocument transaction
+    // Replace the current MultiDocument transaction with tax data calculated for this new MultiDocument transaction
     global CreateMultiDocumentModel newTransaction { get; set; }
 }

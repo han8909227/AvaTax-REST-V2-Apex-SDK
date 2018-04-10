@@ -13,13 +13,13 @@
 global enum WelcomeEmail
 {
 
-    /// Normal
+    // Normal
     Normal,
 
-    /// Suppressed
+    // Suppressed
     Suppressed,
 
-    /// Custom
+    // Custom
     Custom,
 
 }

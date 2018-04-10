@@ -16,19 +16,19 @@
 global class CertificateModel extends ErrorResult
 {
 
-    /// Unique ID number of this certificate.
+    // Unique ID number of this certificate.
     global Integer id { get; set; }
 
-    /// The unique ID number of the AvaTax company that recorded this certificate.
+    // The unique ID number of the AvaTax company that recorded this certificate.
     global Integer companyId { get; set; }
 
-    /// The date when this certificate was signed.
+    // The date when this certificate was signed.
     global DateTime signedDate { get; set; }
 
-    /// Expiration date when this certificate will no longer be valid.
+    // Expiration date when this certificate will no longer be valid.
     global DateTime expirationDate { get; set; }
 
-    /// File name for the image of this certificate.
+    // File name for the image of this certificate.
     // 
     // When creating a certificate, if you do not upload a PDF or JPG image, you must specify the filename
     // of the certificate as it is tracked in your repository.
@@ -38,57 +38,57 @@ global class CertificateModel extends ErrorResult
     // put values in more than one of them.
     global String filename { get; set; }
 
-    /// True if this certificate is marked as valid. A valid certificate can be considered for exemption purposes.
+    // True if this certificate is marked as valid. A valid certificate can be considered for exemption purposes.
     // When a certificate is marked invalid, it will no longer be considered when calculating exemption for
     // a customer.
     global Boolean valid { get; set; }
 
-    /// This value is true if the certificate has gone through the certificate validation process.
+    // This value is true if the certificate has gone through the certificate validation process.
     // For more information on the certificate validation process, please see the Avalara Help Center.
     global Boolean verified { get; set; }
 
-    /// If this certificate provides exemption from transactional taxes, what percentage of the transaction 
+    // If this certificate provides exemption from transactional taxes, what percentage of the transaction 
     // is considered exempt?
     // 
     // For a fully exempt certificate, this percentage should be 100.
     global Decimal exemptPercentage { get; set; }
 
-    /// This value is true if this certificate is a single (or standalone) certificate. This value is set
+    // This value is true if this certificate is a single (or standalone) certificate. This value is set
     // during the audit stage of the certificate validation process.
     global Boolean isSingleCertificate { get; set; }
 
-    /// The exemption reason associated with this certificate.
+    // The exemption reason associated with this certificate.
     global ExemptionReasonModel exemptionReason { get; set; }
 
-    /// The date/time when this record was created.
+    // The date/time when this record was created.
     global DateTime createdDate { get; set; }
 
-    /// The date/time when this record was last modified.
+    // The date/time when this record was last modified.
     global DateTime modifiedDate { get; set; }
 
-    /// Number of pages contained within this certificate.
+    // Number of pages contained within this certificate.
     global Integer pageCount { get; set; }
 
-    /// A list of customers to which this certificate applies. You can fetch this data by specifying
+    // A list of customers to which this certificate applies. You can fetch this data by specifying
     // `$include=customers` when calling a certificate fetch API.
     global List<CustomerModel> customers { get; set; }
 
-    /// A list of purchase order numbers that are valid for use with this certificate.
+    // A list of purchase order numbers that are valid for use with this certificate.
     // 
     // If this certificate is applicable for all purchase order numbers, this field will be empty.
     // 
     // You can fetch this data by specifying `$include=ponumbers` when calling a certificate fetch API.
     global List<PoNumberModel> poNumbers { get; set; }
 
-    /// The exposure zone where this certificate is valid.
+    // The exposure zone where this certificate is valid.
     global ExposureZoneModel exposureZone { get; set; }
 
-    /// A list of certificate attributes that apply to this certificate.
+    // A list of certificate attributes that apply to this certificate.
     // 
     // You can fetch this data by specifying `$include=attributes` when calling a certificate fetch API.
     global List<CertificateAttributeModel> attributes { get; set; }
 
-    /// This field is available for input only. To retrieve the image after creation, use the 
+    // This field is available for input only. To retrieve the image after creation, use the 
     // `DownloadCertificateImage` API.
     // 
     // When creating a certificate, you may optionally provide a PDF image in Base64 URLEncoded format. 
@@ -100,7 +100,7 @@ global class CertificateModel extends ErrorResult
     // put values in more than one of them.
     global String pdf { get; set; }
 
-    /// This field is available for input only. To retrieve the image after creation, use the 
+    // This field is available for input only. To retrieve the image after creation, use the 
     // `DownloadCertificateImage` API.
     // 
     // When creating a certificate, you may optionally provide a list of JPG images, one per page, in

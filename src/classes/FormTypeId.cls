@@ -13,31 +13,31 @@
 global enum FormTypeId
 {
 
-    /// Denotes the form type is Sales and Use Tax
+    // Denotes the form type is Sales and Use Tax
     SalesAndUse,
 
-    /// Denotes the form type is Sales Tax only
+    // Denotes the form type is Sales Tax only
     Sales,
 
-    /// Denotes the form type is Sellers Use Tax only
+    // Denotes the form type is Sellers Use Tax only
     SellersUse,
 
-    /// Denotes the form type is Lodging Tax only
+    // Denotes the form type is Lodging Tax only
     Lodging,
 
-    /// Denotes the form type is Sales and Lodging Tax
+    // Denotes the form type is Sales and Lodging Tax
     SalesAndLodging,
 
-    /// Denotes the form type is Consumer Use Tax only
+    // Denotes the form type is Consumer Use Tax only
     ConsumerUse,
 
-    /// Denotes the form type is Resort and Rental Tax
+    // Denotes the form type is Resort and Rental Tax
     ResortAndRental,
 
-    /// Denotes the form type is Tourist and Rental Tax
+    // Denotes the form type is Tourist and Rental Tax
     TouristAndRental,
 
-    /// Denotes the form type is Prepayment
+    // Denotes the form type is Prepayment
     Prepayment,
 
 }

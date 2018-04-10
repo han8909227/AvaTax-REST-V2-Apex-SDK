@@ -13,6 +13,6 @@
 global class LinkCustomersModel extends ErrorResult
 {
 
-    /// An array of customerCodes that are exempted by this certificate
+    // An array of customerCodes that are exempted by this certificate
     global List<String> customers { get; set; }
 }

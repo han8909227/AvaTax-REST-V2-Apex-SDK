@@ -13,19 +13,19 @@
 global enum NoticeCustomerType
 {
 
-    /// AvaTax Returns
+    // AvaTax Returns
     AvaTaxReturns,
 
-    /// Stand Alone
+    // Stand Alone
     StandAlone,
 
-    /// Strategic
+    // Strategic
     Strategic,
 
-    /// SST
+    // SST
     SST,
 
-    /// TrustFile
+    // TrustFile
     TrustFile,
 
 }

@@ -13,12 +13,12 @@
 global class UserEntitlementModel extends ErrorResult
 {
 
-    /// List of API names and categories that this user is permitted to access
+    // List of API names and categories that this user is permitted to access
     global List<String> permissions { get; set; }
 
-    /// What access privileges does the current user have to see companies?
+    // What access privileges does the current user have to see companies?
     global CompanyAccessLevel accessLevel { get; set; }
 
-    /// The identities of all companies this user is permitted to access
+    // The identities of all companies this user is permitted to access
     global Integer companies { get; set; }
 }

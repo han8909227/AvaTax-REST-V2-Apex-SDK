@@ -13,9 +13,9 @@
 global class FilingAnswerModel extends ErrorResult
 {
 
-    /// The ID number for a filing question
+    // The ID number for a filing question
     global Integer filingQuestionId { get; set; }
 
-    /// The value of the answer for the filing question identified by filingQuestionId
+    // The value of the answer for the filing question identified by filingQuestionId
     global Dictionary<string, string> answer { get; set; }
 }

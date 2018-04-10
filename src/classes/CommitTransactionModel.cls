@@ -13,7 +13,7 @@
 global class CommitTransactionModel extends ErrorResult
 {
 
-    /// Set this value to be `true` to commit this transaction.
+    // Set this value to be `true` to commit this transaction.
     // 
     // Committing a transaction allows it to be reported on a tax filing. Uncommitted transactions will not be reported.
     global Boolean commit { get; set; }

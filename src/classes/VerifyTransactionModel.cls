@@ -17,19 +17,19 @@
 global class VerifyTransactionModel extends ErrorResult
 {
 
-    /// Set this value if you wish to verify a match between `verifyTransactionDate` and
+    // Set this value if you wish to verify a match between `verifyTransactionDate` and
     // the `documentDate` value on the transaction recorded in AvaTax.
     // 
     // If you leave this field empty, we will skip verification for this field.
     global DateTime verifyTransactionDate { get; set; }
 
-    /// Set this value if you wish to verify a match between `verifyTotalAmount` and
+    // Set this value if you wish to verify a match between `verifyTotalAmount` and
     // the `totalAmount` value on the transaction recorded in AvaTax.
     // 
     // If you leave this field empty, we will skip verification for this field.
     global Decimal verifyTotalAmount { get; set; }
 
-    /// Set this value if you wish to verify a match between `verifyTotalTax` and
+    // Set this value if you wish to verify a match between `verifyTotalTax` and
     // the `totalTax` value on the transaction recorded in AvaTax.
     // 
     // If you leave this field empty, we will skip verification for this field.

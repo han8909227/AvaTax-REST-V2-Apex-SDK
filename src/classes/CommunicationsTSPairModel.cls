@@ -13,23 +13,23 @@
 global class CommunicationsTSPairModel extends ErrorResult
 {
 
-    /// The numeric Id of the transaction type.
+    // The numeric Id of the transaction type.
     global Integer transactionTypeId { get; set; }
 
-    /// The numeric Id of the service type.
+    // The numeric Id of the service type.
     global Integer serviceTypeId { get; set; }
 
-    /// The name of the transaction type.
+    // The name of the transaction type.
     [JsonProperty(PropertyName = "AvaTax.Communications.TransactionType")]
     global String TransactionType { get; set; }
 
-    /// The name of the service type.
+    // The name of the service type.
     [JsonProperty(PropertyName = "AvaTax.Communications.ServiceType")]
     global String ServiceType { get; set; }
 
-    /// The description of the transaction/service type pair.
+    // The description of the transaction/service type pair.
     global String description { get; set; }
 
-    /// List of the parameters (among Charge, Minutes and Lines) that will be used for calculation for this T/S pair.
+    // List of the parameters (among Charge, Minutes and Lines) that will be used for calculation for this T/S pair.
     global List<String> requiredParameters { get; set; }
 }

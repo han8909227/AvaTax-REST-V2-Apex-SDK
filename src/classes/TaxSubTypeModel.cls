@@ -13,15 +13,15 @@
 global class TaxSubTypeModel extends ErrorResult
 {
 
-    /// The unique ID number of this tax sub-type.
+    // The unique ID number of this tax sub-type.
     global Integer id { get; set; }
 
-    /// The unique human readable Id of this tax sub-type.
+    // The unique human readable Id of this tax sub-type.
     global String taxSubType { get; set; }
 
-    /// The description of this tax sub-type.
+    // The description of this tax sub-type.
     global String description { get; set; }
 
-    /// The upper level group of tax types.
+    // The upper level group of tax types.
     global String taxTypeGroup { get; set; }
 }

@@ -13,29 +13,29 @@
 global class AuditMultiDocumentModel extends ErrorResult
 {
 
-    /// Reconstructed API request/response pair that can be used to adjust or re-create this MultiDocument transaction.
+    // Reconstructed API request/response pair that can be used to adjust or re-create this MultiDocument transaction.
     global ReconstructedMultiDocumentModel reconstructed { get; set; }
 
-    /// Represents the unique code of this MultiDocument transaction.
+    // Represents the unique code of this MultiDocument transaction.
     // 
     // A MultiDocument transaction is uniquely identified by its `accountId`, `code`, and `type`.
     global String code { get; set; }
 
-    /// Represents the document type of this MultiDocument transaction. For more information about
+    // Represents the document type of this MultiDocument transaction. For more information about
     // document types, see [DocumentType](https://developer.avalara.com/api-reference/avatax/rest/v2/models/enums/DocumentType/).
     // 
     // A MultiDocument transaction is uniquely identified by its `accountId`, `code`, and `type`.
     global DocumentType type { get; set; }
 
-    /// Server timestamp, in UTC, of the date/time when the original transaction was created
+    // Server timestamp, in UTC, of the date/time when the original transaction was created
     global DateTime serverTimestamp { get; set; }
 
-    /// Length of time the original API call took
+    // Length of time the original API call took
     global DateTime serverDuration { get; set; }
 
-    /// api call status
+    // api call status
     global ApiCallStatus apiCallStatus { get; set; }
 
-    /// Original API request/response
+    // Original API request/response
     global OriginalApiRequestResponseModel original { get; set; }
 }

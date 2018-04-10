@@ -13,6 +13,6 @@
 global class SetPasswordModel extends ErrorResult
 {
 
-    /// New Password
+    // New Password
     global String newPassword { get; set; }
 }

@@ -13,12 +13,12 @@
 global class NexusTaxTypeGroupModel extends ErrorResult
 {
 
-    /// The unique ID number of this nexus tax type group.
+    // The unique ID number of this nexus tax type group.
     global Integer id { get; set; }
 
-    /// The unique human readable Id of this nexus tax type group.
+    // The unique human readable Id of this nexus tax type group.
     global String nexusTaxTypeGroupId { get; set; }
 
-    /// The description of this nexus tax type group.
+    // The description of this nexus tax type group.
     global String description { get; set; }
 }

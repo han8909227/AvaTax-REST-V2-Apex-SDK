@@ -13,9 +13,9 @@
 global class requiredFilingCalendarDataFieldModel extends ErrorResult
 {
 
-    /// Region of the verification request
+    // Region of the verification request
     global String name { get; set; }
 
-    /// Username that we are using for verification
+    // Username that we are using for verification
     global String description { get; set; }
 }

@@ -13,21 +13,21 @@
 global class FundingConfigurationModel extends ErrorResult
 {
 
-    /// CompanyID
+    // CompanyID
     global Integer companyId { get; set; }
 
-    /// Domain
+    // Domain
     global String systemType { get; set; }
 
-    /// Recipient
+    // Recipient
     global String currency { get; set; }
 
-    /// Sender
+    // Sender
     global Boolean isFundingSetup { get; set; }
 
-    /// DocumentKey
+    // DocumentKey
     global String fundingMethod { get; set; }
 
-    /// LastPolled
+    // LastPolled
     global DateTime lastUpdated { get; set; }
 }

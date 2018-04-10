@@ -13,9 +13,9 @@
 global class PasswordChangeModel extends ErrorResult
 {
 
-    /// Old Password
+    // Old Password
     global String oldPassword { get; set; }
 
-    /// New Password
+    // New Password
     global String newPassword { get; set; }
 }

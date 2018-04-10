@@ -13,13 +13,13 @@
 global enum PasswordStatusId
 {
 
-    /// UserCannotChange
+    // UserCannotChange
     UserCannotChange,
 
-    /// UserCanChange
+    // UserCanChange
     UserCanChange,
 
-    /// UserMustChange
+    // UserMustChange
     UserMustChange,
 
 }

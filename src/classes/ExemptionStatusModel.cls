@@ -13,9 +13,9 @@
 global class ExemptionStatusModel extends ErrorResult
 {
 
-    /// The exemption status of this customer in this country/region.
+    // The exemption status of this customer in this country/region.
     global String status { get; set; }
 
-    /// Certificate if the customer is exempted
+    // Certificate if the customer is exempted
     global CertificateModel certificate { get; set; }
 }

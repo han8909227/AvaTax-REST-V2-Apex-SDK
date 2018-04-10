@@ -13,15 +13,15 @@
 global class CycleExpireOptionModel extends ErrorResult
 {
 
-    /// The period start date for the customer's first transaction in the jurisdiction being expired.
+    // The period start date for the customer's first transaction in the jurisdiction being expired.
     global DateTime transactionalPeriodStart { get; set; }
 
-    /// The period end date for the customer's last transaction in the jurisdiction being expired.
+    // The period end date for the customer's last transaction in the jurisdiction being expired.
     global DateTime transactionalPeriodEnd { get; set; }
 
-    /// The jurisdiction-assigned due date for the form.
+    // The jurisdiction-assigned due date for the form.
     global DateTime filingDueDate { get; set; }
 
-    /// A descriptive name of the cycle and due date of the form.
+    // A descriptive name of the cycle and due date of the form.
     global String cycleName { get; set; }
 }

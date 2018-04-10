@@ -13,9 +13,9 @@
 global class ResourceFileTypeModel extends ErrorResult
 {
 
-    /// The resource file type id
+    // The resource file type id
     global Integer resourceFileTypeId { get; set; }
 
-    /// The name of the file type
+    // The name of the file type
     global String name { get; set; }
 }

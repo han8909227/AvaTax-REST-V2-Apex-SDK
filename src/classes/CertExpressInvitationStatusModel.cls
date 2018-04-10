@@ -13,10 +13,10 @@
 global class CertExpressInvitationStatusModel extends ErrorResult
 {
 
-    /// The status of the CertExpress invitation for this customer. If this status says
+    // The status of the CertExpress invitation for this customer. If this status says
     global CertExpressInvitationStatus status { get; set; }
 
-    /// The CertExpress invitation for the customer. If you specified an email address in the invitation
+    // The CertExpress invitation for the customer. If you specified an email address in the invitation
     // request, this invitation will be sent via email. Otherwise, you are expected to direct the customer
     // using a hyperlink directly in your application.
     global CertExpressInvitationModel invitation { get; set; }

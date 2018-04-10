@@ -13,21 +13,21 @@
 global class PostalCodeModel extends ErrorResult
 {
 
-    /// Country this PostalCode locates in
+    // Country this PostalCode locates in
     global String country { get; set; }
 
-    /// The Region/State/Province this PostalCode locates in
+    // The Region/State/Province this PostalCode locates in
     global String region { get; set; }
 
-    /// An Avalara assigned TaxRegion Id associated to the PostalCode
+    // An Avalara assigned TaxRegion Id associated to the PostalCode
     global Integer taxRegionId { get; set; }
 
-    /// The date when the PostalCode becomes effective
+    // The date when the PostalCode becomes effective
     global DateTime effDate { get; set; }
 
-    /// The date when the PostalCode becomes expired
+    // The date when the PostalCode becomes expired
     global DateTime endDate { get; set; }
 
-    /// The postalCode
+    // The postalCode
     global String postalCode { get; set; }
 }

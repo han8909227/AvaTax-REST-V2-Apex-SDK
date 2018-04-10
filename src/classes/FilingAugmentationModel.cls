@@ -13,27 +13,27 @@
 global class FilingAugmentationModel extends ErrorResult
 {
 
-    /// The unique ID number for the augmentation.
+    // The unique ID number for the augmentation.
     global Integer id { get; set; }
 
-    /// The filing return id that this applies too
+    // The filing return id that this applies too
     global Integer filingId { get; set; }
 
-    /// The field amount.
+    // The field amount.
     global Decimal fieldAmount { get; set; }
 
-    /// The field name.
+    // The field name.
     global String fieldName { get; set; }
 
-    /// The date when this record was created.
+    // The date when this record was created.
     global DateTime createdDate { get; set; }
 
-    /// The User ID of the user who created this record.
+    // The User ID of the user who created this record.
     global Integer createdUserId { get; set; }
 
-    /// The date/time when this record was last modified.
+    // The date/time when this record was last modified.
     global DateTime modifiedDate { get; set; }
 
-    /// The user ID of the user who last modified this record.
+    // The user ID of the user who last modified this record.
     global Integer modifiedUserId { get; set; }
 }

@@ -13,13 +13,13 @@
 global enum AdjustmentPeriodTypeId
 {
 
-    /// 
+    // 
     None,
 
-    /// 
+    // 
     CurrentPeriod,
 
-    /// 
+    // 
     NextPeriod,
 
 }

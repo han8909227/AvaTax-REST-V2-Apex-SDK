@@ -13,15 +13,15 @@
 global enum CertCaptureProvisionStatus
 {
 
-    /// Account and company are provisioned
+    // Account and company are provisioned
     Provisioned,
 
-    /// Provision job is being queued
-        ///  This could also be an indication that some companies under an account has been provisioned, while others
-        ///  under the same account has not.
+    // Provision job is being queued
+        //  This could also be an indication that some companies under an account has been provisioned, while others
+        //  under the same account has not.
     InProgress,
 
-    /// 
+    // 
     NotProvisioned,
 
 }

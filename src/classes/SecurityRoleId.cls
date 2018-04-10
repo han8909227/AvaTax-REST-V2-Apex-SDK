@@ -13,73 +13,73 @@
 global enum SecurityRoleId
 {
 
-    /// NoAccess
+    // NoAccess
     NoAccess,
 
-    /// SiteAdmin
+    // SiteAdmin
     SiteAdmin,
 
-    /// AccountOperator
+    // AccountOperator
     AccountOperator,
 
-    /// AccountAdmin
+    // AccountAdmin
     AccountAdmin,
 
-    /// AccountUser
+    // AccountUser
     AccountUser,
 
-    /// SystemAdmin
+    // SystemAdmin
     SystemAdmin,
 
-    /// Registrar
+    // Registrar
     Registrar,
 
-    /// CSPTester
+    // CSPTester
     CSPTester,
 
-    /// CSPAdmin
+    // CSPAdmin
     CSPAdmin,
 
-    /// SystemOperator
+    // SystemOperator
     SystemOperator,
 
-    /// TechnicalSupportUser
+    // TechnicalSupportUser
     TechnicalSupportUser,
 
-    /// TechnicalSupportAdmin
+    // TechnicalSupportAdmin
     TechnicalSupportAdmin,
 
-    /// TreasuryUser
+    // TreasuryUser
     TreasuryUser,
 
-    /// TreasuryAdmin
+    // TreasuryAdmin
     TreasuryAdmin,
 
-    /// ComplianceUser
+    // ComplianceUser
     ComplianceUser,
 
-    /// ComplianceAdmin
+    // ComplianceAdmin
     ComplianceAdmin,
 
-    /// ProStoresOperator
+    // ProStoresOperator
     ProStoresOperator,
 
-    /// CompanyUser
+    // CompanyUser
     CompanyUser,
 
-    /// CompanyAdmin
+    // CompanyAdmin
     CompanyAdmin,
 
-    /// ComplianceTempUser
+    // ComplianceTempUser
     ComplianceTempUser,
 
-    /// ComplianceRootUser
+    // ComplianceRootUser
     ComplianceRootUser,
 
-    /// ComplianceOperator
+    // ComplianceOperator
     ComplianceOperator,
 
-    /// SSTAdmin
+    // SSTAdmin
     SSTAdmin,
 
 }

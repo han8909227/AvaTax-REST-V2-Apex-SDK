@@ -13,13 +13,13 @@
 global enum ParameterBagDataType
 {
 
-    /// This data type is a string.
+    // This data type is a string.
     String,
 
-    /// This data type is either 'true' or 'false'.
+    // This data type is either 'true' or 'false'.
     Boolean,
 
-    /// This data type is a numeric value. It can include decimals.
+    // This data type is a numeric value. It can include decimals.
     Numeric,
 
 }

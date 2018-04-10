@@ -13,61 +13,61 @@
 global enum ServiceTypeId
 {
 
-    /// None
+    // None
     None,
 
-    /// AvaTaxST
+    // AvaTaxST
     AvaTaxST,
 
-    /// AvaTaxPro
+    // AvaTaxPro
     AvaTaxPro,
 
-    /// AvaTaxGlobal
+    // AvaTaxGlobal
     AvaTaxGlobal,
 
-    /// AutoAddress
+    // AutoAddress
     AutoAddress,
 
-    /// AutoReturns
+    // AutoReturns
     AutoReturns,
 
-    /// TaxSolver
+    // TaxSolver
     TaxSolver,
 
-    /// AvaTaxCsp
+    // AvaTaxCsp
     AvaTaxCsp,
 
-    /// Twe
+    // Twe
     Twe,
 
-    /// Mrs
+    // Mrs
     Mrs,
 
-    /// AvaCert
+    // AvaCert
     AvaCert,
 
-    /// AuthorizationPartner
+    // AuthorizationPartner
     AuthorizationPartner,
 
-    /// CertCapture
+    // CertCapture
     CertCapture,
 
-    /// AvaUpc
+    // AvaUpc
     AvaUpc,
 
-    /// AvaCUT
+    // AvaCUT
     AvaCUT,
 
-    /// AvaLandedCost
+    // AvaLandedCost
     AvaLandedCost,
 
-    /// AvaLodging
+    // AvaLodging
     AvaLodging,
 
-    /// AvaBottle
+    // AvaBottle
     AvaBottle,
 
-    /// MRSComplianceManager
+    // MRSComplianceManager
     MRSComplianceManager,
 
 }

@@ -13,19 +13,19 @@
 global enum JurisTypeId
 {
 
-    /// State
+    // State
     STA,
 
-    /// County
+    // County
     CTY,
 
-    /// City
+    // City
     CIT,
 
-    /// Special
+    // Special
     STJ,
 
-    /// Country
+    // Country
     CNT,
 
 }

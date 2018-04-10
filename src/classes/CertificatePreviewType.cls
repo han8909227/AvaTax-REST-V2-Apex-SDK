@@ -13,10 +13,10 @@
 global enum CertificatePreviewType
 {
 
-    /// Download a full printable PDF
+    // Download a full printable PDF
     Pdf,
 
-    /// Download a single page of the certificate in JPG format
+    // Download a single page of the certificate in JPG format
     Jpeg,
 
 }

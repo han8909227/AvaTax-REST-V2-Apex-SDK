@@ -14,6 +14,6 @@
 global class TaxCodeTypesModel extends ErrorResult
 {
 
-    /// The list of Avalara-defined tax code types.
+    // The list of Avalara-defined tax code types.
     global Dictionary<string, string> types { get; set; }
 }

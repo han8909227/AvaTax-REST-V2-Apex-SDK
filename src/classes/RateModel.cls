@@ -13,12 +13,12 @@
 global class RateModel extends ErrorResult
 {
 
-    /// The sales tax rate for general tangible personal property in this jurisdiction.
+    // The sales tax rate for general tangible personal property in this jurisdiction.
     global Decimal rate { get; set; }
 
-    /// A readable name of the tax or taxing jurisdiction related to this tax rate.
+    // A readable name of the tax or taxing jurisdiction related to this tax rate.
     global String name { get; set; }
 
-    /// The type of jurisdiction associated with this tax rate.
+    // The type of jurisdiction associated with this tax rate.
     global JurisdictionType type { get; set; }
 }

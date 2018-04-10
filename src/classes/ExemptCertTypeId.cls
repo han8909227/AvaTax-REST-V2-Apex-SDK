@@ -13,10 +13,10 @@
 global enum ExemptCertTypeId
 {
 
-    /// Blanked certificate
+    // Blanked certificate
     Blanket,
 
-    /// Single use
+    // Single use
     SingleUse,
 
 }

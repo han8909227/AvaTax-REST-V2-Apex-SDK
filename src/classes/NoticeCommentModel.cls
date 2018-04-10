@@ -13,45 +13,45 @@
 global class NoticeCommentModel extends ErrorResult
 {
 
-    /// The unique ID number of this notice.
+    // The unique ID number of this notice.
     global Integer id { get; set; }
 
-    /// The ID of the notice this comment is attached too
+    // The ID of the notice this comment is attached too
     global Integer noticeId { get; set; }
 
-    /// The date this comment was entered
+    // The date this comment was entered
     global DateTime date { get; set; }
 
-    /// TaxNoticeComment
+    // TaxNoticeComment
     global String comment { get; set; }
 
-    /// TaxNoticeCommentUserId
+    // TaxNoticeCommentUserId
     global Integer commentUserId { get; set; }
 
-    /// TaxNoticeCommentUserName
+    // TaxNoticeCommentUserName
     global String commentUserName { get; set; }
 
-    /// taxNoticeCommentTypeId
+    // taxNoticeCommentTypeId
     global Integer commentTypeId { get; set; }
 
-    /// taxNoticeCommentType
+    // taxNoticeCommentType
     global CommentType commentType { get; set; }
 
-    /// TaxNoticeCommentLink
+    // TaxNoticeCommentLink
     global String commentLink { get; set; }
 
-    /// TaxNoticeFileName
+    // TaxNoticeFileName
     global String taxNoticeFileName { get; set; }
 
-    /// resourceFileId
+    // resourceFileId
     global Integer resourceFileId { get; set; }
 
-    /// The date/time when this record was last modified.
+    // The date/time when this record was last modified.
     global DateTime modifiedDate { get; set; }
 
-    /// The user ID of the user who last modified this record.
+    // The user ID of the user who last modified this record.
     global Integer modifiedUserId { get; set; }
 
-    /// An attachment to the detail
+    // An attachment to the detail
     global ResourceFileUploadRequestModel attachmentUploadRequest { get; set; }
 }

@@ -14,6 +14,6 @@
 global class ReconstructedMultiDocumentModel extends ErrorResult
 {
 
-    /// The original request that was used to create a MultiDocument object.
+    // The original request that was used to create a MultiDocument object.
     global CreateMultiDocumentModel request { get; set; }
 }

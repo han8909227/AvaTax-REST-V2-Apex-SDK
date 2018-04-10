@@ -13,6 +13,6 @@
 global class RebuildFilingsModel extends ErrorResult
 {
 
-    /// Set this value to true in order to rebuild the filings.
+    // Set this value to true in order to rebuild the filings.
     global Boolean rebuild { get; set; }
 }

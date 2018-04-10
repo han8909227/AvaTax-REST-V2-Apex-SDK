@@ -13,55 +13,55 @@
 global enum FilingStatusId
 {
 
-    /// 
+    // 
     PendingApproval,
 
-    /// 
+    // 
     Dirty,
 
-    /// 
+    // 
     ApprovedToFile,
 
-    /// 
+    // 
     PendingFiling,
 
-    /// 
+    // 
     PendingFilingOnBehalf,
 
-    /// 
+    // 
     Filed,
 
-    /// 
+    // 
     FiledOnBehalf,
 
-    /// 
+    // 
     ReturnAccepted,
 
-    /// 
+    // 
     ReturnAcceptedOnBehalf,
 
-    /// 
+    // 
     PaymentRemitted,
 
-    /// 
+    // 
     Voided,
 
-    /// 
+    // 
     PendingReturn,
 
-    /// 
+    // 
     PendingReturnOnBehalf,
 
-    /// 
+    // 
     DoNotFile,
 
-    /// 
+    // 
     ReturnRejected,
 
-    /// 
+    // 
     ReturnRejectedOnBehalf,
 
-    /// 
+    // 
     ApprovedToFileOnBehalf,
 
 }

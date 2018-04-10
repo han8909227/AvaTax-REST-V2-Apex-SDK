@@ -13,12 +13,12 @@
 global class EcmsDetailTaxCodeModel extends ErrorResult
 {
 
-    /// Id of the exempt certificate detail tax code
+    // Id of the exempt certificate detail tax code
     global Integer exemptCertDetailTaxCodeId { get; set; }
 
-    /// exempt certificate detail id
+    // exempt certificate detail id
     global Integer exemptCertDetailId { get; set; }
 
-    /// tax code id
+    // tax code id
     global Integer taxCodeId { get; set; }
 }

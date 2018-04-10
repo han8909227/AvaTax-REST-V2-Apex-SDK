@@ -13,16 +13,16 @@
 global enum ExemptCertStatusId
 {
 
-    /// Inactive certificate
+    // Inactive certificate
     Inactive,
 
-    /// Active certificate
+    // Active certificate
     Active,
 
-    /// Expired certificate
+    // Expired certificate
     Expired,
 
-    /// Revoked certificate
+    // Revoked certificate
     Revoked,
 
 }

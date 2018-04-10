@@ -13,21 +13,21 @@
 global class MrsCompanyModel extends ErrorResult
 {
 
-    /// The unique ID number of this company.
+    // The unique ID number of this company.
     global Integer companyId { get; set; }
 
-    /// The name of this company, as shown to customers.
+    // The name of this company, as shown to customers.
     global String companyName { get; set; }
 
-    /// The unique ID number of the account this company belongs to.
+    // The unique ID number of the account this company belongs to.
     global Integer accountId { get; set; }
 
-    /// The name of this account, as shown to customers.
+    // The name of this account, as shown to customers.
     global String accountName { get; set; }
 
-    /// The taxpayer identification number for the company
+    // The taxpayer identification number for the company
     global String tin { get; set; }
 
-    /// The company code for the company
+    // The company code for the company
     global String companyCode { get; set; }
 }

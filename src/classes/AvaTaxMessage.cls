@@ -13,18 +13,18 @@
 global class AvaTaxMessage
 {
 
-    /// A brief summary of what this message tells us
+    // A brief summary of what this message tells us
     global String summary { get; set; }
 
-    /// Detailed information that explains what the summary provided
+    // Detailed information that explains what the summary provided
     global String details { get; set; }
 
-    /// Information about what object in your request this message refers to
+    // Information about what object in your request this message refers to
     global String refersTo { get; set; }
 
-    /// A category that indicates how severely this message affects the results
+    // A category that indicates how severely this message affects the results
     global String severity { get; set; }
 
-    /// The name of the code or service that generated this message
+    // The name of the code or service that generated this message
     global String source { get; set; }
 }

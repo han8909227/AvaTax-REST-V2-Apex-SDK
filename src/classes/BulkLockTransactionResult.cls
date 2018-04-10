@@ -13,6 +13,6 @@
 global class BulkLockTransactionResult
 {
 
-    /// Number of records that have been modified
+    // Number of records that have been modified
     global Integer numberOfRecords { get; set; }
 }

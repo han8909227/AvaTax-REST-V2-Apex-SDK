@@ -13,9 +13,9 @@
 global class BulkLockTransactionModel extends ErrorResult
 {
 
-    /// List of documents to lock
+    // List of documents to lock
     global Integer documentIds { get; set; }
 
-    /// The lock status to set for the documents designated in this API
+    // The lock status to set for the documents designated in this API
     global Boolean isLocked { get; set; }
 }

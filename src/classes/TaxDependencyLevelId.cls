@@ -13,16 +13,16 @@
 global enum TaxDependencyLevelId
 {
 
-    /// Document
+    // Document
     Document,
 
-    /// State
+    // State
     State,
 
-    /// TaxRegion
+    // TaxRegion
     TaxRegion,
 
-    /// Address
+    // Address
     Address,
 
 }

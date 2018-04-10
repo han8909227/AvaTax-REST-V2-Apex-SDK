@@ -15,9 +15,9 @@
 global class ExemptionReasonModel extends ErrorResult
 {
 
-    /// A unique ID number representing this exemption reason.
+    // A unique ID number representing this exemption reason.
     global Integer id { get; set; }
 
-    /// A friendly name describing this exemption reason.
+    // A friendly name describing this exemption reason.
     global String name { get; set; }
 }

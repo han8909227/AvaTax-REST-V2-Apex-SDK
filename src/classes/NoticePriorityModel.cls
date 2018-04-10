@@ -13,15 +13,15 @@
 global class NoticePriorityModel extends ErrorResult
 {
 
-    /// The unique ID number of this tax notice customer Priority.
+    // The unique ID number of this tax notice customer Priority.
     global Integer id { get; set; }
 
-    /// The description name of this tax authority Priority.
+    // The description name of this tax authority Priority.
     global String description { get; set; }
 
-    /// A flag if the Priority is active
+    // A flag if the Priority is active
     global Boolean activeFlag { get; set; }
 
-    /// sort order of the Prioritys
+    // sort order of the Prioritys
     global Integer sortOrder { get; set; }
 }

@@ -14,28 +14,28 @@
 global class FreeTrialRequestModel extends ErrorResult
 {
 
-    /// The first or given name of the user requesting a free trial.
+    // The first or given name of the user requesting a free trial.
     global String firstName { get; set; }
 
-    /// The last or family name of the user requesting a free trial.
+    // The last or family name of the user requesting a free trial.
     global String lastName { get; set; }
 
-    /// The email address of the user requesting a free trial.
+    // The email address of the user requesting a free trial.
     global String email { get; set; }
 
-    /// The company or organizational name for this free trial. If this account is for personal use, it is acceptable 
+    // The company or organizational name for this free trial. If this account is for personal use, it is acceptable 
     // to use your full name here.
     global String company { get; set; }
 
-    /// The phone number of the person requesting the free trial.
+    // The phone number of the person requesting the free trial.
     global String phone { get; set; }
 
-    /// Campaign identifier for Notification purpose
+    // Campaign identifier for Notification purpose
     global String campaign { get; set; }
 
-    /// The Address information of the account
+    // The Address information of the account
     global CompanyAddress companyAddress { get; set; }
 
-    /// Website of the company or user requesting a free trial
+    // Website of the company or user requesting a free trial
     global String website { get; set; }
 }

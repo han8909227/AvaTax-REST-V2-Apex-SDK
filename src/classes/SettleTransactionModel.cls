@@ -16,17 +16,17 @@
 global class SettleTransactionModel extends ErrorResult
 {
 
-    /// To verify this transaction, you may provide information in this field.
+    // To verify this transaction, you may provide information in this field.
     // 
     // If you leave this field null, the transaction will not be verified.
     global VerifyTransactionModel verify { get; set; }
 
-    /// To change the code for this transaction, you may provide information in this field.
+    // To change the code for this transaction, you may provide information in this field.
     // 
     // If you leave this field null, the transaction's code will not be changed.
     global ChangeTransactionCodeModel changeCode { get; set; }
 
-    /// To commit this transaction so that it can be reported on a tax filing, you may provide information in this field.
+    // To commit this transaction so that it can be reported on a tax filing, you may provide information in this field.
     // 
     // If you leave this field null, the transaction's commit status will not be changed.
     // 

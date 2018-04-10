@@ -13,9 +13,9 @@
 global class PoNumberModel extends ErrorResult
 {
 
-    /// Unique ID number
+    // Unique ID number
     global Integer id { get; set; }
 
-    /// Purchase order number.
+    // Purchase order number.
     global String poNumber { get; set; }
 }

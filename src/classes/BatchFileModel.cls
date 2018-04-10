@@ -13,30 +13,30 @@
 global class BatchFileModel extends ErrorResult
 {
 
-    /// The unique ID number assigned to this batch file.
+    // The unique ID number assigned to this batch file.
     global Integer id { get; set; }
 
-    /// The unique ID number of the batch that this file belongs to.
+    // The unique ID number of the batch that this file belongs to.
     global Integer batchId { get; set; }
 
-    /// Logical Name of file (e.g. "Input" or "Error").
+    // Logical Name of file (e.g. "Input" or "Error").
     global String name { get; set; }
 
-    /// Content of the batch file.
+    // Content of the batch file.
     global Byte[] content { get; set; }
 
-    /// Size of content, in bytes.
+    // Size of content, in bytes.
     global Integer contentLength { get; set; }
 
-    /// Content mime type (e.g. text/csv). This is used for HTTP downloading.
+    // Content mime type (e.g. text/csv). This is used for HTTP downloading.
     global String contentType { get; set; }
 
-    /// File extension (e.g. CSV).
+    // File extension (e.g. CSV).
     global String fileExtension { get; set; }
 
-    /// Path to the file - name/S3 key
+    // Path to the file - name/S3 key
     global String filePath { get; set; }
 
-    /// Number of errors that occurred when processing this file.
+    // Number of errors that occurred when processing this file.
     global Integer errorCount { get; set; }
 }

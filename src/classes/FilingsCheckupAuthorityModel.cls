@@ -13,27 +13,27 @@
 global class FilingsCheckupAuthorityModel extends ErrorResult
 {
 
-    /// Unique ID of the tax authority
+    // Unique ID of the tax authority
     global Integer taxAuthorityId { get; set; }
 
-    /// Location Code of the tax authority
+    // Location Code of the tax authority
     global String locationCode { get; set; }
 
-    /// Name of the tax authority
+    // Name of the tax authority
     global String taxAuthorityName { get; set; }
 
-    /// Type Id of the tax authority
+    // Type Id of the tax authority
     global Integer taxAuthorityTypeId { get; set; }
 
-    /// Jurisdiction Id of the tax authority
+    // Jurisdiction Id of the tax authority
     global Integer jurisdictionId { get; set; }
 
-    /// Amount of tax collected in this tax authority
+    // Amount of tax collected in this tax authority
     global Decimal tax { get; set; }
 
-    /// Tax Type collected in the tax authority
+    // Tax Type collected in the tax authority
     global String taxTypeId { get; set; }
 
-    /// Suggested forms to file due to tax collected
+    // Suggested forms to file due to tax collected
     global List<FilingsCheckupSuggestedFormModel> suggestedForms { get; set; }
 }

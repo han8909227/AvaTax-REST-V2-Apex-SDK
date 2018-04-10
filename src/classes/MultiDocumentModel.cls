@@ -18,18 +18,18 @@
 global class MultiDocumentModel extends ErrorResult
 {
 
-    /// The unique ID number of this MultiDocument object.
+    // The unique ID number of this MultiDocument object.
     global Integer id { get; set; }
 
-    /// The unique ID number of the AvaTax customer account that created this MultiDocument object.
+    // The unique ID number of the AvaTax customer account that created this MultiDocument object.
     global Integer accountId { get; set; }
 
-    /// The transaction code of the MultiDocument transaction.
+    // The transaction code of the MultiDocument transaction.
     // 
     // All individual transactions within this MultiDocument object will have this code as a prefix.
     global String code { get; set; }
 
-    /// Indicates the type of MultiDocument transaction. Common values are:
+    // Indicates the type of MultiDocument transaction. Common values are:
     // 
     // * SalesOrder - An estimate that is not permanently recorded
     // * SalesInvoice - An invoice that can be reported on a tax return
@@ -37,18 +37,18 @@ global class MultiDocumentModel extends ErrorResult
     // For more information about document types, see [DocumentType](https://developer.avalara.com/api-reference/avatax/rest/v2/models/enums/DocumentType/)
     global DocumentType type { get; set; }
 
-    /// The user ID of the user who created this record.
+    // The user ID of the user who created this record.
     global Integer createdUserId { get; set; }
 
-    /// The date/time when this record was created.
+    // The date/time when this record was created.
     global DateTime createdDate { get; set; }
 
-    /// The date/time when this record was last modified.
+    // The date/time when this record was last modified.
     global DateTime modifiedDate { get; set; }
 
-    /// The user ID of the user who last modified this record.
+    // The user ID of the user who last modified this record.
     global Integer modifiedUserId { get; set; }
 
-    /// A separate document will exist for each unique combination of buyer and seller in this MultiDocument transaction.
+    // A separate document will exist for each unique combination of buyer and seller in this MultiDocument transaction.
     global List<TransactionModel> documents { get; set; }
 }

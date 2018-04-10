@@ -13,51 +13,51 @@
 global class FundingStatusModel extends ErrorResult
 {
 
-    /// The unique ID number of this funding request
+    // The unique ID number of this funding request
     global Integer requestId { get; set; }
 
-    /// SubledgerProfileID
+    // SubledgerProfileID
     global Integer subledgerProfileID { get; set; }
 
-    /// CompanyID
+    // CompanyID
     global String companyID { get; set; }
 
-    /// Domain
+    // Domain
     global String domain { get; set; }
 
-    /// Recipient
+    // Recipient
     global String recipient { get; set; }
 
-    /// Sender
+    // Sender
     global String sender { get; set; }
 
-    /// DocumentKey
+    // DocumentKey
     global String documentKey { get; set; }
 
-    /// DocumentType
+    // DocumentType
     global String documentType { get; set; }
 
-    /// DocumentName
+    // DocumentName
     global String documentName { get; set; }
 
-    /// MethodReturn
+    // MethodReturn
     global FundingESignMethodReturn methodReturn { get; set; }
 
-    /// Status
+    // Status
     global String status { get; set; }
 
-    /// ErrorMessage
+    // ErrorMessage
     global String errorMessage { get; set; }
 
-    /// LastPolled
+    // LastPolled
     global DateTime lastPolled { get; set; }
 
-    /// LastSigned
+    // LastSigned
     global DateTime lastSigned { get; set; }
 
-    /// LastActivated
+    // LastActivated
     global DateTime lastActivated { get; set; }
 
-    /// TemplateRequestId
+    // TemplateRequestId
     global Integer templateRequestId { get; set; }
 }

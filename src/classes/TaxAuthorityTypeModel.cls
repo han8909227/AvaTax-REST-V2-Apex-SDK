@@ -13,12 +13,12 @@
 global class TaxAuthorityTypeModel extends ErrorResult
 {
 
-    /// The unique ID number of this tax Authority customer type.
+    // The unique ID number of this tax Authority customer type.
     global Integer id { get; set; }
 
-    /// The description name of this tax authority type.
+    // The description name of this tax authority type.
     global String description { get; set; }
 
-    /// Tax Authority Group
+    // Tax Authority Group
     global String taxAuthorityGroup { get; set; }
 }

@@ -13,16 +13,16 @@
 global enum RoundingTypeId
 {
 
-    /// There is no rounding on the return
+    // There is no rounding on the return
     None,
 
-    /// Round to the nearest whole number
+    // Round to the nearest whole number
     Nearest,
 
-    /// Always round up
+    // Always round up
     Up,
 
-    /// Always round down
+    // Always round down
     Down,
 
 }

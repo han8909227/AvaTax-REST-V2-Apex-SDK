@@ -13,6 +13,6 @@
 global class ApproveFilingsModel extends ErrorResult
 {
 
-    /// Set this value to true in order to approve the filings.
+    // Set this value to true in order to approve the filings.
     global Boolean approve { get; set; }
 }

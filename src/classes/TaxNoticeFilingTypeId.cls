@@ -13,34 +13,34 @@
 global enum TaxNoticeFilingTypeId
 {
 
-    /// Denotes the tax return is being filed via electronic means; excludes SST electronic filing.
+    // Denotes the tax return is being filed via electronic means; excludes SST electronic filing.
     ElectronicReturn,
 
-    /// Denotes the tax return is being filed on paper.
+    // Denotes the tax return is being filed on paper.
     PaperReturn,
 
-    /// Denotes the tax return that was not filed.
+    // Denotes the tax return that was not filed.
     ReturnNotFiled,
 
-    /// Denotes a return is paid via EFT and filed on paper without payment.
+    // Denotes a return is paid via EFT and filed on paper without payment.
     EFTPaper,
 
-    /// Denotes the tax return is an SST filing.
+    // Denotes the tax return is an SST filing.
     SER,
 
-    /// Denotes the tax return is a Trudsfile-EDI filing.
+    // Denotes the tax return is a Trudsfile-EDI filing.
     TrustfileEdi,
 
-    /// Denotes the tax return is an uploaded file.
+    // Denotes the tax return is an uploaded file.
     UploadFile,
 
-    /// Denotes the tax return was manually filed via paper
+    // Denotes the tax return was manually filed via paper
     PaperManual,
 
-    /// Denotes a cert capture return
+    // Denotes a cert capture return
     CertCapture,
 
-    /// Denotes a signature ready return
+    // Denotes a signature ready return
     SignatureReady,
 
 }

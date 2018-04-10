@@ -13,13 +13,13 @@
 global class CycleExpireModel extends ErrorResult
 {
 
-    /// Whether or not the filing calendar can be expired.
+    // Whether or not the filing calendar can be expired.
     // e.g. if user makes end date of a calendar earlier than latest filing, this would be set to false.
     global Boolean success { get; set; }
 
-    /// The message to present to the user if expiration is successful or unsuccessful.
+    // The message to present to the user if expiration is successful or unsuccessful.
     global String message { get; set; }
 
-    /// A list of options for expiring the filing calendar.
+    // A list of options for expiring the filing calendar.
     global List<CycleExpireOptionModel> cycleExpirationOptions { get; set; }
 }

@@ -13,13 +13,13 @@
 global enum DueDateTypeId
 {
 
-    /// Denotes form is due on the due day
+    // Denotes form is due on the due day
     ByDay,
 
-    /// Denotes form is due by last day of the month
+    // Denotes form is due by last day of the month
     ByLastDay,
 
-    /// Denotes form is due by second to last day of the month
+    // Denotes form is due by second to last day of the month
     BySecondLastDay,
 
 }

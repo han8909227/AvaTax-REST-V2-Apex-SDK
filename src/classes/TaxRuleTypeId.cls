@@ -13,22 +13,22 @@
 global enum TaxRuleTypeId
 {
 
-    /// RateRule
+    // RateRule
     RateRule,
 
-    /// RateOverrideRule
+    // RateOverrideRule
     RateOverrideRule,
 
-    /// BaseRule
+    // BaseRule
     BaseRule,
 
-    /// ExemptEntityRule
+    // ExemptEntityRule
     ExemptEntityRule,
 
-    /// ProductTaxabilityRule
+    // ProductTaxabilityRule
     ProductTaxabilityRule,
 
-    /// NexusRule
+    // NexusRule
     NexusRule,
 
 }

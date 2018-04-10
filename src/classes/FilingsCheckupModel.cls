@@ -13,6 +13,6 @@
 global class FilingsCheckupModel extends ErrorResult
 {
 
-    /// A collection of authorities in the report
+    // A collection of authorities in the report
     global List<FilingsCheckupAuthorityModel> authorities { get; set; }
 }

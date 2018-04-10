@@ -16,18 +16,18 @@
 global class SettingModel extends ErrorResult
 {
 
-    /// The unique ID number of this setting.
+    // The unique ID number of this setting.
     global Integer id { get; set; }
 
-    /// The unique ID number of the company this setting refers to.
+    // The unique ID number of the company this setting refers to.
     global Integer companyId { get; set; }
 
-    /// A user-defined "set" containing this name-value pair.
+    // A user-defined "set" containing this name-value pair.
     global String set { get; set; }
 
-    /// A user-defined "name" for this name-value pair.
+    // A user-defined "name" for this name-value pair.
     global String name { get; set; }
 
-    /// The value of this name-value pair.
+    // The value of this name-value pair.
     global String value { get; set; }
 }

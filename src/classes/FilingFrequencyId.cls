@@ -13,25 +13,25 @@
 global enum FilingFrequencyId
 {
 
-    /// File once per month
+    // File once per month
     Monthly,
 
-    /// File once per three months
+    // File once per three months
     Quarterly,
 
-    /// File twice per year
+    // File twice per year
     SemiAnnually,
 
-    /// File once per year
+    // File once per year
     Annually,
 
-    /// File every other month
+    // File every other month
     Bimonthly,
 
-    /// File only when there are documents to report
+    // File only when there are documents to report
     Occasional,
 
-    /// File for the first two months of each quarter, then do not file on the quarterly month.
+    // File for the first two months of each quarter, then do not file on the quarterly month.
     InverseQuarterly,
 
 }

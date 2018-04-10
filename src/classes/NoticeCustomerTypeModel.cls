@@ -13,15 +13,15 @@
 global class NoticeCustomerTypeModel extends ErrorResult
 {
 
-    /// The unique ID number of this tax notice customer type.
+    // The unique ID number of this tax notice customer type.
     global Integer id { get; set; }
 
-    /// The description name of this tax authority type.
+    // The description name of this tax authority type.
     global String description { get; set; }
 
-    /// A flag if the type is active
+    // A flag if the type is active
     global Boolean activeFlag { get; set; }
 
-    /// sort order of the types
+    // sort order of the types
     global Integer sortOrder { get; set; }
 }

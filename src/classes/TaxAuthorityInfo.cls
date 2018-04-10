@@ -13,15 +13,15 @@
 global class TaxAuthorityInfo
 {
 
-    /// A unique ID number assigned by Avalara to this tax authority.
+    // A unique ID number assigned by Avalara to this tax authority.
     global String avalaraId { get; set; }
 
-    /// The friendly jurisdiction name for this tax authority.
+    // The friendly jurisdiction name for this tax authority.
     global String jurisdictionName { get; set; }
 
-    /// The type of jurisdiction referenced by this tax authority.
+    // The type of jurisdiction referenced by this tax authority.
     global JurisdictionType jurisdictionType { get; set; }
 
-    /// An Avalara-assigned signature code for this tax authority.
+    // An Avalara-assigned signature code for this tax authority.
     global String signatureCode { get; set; }
 }

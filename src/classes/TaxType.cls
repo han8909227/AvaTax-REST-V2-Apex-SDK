@@ -13,43 +13,43 @@
 global enum TaxType
 {
 
-    /// Match Lodging tax type
+    // Match Lodging tax type
     Lodging,
 
-    /// Match bottle tax type
+    // Match bottle tax type
     Bottle,
 
-    /// EWaste tax type
+    // EWaste tax type
     EWaste,
 
-    /// LandedCost tax type
+    // LandedCost tax type
     LandedCost,
 
-    /// Consumer Use Tax
+    // Consumer Use Tax
     ConsumerUse,
 
-    /// Medical Excise Tax
+    // Medical Excise Tax
     Excise,
 
-    /// Fee - PIFs (Public Improvement Fees) and RSFs (Retail Sales Fees)
+    // Fee - PIFs (Public Improvement Fees) and RSFs (Retail Sales Fees)
     Fee,
 
-    /// VAT/GST Input tax
+    // VAT/GST Input tax
     Input,
 
-    /// VAT/GST Nonrecoverable Input tax
+    // VAT/GST Nonrecoverable Input tax
     Nonrecoverable,
 
-    /// VAT/GST Output tax
+    // VAT/GST Output tax
     Output,
 
-    /// Rental Tax
+    // Rental Tax
     Rental,
 
-    /// Sales tax
+    // Sales tax
     Sales,
 
-    /// Use tax
+    // Use tax
     Use,
 
 }

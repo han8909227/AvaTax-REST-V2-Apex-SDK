@@ -13,15 +13,15 @@
 global class NoticeRootCauseModel extends ErrorResult
 {
 
-    /// The unique ID number of this notice RootCause.
+    // The unique ID number of this notice RootCause.
     global Integer id { get; set; }
 
-    /// The description name of this notice RootCause
+    // The description name of this notice RootCause
     global String description { get; set; }
 
-    /// Defines if the RootCause is active
+    // Defines if the RootCause is active
     global Boolean isActive { get; set; }
 
-    /// The sort order of this RootCause
+    // The sort order of this RootCause
     global Integer sortOrder { get; set; }
 }

@@ -13,34 +13,34 @@
 global class CompanyInitializationModel extends ErrorResult
 {
 
-    /// Company Name
+    // Company Name
     global String name { get; set; }
 
-    /// Company Code - used to distinguish between companies within your accounting system
+    // Company Code - used to distinguish between companies within your accounting system
     global String companyCode { get; set; }
 
-    /// Vat Registration Id - leave blank if not known.
+    // Vat Registration Id - leave blank if not known.
     global String vatRegistrationId { get; set; }
 
-    /// United States Taxpayer ID number, usually your Employer Identification Number if you are a business or your 
+    // United States Taxpayer ID number, usually your Employer Identification Number if you are a business or your 
     // Social Security Number if you are an individual.
     // This value is required if you subscribe to Avalara Managed Returns or the SST Certified Service Provider services, 
     // but it is optional if you do not subscribe to either of those services.
     global String taxpayerIdNumber { get; set; }
 
-    /// Address Line1
+    // Address Line1
     global String line1 { get; set; }
 
-    /// Line2
+    // Line2
     global String line2 { get; set; }
 
-    /// Line3
+    // Line3
     global String line3 { get; set; }
 
-    /// City
+    // City
     global String city { get; set; }
 
-    /// Name or ISO 3166 code identifying the region within the country.
+    // Name or ISO 3166 code identifying the region within the country.
     // 
     // This field supports many different region identifiers:
     //  * Two and three character ISO 3166 region codes
@@ -50,10 +50,10 @@ global class CompanyInitializationModel extends ErrorResult
     // For a full list of all supported codes and names, please see the Definitions API `ListRegions`.
     global String region { get; set; }
 
-    /// Postal Code
+    // Postal Code
     global String postalCode { get; set; }
 
-    /// Name or ISO 3166 code identifying the country.
+    // Name or ISO 3166 code identifying the country.
     // 
     // This field supports many different country identifiers:
     //  * Two character ISO 3166 codes
@@ -64,27 +64,27 @@ global class CompanyInitializationModel extends ErrorResult
     // For a full list of all supported codes and names, please see the Definitions API `ListCountries`.
     global String country { get; set; }
 
-    /// First Name
+    // First Name
     global String firstName { get; set; }
 
-    /// Last Name
+    // Last Name
     global String lastName { get; set; }
 
-    /// Title
+    // Title
     global String title { get; set; }
 
-    /// Email
+    // Email
     global String email { get; set; }
 
-    /// Phone Number
+    // Phone Number
     global String phoneNumber { get; set; }
 
-    /// Mobile Number
+    // Mobile Number
     global String mobileNumber { get; set; }
 
-    /// Fax Number
+    // Fax Number
     global String faxNumber { get; set; }
 
-    /// Parent Company ID
+    // Parent Company ID
     global Integer parentCompanyId { get; set; }
 }

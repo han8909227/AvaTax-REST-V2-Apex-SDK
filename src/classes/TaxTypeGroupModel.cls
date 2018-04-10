@@ -13,12 +13,12 @@
 global class TaxTypeGroupModel extends ErrorResult
 {
 
-    /// The unique ID number of this tax type group.
+    // The unique ID number of this tax type group.
     global Integer id { get; set; }
 
-    /// The unique human readable Id of this tax type group.
+    // The unique human readable Id of this tax type group.
     global String taxTypeGroup { get; set; }
 
-    /// The description of this tax type group.
+    // The description of this tax type group.
     global String description { get; set; }
 }

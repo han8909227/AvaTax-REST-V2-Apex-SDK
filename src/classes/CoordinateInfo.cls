@@ -13,9 +13,9 @@
 global class CoordinateInfo
 {
 
-    /// Latitude
+    // Latitude
     global Decimal latitude { get; set; }
 
-    /// Longitude
+    // Longitude
     global Decimal longitude { get; set; }
 }

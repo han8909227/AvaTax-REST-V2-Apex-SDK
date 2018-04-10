@@ -17,29 +17,29 @@
 global class CreateCertExpressInvitationModel extends ErrorResult
 {
 
-    /// If the value of `deliveryMethod` is set to `Email`, please specify the email address of the recipient 
+    // If the value of `deliveryMethod` is set to `Email`, please specify the email address of the recipient 
     // for the request.
     global String recipient { get; set; }
 
-    /// If this invitation is sent via email or download, please specify the cover letter to use when building this
+    // If this invitation is sent via email or download, please specify the cover letter to use when building this
     // invitation. For a list of cover letters, please call `ListCoverLetters`.
     global String coverLetterTitle { get; set; }
 
-    /// You may optionally specify a list of exposure zones to request in this CertExpress invitation. If you list 
+    // You may optionally specify a list of exposure zones to request in this CertExpress invitation. If you list 
     // more than one exposure zone, the customer will be prompted to provide an exemption certificate for each one. 
     // If you do not provide a list of exposure zones, the customer will be prompted to select an exposure zone.
     // 
     // For a list of available exposure zones, please call `ListCertificateExposureZones`.
     global Integer exposureZones { get; set; }
 
-    /// You may optionally specify a list of exemption reasons to pre-populate in this CertExpress invitation.
+    // You may optionally specify a list of exemption reasons to pre-populate in this CertExpress invitation.
     // If you list exemption reasons, the customer will have part of their form already filled in when they visit
     // the CertExpress website. 
     // 
     // For a list of available exemption reasons, please call `ListCertificateExemptReasons`.
     global Integer exemptReasons { get; set; }
 
-    /// Specify the type of invitation. CertExpress invitations can be delivered via email, web link, or
+    // Specify the type of invitation. CertExpress invitations can be delivered via email, web link, or
     // facsimile. 
     // 
     // * If you specify `Email`, the invitation will be delivered via email. Please ask the customer to ensure that 

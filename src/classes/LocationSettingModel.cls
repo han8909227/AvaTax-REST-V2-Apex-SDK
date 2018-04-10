@@ -13,12 +13,12 @@
 global class LocationSettingModel extends ErrorResult
 {
 
-    /// The unique ID number of the location question answered.
+    // The unique ID number of the location question answered.
     global Integer questionId { get; set; }
 
-    /// The name of the question
+    // The name of the question
     global String questionName { get; set; }
 
-    /// The answer the user provided.
+    // The answer the user provided.
     global String value { get; set; }
 }

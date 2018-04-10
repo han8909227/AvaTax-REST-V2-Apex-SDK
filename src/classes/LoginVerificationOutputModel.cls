@@ -13,15 +13,15 @@
 global class LoginVerificationOutputModel extends ErrorResult
 {
 
-    /// The job Id returned from skyscraper
+    // The job Id returned from skyscraper
     global Integer jobId { get; set; }
 
-    /// The operation status of the job
+    // The operation status of the job
     global String operationStatus { get; set; }
 
-    /// The message returned from the job
+    // The message returned from the job
     global String message { get; set; }
 
-    /// Indicates if the login was successful
+    // Indicates if the login was successful
     global Boolean loginSuccess { get; set; }
 }

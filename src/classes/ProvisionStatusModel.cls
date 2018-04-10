@@ -16,15 +16,15 @@
 global class ProvisionStatusModel extends ErrorResult
 {
 
-    /// The status of exemption certificate setup for this company.
+    // The status of exemption certificate setup for this company.
     // 
     // If this value is `Finished`, this company will then be able to use the Customers, Certificates, and
     // CertExpressInvites APIs within AvaTax.
     global CertCaptureProvisionStatus status { get; set; }
 
-    /// The accountId of the company represented by this status
+    // The accountId of the company represented by this status
     global Integer accountId { get; set; }
 
-    /// The AvaTax company represented by this status
+    // The AvaTax company represented by this status
     global Integer companyId { get; set; }
 }

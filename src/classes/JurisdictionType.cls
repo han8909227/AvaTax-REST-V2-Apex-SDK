@@ -13,19 +13,19 @@
 global enum JurisdictionType
 {
 
-    /// Country
+    // Country
     Country,
 
-    /// State
+    // State
     State,
 
-    /// County
+    // County
     County,
 
-    /// City
+    // City
     City,
 
-    /// Special Tax Jurisdiction
+    // Special Tax Jurisdiction
     Special,
 
 }

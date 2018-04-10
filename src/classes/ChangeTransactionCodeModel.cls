@@ -15,6 +15,6 @@
 global class ChangeTransactionCodeModel extends ErrorResult
 {
 
-    /// To change the transaction code for this transaction, specify the new transaction code here.
+    // To change the transaction code for this transaction, specify the new transaction code here.
     global String newCode { get; set; }
 }

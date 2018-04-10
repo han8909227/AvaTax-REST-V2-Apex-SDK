@@ -13,13 +13,13 @@
 global enum Sourcing
 {
 
-    /// Mixed sourcing, for states that do both origin and destination calculation
+    // Mixed sourcing, for states that do both origin and destination calculation
     Mixed,
 
-    /// Destination
+    // Destination
     Destination,
 
-    /// Origin
+    // Origin
     Origin,
 
 }

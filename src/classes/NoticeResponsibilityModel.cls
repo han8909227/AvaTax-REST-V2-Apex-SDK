@@ -13,15 +13,15 @@
 global class NoticeResponsibilityModel extends ErrorResult
 {
 
-    /// The unique ID number of this notice responsibility.
+    // The unique ID number of this notice responsibility.
     global Integer id { get; set; }
 
-    /// The description name of this notice responsibility
+    // The description name of this notice responsibility
     global String description { get; set; }
 
-    /// Defines if the responsibility is active
+    // Defines if the responsibility is active
     global Boolean isActive { get; set; }
 
-    /// The sort order of this responsibility
+    // The sort order of this responsibility
     global Integer sortOrder { get; set; }
 }

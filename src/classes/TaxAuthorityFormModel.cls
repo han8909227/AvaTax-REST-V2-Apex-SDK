@@ -13,9 +13,9 @@
 global class TaxAuthorityFormModel extends ErrorResult
 {
 
-    /// The unique ID number of the tax authority.
+    // The unique ID number of the tax authority.
     global Integer taxAuthorityId { get; set; }
 
-    /// The form name of the form for this tax authority.
+    // The form name of the form for this tax authority.
     global String formName { get; set; }
 }

@@ -13,9 +13,9 @@
 global class OriginalApiRequestResponseModel extends ErrorResult
 {
 
-    /// API request
+    // API request
     global String request { get; set; }
 
-    /// API response
+    // API response
     global String response { get; set; }
 }
