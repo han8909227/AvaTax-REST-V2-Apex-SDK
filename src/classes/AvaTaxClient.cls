@@ -416,12 +416,9 @@ global class AvaTaxClient
             path.ApplyField('companyId', companyId);
             path.ApplyField('batchId', batchId);
             path.ApplyField('id', id);
-            responseFile = ('GET', path, null);
-            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
-            {
-                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
-            }
-            return responseFile
+            FileResultModel responseModel = null;
+            responseModel = (FileResultModel) restCallForFile('GET', path.relativePath, null);
+            return responseModel
         }
 
 
@@ -771,12 +768,9 @@ global class AvaTaxClient
             path.ApplyField('id', id);
             path.AddQuery('$page', page);
             path.AddQuery('$type', type);
-            responseFile = ('GET', path, null);
-            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
-            {
-                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
-            }
-            return responseFile
+            FileResultModel responseModel = null;
+            responseModel = (FileResultModel) restCallForFile('GET', path.relativePath, null);
+            return responseModel
         }
 
 
@@ -4605,12 +4599,9 @@ global class AvaTaxClient
             path.ApplyField('companyId', companyId);
             path.ApplyField('filingReturnId', filingReturnId);
             path.AddQuery('fileId', fileId);
-            responseFile = ('GET', path, null);
-            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
-            {
-                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
-            }
-            return responseFile
+            FileResultModel responseModel = null;
+            responseModel = (FileResultModel) restCallForFile('GET', path.relativePath, null);
+            return responseModel
         }
 
 
@@ -4628,12 +4619,9 @@ global class AvaTaxClient
             path.ApplyField('companyId', companyId);
             path.ApplyField('year', year);
             path.ApplyField('month', month);
-            responseFile = ('GET', path, null);
-            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
-            {
-                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
-            }
-            return responseFile
+            FileResultModel responseModel = null;
+            responseModel = (FileResultModel) restCallForFile('GET', path.relativePath, null);
+            return responseModel
         }
 
 
@@ -4651,12 +4639,9 @@ global class AvaTaxClient
             path.ApplyField('companyId', companyId);
             path.ApplyField('year', year);
             path.ApplyField('month', month);
-            responseFile = ('GET', path, null);
-            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
-            {
-                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
-            }
-            return responseFile
+            FileResultModel responseModel = null;
+            responseModel = (FileResultModel) restCallForFile('GET', path.relativePath, null);
+            return responseModel
         }
 
 
@@ -6566,12 +6551,9 @@ global class AvaTaxClient
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/files/{id}/attachment');
             path.ApplyField('companyId', companyId);
             path.ApplyField('id', id);
-            responseFile = ('GET', path, null);
-            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
-            {
-                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
-            }
-            return responseFile
+            FileResultModel responseModel = null;
+            responseModel = (FileResultModel) restCallForFile('GET', path.relativePath, null);
+            return responseModel
         }
 
 
@@ -6793,12 +6775,9 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/files/attachment');
             path.ApplyField('companyId', companyId);
-            responseFile = ('POST', path, model);
-            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
-            {
-                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
-            }
-            return responseFile
+            FileResultModel responseModel = null;
+            responseModel = (FileResultModel) restCallForFile('POST', path.relativePath, model);
+            return responseModel
         }
 
 
@@ -7115,12 +7094,9 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/reports/{id}/attachment');
             path.ApplyField('id', id);
-            responseFile = ('GET', path, null);
-            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
-            {
-                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
-            }
-            return responseFile
+            FileResultModel responseModel = null;
+            responseModel = (FileResultModel) restCallForFile('GET', path.relativePath, null);
+            return responseModel
         }
 
 
@@ -7140,12 +7116,9 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/reports/exportdocumentline');
             path.ApplyField('companyId', companyId);
-            responseFile = ('POST', path, model);
-            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
-            {
-                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
-            }
-            return responseFile
+            FileResultModel responseModel = null;
+            responseModel = (FileResultModel) restCallForFile('POST', path.relativePath, model);
+            return responseModel
         }
 
 
@@ -7196,12 +7169,9 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/reports/exportdocumentline/initiate');
             path.ApplyField('companyId', companyId);
-            responseFile = ('POST', path, model);
-            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
-            {
-                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
-            }
-            return responseFile
+            FileResultModel responseModel = null;
+            responseModel = (FileResultModel) restCallForFile('POST', path.relativePath, model);
+            return responseModel
         }
 
 
@@ -7682,12 +7652,9 @@ global class AvaTaxClient
         public FileResult BuildTaxContentFile(PointOfSaleDataRequestModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/pointofsaledata/build');
-            responseFile = ('POST', path, model);
-            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
-            {
-                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
-            }
-            return responseFile
+            FileResultModel responseModel = null;
+            responseModel = (FileResultModel) restCallForFile('POST', path.relativePath, model);
+            return responseModel
         }
 
 
@@ -7721,12 +7688,9 @@ global class AvaTaxClient
             path.AddQuery('format', format);
             path.AddQuery('partnerId', partnerId);
             path.AddQuery('includeJurisCodes', includeJurisCodes);
-            responseFile = ('GET', path, null);
-            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
-            {
-                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
-            }
-            return responseFile
+            FileResultModel responseModel = null;
+            responseModel = (FileResultModel) restCallForFile('GET', path.relativePath, null);
+            return responseModel
         }
 
 
@@ -7754,12 +7718,9 @@ global class AvaTaxClient
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/taxratesbyzipcode/download/{date}');
             path.ApplyField('date', date);
-            responseFile = ('GET', path, null);
-            if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
-            {
-                responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
-            }
-            return responseFile
+            FileResultModel responseModel = null;
+            responseModel = (FileResultModel) restCallForFile('GET', path.relativePath, null);
+            return responseModel
         }
 
 
