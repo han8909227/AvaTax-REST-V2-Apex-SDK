@@ -39,10 +39,10 @@ global class AvaTaxClient
         // <param name="model">A request confirming that you wish to reset the license key of this account.</param>
         public LicenseKeyModel AccountResetLicenseKey(Integer id, ResetLicenseKeyModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{id}/resetlicensekey");
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{id}/resetlicensekey');
+            path.ApplyField('id', id);
             LicenseKeyModel responseModel = null;
-            responseModel = restCall("POST", path, model, LicenseKeyModel.class.getName());
+            responseModel = restCall('POST', path, model, LicenseKeyModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (LicenseKeyModel)System.JSON.deserialize(res.getBody(), LicenseKeyModel.class);
@@ -68,11 +68,11 @@ global class AvaTaxClient
         // <param name="model">The activation request</param>
         public AccountModel ActivateAccount(Integer id, String include, ActivateAccountModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{id}/activate");
-            path.ApplyField("id", id);
-            path.AddQuery("$include", include);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{id}/activate');
+            path.ApplyField('id', id);
+            path.AddQuery('$include', include);
             AccountModel responseModel = null;
-            responseModel = restCall("POST", path, model, AccountModel.class.getName());
+            responseModel = restCall('POST', path, model, AccountModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (AccountModel)System.JSON.deserialize(res.getBody(), AccountModel.class);
@@ -92,11 +92,11 @@ global class AvaTaxClient
         // <param name="include">A comma separated list of special fetch options</param>
         public AccountModel GetAccount(Integer id, String include)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{id}");
-            path.ApplyField("id", id);
-            path.AddQuery("$include", include);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{id}');
+            path.ApplyField('id', id);
+            path.AddQuery('$include', include);
             AccountModel responseModel = null;
-            responseModel = restCall("GET", path, null, AccountModel.class.getName());
+            responseModel = restCall('GET', path, null, AccountModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (AccountModel)System.JSON.deserialize(res.getBody(), AccountModel.class);
@@ -122,9 +122,9 @@ global class AvaTaxClient
         // <param name="id"></param>
         public List<AccountConfigurationModel> GetAccountConfiguration(Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{id}/configuration");
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("GET", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{id}/configuration');
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('GET', path, null);
             List<AccountConfigurationModel> retVal = new List<AccountConfigurationModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -156,9 +156,9 @@ global class AvaTaxClient
         // <param name="model"></param>
         public List<AccountConfigurationModel> SetAccountConfiguration(Integer id, List<AccountConfigurationModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{id}/configuration");
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{id}/configuration');
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('POST', path, model);
             List<AccountConfigurationModel> retVal = new List<AccountConfigurationModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -192,19 +192,19 @@ global class AvaTaxClient
         // <param name="longitude">Geospatial longitude measurement</param>
         public AddressResolutionModel ResolveAddress(String line1, String line2, String line3, String city, String region, String postalCode, String country, TextCase textCase, Decimal latitude, Decimal longitude)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/addresses/resolve");
-            path.AddQuery("line1", line1);
-            path.AddQuery("line2", line2);
-            path.AddQuery("line3", line3);
-            path.AddQuery("city", city);
-            path.AddQuery("region", region);
-            path.AddQuery("postalCode", postalCode);
-            path.AddQuery("country", country);
-            path.AddQuery("textCase", textCase);
-            path.AddQuery("latitude", latitude);
-            path.AddQuery("longitude", longitude);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/addresses/resolve');
+            path.AddQuery('line1', line1);
+            path.AddQuery('line2', line2);
+            path.AddQuery('line3', line3);
+            path.AddQuery('city', city);
+            path.AddQuery('region', region);
+            path.AddQuery('postalCode', postalCode);
+            path.AddQuery('country', country);
+            path.AddQuery('textCase', textCase);
+            path.AddQuery('latitude', latitude);
+            path.AddQuery('longitude', longitude);
             AddressResolutionModel responseModel = null;
-            responseModel = restCall("GET", path, null, AddressResolutionModel.class.getName());
+            responseModel = restCall('GET', path, null, AddressResolutionModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (AddressResolutionModel)System.JSON.deserialize(res.getBody(), AddressResolutionModel.class);
@@ -224,9 +224,9 @@ global class AvaTaxClient
         // <param name="model">The address to resolve</param>
         public AddressResolutionModel ResolveAddressPost(AddressValidationInfo model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/addresses/resolve");
+            AvaTaxPath path = new AvaTaxPath('/api/v2/addresses/resolve');
             AddressResolutionModel responseModel = null;
-            responseModel = restCall("POST", path, model, AddressResolutionModel.class.getName());
+            responseModel = restCall('POST', path, model, AddressResolutionModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (AddressResolutionModel)System.JSON.deserialize(res.getBody(), AddressResolutionModel.class);
@@ -242,8 +242,8 @@ global class AvaTaxClient
         // <param name="model">The AvaFileForm you wish to create.</param>
         public List<AvaFileFormModel> CreateAvaFileForms(List<AvaFileFormModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/avafileforms");
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/avafileforms');
+            httpResponse res = restCallForList('POST', path, model);
             List<AvaFileFormModel> retVal = new List<AvaFileFormModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -263,9 +263,9 @@ global class AvaTaxClient
         // <param name="id">The ID of the AvaFileForm you wish to delete.</param>
         public List<ErrorDetail> DeleteAvaFileForm(Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/avafileforms/{id}");
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("DELETE", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/avafileforms/{id}');
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('DELETE', path, null);
             List<ErrorDetail> retVal = new List<ErrorDetail>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -285,10 +285,10 @@ global class AvaTaxClient
         // <param name="id">The primary key of this AvaFileForm</param>
         public AvaFileFormModel GetAvaFileForm(String id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/avafileforms/{id}");
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/avafileforms/{id}');
+            path.ApplyField('id', id);
             AvaFileFormModel responseModel = null;
-            responseModel = restCall("GET", path, null, AvaFileFormModel.class.getName());
+            responseModel = restCall('GET', path, null, AvaFileFormModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (AvaFileFormModel)System.JSON.deserialize(res.getBody(), AvaFileFormModel.class);
@@ -308,14 +308,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<AvaFileFormModel> QueryAvaFileForms(String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/avafileforms");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/avafileforms');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<AvaFileFormModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<AvaFileFormModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<AvaFileFormModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<AvaFileFormModel>)System.JSON.deserialize(res.getBody(), FetchResult<AvaFileFormModel>.class);
@@ -332,10 +332,10 @@ global class AvaTaxClient
         // <param name="model">The AvaFileForm model you wish to update.</param>
         public AvaFileFormModel UpdateAvaFileForm(Integer id, AvaFileFormModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/avafileforms/{id}");
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/avafileforms/{id}');
+            path.ApplyField('id', id);
             AvaFileFormModel responseModel = null;
-            responseModel = restCall("PUT", path, model, AvaFileFormModel.class.getName());
+            responseModel = restCall('PUT', path, model, AvaFileFormModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (AvaFileFormModel)System.JSON.deserialize(res.getBody(), AvaFileFormModel.class);
@@ -364,9 +364,9 @@ global class AvaTaxClient
         // <param name="model">The batch you wish to create.</param>
         public List<BatchModel> CreateBatches(Integer companyId, List<BatchModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/batches");
-            path.ApplyField("companyId", companyId);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/batches');
+            path.ApplyField('companyId', companyId);
+            httpResponse res = restCallForList('POST', path, model);
             List<BatchModel> retVal = new List<BatchModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -387,10 +387,10 @@ global class AvaTaxClient
         // <param name="id">The ID of the batch to delete.</param>
         public List<ErrorDetail> DeleteBatch(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/batches/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("DELETE", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/batches/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('DELETE', path, null);
             List<ErrorDetail> retVal = new List<ErrorDetail>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -412,11 +412,11 @@ global class AvaTaxClient
         // <param name="id">The primary key of this batch file object</param>
         public FileResult DownloadBatch(Integer companyId, Integer batchId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/batches/{batchId}/files/{id}/attachment");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("batchId", batchId);
-            path.ApplyField("id", id);
-            responseFile = ("GET", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/batches/{batchId}/files/{id}/attachment');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('batchId', batchId);
+            path.ApplyField('id', id);
+            responseFile = ('GET', path, null);
             if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
             {
                 responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
@@ -446,11 +446,11 @@ global class AvaTaxClient
         // <param name="id">The primary key of this batch</param>
         public BatchModel GetBatch(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/batches/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/batches/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             BatchModel responseModel = null;
-            responseModel = restCall("GET", path, null, BatchModel.class.getName());
+            responseModel = restCall('GET', path, null, BatchModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (BatchModel)System.JSON.deserialize(res.getBody(), BatchModel.class);
@@ -490,15 +490,15 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<BatchModel> ListBatchesByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/batches");
-            path.ApplyField("companyId", companyId);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/batches');
+            path.ApplyField('companyId', companyId);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<BatchModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<BatchModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<BatchModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<BatchModel>)System.JSON.deserialize(res.getBody(), FetchResult<BatchModel>.class);
@@ -534,14 +534,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<BatchModel> QueryBatches(String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/batches");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/batches');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<BatchModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<BatchModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<BatchModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<BatchModel>)System.JSON.deserialize(res.getBody(), FetchResult<BatchModel>.class);
@@ -572,10 +572,10 @@ global class AvaTaxClient
         // <param name="model">the requests to send out to customers</param>
         public List<CertExpressInvitationStatusModel> CreateCertExpressInvitation(Integer companyId, String customerCode, List<CreateCertExpressInvitationModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/customers/{customerCode}/certexpressinvites");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("customerCode", customerCode);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/customers/{customerCode}/certexpressinvites');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('customerCode', customerCode);
+            httpResponse res = restCallForList('POST', path, model);
             List<CertExpressInvitationStatusModel> retVal = new List<CertExpressInvitationStatusModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -612,13 +612,13 @@ global class AvaTaxClient
         // <param name="include">OPTIONAL: A comma separated list of special fetch options. No options are defined at this time.</param>
         public CertExpressInvitationModel GetCertExpressInvitation(Integer companyId, String customerCode, Integer id, String include)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/customers/{customerCode}/certexpressinvites/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("customerCode", customerCode);
-            path.ApplyField("id", id);
-            path.AddQuery("$include", include);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/customers/{customerCode}/certexpressinvites/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('customerCode', customerCode);
+            path.ApplyField('id', id);
+            path.AddQuery('$include', include);
             CertExpressInvitationModel responseModel = null;
-            responseModel = restCall("GET", path, null, CertExpressInvitationModel.class.getName());
+            responseModel = restCall('GET', path, null, CertExpressInvitationModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (CertExpressInvitationModel)System.JSON.deserialize(res.getBody(), CertExpressInvitationModel.class);
@@ -654,15 +654,15 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CertExpressInvitationModel> ListCertExpressInvitations(Integer companyId, String include, String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certexpressinvites");
-            path.ApplyField("companyId", companyId);
-            path.AddQuery("$include", include);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certexpressinvites');
+            path.ApplyField('companyId', companyId);
+            path.AddQuery('$include', include);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<CertExpressInvitationModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<CertExpressInvitationModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<CertExpressInvitationModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<CertExpressInvitationModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertExpressInvitationModel>.class);
@@ -696,9 +696,9 @@ global class AvaTaxClient
         // <param name="model">Certificates to be created</param>
         public List<CertificateModel> CreateCertificates(Integer companyId, List<CertificateModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates");
-            path.ApplyField("companyId", companyId);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates');
+            path.ApplyField('companyId', companyId);
+            httpResponse res = restCallForList('POST', path, model);
             List<CertificateModel> retVal = new List<CertificateModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -731,11 +731,11 @@ global class AvaTaxClient
         // <param name="id">The unique ID number of this certificate</param>
         public CertificateModel DeleteCertificate(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             CertificateModel responseModel = null;
-            responseModel = restCall("DELETE", path, null, CertificateModel.class.getName());
+            responseModel = restCall('DELETE', path, null, CertificateModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (CertificateModel)System.JSON.deserialize(res.getBody(), CertificateModel.class);
@@ -766,12 +766,12 @@ global class AvaTaxClient
         // <param name="type">The data format in which to retrieve the certificate image</param>
         public FileResult DownloadCertificateImage(Integer companyId, Integer id, Integer page, CertificatePreviewType type)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/{id}/attachment");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            path.AddQuery("$page", page);
-            path.AddQuery("$type", type);
-            responseFile = ("GET", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/{id}/attachment');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            path.AddQuery('$page', page);
+            path.AddQuery('$type', type);
+            responseFile = ('GET', path, null);
             if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
             {
                 responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
@@ -808,12 +808,12 @@ global class AvaTaxClient
         //  * Attributes - Retrieves all attributes applied to the certificate.</param>
         public CertificateModel GetCertificate(Integer companyId, Integer id, String include)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            path.AddQuery("$include", include);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            path.AddQuery('$include', include);
             CertificateModel responseModel = null;
-            responseModel = restCall("GET", path, null, CertificateModel.class.getName());
+            responseModel = restCall('GET', path, null, CertificateModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (CertificateModel)System.JSON.deserialize(res.getBody(), CertificateModel.class);
@@ -834,10 +834,10 @@ global class AvaTaxClient
         // <param name="companyId">The company ID to check</param>
         public ProvisionStatusModel GetCertificateSetup(Integer companyId)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/setup");
-            path.ApplyField("companyId", companyId);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/setup');
+            path.ApplyField('companyId', companyId);
             ProvisionStatusModel responseModel = null;
-            responseModel = restCall("GET", path, null, ProvisionStatusModel.class.getName());
+            responseModel = restCall('GET', path, null, ProvisionStatusModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (ProvisionStatusModel)System.JSON.deserialize(res.getBody(), ProvisionStatusModel.class);
@@ -867,11 +867,11 @@ global class AvaTaxClient
         // <param name="model">The list of attributes to link to this certificate.</param>
         public FetchResult<CertificateAttributeModel> LinkAttributesToCertificate(Integer companyId, Integer id, List<CertificateAttributeModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/{id}/attributes/link");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/{id}/attributes/link');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             FetchResult<CertificateAttributeModel> responseModel = null;
-            responseModel = restCall("POST", path, model, FetchResult<CertificateAttributeModel>.class.getName());
+            responseModel = restCall('POST', path, model, FetchResult<CertificateAttributeModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<CertificateAttributeModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateAttributeModel>.class);
@@ -902,11 +902,11 @@ global class AvaTaxClient
         // <param name="model">The list of customers needed be added to the Certificate for exemption</param>
         public FetchResult<CustomerModel> LinkCustomersToCertificate(Integer companyId, Integer id, LinkCustomersModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/{id}/customers/link");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/{id}/customers/link');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             FetchResult<CustomerModel> responseModel = null;
-            responseModel = restCall("POST", path, model, FetchResult<CustomerModel>.class.getName());
+            responseModel = restCall('POST', path, model, FetchResult<CustomerModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<CustomerModel>)System.JSON.deserialize(res.getBody(), FetchResult<CustomerModel>.class);
@@ -935,11 +935,11 @@ global class AvaTaxClient
         // <param name="id">The unique ID number of this certificate</param>
         public FetchResult<CertificateAttributeModel> ListAttributesForCertificate(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/{id}/attributes");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/{id}/attributes');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             FetchResult<CertificateAttributeModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<CertificateAttributeModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<CertificateAttributeModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<CertificateAttributeModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateAttributeModel>.class);
@@ -970,12 +970,12 @@ global class AvaTaxClient
         //  No options are currently available when fetching customers.</param>
         public FetchResult<CustomerModel> ListCustomersForCertificate(Integer companyId, Integer id, String include)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/{id}/customers");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            path.AddQuery("$include", include);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/{id}/customers');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            path.AddQuery('$include', include);
             FetchResult<CustomerModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<CustomerModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<CustomerModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<CustomerModel>)System.JSON.deserialize(res.getBody(), FetchResult<CustomerModel>.class);
@@ -1015,15 +1015,15 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CertificateModel> QueryCertificates(Integer companyId, String include, String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates");
-            path.ApplyField("companyId", companyId);
-            path.AddQuery("$include", include);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates');
+            path.ApplyField('companyId', companyId);
+            path.AddQuery('$include', include);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<CertificateModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<CertificateModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<CertificateModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<CertificateModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateModel>.class);
@@ -1046,10 +1046,10 @@ global class AvaTaxClient
         // <param name="companyId"></param>
         public ProvisionStatusModel RequestCertificateSetup(Integer companyId)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/setup");
-            path.ApplyField("companyId", companyId);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/setup');
+            path.ApplyField('companyId', companyId);
             ProvisionStatusModel responseModel = null;
-            responseModel = restCall("POST", path, null, ProvisionStatusModel.class.getName());
+            responseModel = restCall('POST', path, null, ProvisionStatusModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (ProvisionStatusModel)System.JSON.deserialize(res.getBody(), ProvisionStatusModel.class);
@@ -1079,11 +1079,11 @@ global class AvaTaxClient
         // <param name="model">The list of attributes to unlink from this certificate.</param>
         public FetchResult<CertificateAttributeModel> UnlinkAttributesFromCertificate(Integer companyId, Integer id, List<CertificateAttributeModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/{id}/attributes/unlink");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/{id}/attributes/unlink');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             FetchResult<CertificateAttributeModel> responseModel = null;
-            responseModel = restCall("POST", path, model, FetchResult<CertificateAttributeModel>.class.getName());
+            responseModel = restCall('POST', path, model, FetchResult<CertificateAttributeModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<CertificateAttributeModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateAttributeModel>.class);
@@ -1115,11 +1115,11 @@ global class AvaTaxClient
         // <param name="model">The list of customers to unlink from this certificate</param>
         public FetchResult<CustomerModel> UnlinkCustomersFromCertificate(Integer companyId, Integer id, LinkCustomersModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/{id}/customers/unlink");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/{id}/customers/unlink');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             FetchResult<CustomerModel> responseModel = null;
-            responseModel = restCall("POST", path, model, FetchResult<CustomerModel>.class.getName());
+            responseModel = restCall('POST', path, model, FetchResult<CustomerModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<CustomerModel>)System.JSON.deserialize(res.getBody(), FetchResult<CustomerModel>.class);
@@ -1146,11 +1146,11 @@ global class AvaTaxClient
         // <param name="model">The new certificate object that will replace the existing one</param>
         public CertificateModel UpdateCertificate(Integer companyId, Integer id, CertificateModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             CertificateModel responseModel = null;
-            responseModel = restCall("PUT", path, model, CertificateModel.class.getName());
+            responseModel = restCall('PUT', path, model, CertificateModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (CertificateModel)System.JSON.deserialize(res.getBody(), CertificateModel.class);
@@ -1180,11 +1180,11 @@ global class AvaTaxClient
         // <param name="file">The exemption certificate file you wanted to upload. Accepted formats are: PDF, JPEG, TIFF, PNG.</param>
         public String UploadCertificateImage(Integer companyId, Integer id, FileResult file)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/certificates/{id}/attachment");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/{id}/attachment');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             String responseModel = null;
-            responseModel = restCall("POST", path, null, String.class.getName());
+            responseModel = restCall('POST', path, null, String.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (String)System.JSON.deserialize(res.getBody(), String.class);
@@ -1212,10 +1212,10 @@ global class AvaTaxClient
         // <param name="model"></param>
         public String ChangeFilingStatus(Integer id, FilingStatusChangeModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{id}/filingstatus");
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{id}/filingstatus');
+            path.ApplyField('id', id);
             String responseModel = null;
-            responseModel = restCall("POST", path, model, String.class.getName());
+            responseModel = restCall('POST', path, model, String.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (String)System.JSON.deserialize(res.getBody(), String.class);
@@ -1241,9 +1241,9 @@ global class AvaTaxClient
         // <param name="model">Information about the company you wish to create.</param>
         public CompanyModel CompanyInitialize(CompanyInitializationModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/initialize");
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/initialize');
             CompanyModel responseModel = null;
-            responseModel = restCall("POST", path, model, CompanyModel.class.getName());
+            responseModel = restCall('POST', path, model, CompanyModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (CompanyModel)System.JSON.deserialize(res.getBody(), CompanyModel.class);
@@ -1260,8 +1260,8 @@ global class AvaTaxClient
         // <param name="model">Either a single company object or an array of companies to create</param>
         public List<CompanyModel> CreateCompanies(List<CompanyModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies");
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies');
+            httpResponse res = restCallForList('POST', path, model);
             List<CompanyModel> retVal = new List<CompanyModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -1291,10 +1291,10 @@ global class AvaTaxClient
         // <param name="model">The funding initialization request</param>
         public FundingStatusModel CreateFundingRequest(Integer id, FundingInitiateModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{id}/funding/setup");
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{id}/funding/setup');
+            path.ApplyField('id', id);
             FundingStatusModel responseModel = null;
-            responseModel = restCall("POST", path, model, FundingStatusModel.class.getName());
+            responseModel = restCall('POST', path, model, FundingStatusModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FundingStatusModel)System.JSON.deserialize(res.getBody(), FundingStatusModel.class);
@@ -1309,9 +1309,9 @@ global class AvaTaxClient
         // <param name="id">The ID of the company you wish to delete.</param>
         public List<ErrorDetail> DeleteCompany(Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{id}");
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("DELETE", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{id}');
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('DELETE', path, null);
             List<ErrorDetail> retVal = new List<ErrorDetail>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -1334,10 +1334,10 @@ global class AvaTaxClient
         // <param name="companyId">The unique identifier of the company</param>
         public FundingConfigurationModel FundingConfigurationByCompany(Integer companyId)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/funding/configuration");
-            path.ApplyField("companyId", companyId);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/funding/configuration');
+            path.ApplyField('companyId', companyId);
             FundingConfigurationModel responseModel = null;
-            responseModel = restCall("GET", path, null, FundingConfigurationModel.class.getName());
+            responseModel = restCall('GET', path, null, FundingConfigurationModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FundingConfigurationModel)System.JSON.deserialize(res.getBody(), FundingConfigurationModel.class);
@@ -1356,10 +1356,10 @@ global class AvaTaxClient
         // <param name="currency">The currency of the funding. USD and CAD are the only valid currencies</param>
         public List<FundingConfigurationModel> FundingConfigurationsByCompanyAndCurrency(Integer companyId, String currency)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/funding/configurations");
-            path.ApplyField("companyId", companyId);
-            path.AddQuery("currency", currency);
-            httpResponse res = restCallForList("GET", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/funding/configurations');
+            path.ApplyField('companyId', companyId);
+            path.AddQuery('currency', currency);
+            httpResponse res = restCallForList('GET', path, null);
             List<FundingConfigurationModel> retVal = new List<FundingConfigurationModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -1394,11 +1394,11 @@ global class AvaTaxClient
         //  * Deleted objects - Specify "FetchDeleted" to retrieve information about previously deleted objects.</param>
         public CompanyModel GetCompany(Integer id, String include)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{id}");
-            path.ApplyField("id", id);
-            path.AddQuery("$include", include);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{id}');
+            path.ApplyField('id', id);
+            path.AddQuery('$include', include);
             CompanyModel responseModel = null;
-            responseModel = restCall("GET", path, null, CompanyModel.class.getName());
+            responseModel = restCall('GET', path, null, CompanyModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (CompanyModel)System.JSON.deserialize(res.getBody(), CompanyModel.class);
@@ -1424,9 +1424,9 @@ global class AvaTaxClient
         // <param name="id"></param>
         public List<CompanyConfigurationModel> GetCompanyConfiguration(Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{id}/configuration");
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("GET", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{id}/configuration');
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('GET', path, null);
             List<CompanyConfigurationModel> retVal = new List<CompanyConfigurationModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -1458,10 +1458,10 @@ global class AvaTaxClient
         // <param name="id"></param>
         public String GetFilingStatus(Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{id}/filingstatus");
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{id}/filingstatus');
+            path.ApplyField('id', id);
             String responseModel = null;
-            responseModel = restCall("GET", path, null, String.class.getName());
+            responseModel = restCall('GET', path, null, String.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (String)System.JSON.deserialize(res.getBody(), String.class);
@@ -1479,9 +1479,9 @@ global class AvaTaxClient
         // <param name="id">The unique identifier of the company</param>
         public List<FundingStatusModel> ListFundingRequestsByCompany(Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{id}/funding");
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("GET", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{id}/funding');
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('GET', path, null);
             List<FundingStatusModel> retVal = new List<FundingStatusModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -1502,9 +1502,9 @@ global class AvaTaxClient
         // 
         public FetchResult<MrsCompanyModel> ListMrsCompanies()
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/mrs");
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/mrs');
             FetchResult<MrsCompanyModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<MrsCompanyModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<MrsCompanyModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<MrsCompanyModel>)System.JSON.deserialize(res.getBody(), FetchResult<MrsCompanyModel>.class);
@@ -1536,14 +1536,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CompanyModel> QueryCompanies(String include, String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies");
-            path.AddQuery("$include", include);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies');
+            path.AddQuery('$include', include);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<CompanyModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<CompanyModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<CompanyModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<CompanyModel>)System.JSON.deserialize(res.getBody(), FetchResult<CompanyModel>.class);
@@ -1570,9 +1570,9 @@ global class AvaTaxClient
         // <param name="model"></param>
         public List<CompanyConfigurationModel> SetCompanyConfiguration(Integer id, List<CompanyConfigurationModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{id}/configuration");
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{id}/configuration');
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('POST', path, model);
             List<CompanyConfigurationModel> retVal = new List<CompanyConfigurationModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -1596,10 +1596,10 @@ global class AvaTaxClient
         // <param name="model">The company object you wish to update.</param>
         public CompanyModel UpdateCompany(Integer id, CompanyModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{id}");
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{id}');
+            path.ApplyField('id', id);
             CompanyModel responseModel = null;
-            responseModel = restCall("PUT", path, model, CompanyModel.class.getName());
+            responseModel = restCall('PUT', path, model, CompanyModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (CompanyModel)System.JSON.deserialize(res.getBody(), CompanyModel.class);
@@ -1617,9 +1617,9 @@ global class AvaTaxClient
         // <param name="model">The contacts you wish to create.</param>
         public List<ContactModel> CreateContacts(Integer companyId, List<ContactModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/contacts");
-            path.ApplyField("companyId", companyId);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/contacts');
+            path.ApplyField('companyId', companyId);
+            httpResponse res = restCallForList('POST', path, model);
             List<ContactModel> retVal = new List<ContactModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -1640,10 +1640,10 @@ global class AvaTaxClient
         // <param name="id">The ID of the contact you wish to delete.</param>
         public List<ErrorDetail> DeleteContact(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/contacts/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("DELETE", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/contacts/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('DELETE', path, null);
             List<ErrorDetail> retVal = new List<ErrorDetail>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -1666,11 +1666,11 @@ global class AvaTaxClient
         // <param name="id">The primary key of this contact</param>
         public ContactModel GetContact(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/contacts/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/contacts/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             ContactModel responseModel = null;
-            responseModel = restCall("GET", path, null, ContactModel.class.getName());
+            responseModel = restCall('GET', path, null, ContactModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (ContactModel)System.JSON.deserialize(res.getBody(), ContactModel.class);
@@ -1693,15 +1693,15 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<ContactModel> ListContactsByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/contacts");
-            path.ApplyField("companyId", companyId);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/contacts');
+            path.ApplyField('companyId', companyId);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<ContactModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<ContactModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<ContactModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<ContactModel>)System.JSON.deserialize(res.getBody(), FetchResult<ContactModel>.class);
@@ -1725,14 +1725,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<ContactModel> QueryContacts(String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/contacts");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/contacts');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<ContactModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<ContactModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<ContactModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<ContactModel>)System.JSON.deserialize(res.getBody(), FetchResult<ContactModel>.class);
@@ -1753,11 +1753,11 @@ global class AvaTaxClient
         // <param name="model">The contact you wish to update.</param>
         public ContactModel UpdateContact(Integer companyId, Integer id, ContactModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/contacts/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/contacts/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             ContactModel responseModel = null;
-            responseModel = restCall("PUT", path, model, ContactModel.class.getName());
+            responseModel = restCall('PUT', path, model, ContactModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (ContactModel)System.JSON.deserialize(res.getBody(), ContactModel.class);
@@ -1784,9 +1784,9 @@ global class AvaTaxClient
         // <param name="model">The list of customer objects to be created</param>
         public List<CustomerModel> CreateCustomers(Integer companyId, List<CustomerModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/customers");
-            path.ApplyField("companyId", companyId);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/customers');
+            path.ApplyField('companyId', companyId);
+            httpResponse res = restCallForList('POST', path, model);
             List<CustomerModel> retVal = new List<CustomerModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -1818,11 +1818,11 @@ global class AvaTaxClient
         // <param name="customerCode">The unique code representing this customer</param>
         public CustomerModel DeleteCustomer(Integer companyId, String customerCode)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/customers/{customerCode}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("customerCode", customerCode);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/customers/{customerCode}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('customerCode', customerCode);
             CustomerModel responseModel = null;
-            responseModel = restCall("DELETE", path, null, CustomerModel.class.getName());
+            responseModel = restCall('DELETE', path, null, CustomerModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (CustomerModel)System.JSON.deserialize(res.getBody(), CustomerModel.class);
@@ -1855,12 +1855,12 @@ global class AvaTaxClient
         // <param name="include">Specify optional additional objects to include in this fetch request</param>
         public CustomerModel GetCustomer(Integer companyId, String customerCode, String include)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/customers/{customerCode}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("customerCode", customerCode);
-            path.AddQuery("$include", include);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/customers/{customerCode}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('customerCode', customerCode);
+            path.AddQuery('$include', include);
             CustomerModel responseModel = null;
-            responseModel = restCall("GET", path, null, CustomerModel.class.getName());
+            responseModel = restCall('GET', path, null, CustomerModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (CustomerModel)System.JSON.deserialize(res.getBody(), CustomerModel.class);
@@ -1888,11 +1888,11 @@ global class AvaTaxClient
         // <param name="model">The list of certificates to link to this customer</param>
         public FetchResult<CertificateModel> LinkCertificatesToCustomer(Integer companyId, String customerCode, LinkCertificatesModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/customers/{customerCode}/certificates/link");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("customerCode", customerCode);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/customers/{customerCode}/certificates/link');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('customerCode', customerCode);
             FetchResult<CertificateModel> responseModel = null;
-            responseModel = restCall("POST", path, model, FetchResult<CertificateModel>.class.getName());
+            responseModel = restCall('POST', path, model, FetchResult<CertificateModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<CertificateModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateModel>.class);
@@ -1928,16 +1928,16 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CertificateModel> ListCertificatesForCustomer(Integer companyId, String customerCode, String include, String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/customers/{customerCode}/certificates");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("customerCode", customerCode);
-            path.AddQuery("$include", include);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/customers/{customerCode}/certificates');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('customerCode', customerCode);
+            path.AddQuery('$include', include);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<CertificateModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<CertificateModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<CertificateModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<CertificateModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateModel>.class);
@@ -1969,13 +1969,13 @@ global class AvaTaxClient
         // <param name="region">Search for certificates matching this region. Uses the ISO 3166 two or three character state, region, or province code.</param>
         public ExemptionStatusModel ListValidCertificatesForCustomer(Integer companyId, String customerCode, String country, String region)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/customers/{customerCode}/certificates/{country}/{region}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("customerCode", customerCode);
-            path.ApplyField("country", country);
-            path.ApplyField("region", region);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/customers/{customerCode}/certificates/{country}/{region}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('customerCode', customerCode);
+            path.ApplyField('country', country);
+            path.ApplyField('region', region);
             ExemptionStatusModel responseModel = null;
-            responseModel = restCall("GET", path, null, ExemptionStatusModel.class.getName());
+            responseModel = restCall('GET', path, null, ExemptionStatusModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (ExemptionStatusModel)System.JSON.deserialize(res.getBody(), ExemptionStatusModel.class);
@@ -2010,15 +2010,15 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CustomerModel> QueryCustomers(Integer companyId, String include, String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/customers");
-            path.ApplyField("companyId", companyId);
-            path.AddQuery("$include", include);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/customers');
+            path.ApplyField('companyId', companyId);
+            path.AddQuery('$include', include);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<CustomerModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<CustomerModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<CustomerModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<CustomerModel>)System.JSON.deserialize(res.getBody(), FetchResult<CustomerModel>.class);
@@ -2046,11 +2046,11 @@ global class AvaTaxClient
         // <param name="model">The list of certificates to link to this customer</param>
         public FetchResult<CertificateModel> UnlinkCertificatesFromCustomer(Integer companyId, String customerCode, LinkCertificatesModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/customers/{customerCode}/certificates/unlink");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("customerCode", customerCode);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/customers/{customerCode}/certificates/unlink');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('customerCode', customerCode);
             FetchResult<CertificateModel> responseModel = null;
-            responseModel = restCall("POST", path, model, FetchResult<CertificateModel>.class.getName());
+            responseModel = restCall('POST', path, model, FetchResult<CertificateModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<CertificateModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateModel>.class);
@@ -2078,11 +2078,11 @@ global class AvaTaxClient
         // <param name="model">The new customer model that will replace the existing record at this URL</param>
         public CustomerModel UpdateCustomer(Integer companyId, String customerCode, CustomerModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/customers/{customerCode}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("customerCode", customerCode);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/customers/{customerCode}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('customerCode', customerCode);
             CustomerModel responseModel = null;
-            responseModel = restCall("PUT", path, model, CustomerModel.class.getName());
+            responseModel = restCall('PUT', path, model, CustomerModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (CustomerModel)System.JSON.deserialize(res.getBody(), CustomerModel.class);
@@ -2107,11 +2107,11 @@ global class AvaTaxClient
         // <param name="hsCode">The partial or full HS Code for which you would like to view all of the parents.</param>
         public FetchResult<HsCodeModel> GetCrossBorderCode(String country, String hsCode)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/crossborder/{country}/{hsCode}/hierarchy");
-            path.ApplyField("country", country);
-            path.ApplyField("hsCode", hsCode);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/crossborder/{country}/{hsCode}/hierarchy');
+            path.ApplyField('country', country);
+            path.ApplyField('hsCode', hsCode);
             FetchResult<HsCodeModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<HsCodeModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<HsCodeModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<HsCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<HsCodeModel>.class);
@@ -2131,14 +2131,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<SkyscraperStatusModel> GetLoginVerifierByForm(String form, String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/filingcalendars/loginverifiers/{form}");
-            path.ApplyField("form", form);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/filingcalendars/loginverifiers/{form}');
+            path.ApplyField('form', form);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<SkyscraperStatusModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<SkyscraperStatusModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<SkyscraperStatusModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<SkyscraperStatusModel>)System.JSON.deserialize(res.getBody(), FetchResult<SkyscraperStatusModel>.class);
@@ -2161,13 +2161,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<AvaFileFormModel> ListAvaFileForms(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/avafileforms");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/avafileforms');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<AvaFileFormModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<AvaFileFormModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<AvaFileFormModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<AvaFileFormModel>)System.JSON.deserialize(res.getBody(), FetchResult<AvaFileFormModel>.class);
@@ -2191,13 +2191,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CertificateAttributeModel> ListCertificateAttributes(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/certificateattributes");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/certificateattributes');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<CertificateAttributeModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<CertificateAttributeModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<CertificateAttributeModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<CertificateAttributeModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateAttributeModel>.class);
@@ -2221,13 +2221,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<ExemptionReasonModel> ListCertificateExemptReasons(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/certificateexemptreasons");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/certificateexemptreasons');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<ExemptionReasonModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<ExemptionReasonModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<ExemptionReasonModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<ExemptionReasonModel>)System.JSON.deserialize(res.getBody(), FetchResult<ExemptionReasonModel>.class);
@@ -2251,13 +2251,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<ExposureZoneModel> ListCertificateExposureZones(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/certificateexposurezones");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/certificateexposurezones');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<ExposureZoneModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<ExposureZoneModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<ExposureZoneModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<ExposureZoneModel>)System.JSON.deserialize(res.getBody(), FetchResult<ExposureZoneModel>.class);
@@ -2277,14 +2277,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CommunicationsTSPairModel> ListCommunicationsServiceTypes(Integer id, String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/communications/transactiontypes/{id}/servicetypes");
-            path.ApplyField("id", id);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/communications/transactiontypes/{id}/servicetypes');
+            path.ApplyField('id', id);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<CommunicationsTSPairModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<CommunicationsTSPairModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<CommunicationsTSPairModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<CommunicationsTSPairModel>)System.JSON.deserialize(res.getBody(), FetchResult<CommunicationsTSPairModel>.class);
@@ -2303,13 +2303,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CommunicationsTransactionTypeModel> ListCommunicationsTransactionTypes(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/communications/transactiontypes");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/communications/transactiontypes');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<CommunicationsTransactionTypeModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<CommunicationsTransactionTypeModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<CommunicationsTransactionTypeModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<CommunicationsTransactionTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<CommunicationsTransactionTypeModel>.class);
@@ -2328,13 +2328,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CommunicationsTSPairModel> ListCommunicationsTSPairs(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/communications/tspairs");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/communications/tspairs');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<CommunicationsTSPairModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<CommunicationsTSPairModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<CommunicationsTSPairModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<CommunicationsTSPairModel>)System.JSON.deserialize(res.getBody(), FetchResult<CommunicationsTSPairModel>.class);
@@ -2354,13 +2354,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<IsoCountryModel> ListCountries(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/countries");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/countries');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<IsoCountryModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<IsoCountryModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<IsoCountryModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<IsoCountryModel>)System.JSON.deserialize(res.getBody(), FetchResult<IsoCountryModel>.class);
@@ -2385,13 +2385,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CoverLetterModel> ListCoverLetters(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/coverletters");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/coverletters');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<CoverLetterModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<CoverLetterModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<CoverLetterModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<CoverLetterModel>)System.JSON.deserialize(res.getBody(), FetchResult<CoverLetterModel>.class);
@@ -2418,15 +2418,15 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<HsCodeModel> ListCrossBorderCodes(String country, String hsCode, String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/crossborder/{country}/{hsCode}");
-            path.ApplyField("country", country);
-            path.ApplyField("hsCode", hsCode);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/crossborder/{country}/{hsCode}');
+            path.ApplyField('country', country);
+            path.ApplyField('hsCode', hsCode);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<HsCodeModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<HsCodeModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<HsCodeModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<HsCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<HsCodeModel>.class);
@@ -2445,9 +2445,9 @@ global class AvaTaxClient
         // 
         public FetchResult<HsCodeModel> ListCrossBorderSections()
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/crossborder/sections");
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/crossborder/sections');
             FetchResult<HsCodeModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<HsCodeModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<HsCodeModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<HsCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<HsCodeModel>.class);
@@ -2468,13 +2468,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CurrencyModel> ListCurrencies(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/currencies");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/currencies');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<CurrencyModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<CurrencyModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<CurrencyModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<CurrencyModel>)System.JSON.deserialize(res.getBody(), FetchResult<CurrencyModel>.class);
@@ -2496,13 +2496,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<EntityUseCodeModel> ListEntityUseCodes(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/entityusecodes");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/entityusecodes');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<EntityUseCodeModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<EntityUseCodeModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<EntityUseCodeModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<EntityUseCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<EntityUseCodeModel>.class);
@@ -2521,13 +2521,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<FilingFrequencyModel> ListFilingFrequencies(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/filingfrequencies");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/filingfrequencies');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<FilingFrequencyModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<FilingFrequencyModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<FilingFrequencyModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<FilingFrequencyModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingFrequencyModel>.class);
@@ -2548,13 +2548,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<JurisdictionModel> ListJurisdictions(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/jurisdictions");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/jurisdictions');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<JurisdictionModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<JurisdictionModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<JurisdictionModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<JurisdictionModel>)System.JSON.deserialize(res.getBody(), FetchResult<JurisdictionModel>.class);
@@ -2585,20 +2585,20 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<JurisdictionOverrideModel> ListJurisdictionsByAddress(String line1, String line2, String line3, String city, String region, String postalCode, String country, String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/jurisdictionsnearaddress");
-            path.AddQuery("line1", line1);
-            path.AddQuery("line2", line2);
-            path.AddQuery("line3", line3);
-            path.AddQuery("city", city);
-            path.AddQuery("region", region);
-            path.AddQuery("postalCode", postalCode);
-            path.AddQuery("country", country);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/jurisdictionsnearaddress');
+            path.AddQuery('line1', line1);
+            path.AddQuery('line2', line2);
+            path.AddQuery('line3', line3);
+            path.AddQuery('city', city);
+            path.AddQuery('region', region);
+            path.AddQuery('postalCode', postalCode);
+            path.AddQuery('country', country);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<JurisdictionOverrideModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<JurisdictionOverrideModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<JurisdictionOverrideModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<JurisdictionOverrideModel>)System.JSON.deserialize(res.getBody(), FetchResult<JurisdictionOverrideModel>.class);
@@ -2630,22 +2630,22 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<LocationQuestionModel> ListLocationQuestionsByAddress(String line1, String line2, String line3, String city, String region, String postalCode, String country, Decimal latitude, Decimal longitude, String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/locationquestions");
-            path.AddQuery("line1", line1);
-            path.AddQuery("line2", line2);
-            path.AddQuery("line3", line3);
-            path.AddQuery("city", city);
-            path.AddQuery("region", region);
-            path.AddQuery("postalCode", postalCode);
-            path.AddQuery("country", country);
-            path.AddQuery("latitude", latitude);
-            path.AddQuery("longitude", longitude);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/locationquestions');
+            path.AddQuery('line1', line1);
+            path.AddQuery('line2', line2);
+            path.AddQuery('line3', line3);
+            path.AddQuery('city', city);
+            path.AddQuery('region', region);
+            path.AddQuery('postalCode', postalCode);
+            path.AddQuery('country', country);
+            path.AddQuery('latitude', latitude);
+            path.AddQuery('longitude', longitude);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<LocationQuestionModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<LocationQuestionModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<LocationQuestionModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<LocationQuestionModel>)System.JSON.deserialize(res.getBody(), FetchResult<LocationQuestionModel>.class);
@@ -2665,13 +2665,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<SkyscraperStatusModel> ListLoginVerifiers(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/filingcalendars/loginverifiers");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/filingcalendars/loginverifiers');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<SkyscraperStatusModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<SkyscraperStatusModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<SkyscraperStatusModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<SkyscraperStatusModel>)System.JSON.deserialize(res.getBody(), FetchResult<SkyscraperStatusModel>.class);
@@ -2691,13 +2691,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NexusModel> ListNexus(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/nexus");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/nexus');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<NexusModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<NexusModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<NexusModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<NexusModel>)System.JSON.deserialize(res.getBody(), FetchResult<NexusModel>.class);
@@ -2741,20 +2741,20 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NexusModel> ListNexusByAddress(String line1, String line2, String line3, String city, String region, String postalCode, String country, String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/nexus/byaddress");
-            path.AddQuery("line1", line1);
-            path.AddQuery("line2", line2);
-            path.AddQuery("line3", line3);
-            path.AddQuery("city", city);
-            path.AddQuery("region", region);
-            path.AddQuery("postalCode", postalCode);
-            path.AddQuery("country", country);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/nexus/byaddress');
+            path.AddQuery('line1', line1);
+            path.AddQuery('line2', line2);
+            path.AddQuery('line3', line3);
+            path.AddQuery('city', city);
+            path.AddQuery('region', region);
+            path.AddQuery('postalCode', postalCode);
+            path.AddQuery('country', country);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<NexusModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<NexusModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<NexusModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<NexusModel>)System.JSON.deserialize(res.getBody(), FetchResult<NexusModel>.class);
@@ -2775,14 +2775,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NexusModel> ListNexusByCountry(String country, String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/nexus/{country}");
-            path.ApplyField("country", country);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/nexus/{country}');
+            path.ApplyField('country', country);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<NexusModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<NexusModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<NexusModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<NexusModel>)System.JSON.deserialize(res.getBody(), FetchResult<NexusModel>.class);
@@ -2804,15 +2804,15 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NexusModel> ListNexusByCountryAndRegion(String country, String region, String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/nexus/{country}/{region}");
-            path.ApplyField("country", country);
-            path.ApplyField("region", region);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/nexus/{country}/{region}');
+            path.ApplyField('country', country);
+            path.ApplyField('region', region);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<NexusModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<NexusModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<NexusModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<NexusModel>)System.JSON.deserialize(res.getBody(), FetchResult<NexusModel>.class);
@@ -2841,14 +2841,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public NexusByTaxFormModel ListNexusByFormCode(String formCode, String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/nexus/byform/{formCode}");
-            path.ApplyField("formCode", formCode);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/nexus/byform/{formCode}');
+            path.ApplyField('formCode', formCode);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             NexusByTaxFormModel responseModel = null;
-            responseModel = restCall("GET", path, null, NexusByTaxFormModel.class.getName());
+            responseModel = restCall('GET', path, null, NexusByTaxFormModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (NexusByTaxFormModel)System.JSON.deserialize(res.getBody(), NexusByTaxFormModel.class);
@@ -2867,13 +2867,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NexusTaxTypeGroupModel> ListNexusTaxTypeGroups(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/nexustaxtypegroups");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/nexustaxtypegroups');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<NexusTaxTypeGroupModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<NexusTaxTypeGroupModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<NexusTaxTypeGroupModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<NexusTaxTypeGroupModel>)System.JSON.deserialize(res.getBody(), FetchResult<NexusTaxTypeGroupModel>.class);
@@ -2892,13 +2892,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NoticeCustomerFundingOptionModel> ListNoticeCustomerFundingOptions(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/noticecustomerfundingoptions");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/noticecustomerfundingoptions');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<NoticeCustomerFundingOptionModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<NoticeCustomerFundingOptionModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<NoticeCustomerFundingOptionModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<NoticeCustomerFundingOptionModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeCustomerFundingOptionModel>.class);
@@ -2917,13 +2917,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NoticeCustomerTypeModel> ListNoticeCustomerTypes(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/noticecustomertypes");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/noticecustomertypes');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<NoticeCustomerTypeModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<NoticeCustomerTypeModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<NoticeCustomerTypeModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<NoticeCustomerTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeCustomerTypeModel>.class);
@@ -2942,13 +2942,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NoticeFilingTypeModel> ListNoticeFilingtypes(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/noticefilingtypes");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/noticefilingtypes');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<NoticeFilingTypeModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<NoticeFilingTypeModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<NoticeFilingTypeModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<NoticeFilingTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeFilingTypeModel>.class);
@@ -2967,13 +2967,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NoticePriorityModel> ListNoticePriorities(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/noticepriorities");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/noticepriorities');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<NoticePriorityModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<NoticePriorityModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<NoticePriorityModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<NoticePriorityModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticePriorityModel>.class);
@@ -2992,13 +2992,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NoticeReasonModel> ListNoticeReasons(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/noticereasons");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/noticereasons');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<NoticeReasonModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<NoticeReasonModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<NoticeReasonModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<NoticeReasonModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeReasonModel>.class);
@@ -3017,13 +3017,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NoticeResponsibilityModel> ListNoticeResponsibilities(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/noticeresponsibilities");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/noticeresponsibilities');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<NoticeResponsibilityModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<NoticeResponsibilityModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<NoticeResponsibilityModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<NoticeResponsibilityModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeResponsibilityModel>.class);
@@ -3042,13 +3042,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NoticeRootCauseModel> ListNoticeRootCauses(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/noticerootcauses");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/noticerootcauses');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<NoticeRootCauseModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<NoticeRootCauseModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<NoticeRootCauseModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<NoticeRootCauseModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeRootCauseModel>.class);
@@ -3067,13 +3067,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NoticeStatusModel> ListNoticeStatuses(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/noticestatuses");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/noticestatuses');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<NoticeStatusModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<NoticeStatusModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<NoticeStatusModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<NoticeStatusModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeStatusModel>.class);
@@ -3092,13 +3092,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NoticeTypeModel> ListNoticeTypes(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/noticetypes");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/noticetypes');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<NoticeTypeModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<NoticeTypeModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<NoticeTypeModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<NoticeTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeTypeModel>.class);
@@ -3118,13 +3118,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<ParameterModel> ListParameters(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/parameters");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/parameters');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<ParameterModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<ParameterModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<ParameterModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<ParameterModel>)System.JSON.deserialize(res.getBody(), FetchResult<ParameterModel>.class);
@@ -3143,13 +3143,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<String> ListPermissions(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/permissions");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/permissions');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<String> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<String>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<String>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<String>)System.JSON.deserialize(res.getBody(), FetchResult<String>.class);
@@ -3167,13 +3167,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<PostalCodeModel> ListPostalCodes(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/postalcodes");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/postalcodes');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<PostalCodeModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<PostalCodeModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<PostalCodeModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<PostalCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<PostalCodeModel>.class);
@@ -3199,13 +3199,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<PreferredProgramModel> ListPreferredPrograms(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/preferredprograms");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/preferredprograms');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<PreferredProgramModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<PreferredProgramModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<PreferredProgramModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<PreferredProgramModel>)System.JSON.deserialize(res.getBody(), FetchResult<PreferredProgramModel>.class);
@@ -3225,14 +3225,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<RateTypeModel> ListRateTypesByCountry(String country, String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/countries/{country}/ratetypes");
-            path.ApplyField("country", country);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/countries/{country}/ratetypes');
+            path.ApplyField('country', country);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<RateTypeModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<RateTypeModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<RateTypeModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<RateTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<RateTypeModel>.class);
@@ -3252,13 +3252,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<IsoRegionModel> ListRegions(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/regions");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/regions');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<IsoRegionModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<IsoRegionModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<IsoRegionModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<IsoRegionModel>)System.JSON.deserialize(res.getBody(), FetchResult<IsoRegionModel>.class);
@@ -3279,14 +3279,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<IsoRegionModel> ListRegionsByCountry(String country, String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/countries/{country}/regions");
-            path.ApplyField("country", country);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/countries/{country}/regions');
+            path.ApplyField('country', country);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<IsoRegionModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<IsoRegionModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<IsoRegionModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<IsoRegionModel>)System.JSON.deserialize(res.getBody(), FetchResult<IsoRegionModel>.class);
@@ -3305,13 +3305,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<ResourceFileTypeModel> ListResourceFileTypes(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/resourcefiletypes");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/resourcefiletypes');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<ResourceFileTypeModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<ResourceFileTypeModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<ResourceFileTypeModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<ResourceFileTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<ResourceFileTypeModel>.class);
@@ -3331,13 +3331,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<SecurityRoleModel> ListSecurityRoles(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/securityroles");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/securityroles');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<SecurityRoleModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<SecurityRoleModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<SecurityRoleModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<SecurityRoleModel>)System.JSON.deserialize(res.getBody(), FetchResult<SecurityRoleModel>.class);
@@ -3358,13 +3358,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<SubscriptionTypeModel> ListSubscriptionTypes(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/subscriptiontypes");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/subscriptiontypes');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<SubscriptionTypeModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<SubscriptionTypeModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<SubscriptionTypeModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<SubscriptionTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<SubscriptionTypeModel>.class);
@@ -3383,13 +3383,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<TaxAuthorityModel> ListTaxAuthorities(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/taxauthorities");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/taxauthorities');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<TaxAuthorityModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<TaxAuthorityModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<TaxAuthorityModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<TaxAuthorityModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxAuthorityModel>.class);
@@ -3410,13 +3410,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<TaxAuthorityFormModel> ListTaxAuthorityForms(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/taxauthorityforms");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/taxauthorityforms');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<TaxAuthorityFormModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<TaxAuthorityFormModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<TaxAuthorityFormModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<TaxAuthorityFormModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxAuthorityFormModel>.class);
@@ -3435,13 +3435,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<TaxAuthorityTypeModel> ListTaxAuthorityTypes(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/taxauthoritytypes");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/taxauthoritytypes');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<TaxAuthorityTypeModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<TaxAuthorityTypeModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<TaxAuthorityTypeModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<TaxAuthorityTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxAuthorityTypeModel>.class);
@@ -3463,13 +3463,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<TaxCodeModel> ListTaxCodes(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/taxcodes");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/taxcodes');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<TaxCodeModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<TaxCodeModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<TaxCodeModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<TaxCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxCodeModel>.class);
@@ -3489,13 +3489,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public TaxCodeTypesModel ListTaxCodeTypes(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/taxcodetypes");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/taxcodetypes');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             TaxCodeTypesModel responseModel = null;
-            responseModel = restCall("GET", path, null, TaxCodeTypesModel.class.getName());
+            responseModel = restCall('GET', path, null, TaxCodeTypesModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (TaxCodeTypesModel)System.JSON.deserialize(res.getBody(), TaxCodeTypesModel.class);
@@ -3514,13 +3514,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<FormMasterModel> ListTaxForms(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/taxforms");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/taxforms');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<FormMasterModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<FormMasterModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<FormMasterModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<FormMasterModel>)System.JSON.deserialize(res.getBody(), FetchResult<FormMasterModel>.class);
@@ -3539,13 +3539,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<TaxSubTypeModel> ListTaxSubTypes(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/taxsubtypes");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/taxsubtypes');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<TaxSubTypeModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<TaxSubTypeModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<TaxSubTypeModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<TaxSubTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxSubTypeModel>.class);
@@ -3564,13 +3564,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<TaxTypeGroupModel> ListTaxTypeGroups(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/taxtypegroups");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/taxtypegroups');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<TaxTypeGroupModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<TaxTypeGroupModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<TaxTypeGroupModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<TaxTypeGroupModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxTypeGroupModel>.class);
@@ -3590,13 +3590,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<UomModel> ListUnitOfMeasurement(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/definitions/unitofmeasurements");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/unitofmeasurements');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<UomModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<UomModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<UomModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<UomModel>)System.JSON.deserialize(res.getBody(), FetchResult<UomModel>.class);
@@ -3616,9 +3616,9 @@ global class AvaTaxClient
         // <param name="model">The DistanceThreshold object or objects you wish to create.</param>
         public List<CompanyDistanceThresholdModel> CreateDistanceThreshold(Integer companyId, List<CompanyDistanceThresholdModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/distancethresholds");
-            path.ApplyField("companyId", companyId);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/distancethresholds');
+            path.ApplyField('companyId', companyId);
+            httpResponse res = restCallForList('POST', path, model);
             List<CompanyDistanceThresholdModel> retVal = new List<CompanyDistanceThresholdModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -3643,10 +3643,10 @@ global class AvaTaxClient
         // <param name="id">The unique ID number of the DistanceThreshold object you wish to delete.</param>
         public List<ErrorDetail> DeleteDistanceThreshold(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/distancethresholds/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("DELETE", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/distancethresholds/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('DELETE', path, null);
             List<ErrorDetail> retVal = new List<ErrorDetail>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -3671,11 +3671,11 @@ global class AvaTaxClient
         // <param name="id">The unique ID number referring to this DistanceThreshold object</param>
         public CompanyDistanceThresholdModel GetDistanceThreshold(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/distancethresholds/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/distancethresholds/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             CompanyDistanceThresholdModel responseModel = null;
-            responseModel = restCall("GET", path, null, CompanyDistanceThresholdModel.class.getName());
+            responseModel = restCall('GET', path, null, CompanyDistanceThresholdModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (CompanyDistanceThresholdModel)System.JSON.deserialize(res.getBody(), CompanyDistanceThresholdModel.class);
@@ -3699,15 +3699,15 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CompanyDistanceThresholdModel> ListDistanceThresholds(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/distancethresholds");
-            path.ApplyField("companyId", companyId);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/distancethresholds');
+            path.ApplyField('companyId', companyId);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<CompanyDistanceThresholdModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<CompanyDistanceThresholdModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<CompanyDistanceThresholdModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<CompanyDistanceThresholdModel>)System.JSON.deserialize(res.getBody(), FetchResult<CompanyDistanceThresholdModel>.class);
@@ -3733,14 +3733,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CompanyDistanceThresholdModel> QueryDistanceThresholds(String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/distancethresholds");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/distancethresholds');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<CompanyDistanceThresholdModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<CompanyDistanceThresholdModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<CompanyDistanceThresholdModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<CompanyDistanceThresholdModel>)System.JSON.deserialize(res.getBody(), FetchResult<CompanyDistanceThresholdModel>.class);
@@ -3764,11 +3764,11 @@ global class AvaTaxClient
         // <param name="model">The new DistanceThreshold object to store.</param>
         public CompanyDistanceThresholdModel UpdateDistanceThreshold(Integer companyId, Integer id, CompanyDistanceThresholdModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/distancethresholds/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/distancethresholds/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             CompanyDistanceThresholdModel responseModel = null;
-            responseModel = restCall("PUT", path, model, CompanyDistanceThresholdModel.class.getName());
+            responseModel = restCall('PUT', path, model, CompanyDistanceThresholdModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (CompanyDistanceThresholdModel)System.JSON.deserialize(res.getBody(), CompanyDistanceThresholdModel.class);
@@ -3787,11 +3787,11 @@ global class AvaTaxClient
         // <param name="id">The unique ID of the filing request object</param>
         public FilingRequestModel ApproveFilingRequest(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingrequests/{id}/approve");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingrequests/{id}/approve');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             FilingRequestModel responseModel = null;
-            responseModel = restCall("POST", path, null, FilingRequestModel.class.getName());
+            responseModel = restCall('POST', path, null, FilingRequestModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FilingRequestModel)System.JSON.deserialize(res.getBody(), FilingRequestModel.class);
@@ -3809,11 +3809,11 @@ global class AvaTaxClient
         // <param name="id">The unique ID of the filing request object</param>
         public FilingRequestModel CancelFilingRequest(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingrequests/{id}/cancel");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingrequests/{id}/cancel');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             FilingRequestModel responseModel = null;
-            responseModel = restCall("POST", path, null, FilingRequestModel.class.getName());
+            responseModel = restCall('POST', path, null, FilingRequestModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FilingRequestModel)System.JSON.deserialize(res.getBody(), FilingRequestModel.class);
@@ -3833,11 +3833,11 @@ global class AvaTaxClient
         // <param name="model">The cancellation request for this filing calendar</param>
         public FilingRequestModel CancelFilingRequests(Integer companyId, Integer id, List<FilingRequestModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingcalendars/{id}/cancel/request");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingcalendars/{id}/cancel/request');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             FilingRequestModel responseModel = null;
-            responseModel = restCall("POST", path, model, FilingRequestModel.class.getName());
+            responseModel = restCall('POST', path, model, FilingRequestModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FilingRequestModel)System.JSON.deserialize(res.getBody(), FilingRequestModel.class);
@@ -3854,10 +3854,10 @@ global class AvaTaxClient
         // <param name="model">Filing calendars that will be added</param>
         public FilingCalendarModel CreateFilingCalendars(Integer companyId, List<FilingCalendarModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingcalendars");
-            path.ApplyField("companyId", companyId);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingcalendars');
+            path.ApplyField('companyId', companyId);
             FilingCalendarModel responseModel = null;
-            responseModel = restCall("POST", path, model, FilingCalendarModel.class.getName());
+            responseModel = restCall('POST', path, model, FilingCalendarModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FilingCalendarModel)System.JSON.deserialize(res.getBody(), FilingCalendarModel.class);
@@ -3875,10 +3875,10 @@ global class AvaTaxClient
         // <param name="model">Information about the proposed new filing calendar</param>
         public FilingRequestModel CreateFilingRequests(Integer companyId, List<FilingRequestModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingcalendars/add/request");
-            path.ApplyField("companyId", companyId);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingcalendars/add/request');
+            path.ApplyField('companyId', companyId);
             FilingRequestModel responseModel = null;
-            responseModel = restCall("POST", path, model, FilingRequestModel.class.getName());
+            responseModel = restCall('POST', path, model, FilingRequestModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FilingRequestModel)System.JSON.deserialize(res.getBody(), FilingRequestModel.class);
@@ -3894,10 +3894,10 @@ global class AvaTaxClient
         // <param name="formCode">The unique code of the form</param>
         public List<CycleAddOptionModel> CycleSafeAdd(Integer companyId, String formCode)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingcalendars/add/options");
-            path.ApplyField("companyId", companyId);
-            path.AddQuery("formCode", formCode);
-            httpResponse res = restCallForList("GET", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingcalendars/add/options');
+            path.ApplyField('companyId', companyId);
+            path.AddQuery('formCode', formCode);
+            httpResponse res = restCallForList('GET', path, null);
             List<CycleAddOptionModel> retVal = new List<CycleAddOptionModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -3919,11 +3919,11 @@ global class AvaTaxClient
         // <param name="model">A list of filing calendar edits to be made</param>
         public CycleEditOptionModel CycleSafeEdit(Integer companyId, Integer id, List<FilingCalendarEditModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingcalendars/{id}/edit/options");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingcalendars/{id}/edit/options');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             CycleEditOptionModel responseModel = null;
-            responseModel = restCall("POST", path, model, CycleEditOptionModel.class.getName());
+            responseModel = restCall('POST', path, model, CycleEditOptionModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (CycleEditOptionModel)System.JSON.deserialize(res.getBody(), CycleEditOptionModel.class);
@@ -3939,11 +3939,11 @@ global class AvaTaxClient
         // <param name="id">The unique ID of the filing calendar object</param>
         public CycleExpireModel CycleSafeExpiration(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingcalendars/{id}/cancel/options");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingcalendars/{id}/cancel/options');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             CycleExpireModel responseModel = null;
-            responseModel = restCall("GET", path, null, CycleExpireModel.class.getName());
+            responseModel = restCall('GET', path, null, CycleExpireModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (CycleExpireModel)System.JSON.deserialize(res.getBody(), CycleExpireModel.class);
@@ -3962,10 +3962,10 @@ global class AvaTaxClient
         // <param name="id">The ID of the filing calendar you wish to delete.</param>
         public List<ErrorDetail> DeleteFilingCalendar(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingcalendars/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("DELETE", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingcalendars/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('DELETE', path, null);
             List<ErrorDetail> retVal = new List<ErrorDetail>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -3986,11 +3986,11 @@ global class AvaTaxClient
         // <param name="id">The primary key of this filing calendar</param>
         public FilingCalendarModel GetFilingCalendar(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingcalendars/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingcalendars/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             FilingCalendarModel responseModel = null;
-            responseModel = restCall("GET", path, null, FilingCalendarModel.class.getName());
+            responseModel = restCall('GET', path, null, FilingCalendarModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FilingCalendarModel)System.JSON.deserialize(res.getBody(), FilingCalendarModel.class);
@@ -4008,11 +4008,11 @@ global class AvaTaxClient
         // <param name="id">The primary key of this filing calendar</param>
         public FilingRequestModel GetFilingRequest(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingrequests/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingrequests/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             FilingRequestModel responseModel = null;
-            responseModel = restCall("GET", path, null, FilingRequestModel.class.getName());
+            responseModel = restCall('GET', path, null, FilingRequestModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FilingRequestModel)System.JSON.deserialize(res.getBody(), FilingRequestModel.class);
@@ -4033,16 +4033,16 @@ global class AvaTaxClient
         // <param name="returnRegion">A comma separated list of regions</param>
         public FetchResult<FilingCalendarModel> ListFilingCalendars(Integer companyId, String filter, Integer top, Integer skip, String orderBy, String returnCountry, String returnRegion)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingcalendars");
-            path.ApplyField("companyId", companyId);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
-            path.AddQuery("returnCountry", returnCountry);
-            path.AddQuery("returnRegion", returnRegion);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingcalendars');
+            path.ApplyField('companyId', companyId);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
+            path.AddQuery('returnCountry', returnCountry);
+            path.AddQuery('returnRegion', returnRegion);
             FetchResult<FilingCalendarModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<FilingCalendarModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<FilingCalendarModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<FilingCalendarModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingCalendarModel>.class);
@@ -4063,14 +4063,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<FilingRequestModel> ListFilingRequests(Integer companyId, String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingrequests");
-            path.ApplyField("companyId", companyId);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingrequests');
+            path.ApplyField('companyId', companyId);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<FilingRequestModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<FilingRequestModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<FilingRequestModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<FilingRequestModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingRequestModel>.class);
@@ -4087,9 +4087,9 @@ global class AvaTaxClient
         // <param name="model">The model of the login information we are verifying</param>
         public LoginVerificationOutputModel LoginVerificationRequest(LoginVerificationInputModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/filingcalendars/credentials/verify");
+            AvaTaxPath path = new AvaTaxPath('/api/v2/filingcalendars/credentials/verify');
             LoginVerificationOutputModel responseModel = null;
-            responseModel = restCall("POST", path, model, LoginVerificationOutputModel.class.getName());
+            responseModel = restCall('POST', path, model, LoginVerificationOutputModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (LoginVerificationOutputModel)System.JSON.deserialize(res.getBody(), LoginVerificationOutputModel.class);
@@ -4107,10 +4107,10 @@ global class AvaTaxClient
         // <param name="jobId">The unique ID number of this login request</param>
         public LoginVerificationOutputModel LoginVerificationStatus(Integer jobId)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/filingcalendars/credentials/{jobId}");
-            path.ApplyField("jobId", jobId);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/filingcalendars/credentials/{jobId}');
+            path.ApplyField('jobId', jobId);
             LoginVerificationOutputModel responseModel = null;
-            responseModel = restCall("GET", path, null, LoginVerificationOutputModel.class.getName());
+            responseModel = restCall('GET', path, null, LoginVerificationOutputModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (LoginVerificationOutputModel)System.JSON.deserialize(res.getBody(), LoginVerificationOutputModel.class);
@@ -4130,15 +4130,15 @@ global class AvaTaxClient
         // <param name="returnRegion">If specified, fetches only filing calendars that apply to tax filings in this specific region. Uses ISO 3166 region codes.</param>
         public FetchResult<FilingCalendarModel> QueryFilingCalendars(String filter, Integer top, Integer skip, String orderBy, String returnCountry, String returnRegion)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/filingcalendars");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
-            path.AddQuery("returnCountry", returnCountry);
-            path.AddQuery("returnRegion", returnRegion);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/filingcalendars');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
+            path.AddQuery('returnCountry', returnCountry);
+            path.AddQuery('returnRegion', returnRegion);
             FetchResult<FilingCalendarModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<FilingCalendarModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<FilingCalendarModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<FilingCalendarModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingCalendarModel>.class);
@@ -4161,13 +4161,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<FilingRequestModel> QueryFilingRequests(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/filingrequests");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/filingrequests');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<FilingRequestModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<FilingRequestModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<FilingRequestModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<FilingRequestModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingRequestModel>.class);
@@ -4190,11 +4190,11 @@ global class AvaTaxClient
         // <param name="model">A list of filing calendar edits to be made</param>
         public FilingRequestModel RequestFilingCalendarUpdate(Integer companyId, Integer id, List<FilingRequestModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingcalendars/{id}/edit/request");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingcalendars/{id}/edit/request');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             FilingRequestModel responseModel = null;
-            responseModel = restCall("POST", path, model, FilingRequestModel.class.getName());
+            responseModel = restCall('POST', path, model, FilingRequestModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FilingRequestModel)System.JSON.deserialize(res.getBody(), FilingRequestModel.class);
@@ -4211,11 +4211,11 @@ global class AvaTaxClient
         // <param name="model">The filing calendar model you are wishing to update with.</param>
         public FilingCalendarModel UpdateFilingCalendar(Integer companyId, Integer id, FilingCalendarModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingcalendars/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingcalendars/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             FilingCalendarModel responseModel = null;
-            responseModel = restCall("PUT", path, model, FilingCalendarModel.class.getName());
+            responseModel = restCall('PUT', path, model, FilingCalendarModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FilingCalendarModel)System.JSON.deserialize(res.getBody(), FilingCalendarModel.class);
@@ -4234,11 +4234,11 @@ global class AvaTaxClient
         // <param name="model">A list of filing calendar edits to be made</param>
         public FilingRequestModel UpdateFilingRequest(Integer companyId, Integer id, FilingRequestModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filingrequests/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingrequests/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             FilingRequestModel responseModel = null;
-            responseModel = restCall("PUT", path, model, FilingRequestModel.class.getName());
+            responseModel = restCall('PUT', path, model, FilingRequestModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FilingRequestModel)System.JSON.deserialize(res.getBody(), FilingRequestModel.class);
@@ -4262,11 +4262,11 @@ global class AvaTaxClient
         // <param name="model">The approve request you wish to execute.</param>
         public List<FilingModel> ApproveFilings(Integer companyId, Integer year, Byte month, ApproveFilingsModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/approve");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("year", year);
-            path.ApplyField("month", month);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/approve');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('year', year);
+            path.ApplyField('month', month);
+            httpResponse res = restCallForList('POST', path, model);
             List<FilingModel> retVal = new List<FilingModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -4296,12 +4296,12 @@ global class AvaTaxClient
         // <param name="model">The approve request you wish to execute.</param>
         public List<FilingModel> ApproveFilingsCountry(Integer companyId, Integer year, Byte month, String country, ApproveFilingsModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/approve");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("year", year);
-            path.ApplyField("month", month);
-            path.ApplyField("country", country);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/approve');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('year', year);
+            path.ApplyField('month', month);
+            path.ApplyField('country', country);
+            httpResponse res = restCallForList('POST', path, model);
             List<FilingModel> retVal = new List<FilingModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -4332,13 +4332,13 @@ global class AvaTaxClient
         // <param name="model">The approve request you wish to execute.</param>
         public List<FilingModel> ApproveFilingsCountryRegion(Integer companyId, Integer year, Byte month, String country, String region, ApproveFilingsModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/approve");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("year", year);
-            path.ApplyField("month", month);
-            path.ApplyField("country", country);
-            path.ApplyField("region", region);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/approve');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('year', year);
+            path.ApplyField('month', month);
+            path.ApplyField('country', country);
+            path.ApplyField('region', region);
+            httpResponse res = restCallForList('POST', path, model);
             List<FilingModel> retVal = new List<FilingModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -4369,14 +4369,14 @@ global class AvaTaxClient
         // <param name="model">A list of Adjustments to be created for the specified filing.</param>
         public List<FilingAdjustmentModel> CreateReturnAdjustment(Integer companyId, Integer year, Byte month, String country, String region, String formCode, List<FilingAdjustmentModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/{formCode}/adjust");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("year", year);
-            path.ApplyField("month", month);
-            path.ApplyField("country", country);
-            path.ApplyField("region", region);
-            path.ApplyField("formCode", formCode);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/{formCode}/adjust');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('year', year);
+            path.ApplyField('month', month);
+            path.ApplyField('country', country);
+            path.ApplyField('region', region);
+            path.ApplyField('formCode', formCode);
+            httpResponse res = restCallForList('POST', path, model);
             List<FilingAdjustmentModel> retVal = new List<FilingAdjustmentModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -4406,14 +4406,14 @@ global class AvaTaxClient
         // <param name="model">A list of augmentations to be created for the specified filing.</param>
         public List<FilingAugmentationModel> CreateReturnAugmentation(Integer companyId, Integer year, Byte month, String country, String region, String formCode, List<FilingAugmentationModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/{formCode}/augment");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("year", year);
-            path.ApplyField("month", month);
-            path.ApplyField("country", country);
-            path.ApplyField("region", region);
-            path.ApplyField("formCode", formCode);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/{formCode}/augment');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('year', year);
+            path.ApplyField('month', month);
+            path.ApplyField('country', country);
+            path.ApplyField('region', region);
+            path.ApplyField('formCode', formCode);
+            httpResponse res = restCallForList('POST', path, model);
             List<FilingAugmentationModel> retVal = new List<FilingAugmentationModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -4444,14 +4444,14 @@ global class AvaTaxClient
         // <param name="model">A list of Payments to be created for the specified filing.</param>
         public List<FilingPaymentModel> CreateReturnPayment(Integer companyId, Integer year, Byte month, String country, String region, String formCode, List<FilingPaymentModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/{formCode}/payment");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("year", year);
-            path.ApplyField("month", month);
-            path.ApplyField("country", country);
-            path.ApplyField("region", region);
-            path.ApplyField("formCode", formCode);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/{formCode}/payment');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('year', year);
+            path.ApplyField('month', month);
+            path.ApplyField('country', country);
+            path.ApplyField('region', region);
+            path.ApplyField('formCode', formCode);
+            httpResponse res = restCallForList('POST', path, model);
             List<FilingPaymentModel> retVal = new List<FilingPaymentModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -4477,10 +4477,10 @@ global class AvaTaxClient
         // <param name="id">The ID of the adjustment being deleted.</param>
         public List<ErrorDetail> DeleteReturnAdjustment(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/adjust/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("DELETE", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/adjust/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('DELETE', path, null);
             List<ErrorDetail> retVal = new List<ErrorDetail>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -4505,10 +4505,10 @@ global class AvaTaxClient
         // <param name="id">The ID of the augmentation being added.</param>
         public List<ErrorDetail> DeleteReturnAugmentation(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/augment/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("DELETE", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/augment/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('DELETE', path, null);
             List<ErrorDetail> retVal = new List<ErrorDetail>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -4534,10 +4534,10 @@ global class AvaTaxClient
         // <param name="id">The ID of the payment being deleted.</param>
         public List<ErrorDetail> DeleteReturnPayment(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/payment/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("DELETE", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/payment/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('DELETE', path, null);
             List<ErrorDetail> retVal = new List<ErrorDetail>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -4558,11 +4558,11 @@ global class AvaTaxClient
         // <param name="companyId">The unique ID of the company that owns the worksheet.</param>
         public FilingsCheckupModel FilingsCheckupReport(Integer filingsId, Integer companyId)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{filingsId}/checkup");
-            path.ApplyField("filingsId", filingsId);
-            path.ApplyField("companyId", companyId);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{filingsId}/checkup');
+            path.ApplyField('filingsId', filingsId);
+            path.ApplyField('companyId', companyId);
             FilingsCheckupModel responseModel = null;
-            responseModel = restCall("GET", path, null, FilingsCheckupModel.class.getName());
+            responseModel = restCall('GET', path, null, FilingsCheckupModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FilingsCheckupModel)System.JSON.deserialize(res.getBody(), FilingsCheckupModel.class);
@@ -4579,12 +4579,12 @@ global class AvaTaxClient
         // <param name="month">The month of the filing period.</param>
         public FilingsCheckupModel FilingsCheckupReports(Integer companyId, Integer year, Integer month)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/checkup");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("year", year);
-            path.ApplyField("month", month);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/checkup');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('year', year);
+            path.ApplyField('month', month);
             FilingsCheckupModel responseModel = null;
-            responseModel = restCall("GET", path, null, FilingsCheckupModel.class.getName());
+            responseModel = restCall('GET', path, null, FilingsCheckupModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FilingsCheckupModel)System.JSON.deserialize(res.getBody(), FilingsCheckupModel.class);
@@ -4601,11 +4601,11 @@ global class AvaTaxClient
         // <param name="fileId">The unique id of the document you are downloading</param>
         public FileResult GetFilingAttachment(Integer companyId, Integer filingReturnId, Integer fileId)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{filingReturnId}/attachment");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("filingReturnId", filingReturnId);
-            path.AddQuery("fileId", fileId);
-            responseFile = ("GET", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{filingReturnId}/attachment');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('filingReturnId', filingReturnId);
+            path.AddQuery('fileId', fileId);
+            responseFile = ('GET', path, null);
             if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
             {
                 responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
@@ -4624,11 +4624,11 @@ global class AvaTaxClient
         // <param name="month">The two digit month of the filing period.</param>
         public FileResult GetFilingAttachments(Integer companyId, Integer year, Byte month)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/attachments");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("year", year);
-            path.ApplyField("month", month);
-            responseFile = ("GET", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/attachments');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('year', year);
+            path.ApplyField('month', month);
+            responseFile = ('GET', path, null);
             if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
             {
                 responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
@@ -4647,11 +4647,11 @@ global class AvaTaxClient
         // <param name="month">The two digit month of the filing period.</param>
         public FileResult GetFilingAttachmentsTraceFile(Integer companyId, Integer year, Byte month)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/attachments/tracefile");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("year", year);
-            path.ApplyField("month", month);
-            responseFile = ("GET", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/attachments/tracefile');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('year', year);
+            path.ApplyField('month', month);
+            responseFile = ('GET', path, null);
             if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
             {
                 responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
@@ -4669,11 +4669,11 @@ global class AvaTaxClient
         // <param name="id">The id of the filing return your retrieving</param>
         public FetchResult<FilingReturnModel> GetFilingReturn(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/returns/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/returns/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             FetchResult<FilingReturnModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<FilingReturnModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<FilingReturnModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<FilingReturnModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingReturnModel>.class);
@@ -4692,12 +4692,12 @@ global class AvaTaxClient
         // <param name="month">The two digit month of the filing period.</param>
         public FetchResult<FilingModel> GetFilings(Integer companyId, Integer year, Byte month)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("year", year);
-            path.ApplyField("month", month);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('year', year);
+            path.ApplyField('month', month);
             FetchResult<FilingModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<FilingModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<FilingModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<FilingModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingModel>.class);
@@ -4717,13 +4717,13 @@ global class AvaTaxClient
         // <param name="country">The two-character ISO-3166 code for the country.</param>
         public FetchResult<FilingModel> GetFilingsByCountry(Integer companyId, Integer year, Byte month, String country)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/{country}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("year", year);
-            path.ApplyField("month", month);
-            path.ApplyField("country", country);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('year', year);
+            path.ApplyField('month', month);
+            path.ApplyField('country', country);
             FetchResult<FilingModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<FilingModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<FilingModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<FilingModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingModel>.class);
@@ -4744,14 +4744,14 @@ global class AvaTaxClient
         // <param name="region">The two or three character region code for the region.</param>
         public FetchResult<FilingModel> GetFilingsByCountryRegion(Integer companyId, Integer year, Byte month, String country, String region)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("year", year);
-            path.ApplyField("month", month);
-            path.ApplyField("country", country);
-            path.ApplyField("region", region);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('year', year);
+            path.ApplyField('month', month);
+            path.ApplyField('country', country);
+            path.ApplyField('region', region);
             FetchResult<FilingModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<FilingModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<FilingModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<FilingModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingModel>.class);
@@ -4773,15 +4773,15 @@ global class AvaTaxClient
         // <param name="formCode">The unique code of the form.</param>
         public FetchResult<FilingModel> GetFilingsByReturnName(Integer companyId, Integer year, Byte month, String country, String region, String formCode)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/{formCode}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("year", year);
-            path.ApplyField("month", month);
-            path.ApplyField("country", country);
-            path.ApplyField("region", region);
-            path.ApplyField("formCode", formCode);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/{formCode}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('year', year);
+            path.ApplyField('month', month);
+            path.ApplyField('country', country);
+            path.ApplyField('region', region);
+            path.ApplyField('formCode', formCode);
             FetchResult<FilingModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<FilingModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<FilingModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<FilingModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingModel>.class);
@@ -4804,17 +4804,17 @@ global class AvaTaxClient
         // <param name="filingCalendarId">The filing calendar id of the return you are trying to retrieve</param>
         public FetchResult<FilingReturnModelBasic> GetFilingsReturns(Integer companyId, Integer endPeriodMonth, Integer endPeriodYear, FilingFrequencyId frequency, FilingStatusId status, String country, String region, Integer filingCalendarId)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/returns");
-            path.ApplyField("companyId", companyId);
-            path.AddQuery("endPeriodMonth", endPeriodMonth);
-            path.AddQuery("endPeriodYear", endPeriodYear);
-            path.AddQuery("frequency", frequency);
-            path.AddQuery("status", status);
-            path.AddQuery("country", country);
-            path.AddQuery("region", region);
-            path.AddQuery("filingCalendarId", filingCalendarId);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/returns');
+            path.ApplyField('companyId', companyId);
+            path.AddQuery('endPeriodMonth', endPeriodMonth);
+            path.AddQuery('endPeriodYear', endPeriodYear);
+            path.AddQuery('frequency', frequency);
+            path.AddQuery('status', status);
+            path.AddQuery('country', country);
+            path.AddQuery('region', region);
+            path.AddQuery('filingCalendarId', filingCalendarId);
             FetchResult<FilingReturnModelBasic> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<FilingReturnModelBasic>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<FilingReturnModelBasic>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<FilingReturnModelBasic>)System.JSON.deserialize(res.getBody(), FetchResult<FilingReturnModelBasic>.class);
@@ -4837,12 +4837,12 @@ global class AvaTaxClient
         // <param name="model">The rebuild request you wish to execute.</param>
         public FetchResult<FilingModel> RebuildFilings(Integer companyId, Integer year, Byte month, RebuildFilingsModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/rebuild");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("year", year);
-            path.ApplyField("month", month);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/rebuild');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('year', year);
+            path.ApplyField('month', month);
             FetchResult<FilingModel> responseModel = null;
-            responseModel = restCall("POST", path, model, FetchResult<FilingModel>.class.getName());
+            responseModel = restCall('POST', path, model, FetchResult<FilingModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<FilingModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingModel>.class);
@@ -4866,13 +4866,13 @@ global class AvaTaxClient
         // <param name="model">The rebuild request you wish to execute.</param>
         public FetchResult<FilingModel> RebuildFilingsByCountry(Integer companyId, Integer year, Byte month, String country, RebuildFilingsModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/rebuild");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("year", year);
-            path.ApplyField("month", month);
-            path.ApplyField("country", country);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/rebuild');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('year', year);
+            path.ApplyField('month', month);
+            path.ApplyField('country', country);
             FetchResult<FilingModel> responseModel = null;
-            responseModel = restCall("POST", path, model, FetchResult<FilingModel>.class.getName());
+            responseModel = restCall('POST', path, model, FetchResult<FilingModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<FilingModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingModel>.class);
@@ -4897,14 +4897,14 @@ global class AvaTaxClient
         // <param name="model">The rebuild request you wish to execute.</param>
         public FetchResult<FilingModel> RebuildFilingsByCountryRegion(Integer companyId, Integer year, Byte month, String country, String region, RebuildFilingsModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/rebuild");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("year", year);
-            path.ApplyField("month", month);
-            path.ApplyField("country", country);
-            path.ApplyField("region", region);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/rebuild');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('year', year);
+            path.ApplyField('month', month);
+            path.ApplyField('country', country);
+            path.ApplyField('region', region);
             FetchResult<FilingModel> responseModel = null;
-            responseModel = restCall("POST", path, model, FetchResult<FilingModel>.class.getName());
+            responseModel = restCall('POST', path, model, FetchResult<FilingModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<FilingModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingModel>.class);
@@ -4926,11 +4926,11 @@ global class AvaTaxClient
         // <param name="model">The updated Adjustment.</param>
         public FilingAdjustmentModel UpdateReturnAdjustment(Integer companyId, Integer id, FilingAdjustmentModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/adjust/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/adjust/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             FilingAdjustmentModel responseModel = null;
-            responseModel = restCall("PUT", path, model, FilingAdjustmentModel.class.getName());
+            responseModel = restCall('PUT', path, model, FilingAdjustmentModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FilingAdjustmentModel)System.JSON.deserialize(res.getBody(), FilingAdjustmentModel.class);
@@ -4951,11 +4951,11 @@ global class AvaTaxClient
         // <param name="model">The updated Augmentation.</param>
         public FilingModel UpdateReturnAugmentation(Integer companyId, Integer id, FilingAugmentationModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/augment/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/augment/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             FilingModel responseModel = null;
-            responseModel = restCall("PUT", path, model, FilingModel.class.getName());
+            responseModel = restCall('PUT', path, model, FilingModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FilingModel)System.JSON.deserialize(res.getBody(), FilingModel.class);
@@ -4977,11 +4977,11 @@ global class AvaTaxClient
         // <param name="model">The updated Payment.</param>
         public FilingPaymentModel UpdateReturnPayment(Integer companyId, Integer id, FilingPaymentModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/filings/payment/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/payment/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             FilingPaymentModel responseModel = null;
-            responseModel = restCall("PUT", path, model, FilingPaymentModel.class.getName());
+            responseModel = restCall('PUT', path, model, FilingPaymentModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FilingPaymentModel)System.JSON.deserialize(res.getBody(), FilingPaymentModel.class);
@@ -5007,9 +5007,9 @@ global class AvaTaxClient
         // <param name="model">Required information to provision a free trial account.</param>
         public NewAccountModel RequestFreeTrial(FreeTrialRequestModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/freetrials/request");
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/freetrials/request');
             NewAccountModel responseModel = null;
-            responseModel = restCall("POST", path, model, NewAccountModel.class.getName());
+            responseModel = restCall('POST', path, model, NewAccountModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (NewAccountModel)System.JSON.deserialize(res.getBody(), NewAccountModel.class);
@@ -5069,16 +5069,16 @@ global class AvaTaxClient
         // For a full list of all supported codes and names, please see the Definitions API `ListCountries`.</param>
         public TaxRateModel TaxRatesByAddress(String line1, String line2, String line3, String city, String region, String postalCode, String country)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/taxrates/byaddress");
-            path.AddQuery("line1", line1);
-            path.AddQuery("line2", line2);
-            path.AddQuery("line3", line3);
-            path.AddQuery("city", city);
-            path.AddQuery("region", region);
-            path.AddQuery("postalCode", postalCode);
-            path.AddQuery("country", country);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/taxrates/byaddress');
+            path.AddQuery('line1', line1);
+            path.AddQuery('line2', line2);
+            path.AddQuery('line3', line3);
+            path.AddQuery('city', city);
+            path.AddQuery('region', region);
+            path.AddQuery('postalCode', postalCode);
+            path.AddQuery('country', country);
             TaxRateModel responseModel = null;
-            responseModel = restCall("GET", path, null, TaxRateModel.class.getName());
+            responseModel = restCall('GET', path, null, TaxRateModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (TaxRateModel)System.JSON.deserialize(res.getBody(), TaxRateModel.class);
@@ -5128,11 +5128,11 @@ global class AvaTaxClient
         // <param name="postalCode">The postal code of the location.</param>
         public TaxRateModel TaxRatesByPostalCode(String country, String postalCode)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/taxrates/bypostalcode");
-            path.AddQuery("country", country);
-            path.AddQuery("postalCode", postalCode);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/taxrates/bypostalcode');
+            path.AddQuery('country', country);
+            path.AddQuery('postalCode', postalCode);
             TaxRateModel responseModel = null;
-            responseModel = restCall("GET", path, null, TaxRateModel.class.getName());
+            responseModel = restCall('GET', path, null, TaxRateModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (TaxRateModel)System.JSON.deserialize(res.getBody(), TaxRateModel.class);
@@ -5158,10 +5158,10 @@ global class AvaTaxClient
         // <param name="id">The unique ID number of this funding request</param>
         public FundingStatusModel ActivateFundingRequest(Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/fundingrequests/{id}/widget");
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/fundingrequests/{id}/widget');
+            path.ApplyField('id', id);
             FundingStatusModel responseModel = null;
-            responseModel = restCall("GET", path, null, FundingStatusModel.class.getName());
+            responseModel = restCall('GET', path, null, FundingStatusModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FundingStatusModel)System.JSON.deserialize(res.getBody(), FundingStatusModel.class);
@@ -5185,10 +5185,10 @@ global class AvaTaxClient
         // <param name="id">The unique ID number of this funding request</param>
         public FundingStatusModel FundingRequestStatus(Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/fundingrequests/{id}");
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/fundingrequests/{id}');
+            path.ApplyField('id', id);
             FundingStatusModel responseModel = null;
-            responseModel = restCall("GET", path, null, FundingStatusModel.class.getName());
+            responseModel = restCall('GET', path, null, FundingStatusModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FundingStatusModel)System.JSON.deserialize(res.getBody(), FundingStatusModel.class);
@@ -5210,9 +5210,9 @@ global class AvaTaxClient
         // <param name="model">The item you wish to create.</param>
         public List<ItemModel> CreateItems(Integer companyId, List<ItemModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/items");
-            path.ApplyField("companyId", companyId);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/items');
+            path.ApplyField('companyId', companyId);
+            httpResponse res = restCallForList('POST', path, model);
             List<ItemModel> retVal = new List<ItemModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -5239,10 +5239,10 @@ global class AvaTaxClient
         // <param name="id">The ID of the item you wish to delete.</param>
         public List<ErrorDetail> DeleteItem(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/items/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("DELETE", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/items/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('DELETE', path, null);
             List<ErrorDetail> retVal = new List<ErrorDetail>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -5269,11 +5269,11 @@ global class AvaTaxClient
         // <param name="id">The primary key of this item</param>
         public ItemModel GetItem(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/items/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/items/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             ItemModel responseModel = null;
-            responseModel = restCall("GET", path, null, ItemModel.class.getName());
+            responseModel = restCall('GET', path, null, ItemModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (ItemModel)System.JSON.deserialize(res.getBody(), ItemModel.class);
@@ -5306,15 +5306,15 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<ItemModel> ListItemsByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/items");
-            path.ApplyField("companyId", companyId);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/items');
+            path.ApplyField('companyId', companyId);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<ItemModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<ItemModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<ItemModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<ItemModel>)System.JSON.deserialize(res.getBody(), FetchResult<ItemModel>.class);
@@ -5346,14 +5346,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<ItemModel> QueryItems(String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/items");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/items');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<ItemModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<ItemModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<ItemModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<ItemModel>)System.JSON.deserialize(res.getBody(), FetchResult<ItemModel>.class);
@@ -5379,11 +5379,11 @@ global class AvaTaxClient
         // <param name="model">The item object you wish to update.</param>
         public ItemModel UpdateItem(Integer companyId, Integer id, ItemModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/items/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/items/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             ItemModel responseModel = null;
-            responseModel = restCall("PUT", path, model, ItemModel.class.getName());
+            responseModel = restCall('PUT', path, model, ItemModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (ItemModel)System.JSON.deserialize(res.getBody(), ItemModel.class);
@@ -5404,9 +5404,9 @@ global class AvaTaxClient
         // <param name="model">The jurisdiction override objects to create</param>
         public List<JurisdictionOverrideModel> CreateJurisdictionOverrides(Integer accountId, List<JurisdictionOverrideModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/jurisdictionoverrides");
-            path.ApplyField("accountId", accountId);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/jurisdictionoverrides');
+            path.ApplyField('accountId', accountId);
+            httpResponse res = restCallForList('POST', path, model);
             List<JurisdictionOverrideModel> retVal = new List<JurisdictionOverrideModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -5427,10 +5427,10 @@ global class AvaTaxClient
         // <param name="id">The ID of the override you wish to delete</param>
         public List<ErrorDetail> DeleteJurisdictionOverride(Integer accountId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/jurisdictionoverrides/{id}");
-            path.ApplyField("accountId", accountId);
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("DELETE", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/jurisdictionoverrides/{id}');
+            path.ApplyField('accountId', accountId);
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('DELETE', path, null);
             List<ErrorDetail> retVal = new List<ErrorDetail>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -5456,11 +5456,11 @@ global class AvaTaxClient
         // <param name="id">The primary key of this override</param>
         public JurisdictionOverrideModel GetJurisdictionOverride(Integer accountId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/jurisdictionoverrides/{id}");
-            path.ApplyField("accountId", accountId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/jurisdictionoverrides/{id}');
+            path.ApplyField('accountId', accountId);
+            path.ApplyField('id', id);
             JurisdictionOverrideModel responseModel = null;
-            responseModel = restCall("GET", path, null, JurisdictionOverrideModel.class.getName());
+            responseModel = restCall('GET', path, null, JurisdictionOverrideModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (JurisdictionOverrideModel)System.JSON.deserialize(res.getBody(), JurisdictionOverrideModel.class);
@@ -5488,15 +5488,15 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<JurisdictionOverrideModel> ListJurisdictionOverridesByAccount(Integer accountId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/jurisdictionoverrides");
-            path.ApplyField("accountId", accountId);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/jurisdictionoverrides');
+            path.ApplyField('accountId', accountId);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<JurisdictionOverrideModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<JurisdictionOverrideModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<JurisdictionOverrideModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<JurisdictionOverrideModel>)System.JSON.deserialize(res.getBody(), FetchResult<JurisdictionOverrideModel>.class);
@@ -5523,14 +5523,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<JurisdictionOverrideModel> QueryJurisdictionOverrides(String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/jurisdictionoverrides");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/jurisdictionoverrides');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<JurisdictionOverrideModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<JurisdictionOverrideModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<JurisdictionOverrideModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<JurisdictionOverrideModel>)System.JSON.deserialize(res.getBody(), FetchResult<JurisdictionOverrideModel>.class);
@@ -5547,11 +5547,11 @@ global class AvaTaxClient
         // <param name="model">The jurisdictionoverride object you wish to update.</param>
         public JurisdictionOverrideModel UpdateJurisdictionOverride(Integer accountId, Integer id, JurisdictionOverrideModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/jurisdictionoverrides/{id}");
-            path.ApplyField("accountId", accountId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/jurisdictionoverrides/{id}');
+            path.ApplyField('accountId', accountId);
+            path.ApplyField('id', id);
             JurisdictionOverrideModel responseModel = null;
-            responseModel = restCall("PUT", path, model, JurisdictionOverrideModel.class.getName());
+            responseModel = restCall('PUT', path, model, JurisdictionOverrideModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (JurisdictionOverrideModel)System.JSON.deserialize(res.getBody(), JurisdictionOverrideModel.class);
@@ -5567,9 +5567,9 @@ global class AvaTaxClient
         // <param name="model">The location you wish to create.</param>
         public List<LocationModel> CreateLocations(Integer companyId, List<LocationModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/locations");
-            path.ApplyField("companyId", companyId);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/locations');
+            path.ApplyField('companyId', companyId);
+            httpResponse res = restCallForList('POST', path, model);
             List<LocationModel> retVal = new List<LocationModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -5590,10 +5590,10 @@ global class AvaTaxClient
         // <param name="id">The ID of the location you wish to delete.</param>
         public List<ErrorDetail> DeleteLocation(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/locations/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("DELETE", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/locations/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('DELETE', path, null);
             List<ErrorDetail> retVal = new List<ErrorDetail>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -5623,12 +5623,12 @@ global class AvaTaxClient
         // <param name="include">A comma separated list of additional data to retrieve. You may specify `LocationSettings` to retrieve location settings.</param>
         public LocationModel GetLocation(Integer companyId, Integer id, String include)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/locations/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            path.AddQuery("$include", include);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/locations/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            path.AddQuery('$include', include);
             LocationModel responseModel = null;
-            responseModel = restCall("GET", path, null, LocationModel.class.getName());
+            responseModel = restCall('GET', path, null, LocationModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (LocationModel)System.JSON.deserialize(res.getBody(), LocationModel.class);
@@ -5658,15 +5658,15 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<LocationModel> ListLocationsByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/locations");
-            path.ApplyField("companyId", companyId);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/locations');
+            path.ApplyField('companyId', companyId);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<LocationModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<LocationModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<LocationModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<LocationModel>)System.JSON.deserialize(res.getBody(), FetchResult<LocationModel>.class);
@@ -5696,14 +5696,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<LocationModel> QueryLocations(String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/locations");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/locations');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<LocationModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<LocationModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<LocationModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<LocationModel>)System.JSON.deserialize(res.getBody(), FetchResult<LocationModel>.class);
@@ -5722,11 +5722,11 @@ global class AvaTaxClient
         // <param name="model">The location you wish to update.</param>
         public LocationModel UpdateLocation(Integer companyId, Integer id, LocationModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/locations/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/locations/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             LocationModel responseModel = null;
-            responseModel = restCall("PUT", path, model, LocationModel.class.getName());
+            responseModel = restCall('PUT', path, model, LocationModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (LocationModel)System.JSON.deserialize(res.getBody(), LocationModel.class);
@@ -5744,11 +5744,11 @@ global class AvaTaxClient
         // <param name="id">The primary key of this location</param>
         public LocationValidationModel ValidateLocation(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/locations/{id}/validate");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/locations/{id}/validate');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             LocationValidationModel responseModel = null;
-            responseModel = restCall("GET", path, null, LocationValidationModel.class.getName());
+            responseModel = restCall('GET', path, null, LocationValidationModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (LocationValidationModel)System.JSON.deserialize(res.getBody(), LocationValidationModel.class);
@@ -5775,12 +5775,12 @@ global class AvaTaxClient
         // <param name="model">The adjust request you wish to execute</param>
         public MultiDocumentModel AdjustMultiDocumentTransaction(String code, DocumentType type, String include, AdjustMultiDocumentModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/multidocument/{code}/type/{type}/adjust");
-            path.ApplyField("code", code);
-            path.ApplyField("type", type);
-            path.AddQuery("include", include);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/multidocument/{code}/type/{type}/adjust');
+            path.ApplyField('code', code);
+            path.ApplyField('type', type);
+            path.AddQuery('include', include);
             MultiDocumentModel responseModel = null;
-            responseModel = restCall("POST", path, model, MultiDocumentModel.class.getName());
+            responseModel = restCall('POST', path, model, MultiDocumentModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
@@ -5809,11 +5809,11 @@ global class AvaTaxClient
         // <param name="type">The transaction type for this MultiDocument transaction</param>
         public AuditMultiDocumentModel AuditMultiDocumentTransaction(String code, DocumentType type)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/multidocument/{code}/type/{type}/audit");
-            path.ApplyField("code", code);
-            path.ApplyField("type", type);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/multidocument/{code}/type/{type}/audit');
+            path.ApplyField('code', code);
+            path.ApplyField('type', type);
             AuditMultiDocumentModel responseModel = null;
-            responseModel = restCall("GET", path, null, AuditMultiDocumentModel.class.getName());
+            responseModel = restCall('GET', path, null, AuditMultiDocumentModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (AuditMultiDocumentModel)System.JSON.deserialize(res.getBody(), AuditMultiDocumentModel.class);
@@ -5835,9 +5835,9 @@ global class AvaTaxClient
         // <param name="model">The commit request you wish to execute</param>
         public MultiDocumentModel CommitMultiDocumentTransaction(CommitMultiDocumentModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/multidocument/commit");
+            AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/multidocument/commit');
             MultiDocumentModel responseModel = null;
-            responseModel = restCall("POST", path, model, MultiDocumentModel.class.getName());
+            responseModel = restCall('POST', path, model, MultiDocumentModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
@@ -5884,10 +5884,10 @@ global class AvaTaxClient
         // <param name="model">the multi document transaction model</param>
         public MultiDocumentModel CreateMultiDocumentTransaction(String include, CreateMultiDocumentModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/multidocument");
-            path.AddQuery("$include", include);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/multidocument');
+            path.AddQuery('$include', include);
             MultiDocumentModel responseModel = null;
-            responseModel = restCall("POST", path, model, MultiDocumentModel.class.getName());
+            responseModel = restCall('POST', path, model, MultiDocumentModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
@@ -5915,12 +5915,12 @@ global class AvaTaxClient
         // <param name="include">Specifies objects to include in the response after transaction is created</param>
         public MultiDocumentModel GetMultiDocumentTransactionByCodeAndType(String code, DocumentType type, String include)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/multidocument/{code}/type/{type}");
-            path.ApplyField("code", code);
-            path.ApplyField("type", type);
-            path.AddQuery("$include", include);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/multidocument/{code}/type/{type}');
+            path.ApplyField('code', code);
+            path.ApplyField('type', type);
+            path.AddQuery('$include', include);
             MultiDocumentModel responseModel = null;
-            responseModel = restCall("GET", path, null, MultiDocumentModel.class.getName());
+            responseModel = restCall('GET', path, null, MultiDocumentModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
@@ -5956,11 +5956,11 @@ global class AvaTaxClient
         // <param name="include">Specifies objects to include in the response after transaction is created</param>
         public MultiDocumentModel GetMultiDocumentTransactionById(Integer id, String include)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/multidocument/{id}");
-            path.ApplyField("id", id);
-            path.AddQuery("$include", include);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/multidocument/{id}');
+            path.ApplyField('id', id);
+            path.AddQuery('$include', include);
             MultiDocumentModel responseModel = null;
-            responseModel = restCall("GET", path, null, MultiDocumentModel.class.getName());
+            responseModel = restCall('GET', path, null, MultiDocumentModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
@@ -5997,14 +5997,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<MultiDocumentModel> ListMultiDocumentTransactions(String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/multidocument");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/multidocument');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<MultiDocumentModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<MultiDocumentModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<MultiDocumentModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<MultiDocumentModel>)System.JSON.deserialize(res.getBody(), FetchResult<MultiDocumentModel>.class);
@@ -6057,12 +6057,12 @@ global class AvaTaxClient
         // <param name="model">Information about the refund to create</param>
         public MultiDocumentModel RefundMultiDocumentTransaction(String code, DocumentType type, String include, RefundTransactionModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/multidocument/{code}/type/{type}/refund");
-            path.ApplyField("code", code);
-            path.ApplyField("type", type);
-            path.AddQuery("$include", include);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/multidocument/{code}/type/{type}/refund');
+            path.ApplyField('code', code);
+            path.ApplyField('type', type);
+            path.AddQuery('$include', include);
             MultiDocumentModel responseModel = null;
-            responseModel = restCall("POST", path, model, MultiDocumentModel.class.getName());
+            responseModel = restCall('POST', path, model, MultiDocumentModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
@@ -6082,9 +6082,9 @@ global class AvaTaxClient
         // <param name="model">Information from your accounting system to verify against this MultiDocument transaction as it is stored in AvaTax</param>
         public MultiDocumentModel VerifyMultiDocumentTransaction(VerifyMultiDocumentModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/multidocument/verify");
+            AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/multidocument/verify');
             MultiDocumentModel responseModel = null;
-            responseModel = restCall("POST", path, model, MultiDocumentModel.class.getName());
+            responseModel = restCall('POST', path, model, MultiDocumentModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
@@ -6109,11 +6109,11 @@ global class AvaTaxClient
         // <param name="model">The void request you wish to execute</param>
         public MultiDocumentModel VoidMultiDocumentTransaction(String code, DocumentType type, VoidTransactionModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/multidocument/{code}/type/{type}/void");
-            path.ApplyField("code", code);
-            path.ApplyField("type", type);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/multidocument/{code}/type/{type}/void');
+            path.ApplyField('code', code);
+            path.ApplyField('type', type);
             MultiDocumentModel responseModel = null;
-            responseModel = restCall("POST", path, model, MultiDocumentModel.class.getName());
+            responseModel = restCall('POST', path, model, MultiDocumentModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
@@ -6137,9 +6137,9 @@ global class AvaTaxClient
         // <param name="model">The nexus you wish to create.</param>
         public List<NexusModel> CreateNexus(Integer companyId, List<NexusModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/nexus");
-            path.ApplyField("companyId", companyId);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/nexus');
+            path.ApplyField('companyId', companyId);
+            httpResponse res = restCallForList('POST', path, model);
             List<NexusModel> retVal = new List<NexusModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -6161,10 +6161,10 @@ global class AvaTaxClient
         // <param name="id">The ID of the nexus you wish to delete.</param>
         public List<ErrorDetail> DeleteNexus(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/nexus/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("DELETE", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/nexus/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('DELETE', path, null);
             List<ErrorDetail> retVal = new List<ErrorDetail>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -6189,11 +6189,11 @@ global class AvaTaxClient
         // <param name="id">The primary key of this nexus</param>
         public NexusModel GetNexus(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/nexus/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/nexus/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             NexusModel responseModel = null;
-            responseModel = restCall("GET", path, null, NexusModel.class.getName());
+            responseModel = restCall('GET', path, null, NexusModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (NexusModel)System.JSON.deserialize(res.getBody(), NexusModel.class);
@@ -6219,11 +6219,11 @@ global class AvaTaxClient
         // <param name="formCode">The form code that we are looking up the nexus for</param>
         public NexusByTaxFormModel GetNexusByFormCode(Integer companyId, String formCode)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/nexus/byform/{formCode}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("formCode", formCode);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/nexus/byform/{formCode}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('formCode', formCode);
             NexusByTaxFormModel responseModel = null;
-            responseModel = restCall("GET", path, null, NexusByTaxFormModel.class.getName());
+            responseModel = restCall('GET', path, null, NexusByTaxFormModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (NexusByTaxFormModel)System.JSON.deserialize(res.getBody(), NexusByTaxFormModel.class);
@@ -6250,15 +6250,15 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NexusModel> ListNexusByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/nexus");
-            path.ApplyField("companyId", companyId);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/nexus');
+            path.ApplyField('companyId', companyId);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<NexusModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<NexusModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<NexusModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<NexusModel>)System.JSON.deserialize(res.getBody(), FetchResult<NexusModel>.class);
@@ -6284,14 +6284,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NexusModel> QueryNexus(String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/nexus");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/nexus');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<NexusModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<NexusModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<NexusModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<NexusModel>)System.JSON.deserialize(res.getBody(), FetchResult<NexusModel>.class);
@@ -6318,11 +6318,11 @@ global class AvaTaxClient
         // <param name="model">The nexus object you wish to update.</param>
         public NexusModel UpdateNexus(Integer companyId, Integer id, NexusModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/nexus/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/nexus/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             NexusModel responseModel = null;
-            responseModel = restCall("PUT", path, model, NexusModel.class.getName());
+            responseModel = restCall('PUT', path, model, NexusModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (NexusModel)System.JSON.deserialize(res.getBody(), NexusModel.class);
@@ -6342,10 +6342,10 @@ global class AvaTaxClient
         // <param name="model">The notice comments you wish to create.</param>
         public List<NoticeCommentModel> CreateNoticeComment(Integer companyId, Integer id, List<NoticeCommentModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{id}/comments");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}/comments');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('POST', path, model);
             List<NoticeCommentModel> retVal = new List<NoticeCommentModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -6371,10 +6371,10 @@ global class AvaTaxClient
         // <param name="model">The notice finance details you wish to create.</param>
         public List<NoticeFinanceModel> CreateNoticeFinanceDetails(Integer companyId, Integer id, List<NoticeFinanceModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{id}/financedetails");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}/financedetails');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('POST', path, model);
             List<NoticeFinanceModel> retVal = new List<NoticeFinanceModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -6399,10 +6399,10 @@ global class AvaTaxClient
         // <param name="model">The notice responsibilities you wish to create.</param>
         public List<NoticeResponsibilityDetailModel> CreateNoticeResponsibilities(Integer companyId, Integer id, List<NoticeResponsibilityDetailModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{id}/responsibilities");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}/responsibilities');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('POST', path, model);
             List<NoticeResponsibilityDetailModel> retVal = new List<NoticeResponsibilityDetailModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -6427,10 +6427,10 @@ global class AvaTaxClient
         // <param name="model">The notice root causes you wish to create.</param>
         public List<NoticeRootCauseDetailModel> CreateNoticeRootCauses(Integer companyId, Integer id, List<NoticeRootCauseDetailModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{id}/rootcauses");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}/rootcauses');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('POST', path, model);
             List<NoticeRootCauseDetailModel> retVal = new List<NoticeRootCauseDetailModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -6454,9 +6454,9 @@ global class AvaTaxClient
         // <param name="model">The notice object you wish to create.</param>
         public List<NoticeModel> CreateNotices(Integer companyId, List<NoticeModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices");
-            path.ApplyField("companyId", companyId);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices');
+            path.ApplyField('companyId', companyId);
+            httpResponse res = restCallForList('POST', path, model);
             List<NoticeModel> retVal = new List<NoticeModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -6480,10 +6480,10 @@ global class AvaTaxClient
         // <param name="id">The ID of the notice you wish to delete.</param>
         public List<ErrorDetail> DeleteNotice(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("DELETE", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('DELETE', path, null);
             List<ErrorDetail> retVal = new List<ErrorDetail>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -6508,11 +6508,11 @@ global class AvaTaxClient
         // <param name="id">The ID of the responsibility you wish to delete.</param>
         public List<ErrorDetail> DeleteResponsibilities(Integer companyId, Integer noticeId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{noticeId}/responsibilities/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("noticeId", noticeId);
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("DELETE", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{noticeId}/responsibilities/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('noticeId', noticeId);
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('DELETE', path, null);
             List<ErrorDetail> retVal = new List<ErrorDetail>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -6537,11 +6537,11 @@ global class AvaTaxClient
         // <param name="id">The ID of the root cause you wish to delete.</param>
         public List<ErrorDetail> DeleteRootCauses(Integer companyId, Integer noticeId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{noticeId}/rootcauses/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("noticeId", noticeId);
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("DELETE", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{noticeId}/rootcauses/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('noticeId', noticeId);
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('DELETE', path, null);
             List<ErrorDetail> retVal = new List<ErrorDetail>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -6563,10 +6563,10 @@ global class AvaTaxClient
         // <param name="id">The ResourceFileId of the attachment to download.</param>
         public FileResult DownloadNoticeAttachment(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/files/{id}/attachment");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            responseFile = ("GET", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/files/{id}/attachment');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            responseFile = ('GET', path, null);
             if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
             {
                 responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
@@ -6585,11 +6585,11 @@ global class AvaTaxClient
         // <param name="id">The ID of this notice.</param>
         public NoticeModel GetNotice(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             NoticeModel responseModel = null;
-            responseModel = restCall("GET", path, null, NoticeModel.class.getName());
+            responseModel = restCall('GET', path, null, NoticeModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (NoticeModel)System.JSON.deserialize(res.getBody(), NoticeModel.class);
@@ -6608,11 +6608,11 @@ global class AvaTaxClient
         // <param name="companyId">The ID of the company that owns these notices.</param>
         public FetchResult<NoticeCommentModel> GetNoticeComments(Integer id, Integer companyId)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{id}/comments");
-            path.ApplyField("id", id);
-            path.ApplyField("companyId", companyId);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}/comments');
+            path.ApplyField('id', id);
+            path.ApplyField('companyId', companyId);
             FetchResult<NoticeCommentModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<NoticeCommentModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<NoticeCommentModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<NoticeCommentModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeCommentModel>.class);
@@ -6632,11 +6632,11 @@ global class AvaTaxClient
         // <param name="companyId">The ID of the company that owns these notices.</param>
         public FetchResult<NoticeFinanceModel> GetNoticeFinanceDetails(Integer id, Integer companyId)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{id}/financedetails");
-            path.ApplyField("id", id);
-            path.ApplyField("companyId", companyId);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}/financedetails');
+            path.ApplyField('id', id);
+            path.ApplyField('companyId', companyId);
             FetchResult<NoticeFinanceModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<NoticeFinanceModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<NoticeFinanceModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<NoticeFinanceModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeFinanceModel>.class);
@@ -6655,11 +6655,11 @@ global class AvaTaxClient
         // <param name="companyId">The ID of the company that owns these notices.</param>
         public FetchResult<NoticeResponsibilityDetailModel> GetNoticeResponsibilities(Integer id, Integer companyId)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{id}/responsibilities");
-            path.ApplyField("id", id);
-            path.ApplyField("companyId", companyId);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}/responsibilities');
+            path.ApplyField('id', id);
+            path.ApplyField('companyId', companyId);
             FetchResult<NoticeResponsibilityDetailModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<NoticeResponsibilityDetailModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<NoticeResponsibilityDetailModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<NoticeResponsibilityDetailModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeResponsibilityDetailModel>.class);
@@ -6678,11 +6678,11 @@ global class AvaTaxClient
         // <param name="companyId">The ID of the company that owns these notices.</param>
         public FetchResult<NoticeRootCauseDetailModel> GetNoticeRootCauses(Integer id, Integer companyId)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{id}/rootcauses");
-            path.ApplyField("id", id);
-            path.ApplyField("companyId", companyId);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}/rootcauses');
+            path.ApplyField('id', id);
+            path.ApplyField('companyId', companyId);
             FetchResult<NoticeRootCauseDetailModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<NoticeRootCauseDetailModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<NoticeRootCauseDetailModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<NoticeRootCauseDetailModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeRootCauseDetailModel>.class);
@@ -6708,15 +6708,15 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NoticeModel> ListNoticesByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices");
-            path.ApplyField("companyId", companyId);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices');
+            path.ApplyField('companyId', companyId);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<NoticeModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<NoticeModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<NoticeModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<NoticeModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeModel>.class);
@@ -6741,14 +6741,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NoticeModel> QueryNotices(String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/notices");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/notices');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<NoticeModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<NoticeModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<NoticeModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<NoticeModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeModel>.class);
@@ -6770,11 +6770,11 @@ global class AvaTaxClient
         // <param name="model">The notice object you wish to update.</param>
         public NoticeModel UpdateNotice(Integer companyId, Integer id, NoticeModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             NoticeModel responseModel = null;
-            responseModel = restCall("PUT", path, model, NoticeModel.class.getName());
+            responseModel = restCall('PUT', path, model, NoticeModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (NoticeModel)System.JSON.deserialize(res.getBody(), NoticeModel.class);
@@ -6791,9 +6791,9 @@ global class AvaTaxClient
         // <param name="model">The ResourceFileId of the attachment to download.</param>
         public FileResult UploadAttachment(Integer companyId, ResourceFileUploadRequestModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/notices/files/attachment");
-            path.ApplyField("companyId", companyId);
-            responseFile = ("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/files/attachment');
+            path.ApplyField('companyId', companyId);
+            responseFile = ('POST', path, model);
             if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
             {
                 responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
@@ -6821,9 +6821,9 @@ global class AvaTaxClient
         // <param name="model">Information about the account you wish to create and the selected product offerings.</param>
         public NewAccountModel RequestNewAccount(NewAccountRequestModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/request");
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/request');
             NewAccountModel responseModel = null;
-            responseModel = restCall("POST", path, model, NewAccountModel.class.getName());
+            responseModel = restCall('POST', path, model, NewAccountModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (NewAccountModel)System.JSON.deserialize(res.getBody(), NewAccountModel.class);
@@ -6843,9 +6843,9 @@ global class AvaTaxClient
         // <param name="model">An object containing your current password and the new password.</param>
         public String ChangePassword(PasswordChangeModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/passwords");
+            AvaTaxPath path = new AvaTaxPath('/api/v2/passwords');
             String responseModel = null;
-            responseModel = restCall("PUT", path, model, String.class.getName());
+            responseModel = restCall('PUT', path, model, String.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (String)System.JSON.deserialize(res.getBody(), String.class);
@@ -6864,9 +6864,9 @@ global class AvaTaxClient
         // <param name="model">The account you wish to create.</param>
         public AccountModel CreateAccount(AccountModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts");
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts');
             AccountModel responseModel = null;
-            responseModel = restCall("POST", path, model, AccountModel.class.getName());
+            responseModel = restCall('POST', path, model, AccountModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (AccountModel)System.JSON.deserialize(res.getBody(), AccountModel.class);
@@ -6887,9 +6887,9 @@ global class AvaTaxClient
         // <param name="model">The subscription you wish to create.</param>
         public List<SubscriptionModel> CreateSubscriptions(Integer accountId, List<SubscriptionModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/subscriptions");
-            path.ApplyField("accountId", accountId);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/subscriptions');
+            path.ApplyField('accountId', accountId);
+            httpResponse res = restCallForList('POST', path, model);
             List<SubscriptionModel> retVal = new List<SubscriptionModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -6913,9 +6913,9 @@ global class AvaTaxClient
         // <param name="id">The ID of the account you wish to delete.</param>
         public List<ErrorDetail> DeleteAccount(Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{id}");
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("DELETE", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{id}');
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('DELETE', path, null);
             List<ErrorDetail> retVal = new List<ErrorDetail>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -6939,10 +6939,10 @@ global class AvaTaxClient
         // <param name="id">The ID of the subscription you wish to delete.</param>
         public List<ErrorDetail> DeleteSubscription(Integer accountId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/subscriptions/{id}");
-            path.ApplyField("accountId", accountId);
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("DELETE", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/subscriptions/{id}');
+            path.ApplyField('accountId', accountId);
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('DELETE', path, null);
             List<ErrorDetail> retVal = new List<ErrorDetail>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -6966,10 +6966,10 @@ global class AvaTaxClient
         // <param name="accountId">The accountID of the user you wish to delete.</param>
         public List<ErrorDetail> DeleteUser(Integer id, Integer accountId)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/users/{id}");
-            path.ApplyField("id", id);
-            path.ApplyField("accountId", accountId);
-            httpResponse res = restCallForList("DELETE", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/users/{id}');
+            path.ApplyField('id', id);
+            path.ApplyField('accountId', accountId);
+            httpResponse res = restCallForList('DELETE', path, null);
             List<ErrorDetail> retVal = new List<ErrorDetail>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -7004,14 +7004,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<AccountModel> QueryAccounts(String include, String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts");
-            path.AddQuery("$include", include);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts');
+            path.AddQuery('$include', include);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<AccountModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<AccountModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<AccountModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<AccountModel>)System.JSON.deserialize(res.getBody(), FetchResult<AccountModel>.class);
@@ -7032,10 +7032,10 @@ global class AvaTaxClient
         // <param name="model">The new password for this user</param>
         public String ResetPassword(Integer userId, SetPasswordModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/passwords/{userId}/reset");
-            path.ApplyField("userId", userId);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/passwords/{userId}/reset');
+            path.ApplyField('userId', userId);
             String responseModel = null;
-            responseModel = restCall("POST", path, model, String.class.getName());
+            responseModel = restCall('POST', path, model, String.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (String)System.JSON.deserialize(res.getBody(), String.class);
@@ -7054,10 +7054,10 @@ global class AvaTaxClient
         // <param name="model">The account object you wish to update.</param>
         public AccountModel UpdateAccount(Integer id, AccountModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{id}");
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{id}');
+            path.ApplyField('id', id);
             AccountModel responseModel = null;
-            responseModel = restCall("PUT", path, model, AccountModel.class.getName());
+            responseModel = restCall('PUT', path, model, AccountModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (AccountModel)System.JSON.deserialize(res.getBody(), AccountModel.class);
@@ -7081,11 +7081,11 @@ global class AvaTaxClient
         // <param name="model">The subscription you wish to update.</param>
         public SubscriptionModel UpdateSubscription(Integer accountId, Integer id, SubscriptionModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/subscriptions/{id}");
-            path.ApplyField("accountId", accountId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/subscriptions/{id}');
+            path.ApplyField('accountId', accountId);
+            path.ApplyField('id', id);
             SubscriptionModel responseModel = null;
-            responseModel = restCall("PUT", path, model, SubscriptionModel.class.getName());
+            responseModel = restCall('PUT', path, model, SubscriptionModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (SubscriptionModel)System.JSON.deserialize(res.getBody(), SubscriptionModel.class);
@@ -7113,9 +7113,9 @@ global class AvaTaxClient
         // <param name="id">The unique ID number of this report</param>
         public FileResult DownloadReport(Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/reports/{id}/attachment");
-            path.ApplyField("id", id);
-            responseFile = ("GET", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/reports/{id}/attachment');
+            path.ApplyField('id', id);
+            responseFile = ('GET', path, null);
             if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
             {
                 responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
@@ -7138,9 +7138,9 @@ global class AvaTaxClient
         // <param name="model">Options that may be configured to customize the report.</param>
         public FileResult ExportDocumentLine(Integer companyId, ExportDocumentLineModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/reports/exportdocumentline");
-            path.ApplyField("companyId", companyId);
-            responseFile = ("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/reports/exportdocumentline');
+            path.ApplyField('companyId', companyId);
+            responseFile = ('POST', path, model);
             if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
             {
                 responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
@@ -7165,10 +7165,10 @@ global class AvaTaxClient
         // <param name="id">The unique ID number of the report to retrieve</param>
         public ReportModel GetReport(Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/reports/{id}");
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/reports/{id}');
+            path.ApplyField('id', id);
             ReportModel responseModel = null;
-            responseModel = restCall("GET", path, null, ReportModel.class.getName());
+            responseModel = restCall('GET', path, null, ReportModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (ReportModel)System.JSON.deserialize(res.getBody(), ReportModel.class);
@@ -7194,9 +7194,9 @@ global class AvaTaxClient
         // <param name="model">Options that may be configured to customize the report.</param>
         public FileResult InitiateExportDocumentLineReport(Integer companyId, ExportDocumentLineModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/reports/exportdocumentline/initiate");
-            path.ApplyField("companyId", companyId);
-            responseFile = ("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/reports/exportdocumentline/initiate');
+            path.ApplyField('companyId', companyId);
+            responseFile = ('POST', path, model);
             if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
             {
                 responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
@@ -7220,9 +7220,9 @@ global class AvaTaxClient
         // 
         public FetchResult<ReportModel> ListReports()
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/reports");
+            AvaTaxPath path = new AvaTaxPath('/api/v2/reports');
             FetchResult<ReportModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<ReportModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<ReportModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<ReportModel>)System.JSON.deserialize(res.getBody(), FetchResult<ReportModel>.class);
@@ -7244,9 +7244,9 @@ global class AvaTaxClient
         // <param name="model">The setting you wish to create.</param>
         public List<SettingModel> CreateSettings(Integer companyId, List<SettingModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/settings");
-            path.ApplyField("companyId", companyId);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/settings');
+            path.ApplyField('companyId', companyId);
+            httpResponse res = restCallForList('POST', path, model);
             List<SettingModel> retVal = new List<SettingModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -7267,10 +7267,10 @@ global class AvaTaxClient
         // <param name="id">The ID of the setting you wish to delete.</param>
         public List<ErrorDetail> DeleteSetting(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/settings/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("DELETE", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/settings/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('DELETE', path, null);
             List<ErrorDetail> retVal = new List<ErrorDetail>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -7297,11 +7297,11 @@ global class AvaTaxClient
         // <param name="id">The primary key of this setting</param>
         public SettingModel GetSetting(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/settings/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/settings/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             SettingModel responseModel = null;
-            responseModel = restCall("GET", path, null, SettingModel.class.getName());
+            responseModel = restCall('GET', path, null, SettingModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (SettingModel)System.JSON.deserialize(res.getBody(), SettingModel.class);
@@ -7330,15 +7330,15 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<SettingModel> ListSettingsByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/settings");
-            path.ApplyField("companyId", companyId);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/settings');
+            path.ApplyField('companyId', companyId);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<SettingModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<SettingModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<SettingModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<SettingModel>)System.JSON.deserialize(res.getBody(), FetchResult<SettingModel>.class);
@@ -7366,14 +7366,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<SettingModel> QuerySettings(String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/settings");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/settings');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<SettingModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<SettingModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<SettingModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<SettingModel>)System.JSON.deserialize(res.getBody(), FetchResult<SettingModel>.class);
@@ -7398,11 +7398,11 @@ global class AvaTaxClient
         // <param name="model">The setting you wish to update.</param>
         public SettingModel UpdateSetting(Integer companyId, Integer id, SettingModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/settings/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/settings/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             SettingModel responseModel = null;
-            responseModel = restCall("PUT", path, model, SettingModel.class.getName());
+            responseModel = restCall('PUT', path, model, SettingModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (SettingModel)System.JSON.deserialize(res.getBody(), SettingModel.class);
@@ -7420,11 +7420,11 @@ global class AvaTaxClient
         // <param name="id">The primary key of this subscription</param>
         public SubscriptionModel GetSubscription(Integer accountId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/subscriptions/{id}");
-            path.ApplyField("accountId", accountId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/subscriptions/{id}');
+            path.ApplyField('accountId', accountId);
+            path.ApplyField('id', id);
             SubscriptionModel responseModel = null;
-            responseModel = restCall("GET", path, null, SubscriptionModel.class.getName());
+            responseModel = restCall('GET', path, null, SubscriptionModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (SubscriptionModel)System.JSON.deserialize(res.getBody(), SubscriptionModel.class);
@@ -7448,14 +7448,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<SubscriptionModel> ListSubscriptionsByAccount(Integer accountId, String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/subscriptions");
-            path.ApplyField("accountId", accountId);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/subscriptions');
+            path.ApplyField('accountId', accountId);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<SubscriptionModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<SubscriptionModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<SubscriptionModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<SubscriptionModel>)System.JSON.deserialize(res.getBody(), FetchResult<SubscriptionModel>.class);
@@ -7478,13 +7478,13 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<SubscriptionModel> QuerySubscriptions(String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/subscriptions");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/subscriptions');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<SubscriptionModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<SubscriptionModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<SubscriptionModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<SubscriptionModel>)System.JSON.deserialize(res.getBody(), FetchResult<SubscriptionModel>.class);
@@ -7504,9 +7504,9 @@ global class AvaTaxClient
         // <param name="model">The tax code you wish to create.</param>
         public List<TaxCodeModel> CreateTaxCodes(Integer companyId, List<TaxCodeModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/taxcodes");
-            path.ApplyField("companyId", companyId);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/taxcodes');
+            path.ApplyField('companyId', companyId);
+            httpResponse res = restCallForList('POST', path, model);
             List<TaxCodeModel> retVal = new List<TaxCodeModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -7527,10 +7527,10 @@ global class AvaTaxClient
         // <param name="id">The ID of the tax code you wish to delete.</param>
         public List<ErrorDetail> DeleteTaxCode(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/taxcodes/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("DELETE", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/taxcodes/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('DELETE', path, null);
             List<ErrorDetail> retVal = new List<ErrorDetail>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -7555,11 +7555,11 @@ global class AvaTaxClient
         // <param name="id">The primary key of this tax code</param>
         public TaxCodeModel GetTaxCode(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/taxcodes/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/taxcodes/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             TaxCodeModel responseModel = null;
-            responseModel = restCall("GET", path, null, TaxCodeModel.class.getName());
+            responseModel = restCall('GET', path, null, TaxCodeModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (TaxCodeModel)System.JSON.deserialize(res.getBody(), TaxCodeModel.class);
@@ -7586,15 +7586,15 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<TaxCodeModel> ListTaxCodesByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/taxcodes");
-            path.ApplyField("companyId", companyId);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/taxcodes');
+            path.ApplyField('companyId', companyId);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<TaxCodeModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<TaxCodeModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<TaxCodeModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<TaxCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxCodeModel>.class);
@@ -7620,14 +7620,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<TaxCodeModel> QueryTaxCodes(String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/taxcodes");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/taxcodes');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<TaxCodeModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<TaxCodeModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<TaxCodeModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<TaxCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxCodeModel>.class);
@@ -7650,11 +7650,11 @@ global class AvaTaxClient
         // <param name="model">The tax code you wish to update.</param>
         public TaxCodeModel UpdateTaxCode(Integer companyId, Integer id, TaxCodeModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/taxcodes/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/taxcodes/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             TaxCodeModel responseModel = null;
-            responseModel = restCall("PUT", path, model, TaxCodeModel.class.getName());
+            responseModel = restCall('PUT', path, model, TaxCodeModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (TaxCodeModel)System.JSON.deserialize(res.getBody(), TaxCodeModel.class);
@@ -7681,8 +7681,8 @@ global class AvaTaxClient
         // <param name="model">Parameters about the desired file format and report format, specifying which company, locations and TaxCodes to include.</param>
         public FileResult BuildTaxContentFile(PointOfSaleDataRequestModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/pointofsaledata/build");
-            responseFile = ("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/pointofsaledata/build');
+            responseFile = ('POST', path, model);
             if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
             {
                 responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
@@ -7714,14 +7714,14 @@ global class AvaTaxClient
         // <param name="includeJurisCodes">When true, the file will include jurisdiction codes in the result.</param>
         public FileResult BuildTaxContentFileForLocation(Integer companyId, Integer id, DateTime date, PointOfSaleFileType format, PointOfSalePartnerId partnerId, Boolean includeJurisCodes)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/locations/{id}/pointofsaledata");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            path.AddQuery("date", date);
-            path.AddQuery("format", format);
-            path.AddQuery("partnerId", partnerId);
-            path.AddQuery("includeJurisCodes", includeJurisCodes);
-            responseFile = ("GET", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/locations/{id}/pointofsaledata');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            path.AddQuery('date', date);
+            path.AddQuery('format', format);
+            path.AddQuery('partnerId', partnerId);
+            path.AddQuery('includeJurisCodes', includeJurisCodes);
+            responseFile = ('GET', path, null);
             if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
             {
                 responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
@@ -7752,9 +7752,9 @@ global class AvaTaxClient
         // <param name="date">The date for which point-of-sale data would be calculated (today by default). Example input: 2016-12-31</param>
         public FileResult DownloadTaxRatesByZipCode(DateTime date)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/taxratesbyzipcode/download/{date}");
-            path.ApplyField("date", date);
-            responseFile = ("GET", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/taxratesbyzipcode/download/{date}');
+            path.ApplyField('date', date);
+            responseFile = ('GET', path, null);
             if(responseFile.getStatusCode() == 200 || responseFile.getStatusCode() == 201)
             {
                 responseFile.result = restCallForFile(FileResult)System.JSON.deserialize(res.getBody(), FileResult.class);
@@ -7774,9 +7774,9 @@ global class AvaTaxClient
         // <param name="model">The tax rule you wish to create.</param>
         public List<TaxRuleModel> CreateTaxRules(Integer companyId, List<TaxRuleModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/taxrules");
-            path.ApplyField("companyId", companyId);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/taxrules');
+            path.ApplyField('companyId', companyId);
+            httpResponse res = restCallForList('POST', path, model);
             List<TaxRuleModel> retVal = new List<TaxRuleModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -7797,10 +7797,10 @@ global class AvaTaxClient
         // <param name="id">The ID of the tax rule you wish to delete.</param>
         public List<ErrorDetail> DeleteTaxRule(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/taxrules/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("DELETE", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/taxrules/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('DELETE', path, null);
             List<ErrorDetail> retVal = new List<ErrorDetail>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -7825,11 +7825,11 @@ global class AvaTaxClient
         // <param name="id">The primary key of this tax rule</param>
         public TaxRuleModel GetTaxRule(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/taxrules/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/taxrules/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             TaxRuleModel responseModel = null;
-            responseModel = restCall("GET", path, null, TaxRuleModel.class.getName());
+            responseModel = restCall('GET', path, null, TaxRuleModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (TaxRuleModel)System.JSON.deserialize(res.getBody(), TaxRuleModel.class);
@@ -7856,15 +7856,15 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<TaxRuleModel> ListTaxRules(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/taxrules");
-            path.ApplyField("companyId", companyId);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/taxrules');
+            path.ApplyField('companyId', companyId);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<TaxRuleModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<TaxRuleModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<TaxRuleModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<TaxRuleModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxRuleModel>.class);
@@ -7890,14 +7890,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<TaxRuleModel> QueryTaxRules(String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/taxrules");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/taxrules');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<TaxRuleModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<TaxRuleModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<TaxRuleModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<TaxRuleModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxRuleModel>.class);
@@ -7920,11 +7920,11 @@ global class AvaTaxClient
         // <param name="model">The tax rule you wish to update.</param>
         public TaxRuleModel UpdateTaxRule(Integer companyId, Integer id, TaxRuleModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/taxrules/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/taxrules/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             TaxRuleModel responseModel = null;
-            responseModel = restCall("PUT", path, model, TaxRuleModel.class.getName());
+            responseModel = restCall('PUT', path, model, TaxRuleModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (TaxRuleModel)System.JSON.deserialize(res.getBody(), TaxRuleModel.class);
@@ -7959,10 +7959,10 @@ global class AvaTaxClient
         // <param name="model">information about the transaction and lines to be added</param>
         public TransactionModel AddLines(String include, AddTransactionLineModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/transactions/lines/add");
-            path.AddQuery("$include", include);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/transactions/lines/add');
+            path.AddQuery('$include', include);
             TransactionModel responseModel = null;
-            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            responseModel = restCall('POST', path, model, TransactionModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
@@ -7990,12 +7990,12 @@ global class AvaTaxClient
         // <param name="model">The adjustment you wish to make</param>
         public TransactionModel AdjustTransaction(String companyCode, String transactionCode, DocumentType documentType, AdjustTransactionModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions/{transactionCode}/adjust");
-            path.ApplyField("companyCode", companyCode);
-            path.ApplyField("transactionCode", transactionCode);
-            path.AddQuery("documentType", documentType);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}/adjust');
+            path.ApplyField('companyCode', companyCode);
+            path.ApplyField('transactionCode', transactionCode);
+            path.AddQuery('documentType', documentType);
             TransactionModel responseModel = null;
-            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            responseModel = restCall('POST', path, model, TransactionModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
@@ -8025,11 +8025,11 @@ global class AvaTaxClient
         // <param name="transactionCode">The code identifying the transaction</param>
         public AuditTransactionModel AuditTransaction(String companyCode, String transactionCode)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions/{transactionCode}/audit");
-            path.ApplyField("companyCode", companyCode);
-            path.ApplyField("transactionCode", transactionCode);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}/audit');
+            path.ApplyField('companyCode', companyCode);
+            path.ApplyField('transactionCode', transactionCode);
             AuditTransactionModel responseModel = null;
-            responseModel = restCall("GET", path, null, AuditTransactionModel.class.getName());
+            responseModel = restCall('GET', path, null, AuditTransactionModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (AuditTransactionModel)System.JSON.deserialize(res.getBody(), AuditTransactionModel.class);
@@ -8060,12 +8060,12 @@ global class AvaTaxClient
         // <param name="documentType">The document type of the original transaction</param>
         public AuditTransactionModel AuditTransactionWithType(String companyCode, String transactionCode, DocumentType documentType)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions/{transactionCode}/types/{documentType}/audit");
-            path.ApplyField("companyCode", companyCode);
-            path.ApplyField("transactionCode", transactionCode);
-            path.ApplyField("documentType", documentType);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}/types/{documentType}/audit');
+            path.ApplyField('companyCode', companyCode);
+            path.ApplyField('transactionCode', transactionCode);
+            path.ApplyField('documentType', documentType);
             AuditTransactionModel responseModel = null;
-            responseModel = restCall("GET", path, null, AuditTransactionModel.class.getName());
+            responseModel = restCall('GET', path, null, AuditTransactionModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (AuditTransactionModel)System.JSON.deserialize(res.getBody(), AuditTransactionModel.class);
@@ -8086,9 +8086,9 @@ global class AvaTaxClient
         // <param name="model">bulk lock request</param>
         public BulkLockTransactionResult BulkLockTransaction(BulkLockTransactionModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/lock");
+            AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/lock');
             BulkLockTransactionResult responseModel = null;
-            responseModel = restCall("POST", path, model, BulkLockTransactionResult.class.getName());
+            responseModel = restCall('POST', path, model, BulkLockTransactionResult.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (BulkLockTransactionResult)System.JSON.deserialize(res.getBody(), BulkLockTransactionResult.class);
@@ -8116,12 +8116,12 @@ global class AvaTaxClient
         // <param name="model">The code change request you wish to execute</param>
         public TransactionModel ChangeTransactionCode(String companyCode, String transactionCode, DocumentType documentType, ChangeTransactionCodeModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions/{transactionCode}/changecode");
-            path.ApplyField("companyCode", companyCode);
-            path.ApplyField("transactionCode", transactionCode);
-            path.AddQuery("documentType", documentType);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}/changecode');
+            path.ApplyField('companyCode', companyCode);
+            path.ApplyField('transactionCode', transactionCode);
+            path.AddQuery('documentType', documentType);
             TransactionModel responseModel = null;
-            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            responseModel = restCall('POST', path, model, TransactionModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
@@ -8148,12 +8148,12 @@ global class AvaTaxClient
         // <param name="model">The commit request you wish to execute</param>
         public TransactionModel CommitTransaction(String companyCode, String transactionCode, DocumentType documentType, CommitTransactionModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions/{transactionCode}/commit");
-            path.ApplyField("companyCode", companyCode);
-            path.ApplyField("transactionCode", transactionCode);
-            path.AddQuery("documentType", documentType);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}/commit');
+            path.ApplyField('companyCode', companyCode);
+            path.ApplyField('transactionCode', transactionCode);
+            path.AddQuery('documentType', documentType);
             TransactionModel responseModel = null;
-            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            responseModel = restCall('POST', path, model, TransactionModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
@@ -8196,10 +8196,10 @@ global class AvaTaxClient
         // <param name="model">The transaction you wish to create or adjust</param>
         public TransactionModel CreateOrAdjustTransaction(String include, CreateOrAdjustTransactionModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/createoradjust");
-            path.AddQuery("$include", include);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/createoradjust');
+            path.AddQuery('$include', include);
             TransactionModel responseModel = null;
-            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            responseModel = restCall('POST', path, model, TransactionModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
@@ -8248,10 +8248,10 @@ global class AvaTaxClient
         // <param name="model">The transaction you wish to create</param>
         public TransactionModel CreateTransaction(String include, CreateTransactionModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/create");
-            path.AddQuery("$include", include);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/create');
+            path.AddQuery('$include', include);
             TransactionModel responseModel = null;
-            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            responseModel = restCall('POST', path, model, TransactionModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
@@ -8283,10 +8283,10 @@ global class AvaTaxClient
         // <param name="model">information about the transaction and lines to be removed</param>
         public TransactionModel DeleteLines(String include, RemoveTransactionLineModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/transactions/lines/delete");
-            path.AddQuery("$include", include);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/transactions/lines/delete');
+            path.AddQuery('$include', include);
             TransactionModel responseModel = null;
-            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            responseModel = restCall('POST', path, model, TransactionModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
@@ -8321,13 +8321,13 @@ global class AvaTaxClient
         // <param name="include">Specifies objects to include in this fetch call</param>
         public TransactionModel GetTransactionByCode(String companyCode, String transactionCode, DocumentType documentType, String include)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions/{transactionCode}");
-            path.ApplyField("companyCode", companyCode);
-            path.ApplyField("transactionCode", transactionCode);
-            path.AddQuery("documentType", documentType);
-            path.AddQuery("$include", include);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}');
+            path.ApplyField('companyCode', companyCode);
+            path.ApplyField('transactionCode', transactionCode);
+            path.AddQuery('documentType', documentType);
+            path.AddQuery('$include', include);
             TransactionModel responseModel = null;
-            responseModel = restCall("GET", path, null, TransactionModel.class.getName());
+            responseModel = restCall('GET', path, null, TransactionModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
@@ -8345,13 +8345,13 @@ global class AvaTaxClient
         // <param name="include">Specifies objects to include in this fetch call</param>
         public TransactionModel GetTransactionByCodeAndType(String companyCode, String transactionCode, DocumentType documentType, String include)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions/{transactionCode}/types/{documentType}");
-            path.ApplyField("companyCode", companyCode);
-            path.ApplyField("transactionCode", transactionCode);
-            path.ApplyField("documentType", documentType);
-            path.AddQuery("$include", include);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}/types/{documentType}');
+            path.ApplyField('companyCode', companyCode);
+            path.ApplyField('transactionCode', transactionCode);
+            path.ApplyField('documentType', documentType);
+            path.AddQuery('$include', include);
             TransactionModel responseModel = null;
-            responseModel = restCall("GET", path, null, TransactionModel.class.getName());
+            responseModel = restCall('GET', path, null, TransactionModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
@@ -8382,11 +8382,11 @@ global class AvaTaxClient
         // <param name="include">Specifies objects to include in this fetch call</param>
         public TransactionModel GetTransactionById(Integer id, String include)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/transactions/{id}");
-            path.ApplyField("id", id);
-            path.AddQuery("$include", include);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/{id}');
+            path.ApplyField('id', id);
+            path.AddQuery('$include', include);
             TransactionModel responseModel = null;
-            responseModel = restCall("GET", path, null, TransactionModel.class.getName());
+            responseModel = restCall('GET', path, null, TransactionModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
@@ -8426,15 +8426,15 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<TransactionModel> ListTransactionsByCompany(String companyCode, String include, String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions");
-            path.ApplyField("companyCode", companyCode);
-            path.AddQuery("$include", include);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions');
+            path.ApplyField('companyCode', companyCode);
+            path.AddQuery('$include', include);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<TransactionModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<TransactionModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<TransactionModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<TransactionModel>)System.JSON.deserialize(res.getBody(), FetchResult<TransactionModel>.class);
@@ -8462,12 +8462,12 @@ global class AvaTaxClient
         // <param name="model">The lock request you wish to execute</param>
         public TransactionModel LockTransaction(String companyCode, String transactionCode, DocumentType documentType, LockTransactionModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions/{transactionCode}/lock");
-            path.ApplyField("companyCode", companyCode);
-            path.ApplyField("transactionCode", transactionCode);
-            path.AddQuery("documentType", documentType);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}/lock');
+            path.ApplyField('companyCode', companyCode);
+            path.ApplyField('transactionCode', transactionCode);
+            path.AddQuery('documentType', documentType);
             TransactionModel responseModel = null;
-            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            responseModel = restCall('POST', path, model, TransactionModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
@@ -8517,14 +8517,14 @@ global class AvaTaxClient
         // <param name="model">Information about the refund to create</param>
         public TransactionModel RefundTransaction(String companyCode, String transactionCode, String include, DocumentType documentType, Boolean useTaxDateOverride, RefundTransactionModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions/{transactionCode}/refund");
-            path.ApplyField("companyCode", companyCode);
-            path.ApplyField("transactionCode", transactionCode);
-            path.AddQuery("$include", include);
-            path.AddQuery("documentType", documentType);
-            path.AddQuery("useTaxDateOverride", useTaxDateOverride);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}/refund');
+            path.ApplyField('companyCode', companyCode);
+            path.ApplyField('transactionCode', transactionCode);
+            path.AddQuery('$include', include);
+            path.AddQuery('documentType', documentType);
+            path.AddQuery('useTaxDateOverride', useTaxDateOverride);
             TransactionModel responseModel = null;
-            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            responseModel = restCall('POST', path, model, TransactionModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
@@ -8551,12 +8551,12 @@ global class AvaTaxClient
         // <param name="model">The data from an external system to reconcile against AvaTax</param>
         public TransactionModel SettleTransaction(String companyCode, String transactionCode, DocumentType documentType, SettleTransactionModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions/{transactionCode}/settle");
-            path.ApplyField("companyCode", companyCode);
-            path.ApplyField("transactionCode", transactionCode);
-            path.AddQuery("documentType", documentType);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}/settle');
+            path.ApplyField('companyCode', companyCode);
+            path.ApplyField('transactionCode', transactionCode);
+            path.AddQuery('documentType', documentType);
             TransactionModel responseModel = null;
-            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            responseModel = restCall('POST', path, model, TransactionModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
@@ -8581,12 +8581,12 @@ global class AvaTaxClient
         // <param name="model">The data from an external system to reconcile against AvaTax</param>
         public TransactionModel VerifyTransaction(String companyCode, String transactionCode, DocumentType documentType, VerifyTransactionModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions/{transactionCode}/verify");
-            path.ApplyField("companyCode", companyCode);
-            path.ApplyField("transactionCode", transactionCode);
-            path.AddQuery("documentType", documentType);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}/verify');
+            path.ApplyField('companyCode', companyCode);
+            path.ApplyField('transactionCode', transactionCode);
+            path.AddQuery('documentType', documentType);
             TransactionModel responseModel = null;
-            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            responseModel = restCall('POST', path, model, TransactionModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
@@ -8613,12 +8613,12 @@ global class AvaTaxClient
         // <param name="model">The void request you wish to execute</param>
         public TransactionModel VoidTransaction(String companyCode, String transactionCode, DocumentType documentType, VoidTransactionModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyCode}/transactions/{transactionCode}/void");
-            path.ApplyField("companyCode", companyCode);
-            path.ApplyField("transactionCode", transactionCode);
-            path.AddQuery("documentType", documentType);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}/void');
+            path.ApplyField('companyCode', companyCode);
+            path.ApplyField('transactionCode', transactionCode);
+            path.AddQuery('documentType', documentType);
             TransactionModel responseModel = null;
-            responseModel = restCall("POST", path, model, TransactionModel.class.getName());
+            responseModel = restCall('POST', path, model, TransactionModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
@@ -8635,9 +8635,9 @@ global class AvaTaxClient
         // <param name="model">The UPC you wish to create.</param>
         public List<UPCModel> CreateUPCs(Integer companyId, List<UPCModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/upcs");
-            path.ApplyField("companyId", companyId);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/upcs');
+            path.ApplyField('companyId', companyId);
+            httpResponse res = restCallForList('POST', path, model);
             List<UPCModel> retVal = new List<UPCModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -8658,10 +8658,10 @@ global class AvaTaxClient
         // <param name="id">The ID of the UPC you wish to delete.</param>
         public List<ErrorDetail> DeleteUPC(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/upcs/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
-            httpResponse res = restCallForList("DELETE", path, null);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/upcs/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            httpResponse res = restCallForList('DELETE', path, null);
             List<ErrorDetail> retVal = new List<ErrorDetail>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -8683,11 +8683,11 @@ global class AvaTaxClient
         // <param name="id">The primary key of this UPC</param>
         public UPCModel GetUPC(Integer companyId, Integer id)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/upcs/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/upcs/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             UPCModel responseModel = null;
-            responseModel = restCall("GET", path, null, UPCModel.class.getName());
+            responseModel = restCall('GET', path, null, UPCModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (UPCModel)System.JSON.deserialize(res.getBody(), UPCModel.class);
@@ -8711,15 +8711,15 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<UPCModel> ListUPCsByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/upcs");
-            path.ApplyField("companyId", companyId);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/upcs');
+            path.ApplyField('companyId', companyId);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<UPCModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<UPCModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<UPCModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<UPCModel>)System.JSON.deserialize(res.getBody(), FetchResult<UPCModel>.class);
@@ -8742,14 +8742,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<UPCModel> QueryUPCs(String filter, String include, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/upcs");
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$include", include);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/upcs');
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$include', include);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<UPCModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<UPCModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<UPCModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<UPCModel>)System.JSON.deserialize(res.getBody(), FetchResult<UPCModel>.class);
@@ -8769,11 +8769,11 @@ global class AvaTaxClient
         // <param name="model">The UPC you wish to update.</param>
         public UPCModel UpdateUPC(Integer companyId, Integer id, UPCModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/companies/{companyId}/upcs/{id}");
-            path.ApplyField("companyId", companyId);
-            path.ApplyField("id", id);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/upcs/{id}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
             UPCModel responseModel = null;
-            responseModel = restCall("PUT", path, model, UPCModel.class.getName());
+            responseModel = restCall('PUT', path, model, UPCModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (UPCModel)System.JSON.deserialize(res.getBody(), UPCModel.class);
@@ -8797,9 +8797,9 @@ global class AvaTaxClient
         // <param name="model">The user or array of users you wish to create.</param>
         public List<UserModel> CreateUsers(Integer accountId, List<UserModel> model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/users");
-            path.ApplyField("accountId", accountId);
-            httpResponse res = restCallForList("POST", path, model);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/users');
+            path.ApplyField('accountId', accountId);
+            httpResponse res = restCallForList('POST', path, model);
             List<UserModel> retVal = new List<UserModel>();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
@@ -8822,12 +8822,12 @@ global class AvaTaxClient
         // <param name="include">Optional fetch commands.</param>
         public UserModel GetUser(Integer id, Integer accountId, String include)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/users/{id}");
-            path.ApplyField("id", id);
-            path.ApplyField("accountId", accountId);
-            path.AddQuery("$include", include);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/users/{id}');
+            path.ApplyField('id', id);
+            path.ApplyField('accountId', accountId);
+            path.AddQuery('$include', include);
             UserModel responseModel = null;
-            responseModel = restCall("GET", path, null, UserModel.class.getName());
+            responseModel = restCall('GET', path, null, UserModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (UserModel)System.JSON.deserialize(res.getBody(), UserModel.class);
@@ -8857,11 +8857,11 @@ global class AvaTaxClient
         // <param name="accountId">The accountID of the user you wish to get.</param>
         public UserEntitlementModel GetUserEntitlements(Integer id, Integer accountId)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/users/{id}/entitlements");
-            path.ApplyField("id", id);
-            path.ApplyField("accountId", accountId);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/users/{id}/entitlements');
+            path.ApplyField('id', id);
+            path.ApplyField('accountId', accountId);
             UserEntitlementModel responseModel = null;
-            responseModel = restCall("GET", path, null, UserEntitlementModel.class.getName());
+            responseModel = restCall('GET', path, null, UserEntitlementModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (UserEntitlementModel)System.JSON.deserialize(res.getBody(), UserEntitlementModel.class);
@@ -8879,10 +8879,10 @@ global class AvaTaxClient
         // <param name="username">The username to search.</param>
         public UsernameModel GetUsername(String username)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/usernames");
-            path.AddQuery("username", username);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/usernames');
+            path.AddQuery('username', username);
             UsernameModel responseModel = null;
-            responseModel = restCall("GET", path, null, UsernameModel.class.getName());
+            responseModel = restCall('GET', path, null, UsernameModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (UsernameModel)System.JSON.deserialize(res.getBody(), UsernameModel.class);
@@ -8909,15 +8909,15 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<UserModel> ListUsersByAccount(Integer accountId, String include, String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/users");
-            path.ApplyField("accountId", accountId);
-            path.AddQuery("$include", include);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/users');
+            path.ApplyField('accountId', accountId);
+            path.AddQuery('$include', include);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<UserModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<UserModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<UserModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<UserModel>)System.JSON.deserialize(res.getBody(), FetchResult<UserModel>.class);
@@ -8945,14 +8945,14 @@ global class AvaTaxClient
         // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<UserModel> QueryUsers(String include, String filter, Integer top, Integer skip, String orderBy)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/users");
-            path.AddQuery("$include", include);
-            path.AddQuery("$filter", filter);
-            path.AddQuery("$top", top);
-            path.AddQuery("$skip", skip);
-            path.AddQuery("$orderBy", orderBy);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/users');
+            path.AddQuery('$include', include);
+            path.AddQuery('$filter', filter);
+            path.AddQuery('$top', top);
+            path.AddQuery('$skip', skip);
+            path.AddQuery('$orderBy', orderBy);
             FetchResult<UserModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<UserModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<UserModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<UserModel>)System.JSON.deserialize(res.getBody(), FetchResult<UserModel>.class);
@@ -8972,11 +8972,11 @@ global class AvaTaxClient
         // <param name="model">The user object you wish to update.</param>
         public UserModel UpdateUser(Integer id, Integer accountId, UserModel model)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/accounts/{accountId}/users/{id}");
-            path.ApplyField("id", id);
-            path.ApplyField("accountId", accountId);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/users/{id}');
+            path.ApplyField('id', id);
+            path.ApplyField('accountId', accountId);
             UserModel responseModel = null;
-            responseModel = restCall("PUT", path, model, UserModel.class.getName());
+            responseModel = restCall('PUT', path, model, UserModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (UserModel)System.JSON.deserialize(res.getBody(), UserModel.class);
@@ -8993,10 +8993,10 @@ global class AvaTaxClient
         // <param name="serviceTypeId">The service to check</param>
         public SubscriptionModel GetMySubscription(ServiceTypeId serviceTypeId)
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/utilities/subscriptions/{serviceTypeId}");
-            path.ApplyField("serviceTypeId", serviceTypeId);
+            AvaTaxPath path = new AvaTaxPath('/api/v2/utilities/subscriptions/{serviceTypeId}');
+            path.ApplyField('serviceTypeId', serviceTypeId);
             SubscriptionModel responseModel = null;
-            responseModel = restCall("GET", path, null, SubscriptionModel.class.getName());
+            responseModel = restCall('GET', path, null, SubscriptionModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (SubscriptionModel)System.JSON.deserialize(res.getBody(), SubscriptionModel.class);
@@ -9012,9 +9012,9 @@ global class AvaTaxClient
         // 
         public FetchResult<SubscriptionModel> ListMySubscriptions()
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/utilities/subscriptions");
+            AvaTaxPath path = new AvaTaxPath('/api/v2/utilities/subscriptions');
             FetchResult<SubscriptionModel> responseModel = null;
-            responseModel = restCall("GET", path, null, FetchResult<SubscriptionModel>.class.getName());
+            responseModel = restCall('GET', path, null, FetchResult<SubscriptionModel>.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (FetchResult<SubscriptionModel>)System.JSON.deserialize(res.getBody(), FetchResult<SubscriptionModel>.class);
@@ -9032,9 +9032,9 @@ global class AvaTaxClient
         // 
         public PingResultModel Ping()
         {
-            AvaTaxPath path = new AvaTaxPath("/api/v2/utilities/ping");
+            AvaTaxPath path = new AvaTaxPath('/api/v2/utilities/ping');
             PingResultModel responseModel = null;
-            responseModel = restCall("GET", path, null, PingResultModel.class.getName());
+            responseModel = restCall('GET', path, null, PingResultModel.class.getName());
             if(responseModel.getStatusCode() == 200 || responseModel.getStatusCode() == 201)
             {
                 responseModel.result = (PingResultModel)System.JSON.deserialize(res.getBody(), PingResultModel.class);
@@ -9166,5 +9166,50 @@ global class AvaTaxClient
             
 		return httpResponse;
 	}
+
+	global FileResultModel restCallForFile(String method, String relativePath, Object model)
+    {
+        Http http = new Http();
+        HttpRequest httpRequest = new HttpRequest();
+        httpRequest.setEndpoint(envUri+relativePath);
+        HttpRequest.setMethod(method);
+        httpRequest.setHeader('Authorization', credentials);
+        httpRequest.setHeader('X-Avalara-Client', clientHeader);
+        httpRequest.setHeader('Accept', 'application/json');
+        httpRequest.setHeader('Content-Type', 'application/json');
+        
+        string finalRequest = JSON.serialize(model);
+        finalRequest = finalRequest.replace('documentDate', 'date');
+        finalRequest =  finalRequest.replace('commitDocument', 'commit');
+        finalRequest =  finalRequest.replace('commitTransaction', 'commit');
+        finalRequest =  finalRequest.replace('lineNumber', 'number');
+        
+        if (model != null) {
+            httpRequest.setBody(JSON.serialize(finalRequest));
+        }
+        
+        HttpResponse httpResponse = http.send(httpRequest);
+        
+        FileResultModel frmodel = new FileResultModel();
+        
+        if(httpResponse.getStatusCode() == 200 || httpResponse.getStatusCode() == 201) {
+            frmodel.Filename = GetDispositionFilename(httpResponse.getHeader('Content-Disposition'));
+            frmodel.Data = httpResponse.getBodyasBlob();
+            frmodel.ContentType = httpResponse.getHeader('Content-Type');
+        }
+        
+        frmodel.statusCode = httpResponse.getStatusCode();
+        return frmodel;
+    }    
+    
+    private string GetDispositionFilename(string contentDisposition)
+    {
+        string filename = 'filename=';
+        Integer index = contentDisposition.lastIndexOfIgnoreCase(filename);
+        if (index > -1) {
+            return contentDisposition.right(index+contentDisposition.length());
+        }
+        return contentDisposition;
+    }
 
 }
