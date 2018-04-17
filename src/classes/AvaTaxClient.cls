@@ -15,10 +15,10 @@
 global class AvaTaxClient
 {
         // Returns the version number of the API used to generate this class
-        global static string API_VERSION { get { return "18.3.1-176"; } }
-		private string credentials;
-		private string clientHeader;
-		private String envUri;
+        global static string API_VERSION { get { return '18.3.1-176' } }
+	private string credentials;
+	private string clientHeader;
+	private String envUri;
 
 
         // Reset this account's license key
@@ -35,8 +35,8 @@ global class AvaTaxClient
         // When you call this API, all account administrators for this account will receive an email with the newly updated license key.
         // The email will specify which user reset the license key and it will contain the new key to use to update your connectors.
         // 
-        // <param name="id">The ID of the account you wish to update.</param>
-        // <param name="model">A request confirming that you wish to reset the license key of this account.</param>
+        // <param name='id'>The ID of the account you wish to update.</param>
+        // <param name='model'>A request confirming that you wish to reset the license key of this account.</param>
         public LicenseKeyModel AccountResetLicenseKey(Integer id, ResetLicenseKeyModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{id}/resetlicensekey');
@@ -47,7 +47,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (LicenseKeyModel)System.JSON.deserialize(res.getBody(), LicenseKeyModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -63,9 +63,9 @@ global class AvaTaxClient
         // If you have not read or accepted the terms and conditions, this API call will return the
         // unchanged account model.
         // 
-        // <param name="id">The ID of the account to activate</param>
-        // <param name="include">Elements to include when fetching the account</param>
-        // <param name="model">The activation request</param>
+        // <param name='id'>The ID of the account to activate</param>
+        // <param name='include'>Elements to include when fetching the account</param>
+        // <param name='model'>The activation request</param>
         public AccountModel ActivateAccount(Integer id, String include, ActivateAccountModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{id}/activate');
@@ -77,7 +77,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (AccountModel)System.JSON.deserialize(res.getBody(), AccountModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -88,8 +88,8 @@ global class AvaTaxClient
         // * Subscriptions
         // * Users
         // 
-        // <param name="id">The ID of the account to retrieve</param>
-        // <param name="include">A comma separated list of special fetch options</param>
+        // <param name='id'>The ID of the account to retrieve</param>
+        // <param name='include'>A comma separated list of special fetch options</param>
         public AccountModel GetAccount(Integer id, String include)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{id}');
@@ -101,7 +101,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (AccountModel)System.JSON.deserialize(res.getBody(), AccountModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -119,7 +119,7 @@ global class AvaTaxClient
         // Avalara-based account settings for `TaxServiceConfig` and `AddressServiceConfig` affect your account's
         // tax calculation and address resolution, and should only be changed with care.
         // 
-        // <param name="id"></param>
+        // <param name='id'></param>
         public List<AccountConfigurationModel> GetAccountConfiguration(Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{id}/configuration');
@@ -134,7 +134,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -152,8 +152,8 @@ global class AvaTaxClient
         // Avalara-based account settings for `TaxServiceConfig` and `AddressServiceConfig` affect your account's
         // tax calculation and address resolution, and should only be changed with care.
         // 
-        // <param name="id"></param>
-        // <param name="model"></param>
+        // <param name='id'></param>
+        // <param name='model'></param>
         public List<AccountConfigurationModel> SetAccountConfiguration(Integer id, List<AccountConfigurationModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{id}/configuration');
@@ -168,7 +168,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -180,16 +180,16 @@ global class AvaTaxClient
         // This is the same API as the POST /api/v2/addresses/resolve endpoint.
         // Both verbs are supported to provide for flexible implementation.
         // 
-        // <param name="line1">Line 1</param>
-        // <param name="line2">Line 2</param>
-        // <param name="line3">Line 3</param>
-        // <param name="city">City</param>
-        // <param name="region">State / Province / Region</param>
-        // <param name="postalCode">Postal Code / Zip Code</param>
-        // <param name="country">Two character ISO 3166 Country Code (see /api/v2/definitions/countries for a full list)</param>
-        // <param name="textCase">selectable text case for address validation</param>
-        // <param name="latitude">Geospatial latitude measurement</param>
-        // <param name="longitude">Geospatial longitude measurement</param>
+        // <param name='line1'>Line 1</param>
+        // <param name='line2'>Line 2</param>
+        // <param name='line3'>Line 3</param>
+        // <param name='city'>City</param>
+        // <param name='region'>State / Province / Region</param>
+        // <param name='postalCode'>Postal Code / Zip Code</param>
+        // <param name='country'>Two character ISO 3166 Country Code (see /api/v2/definitions/countries for a full list)</param>
+        // <param name='textCase'>selectable text case for address validation</param>
+        // <param name='latitude'>Geospatial latitude measurement</param>
+        // <param name='longitude'>Geospatial longitude measurement</param>
         public AddressResolutionModel ResolveAddress(String line1, String line2, String line3, String city, String region, String postalCode, String country, TextCase textCase, Decimal latitude, Decimal longitude)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/addresses/resolve');
@@ -209,7 +209,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (AddressResolutionModel)System.JSON.deserialize(res.getBody(), AddressResolutionModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -221,7 +221,7 @@ global class AvaTaxClient
         // This is the same API as the GET /api/v2/addresses/resolve endpoint.
         // Both verbs are supported to provide for flexible implementation.
         // 
-        // <param name="model">The address to resolve</param>
+        // <param name='model'>The address to resolve</param>
         public AddressResolutionModel ResolveAddressPost(AddressValidationInfo model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/addresses/resolve');
@@ -231,7 +231,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (AddressResolutionModel)System.JSON.deserialize(res.getBody(), AddressResolutionModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -239,7 +239,7 @@ global class AvaTaxClient
         // Create one or more AvaFileForms
         // A 'AvaFileForm' represents a form supported by our returns team
         // 
-        // <param name="model">The AvaFileForm you wish to create.</param>
+        // <param name='model'>The AvaFileForm you wish to create.</param>
         public List<AvaFileFormModel> CreateAvaFileForms(List<AvaFileFormModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/avafileforms');
@@ -253,14 +253,14 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
         // Delete a single AvaFileForm
         // Marks the existing AvaFileForm object at this URL as deleted.
         // 
-        // <param name="id">The ID of the AvaFileForm you wish to delete.</param>
+        // <param name='id'>The ID of the AvaFileForm you wish to delete.</param>
         public List<ErrorDetail> DeleteAvaFileForm(Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/avafileforms/{id}');
@@ -275,14 +275,14 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
         // Retrieve a single AvaFileForm
         // Get the AvaFileForm object identified by this URL.
         // 
-        // <param name="id">The primary key of this AvaFileForm</param>
+        // <param name='id'>The primary key of this AvaFileForm</param>
         public AvaFileFormModel GetAvaFileForm(String id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/avafileforms/{id}');
@@ -293,7 +293,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (AvaFileFormModel)System.JSON.deserialize(res.getBody(), AvaFileFormModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -301,11 +301,11 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<AvaFileFormModel> QueryAvaFileForms(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/avafileforms');
@@ -320,7 +320,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<AvaFileFormModel>)System.JSON.deserialize(res.getBody(), FetchResult<AvaFileFormModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -328,8 +328,8 @@ global class AvaTaxClient
         // All data from the existing object will be replaced with data in the object you PUT. 
         // To set a field's value to null, you may either set its value to null or omit that field from the object you post.
         // 
-        // <param name="id">The ID of the AvaFileForm you wish to update</param>
-        // <param name="model">The AvaFileForm model you wish to update.</param>
+        // <param name='id'>The ID of the AvaFileForm you wish to update</param>
+        // <param name='model'>The AvaFileForm model you wish to update.</param>
         public AvaFileFormModel UpdateAvaFileForm(Integer id, AvaFileFormModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/avafileforms/{id}');
@@ -340,7 +340,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (AvaFileFormModel)System.JSON.deserialize(res.getBody(), AvaFileFormModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -360,8 +360,8 @@ global class AvaTaxClient
         // required, please use the 
         // [CreateTransaction API](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Transactions/CreateTransaction/).
         // 
-        // <param name="companyId">The ID of the company that owns this batch.</param>
-        // <param name="model">The batch you wish to create.</param>
+        // <param name='companyId'>The ID of the company that owns this batch.</param>
+        // <param name='model'>The batch you wish to create.</param>
         public List<BatchModel> CreateBatches(Integer companyId, List<BatchModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/batches');
@@ -376,15 +376,15 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
         // Delete a single batch
         // 
         // 
-        // <param name="companyId">The ID of the company that owns this batch.</param>
-        // <param name="id">The ID of the batch to delete.</param>
+        // <param name='companyId'>The ID of the company that owns this batch.</param>
+        // <param name='id'>The ID of the batch to delete.</param>
         public List<ErrorDetail> DeleteBatch(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/batches/{id}');
@@ -400,16 +400,16 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
         // Download a single batch file
         // Download a single batch file identified by this URL.
         // 
-        // <param name="companyId">The ID of the company that owns this batch</param>
-        // <param name="batchId">The ID of the batch object</param>
-        // <param name="id">The primary key of this batch file object</param>
+        // <param name='companyId'>The ID of the company that owns this batch</param>
+        // <param name='batchId'>The ID of the batch object</param>
+        // <param name='id'>The primary key of this batch file object</param>
         public FileResult DownloadBatch(Integer companyId, Integer batchId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/batches/{batchId}/files/{id}/attachment');
@@ -418,7 +418,7 @@ global class AvaTaxClient
             path.ApplyField('id', id);
             FileResultModel responseModel = null;
             responseModel = (FileResultModel) restCallForFile('GET', path.relativePath, null);
-            return responseModel
+            return responseModel;
         }
 
 
@@ -439,8 +439,8 @@ global class AvaTaxClient
         // required, please use the 
         // [CreateTransaction API](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Transactions/CreateTransaction/).
         // 
-        // <param name="companyId">The ID of the company that owns this batch</param>
-        // <param name="id">The primary key of this batch</param>
+        // <param name='companyId'>The ID of the company that owns this batch</param>
+        // <param name='id'>The primary key of this batch</param>
         public BatchModel GetBatch(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/batches/{id}');
@@ -452,7 +452,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (BatchModel)System.JSON.deserialize(res.getBody(), BatchModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -479,12 +479,12 @@ global class AvaTaxClient
         // required, please use the
         // [CreateTransaction API](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Transactions/CreateTransaction/).
         // 
-        // <param name="companyId">The ID of the company that owns these batches</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='companyId'>The ID of the company that owns these batches</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<BatchModel> ListBatchesByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/batches');
@@ -500,7 +500,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<BatchModel>)System.JSON.deserialize(res.getBody(), FetchResult<BatchModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -524,11 +524,11 @@ global class AvaTaxClient
         // required, please use the
         // [CreateTransaction API](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Transactions/CreateTransaction/).
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<BatchModel> QueryBatches(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/batches');
@@ -543,7 +543,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<BatchModel>)System.JSON.deserialize(res.getBody(), FetchResult<BatchModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -564,9 +564,9 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The unique ID number of the company that will record certificates</param>
-        // <param name="customerCode">The number of the customer where the request is sent to</param>
-        // <param name="model">the requests to send out to customers</param>
+        // <param name='companyId'>The unique ID number of the company that will record certificates</param>
+        // <param name='customerCode'>The number of the customer where the request is sent to</param>
+        // <param name='model'>the requests to send out to customers</param>
         public List<CertExpressInvitationStatusModel> CreateCertExpressInvitation(Integer companyId, String customerCode, List<CreateCertExpressInvitationModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/customers/{customerCode}/certexpressinvites');
@@ -582,7 +582,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -603,10 +603,10 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The unique ID number of the company that issued this invitation</param>
-        // <param name="customerCode">The number of the customer where the request is sent to</param>
-        // <param name="id">The unique ID number of this CertExpress invitation</param>
-        // <param name="include">OPTIONAL: A comma separated list of special fetch options. No options are defined at this time.</param>
+        // <param name='companyId'>The unique ID number of the company that issued this invitation</param>
+        // <param name='customerCode'>The number of the customer where the request is sent to</param>
+        // <param name='id'>The unique ID number of this CertExpress invitation</param>
+        // <param name='include'>OPTIONAL: A comma separated list of special fetch options. No options are defined at this time.</param>
         public CertExpressInvitationModel GetCertExpressInvitation(Integer companyId, String customerCode, Integer id, String include)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/customers/{customerCode}/certexpressinvites/{id}');
@@ -620,7 +620,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (CertExpressInvitationModel)System.JSON.deserialize(res.getBody(), CertExpressInvitationModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -641,14 +641,14 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The unique ID number of the company that issued this invitation</param>
-        // <param name="include">OPTIONAL: A comma separated list of special fetch options. 
+        // <param name='companyId'>The unique ID number of the company that issued this invitation</param>
+        // <param name='include'>OPTIONAL: A comma separated list of special fetch options. 
         //  
         //  No options are defined at this time.</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CertExpressInvitationModel> ListCertExpressInvitations(Integer companyId, String include, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certexpressinvites');
@@ -664,7 +664,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<CertExpressInvitationModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertExpressInvitationModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -689,8 +689,8 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The ID number of the company recording this certificate</param>
-        // <param name="model">Certificates to be created</param>
+        // <param name='companyId'>The ID number of the company recording this certificate</param>
+        // <param name='model'>Certificates to be created</param>
         public List<CertificateModel> CreateCertificates(Integer companyId, List<CertificateModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates');
@@ -705,7 +705,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -724,8 +724,8 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The unique ID number of the company that recorded this certificate</param>
-        // <param name="id">The unique ID number of this certificate</param>
+        // <param name='companyId'>The unique ID number of the company that recorded this certificate</param>
+        // <param name='id'>The unique ID number of this certificate</param>
         public CertificateModel DeleteCertificate(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/{id}');
@@ -737,7 +737,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (CertificateModel)System.JSON.deserialize(res.getBody(), CertificateModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -757,10 +757,10 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The unique ID number of the company that recorded this certificate</param>
-        // <param name="id">The unique ID number of this certificate</param>
-        // <param name="page">If you choose `$type`=`Jpeg`, you must specify which page number to retrieve.</param>
-        // <param name="type">The data format in which to retrieve the certificate image</param>
+        // <param name='companyId'>The unique ID number of the company that recorded this certificate</param>
+        // <param name='id'>The unique ID number of this certificate</param>
+        // <param name='page'>If you choose `$type`=`Jpeg`, you must specify which page number to retrieve.</param>
+        // <param name='type'>The data format in which to retrieve the certificate image</param>
         public FileResult DownloadCertificateImage(Integer companyId, Integer id, Integer page, CertificatePreviewType type)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/{id}/attachment');
@@ -770,7 +770,7 @@ global class AvaTaxClient
             path.AddQuery('$type', type);
             FileResultModel responseModel = null;
             responseModel = (FileResultModel) restCallForFile('GET', path.relativePath, null);
-            return responseModel
+            return responseModel;
         }
 
 
@@ -793,9 +793,9 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The ID number of the company that recorded this certificate</param>
-        // <param name="id">The unique ID number of this certificate</param>
-        // <param name="include">OPTIONAL: A comma separated list of special fetch options. You can specify one or more of the following:
+        // <param name='companyId'>The ID number of the company that recorded this certificate</param>
+        // <param name='id'>The unique ID number of this certificate</param>
+        // <param name='include'>OPTIONAL: A comma separated list of special fetch options. You can specify one or more of the following:
         //  
         //  * Customers - Retrieves the list of customers linked to the certificate.
         //  * PoNumbers - Retrieves all PO numbers tied to the certificate.
@@ -812,7 +812,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (CertificateModel)System.JSON.deserialize(res.getBody(), CertificateModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -825,7 +825,7 @@ global class AvaTaxClient
         // document store. To request setup, please call `RequestCertificateSetup` and your company will
         // be configured with data storage in the auditable certificate system.
         // 
-        // <param name="companyId">The company ID to check</param>
+        // <param name='companyId'>The company ID to check</param>
         public ProvisionStatusModel GetCertificateSetup(Integer companyId)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/setup');
@@ -836,7 +836,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (ProvisionStatusModel)System.JSON.deserialize(res.getBody(), ProvisionStatusModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -856,9 +856,9 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The unique ID number of the company that recorded this certificate</param>
-        // <param name="id">The unique ID number of this certificate</param>
-        // <param name="model">The list of attributes to link to this certificate.</param>
+        // <param name='companyId'>The unique ID number of the company that recorded this certificate</param>
+        // <param name='id'>The unique ID number of this certificate</param>
+        // <param name='model'>The list of attributes to link to this certificate.</param>
         public FetchResult<CertificateAttributeModel> LinkAttributesToCertificate(Integer companyId, Integer id, List<CertificateAttributeModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/{id}/attributes/link');
@@ -870,7 +870,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<CertificateAttributeModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateAttributeModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -891,9 +891,9 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The unique ID number of the company that recorded this certificate</param>
-        // <param name="id">The unique ID number of this certificate</param>
-        // <param name="model">The list of customers needed be added to the Certificate for exemption</param>
+        // <param name='companyId'>The unique ID number of the company that recorded this certificate</param>
+        // <param name='id'>The unique ID number of this certificate</param>
+        // <param name='model'>The list of customers needed be added to the Certificate for exemption</param>
         public FetchResult<CustomerModel> LinkCustomersToCertificate(Integer companyId, Integer id, LinkCustomersModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/{id}/customers/link');
@@ -905,7 +905,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<CustomerModel>)System.JSON.deserialize(res.getBody(), FetchResult<CustomerModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -925,8 +925,8 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The unique ID number of the company that recorded this certificate</param>
-        // <param name="id">The unique ID number of this certificate</param>
+        // <param name='companyId'>The unique ID number of the company that recorded this certificate</param>
+        // <param name='id'>The unique ID number of this certificate</param>
         public FetchResult<CertificateAttributeModel> ListAttributesForCertificate(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/{id}/attributes');
@@ -938,7 +938,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<CertificateAttributeModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateAttributeModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -958,9 +958,9 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The unique ID number of the company that recorded this certificate</param>
-        // <param name="id">The unique ID number of this certificate</param>
-        // <param name="include">OPTIONAL: A comma separated list of special fetch options. 
+        // <param name='companyId'>The unique ID number of the company that recorded this certificate</param>
+        // <param name='id'>The unique ID number of this certificate</param>
+        // <param name='include'>OPTIONAL: A comma separated list of special fetch options. 
         //  No options are currently available when fetching customers.</param>
         public FetchResult<CustomerModel> ListCustomersForCertificate(Integer companyId, Integer id, String include)
         {
@@ -974,7 +974,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<CustomerModel>)System.JSON.deserialize(res.getBody(), FetchResult<CustomerModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -997,16 +997,16 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The ID number of the company to search</param>
-        // <param name="include">OPTIONAL: A comma separated list of special fetch options. You can specify one or more of the following:
+        // <param name='companyId'>The ID number of the company to search</param>
+        // <param name='include'>OPTIONAL: A comma separated list of special fetch options. You can specify one or more of the following:
         //  
         //  * Customers - Retrieves the list of customers linked to the certificate.
         //  * PoNumbers - Retrieves all PO numbers tied to the certificate.
         //  * Attributes - Retrieves all attributes applied to the certificate.</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CertificateModel> QueryCertificates(Integer companyId, String include, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates');
@@ -1022,7 +1022,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<CertificateModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -1037,7 +1037,7 @@ global class AvaTaxClient
         // 
         // This API will return the current status of exemption certificate setup for this company.
         // 
-        // <param name="companyId"></param>
+        // <param name='companyId'></param>
         public ProvisionStatusModel RequestCertificateSetup(Integer companyId)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/setup');
@@ -1048,7 +1048,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (ProvisionStatusModel)System.JSON.deserialize(res.getBody(), ProvisionStatusModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -1068,9 +1068,9 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The unique ID number of the company that recorded this certificate</param>
-        // <param name="id">The unique ID number of this certificate</param>
-        // <param name="model">The list of attributes to unlink from this certificate.</param>
+        // <param name='companyId'>The unique ID number of the company that recorded this certificate</param>
+        // <param name='id'>The unique ID number of this certificate</param>
+        // <param name='model'>The list of attributes to unlink from this certificate.</param>
         public FetchResult<CertificateAttributeModel> UnlinkAttributesFromCertificate(Integer companyId, Integer id, List<CertificateAttributeModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/{id}/attributes/unlink');
@@ -1082,7 +1082,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<CertificateAttributeModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateAttributeModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -1104,9 +1104,9 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The unique ID number of the company that recorded this certificate</param>
-        // <param name="id">The unique ID number of this certificate</param>
-        // <param name="model">The list of customers to unlink from this certificate</param>
+        // <param name='companyId'>The unique ID number of the company that recorded this certificate</param>
+        // <param name='id'>The unique ID number of this certificate</param>
+        // <param name='model'>The list of customers to unlink from this certificate</param>
         public FetchResult<CustomerModel> UnlinkCustomersFromCertificate(Integer companyId, Integer id, LinkCustomersModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/{id}/customers/unlink');
@@ -1118,7 +1118,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<CustomerModel>)System.JSON.deserialize(res.getBody(), FetchResult<CustomerModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -1135,9 +1135,9 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The ID number of the company that recorded this certificate</param>
-        // <param name="id">The unique ID number of this certificate</param>
-        // <param name="model">The new certificate object that will replace the existing one</param>
+        // <param name='companyId'>The ID number of the company that recorded this certificate</param>
+        // <param name='id'>The unique ID number of this certificate</param>
+        // <param name='model'>The new certificate object that will replace the existing one</param>
         public CertificateModel UpdateCertificate(Integer companyId, Integer id, CertificateModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/{id}');
@@ -1149,7 +1149,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (CertificateModel)System.JSON.deserialize(res.getBody(), CertificateModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -1169,9 +1169,9 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The unique ID number of the company that recorded this certificate</param>
-        // <param name="id">The unique ID number of this certificate</param>
-        // <param name="file">The exemption certificate file you wanted to upload. Accepted formats are: PDF, JPEG, TIFF, PNG.</param>
+        // <param name='companyId'>The unique ID number of the company that recorded this certificate</param>
+        // <param name='id'>The unique ID number of this certificate</param>
+        // <param name='file'>The exemption certificate file you wanted to upload. Accepted formats are: PDF, JPEG, TIFF, PNG.</param>
         public String UploadCertificateImage(Integer companyId, Integer id, FileResult file)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/certificates/{id}/attachment');
@@ -1183,7 +1183,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (String)System.JSON.deserialize(res.getBody(), String.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -1202,8 +1202,8 @@ global class AvaTaxClient
         // 
         // All other status changes must be requested through the Avalara customer support team.
         // 
-        // <param name="id"></param>
-        // <param name="model"></param>
+        // <param name='id'></param>
+        // <param name='model'></param>
         public String ChangeFilingStatus(Integer id, FilingStatusChangeModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{id}/filingstatus');
@@ -1214,7 +1214,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (String)System.JSON.deserialize(res.getBody(), String.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -1232,7 +1232,7 @@ global class AvaTaxClient
         // If you need additional features or options not present in this 'Quick Setup' API call, please use the full 'Create Company' call instead.
         // Please allow 1 minute before making transactions using the company.
         // 
-        // <param name="model">Information about the company you wish to create.</param>
+        // <param name='model'>Information about the company you wish to create.</param>
         public CompanyModel CompanyInitialize(CompanyInitializationModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/initialize');
@@ -1242,7 +1242,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (CompanyModel)System.JSON.deserialize(res.getBody(), CompanyModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -1251,7 +1251,7 @@ global class AvaTaxClient
         // A 'company' represents a single corporation or individual that is registered to handle transactional taxes.
         // You may attach nested data objects such as contacts, locations, and nexus with this CREATE call, and those objects will be created with the company.
         // 
-        // <param name="model">Either a single company object or an array of companies to create</param>
+        // <param name='model'>Either a single company object or an array of companies to create</param>
         public List<CompanyModel> CreateCompanies(List<CompanyModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies');
@@ -1265,7 +1265,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -1281,8 +1281,8 @@ global class AvaTaxClient
         // This API records that an ambedded HTML funding setup widget was activated.
         // This API requires a subscription to Avalara Managed Returns or SST Certified Service Provider.
         // 
-        // <param name="id">The unique identifier of the company</param>
-        // <param name="model">The funding initialization request</param>
+        // <param name='id'>The unique identifier of the company</param>
+        // <param name='model'>The funding initialization request</param>
         public FundingStatusModel CreateFundingRequest(Integer id, FundingInitiateModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{id}/funding/setup');
@@ -1293,14 +1293,14 @@ global class AvaTaxClient
             {
                 responseModel.result = (FundingStatusModel)System.JSON.deserialize(res.getBody(), FundingStatusModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
         // Delete a single company
         // Deleting a company will delete all child companies, and all users attached to this company.
         // 
-        // <param name="id">The ID of the company you wish to delete.</param>
+        // <param name='id'>The ID of the company you wish to delete.</param>
         public List<ErrorDetail> DeleteCompany(Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{id}');
@@ -1315,7 +1315,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -1325,7 +1325,7 @@ global class AvaTaxClient
         // Returns the funding configuration of the requested company.
         // .
         // 
-        // <param name="companyId">The unique identifier of the company</param>
+        // <param name='companyId'>The unique identifier of the company</param>
         public FundingConfigurationModel FundingConfigurationByCompany(Integer companyId)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/funding/configuration');
@@ -1336,7 +1336,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FundingConfigurationModel)System.JSON.deserialize(res.getBody(), FundingConfigurationModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -1346,8 +1346,8 @@ global class AvaTaxClient
         // Returns the funding configuration of the requested company.
         // .
         // 
-        // <param name="companyId">The unique identifier of the company</param>
-        // <param name="currency">The currency of the funding. USD and CAD are the only valid currencies</param>
+        // <param name='companyId'>The unique identifier of the company</param>
+        // <param name='currency'>The currency of the funding. USD and CAD are the only valid currencies</param>
         public List<FundingConfigurationModel> FundingConfigurationsByCompanyAndCurrency(Integer companyId, String currency)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/funding/configurations');
@@ -1363,7 +1363,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -1381,8 +1381,8 @@ global class AvaTaxClient
         //  * TaxRules
         //  * UPC
         // 
-        // <param name="id">The ID of the company to retrieve.</param>
-        // <param name="include">OPTIONAL: A comma separated list of special fetch options. 
+        // <param name='id'>The ID of the company to retrieve.</param>
+        // <param name='include'>OPTIONAL: A comma separated list of special fetch options. 
         //  
         //  * Child objects - Specify one or more of the following to retrieve objects related to each company: "Contacts", "FilingCalendars", "Items", "Locations", "Nexus", "TaxCodes", or "TaxRules".
         //  * Deleted objects - Specify "FetchDeleted" to retrieve information about previously deleted objects.</param>
@@ -1397,7 +1397,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (CompanyModel)System.JSON.deserialize(res.getBody(), CompanyModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -1415,7 +1415,7 @@ global class AvaTaxClient
         // Avalara-based account settings for `AvaCertServiceConfig` affect your account's exemption certificate
         // processing, and should only be changed with care.
         // 
-        // <param name="id"></param>
+        // <param name='id'></param>
         public List<CompanyConfigurationModel> GetCompanyConfiguration(Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{id}/configuration');
@@ -1430,7 +1430,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -1449,7 +1449,7 @@ global class AvaTaxClient
         // * `FirstFiling` - The company has recently filing tax returns and is in a new status.
         // * `Active` - The company is currently active and is filing tax returns via Avalara Managed Returns.
         // 
-        // <param name="id"></param>
+        // <param name='id'></param>
         public String GetFilingStatus(Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{id}/filingstatus');
@@ -1460,7 +1460,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (String)System.JSON.deserialize(res.getBody(), String.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -1470,7 +1470,7 @@ global class AvaTaxClient
         // Returns a list of funding setup requests and their current status.
         // Each object in the result is a request that was made to setup or adjust funding status for this company.
         // 
-        // <param name="id">The unique identifier of the company</param>
+        // <param name='id'>The unique identifier of the company</param>
         public List<FundingStatusModel> ListFundingRequestsByCompany(Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{id}/funding');
@@ -1485,7 +1485,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -1503,7 +1503,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<MrsCompanyModel>)System.JSON.deserialize(res.getBody(), FetchResult<MrsCompanyModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -1523,11 +1523,11 @@ global class AvaTaxClient
         // * TaxRules
         // * UPC
         // 
-        // <param name="include">A comma separated list of objects to fetch underneath this company. Any object with a URL path underneath this company can be fetched by specifying its name.</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='include'>A comma separated list of objects to fetch underneath this company. Any object with a URL path underneath this company can be fetched by specifying its name.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CompanyModel> QueryCompanies(String include, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies');
@@ -1542,7 +1542,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<CompanyModel>)System.JSON.deserialize(res.getBody(), FetchResult<CompanyModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -1560,8 +1560,8 @@ global class AvaTaxClient
         // Avalara-based account settings for `AvaCertServiceConfig` affect your account's exemption certificate
         // processing, and should only be changed with care.
         // 
-        // <param name="id"></param>
-        // <param name="model"></param>
+        // <param name='id'></param>
+        // <param name='model'></param>
         public List<CompanyConfigurationModel> SetCompanyConfiguration(Integer id, List<CompanyConfigurationModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{id}/configuration');
@@ -1576,7 +1576,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -1586,8 +1586,8 @@ global class AvaTaxClient
         // All data from the existing object will be replaced with data in the object you PUT. 
         // To set a field's value to null, you may either set its value to null or omit that field from the object you post.
         // 
-        // <param name="id">The ID of the company you wish to update.</param>
-        // <param name="model">The company object you wish to update.</param>
+        // <param name='id'>The ID of the company you wish to update.</param>
+        // <param name='model'>The company object you wish to update.</param>
         public CompanyModel UpdateCompany(Integer id, CompanyModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{id}');
@@ -1598,7 +1598,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (CompanyModel)System.JSON.deserialize(res.getBody(), CompanyModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -1607,8 +1607,8 @@ global class AvaTaxClient
         // A 'contact' is a person associated with a company who is designated to handle certain responsibilities of
         // a tax collecting and filing entity.
         // 
-        // <param name="companyId">The ID of the company that owns this contact.</param>
-        // <param name="model">The contacts you wish to create.</param>
+        // <param name='companyId'>The ID of the company that owns this contact.</param>
+        // <param name='model'>The contacts you wish to create.</param>
         public List<ContactModel> CreateContacts(Integer companyId, List<ContactModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/contacts');
@@ -1623,15 +1623,15 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
         // Delete a single contact
         // Mark the existing contact object at this URL as deleted.
         // 
-        // <param name="companyId">The ID of the company that owns this contact.</param>
-        // <param name="id">The ID of the contact you wish to delete.</param>
+        // <param name='companyId'>The ID of the company that owns this contact.</param>
+        // <param name='id'>The ID of the contact you wish to delete.</param>
         public List<ErrorDetail> DeleteContact(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/contacts/{id}');
@@ -1647,7 +1647,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -1656,8 +1656,8 @@ global class AvaTaxClient
         // A 'contact' is a person associated with a company who is designated to handle certain responsibilities of
         // a tax collecting and filing entity.
         // 
-        // <param name="companyId">The ID of the company for this contact</param>
-        // <param name="id">The primary key of this contact</param>
+        // <param name='companyId'>The ID of the company for this contact</param>
+        // <param name='id'>The primary key of this contact</param>
         public ContactModel GetContact(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/contacts/{id}');
@@ -1669,7 +1669,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (ContactModel)System.JSON.deserialize(res.getBody(), ContactModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -1679,12 +1679,12 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
-        // <param name="companyId">The ID of the company that owns these contacts</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='companyId'>The ID of the company that owns these contacts</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<ContactModel> ListContactsByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/contacts');
@@ -1700,7 +1700,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<ContactModel>)System.JSON.deserialize(res.getBody(), FetchResult<ContactModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -1712,11 +1712,11 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<ContactModel> QueryContacts(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/contacts');
@@ -1731,7 +1731,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<ContactModel>)System.JSON.deserialize(res.getBody(), FetchResult<ContactModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -1742,9 +1742,9 @@ global class AvaTaxClient
         // All data from the existing object will be replaced with data in the object you PUT. 
         // To set a field's value to null, you may either set its value to null or omit that field from the object you post.
         // 
-        // <param name="companyId">The ID of the company that this contact belongs to.</param>
-        // <param name="id">The ID of the contact you wish to update</param>
-        // <param name="model">The contact you wish to update.</param>
+        // <param name='companyId'>The ID of the company that this contact belongs to.</param>
+        // <param name='id'>The ID of the contact you wish to update</param>
+        // <param name='model'>The contact you wish to update.</param>
         public ContactModel UpdateContact(Integer companyId, Integer id, ContactModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/contacts/{id}');
@@ -1756,7 +1756,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (ContactModel)System.JSON.deserialize(res.getBody(), ContactModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -1774,8 +1774,8 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The unique ID number of the company that recorded this customer</param>
-        // <param name="model">The list of customer objects to be created</param>
+        // <param name='companyId'>The unique ID number of the company that recorded this customer</param>
+        // <param name='model'>The list of customer objects to be created</param>
         public List<CustomerModel> CreateCustomers(Integer companyId, List<CustomerModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/customers');
@@ -1790,7 +1790,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -1808,8 +1808,8 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The unique ID number of the company that recorded this customer</param>
-        // <param name="customerCode">The unique code representing this customer</param>
+        // <param name='companyId'>The unique ID number of the company that recorded this customer</param>
+        // <param name='customerCode'>The unique code representing this customer</param>
         public CustomerModel DeleteCustomer(Integer companyId, String customerCode)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/customers/{customerCode}');
@@ -1821,7 +1821,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (CustomerModel)System.JSON.deserialize(res.getBody(), CustomerModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -1844,9 +1844,9 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The unique ID number of the company that recorded this customer</param>
-        // <param name="customerCode">The unique code representing this customer</param>
-        // <param name="include">Specify optional additional objects to include in this fetch request</param>
+        // <param name='companyId'>The unique ID number of the company that recorded this customer</param>
+        // <param name='customerCode'>The unique code representing this customer</param>
+        // <param name='include'>Specify optional additional objects to include in this fetch request</param>
         public CustomerModel GetCustomer(Integer companyId, String customerCode, String include)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/customers/{customerCode}');
@@ -1859,7 +1859,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (CustomerModel)System.JSON.deserialize(res.getBody(), CustomerModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -1877,9 +1877,9 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The unique ID number of the company that recorded this customer</param>
-        // <param name="customerCode">The unique code representing this customer</param>
-        // <param name="model">The list of certificates to link to this customer</param>
+        // <param name='companyId'>The unique ID number of the company that recorded this customer</param>
+        // <param name='customerCode'>The unique code representing this customer</param>
+        // <param name='model'>The list of certificates to link to this customer</param>
         public FetchResult<CertificateModel> LinkCertificatesToCustomer(Integer companyId, String customerCode, LinkCertificatesModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/customers/{customerCode}/certificates/link');
@@ -1891,7 +1891,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<CertificateModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -1909,17 +1909,17 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The unique ID number of the company that recorded this customer</param>
-        // <param name="customerCode">The unique code representing this customer</param>
-        // <param name="include">OPTIONAL: A comma separated list of special fetch options. You can specify one or more of the following:
+        // <param name='companyId'>The unique ID number of the company that recorded this customer</param>
+        // <param name='customerCode'>The unique code representing this customer</param>
+        // <param name='include'>OPTIONAL: A comma separated list of special fetch options. You can specify one or more of the following:
         //  
         //  * Customers - Retrieves the list of customers linked to the certificate.
         //  * PoNumbers - Retrieves all PO numbers tied to the certificate.
         //  * Attributes - Retrieves all attributes applied to the certificate.</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CertificateModel> ListCertificatesForCustomer(Integer companyId, String customerCode, String include, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/customers/{customerCode}/certificates');
@@ -1936,7 +1936,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<CertificateModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -1957,10 +1957,10 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The unique ID number of the company that recorded this customer</param>
-        // <param name="customerCode">The unique code representing this customer</param>
-        // <param name="country">Search for certificates matching this country. Uses the ISO 3166 two character country code.</param>
-        // <param name="region">Search for certificates matching this region. Uses the ISO 3166 two or three character state, region, or province code.</param>
+        // <param name='companyId'>The unique ID number of the company that recorded this customer</param>
+        // <param name='customerCode'>The unique code representing this customer</param>
+        // <param name='country'>Search for certificates matching this country. Uses the ISO 3166 two character country code.</param>
+        // <param name='region'>Search for certificates matching this region. Uses the ISO 3166 two or three character state, region, or province code.</param>
         public ExemptionStatusModel ListValidCertificatesForCustomer(Integer companyId, String customerCode, String country, String region)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/customers/{customerCode}/certificates/{country}/{region}');
@@ -1974,7 +1974,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (ExemptionStatusModel)System.JSON.deserialize(res.getBody(), ExemptionStatusModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -1996,12 +1996,12 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The unique ID number of the company that recorded this customer</param>
-        // <param name="include">OPTIONAL - You can specify the value `certificates` to fetch information about certificates linked to the customer.</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='companyId'>The unique ID number of the company that recorded this customer</param>
+        // <param name='include'>OPTIONAL - You can specify the value `certificates` to fetch information about certificates linked to the customer.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CustomerModel> QueryCustomers(Integer companyId, String include, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/customers');
@@ -2017,7 +2017,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<CustomerModel>)System.JSON.deserialize(res.getBody(), FetchResult<CustomerModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2035,9 +2035,9 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The unique ID number of the company that recorded this customer</param>
-        // <param name="customerCode">The unique code representing this customer</param>
-        // <param name="model">The list of certificates to link to this customer</param>
+        // <param name='companyId'>The unique ID number of the company that recorded this customer</param>
+        // <param name='customerCode'>The unique code representing this customer</param>
+        // <param name='model'>The list of certificates to link to this customer</param>
         public FetchResult<CertificateModel> UnlinkCertificatesFromCustomer(Integer companyId, String customerCode, LinkCertificatesModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/customers/{customerCode}/certificates/unlink');
@@ -2049,7 +2049,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<CertificateModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2067,9 +2067,9 @@ global class AvaTaxClient
         // certificate related APIs. To check if this company is set up, call `GetCertificateSetup`. To request setup of the auditable document 
         // storage for this company, call `RequestCertificateSetup`.
         // 
-        // <param name="companyId">The unique ID number of the company that recorded this customer</param>
-        // <param name="customerCode">The unique code representing this customer</param>
-        // <param name="model">The new customer model that will replace the existing record at this URL</param>
+        // <param name='companyId'>The unique ID number of the company that recorded this customer</param>
+        // <param name='customerCode'>The unique code representing this customer</param>
+        // <param name='model'>The new customer model that will replace the existing record at this URL</param>
         public CustomerModel UpdateCustomer(Integer companyId, String customerCode, CustomerModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/customers/{customerCode}');
@@ -2081,7 +2081,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (CustomerModel)System.JSON.deserialize(res.getBody(), CustomerModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2097,8 +2097,8 @@ global class AvaTaxClient
         // This API is intended to be useful to review the descriptive hierarchy of an HS Code, which can be particularly helpful
         // when HS Codes can have multiple levels of generic descriptions.
         // 
-        // <param name="country">The name or code of the destination country.</param>
-        // <param name="hsCode">The partial or full HS Code for which you would like to view all of the parents.</param>
+        // <param name='country'>The name or code of the destination country.</param>
+        // <param name='hsCode'>The partial or full HS Code for which you would like to view all of the parents.</param>
         public FetchResult<HsCodeModel> GetCrossBorderCode(String country, String hsCode)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/crossborder/{country}/{hsCode}/hierarchy');
@@ -2110,7 +2110,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<HsCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<HsCodeModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2118,11 +2118,11 @@ global class AvaTaxClient
         // This API is intended to be useful to identify whether the user should be allowed
         // to automatically verify their login and password.
         // 
-        // <param name="form">The name of the form you would like to verify. This can be the tax form code or the legacy return name</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='form'>The name of the form you would like to verify. This can be the tax form code or the legacy return name</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<SkyscraperStatusModel> GetLoginVerifierByForm(String form, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/filingcalendars/loginverifiers/{form}');
@@ -2137,7 +2137,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<SkyscraperStatusModel>)System.JSON.deserialize(res.getBody(), FetchResult<SkyscraperStatusModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2149,10 +2149,10 @@ global class AvaTaxClient
         // Returns the full list of Avalara-supported AvaFile Forms
         // This API is intended to be useful to identify all the different AvaFile Forms
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<AvaFileFormModel> ListAvaFileForms(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/avafileforms');
@@ -2166,7 +2166,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<AvaFileFormModel>)System.JSON.deserialize(res.getBody(), FetchResult<AvaFileFormModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2179,10 +2179,10 @@ global class AvaTaxClient
         // If you see the 'CertCaptureNotConfiguredError', please use CheckProvision and RequestProvision endpoints to
         // check and provision account.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CertificateAttributeModel> ListCertificateAttributes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/certificateattributes');
@@ -2196,7 +2196,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<CertificateAttributeModel>)System.JSON.deserialize(res.getBody(), FetchResult<CertificateAttributeModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2209,10 +2209,10 @@ global class AvaTaxClient
         // If you see the 'CertCaptureNotConfiguredError', please use CheckProvision and RequestProvision endpoints to
         // check and provision account.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<ExemptionReasonModel> ListCertificateExemptReasons(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/certificateexemptreasons');
@@ -2226,7 +2226,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<ExemptionReasonModel>)System.JSON.deserialize(res.getBody(), FetchResult<ExemptionReasonModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2239,10 +2239,10 @@ global class AvaTaxClient
         // If you see the 'CertCaptureNotConfiguredError', please use CheckProvision and RequestProvision endpoints to
         // check and provision account.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<ExposureZoneModel> ListCertificateExposureZones(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/certificateexposurezones');
@@ -2256,7 +2256,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<ExposureZoneModel>)System.JSON.deserialize(res.getBody(), FetchResult<ExposureZoneModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2264,11 +2264,11 @@ global class AvaTaxClient
         // Returns full list of communications transaction types which
         // are accepted in communication tax calculation requests.
         // 
-        // <param name="id">The transaction type ID to examine</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='id'>The transaction type ID to examine</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CommunicationsTSPairModel> ListCommunicationsServiceTypes(Integer id, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/communications/transactiontypes/{id}/servicetypes');
@@ -2283,7 +2283,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<CommunicationsTSPairModel>)System.JSON.deserialize(res.getBody(), FetchResult<CommunicationsTSPairModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2291,10 +2291,10 @@ global class AvaTaxClient
         // Returns full list of communications transaction types which
         // are accepted in communication tax calculation requests.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CommunicationsTransactionTypeModel> ListCommunicationsTransactionTypes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/communications/transactiontypes');
@@ -2308,7 +2308,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<CommunicationsTransactionTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<CommunicationsTransactionTypeModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2316,10 +2316,10 @@ global class AvaTaxClient
         // Returns full list of communications transaction/service type pairs which
         // are accepted in communication tax calculation requests.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CommunicationsTSPairModel> ListCommunicationsTSPairs(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/communications/tspairs');
@@ -2333,7 +2333,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<CommunicationsTSPairModel>)System.JSON.deserialize(res.getBody(), FetchResult<CommunicationsTSPairModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2342,10 +2342,10 @@ global class AvaTaxClient
         // This API is intended to be useful when presenting a dropdown box in your website to allow customers to select a country for 
         // a shipping address.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<IsoCountryModel> ListCountries(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/countries');
@@ -2359,7 +2359,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<IsoCountryModel>)System.JSON.deserialize(res.getBody(), FetchResult<IsoCountryModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2373,10 +2373,10 @@ global class AvaTaxClient
         // If you see the 'CertCaptureNotConfiguredError', please use CheckProvision and RequestProvision endpoints to
         // check and provision account.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CoverLetterModel> ListCoverLetters(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/coverletters');
@@ -2390,7 +2390,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<CoverLetterModel>)System.JSON.deserialize(res.getBody(), FetchResult<CoverLetterModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2404,12 +2404,12 @@ global class AvaTaxClient
         // 
         // This API is intended to be useful to identify the correct HS Code to use for your item.
         // 
-        // <param name="country">The name or code of the destination country.</param>
-        // <param name="hsCode">The Section or partial HS Code for which you would like to view the next level of HS Code detail, if more detail is available.</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='country'>The name or code of the destination country.</param>
+        // <param name='hsCode'>The Section or partial HS Code for which you would like to view the next level of HS Code detail, if more detail is available.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<HsCodeModel> ListCrossBorderCodes(String country, String hsCode, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/crossborder/{country}/{hsCode}');
@@ -2425,7 +2425,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<HsCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<HsCodeModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2446,7 +2446,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<HsCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<HsCodeModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2456,10 +2456,10 @@ global class AvaTaxClient
         // This API produces a list of currency codes that can be used when calling AvaTax. The values from this API can be used to fill out the
         // `currencyCode` field in a `CreateTransactionModel`.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CurrencyModel> ListCurrencies(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/currencies');
@@ -2473,7 +2473,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<CurrencyModel>)System.JSON.deserialize(res.getBody(), FetchResult<CurrencyModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2484,10 +2484,10 @@ global class AvaTaxClient
         // In order to facilitate correct reporting of your taxes, you are encouraged to select the proper entity use codes for
         // all transactions that are exempt.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<EntityUseCodeModel> ListEntityUseCodes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/entityusecodes');
@@ -2501,7 +2501,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<EntityUseCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<EntityUseCodeModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2509,10 +2509,10 @@ global class AvaTaxClient
         // Returns the full list of Avalara-supported filing frequencies.
         // This API is intended to be useful to identify all the different filing frequencies that can be used in notices.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<FilingFrequencyModel> ListFilingFrequencies(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/filingfrequencies');
@@ -2526,7 +2526,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<FilingFrequencyModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingFrequencyModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2536,10 +2536,10 @@ global class AvaTaxClient
         // This API allows you to examine all Avalara-supported jurisdictions. You can filter your search by supplying
         // SQL-like query for fetching only the ones you concerned about. For example: effectiveDate &gt; '2016-01-01'
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<JurisdictionModel> ListJurisdictions(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/jurisdictions');
@@ -2553,7 +2553,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<JurisdictionModel>)System.JSON.deserialize(res.getBody(), FetchResult<JurisdictionModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2566,17 +2566,17 @@ global class AvaTaxClient
         //  
         // The results of this API call can be passed to the `CreateJurisdictionOverride` API call.
         // 
-        // <param name="line1">The first address line portion of this address.</param>
-        // <param name="line2">The second address line portion of this address.</param>
-        // <param name="line3">The third address line portion of this address.</param>
-        // <param name="city">The city portion of this address.</param>
-        // <param name="region">The region, state, or province code portion of this address.</param>
-        // <param name="postalCode">The postal code or zip code portion of this address.</param>
-        // <param name="country">The two-character ISO-3166 code of the country portion of this address.</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='line1'>The first address line portion of this address.</param>
+        // <param name='line2'>The second address line portion of this address.</param>
+        // <param name='line3'>The third address line portion of this address.</param>
+        // <param name='city'>The city portion of this address.</param>
+        // <param name='region'>The region, state, or province code portion of this address.</param>
+        // <param name='postalCode'>The postal code or zip code portion of this address.</param>
+        // <param name='country'>The two-character ISO-3166 code of the country portion of this address.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<JurisdictionOverrideModel> ListJurisdictionsByAddress(String line1, String line2, String line3, String city, String region, String postalCode, String country, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/jurisdictionsnearaddress');
@@ -2597,7 +2597,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<JurisdictionOverrideModel>)System.JSON.deserialize(res.getBody(), FetchResult<JurisdictionOverrideModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2609,19 +2609,19 @@ global class AvaTaxClient
         // You can call this API call for any address and obtain information about what questions must be answered in order to properly
         // file tax in that location.
         // 
-        // <param name="line1">The first line of this location's address.</param>
-        // <param name="line2">The second line of this location's address.</param>
-        // <param name="line3">The third line of this location's address.</param>
-        // <param name="city">The city part of this location's address.</param>
-        // <param name="region">The region, state, or province part of this location's address.</param>
-        // <param name="postalCode">The postal code of this location's address.</param>
-        // <param name="country">The country part of this location's address.</param>
-        // <param name="latitude">Optionally identify the location via latitude/longitude instead of via address.</param>
-        // <param name="longitude">Optionally identify the location via latitude/longitude instead of via address.</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='line1'>The first line of this location's address.</param>
+        // <param name='line2'>The second line of this location's address.</param>
+        // <param name='line3'>The third line of this location's address.</param>
+        // <param name='city'>The city part of this location's address.</param>
+        // <param name='region'>The region, state, or province part of this location's address.</param>
+        // <param name='postalCode'>The postal code of this location's address.</param>
+        // <param name='country'>The country part of this location's address.</param>
+        // <param name='latitude'>Optionally identify the location via latitude/longitude instead of via address.</param>
+        // <param name='longitude'>Optionally identify the location via latitude/longitude instead of via address.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<LocationQuestionModel> ListLocationQuestionsByAddress(String line1, String line2, String line3, String city, String region, String postalCode, String country, Decimal latitude, Decimal longitude, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/locationquestions');
@@ -2644,7 +2644,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<LocationQuestionModel>)System.JSON.deserialize(res.getBody(), FetchResult<LocationQuestionModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2653,10 +2653,10 @@ global class AvaTaxClient
         // This API is intended to be useful to identify whether the user should be allowed
         // to automatically verify their login and password.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<SkyscraperStatusModel> ListLoginVerifiers(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/filingcalendars/loginverifiers');
@@ -2670,7 +2670,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<SkyscraperStatusModel>)System.JSON.deserialize(res.getBody(), FetchResult<SkyscraperStatusModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2679,10 +2679,10 @@ global class AvaTaxClient
         // 
         // This API is intended to be useful if your user interface needs to display a selectable list of nexus.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NexusModel> ListNexus(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/nexus');
@@ -2696,7 +2696,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<NexusModel>)System.JSON.deserialize(res.getBody(), FetchResult<NexusModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2707,11 +2707,11 @@ global class AvaTaxClient
         // where the company does business.
         // The results of this API call can be passed to the 'Create Nexus' API call to declare nexus for this address.
         // 
-        // <param name="line1">The first address line portion of this address.</param>
-        // <param name="line2">The first address line portion of this address.</param>
-        // <param name="line3">The first address line portion of this address.</param>
-        // <param name="city">The city portion of this address.</param>
-        // <param name="region">Name or ISO 3166 code identifying the region portion of the address.
+        // <param name='line1'>The first address line portion of this address.</param>
+        // <param name='line2'>The first address line portion of this address.</param>
+        // <param name='line3'>The first address line portion of this address.</param>
+        // <param name='city'>The city portion of this address.</param>
+        // <param name='region'>Name or ISO 3166 code identifying the region portion of the address.
         //  
         //  This field supports many different region identifiers:
         //  * Two and three character ISO 3166 region codes
@@ -2719,8 +2719,8 @@ global class AvaTaxClient
         //  * Common alternative spellings for many regions
         //  
         //  For a full list of all supported codes and names, please see the Definitions API `ListRegions`.</param>
-        // <param name="postalCode">The postal code or zip code portion of this address.</param>
-        // <param name="country">Name or ISO 3166 code identifying the country portion of this address.
+        // <param name='postalCode'>The postal code or zip code portion of this address.</param>
+        // <param name='country'>Name or ISO 3166 code identifying the country portion of this address.
         //  
         //  This field supports many different country identifiers:
         //  * Two character ISO 3166 codes
@@ -2729,10 +2729,10 @@ global class AvaTaxClient
         //  * Common alternative spellings for many countries
         //  
         //  For a full list of all supported codes and names, please see the Definitions API `ListCountries`.</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NexusModel> ListNexusByAddress(String line1, String line2, String line3, String city, String region, String postalCode, String country, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/nexus/byaddress');
@@ -2753,7 +2753,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<NexusModel>)System.JSON.deserialize(res.getBody(), FetchResult<NexusModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2762,11 +2762,11 @@ global class AvaTaxClient
         // 
         // This API is intended to be useful if your user interface needs to display a selectable list of nexus filtered by country.
         // 
-        // <param name="country">The country in which you want to fetch the system nexus</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='country'>The country in which you want to fetch the system nexus</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NexusModel> ListNexusByCountry(String country, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/nexus/{country}');
@@ -2781,7 +2781,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<NexusModel>)System.JSON.deserialize(res.getBody(), FetchResult<NexusModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2790,12 +2790,12 @@ global class AvaTaxClient
         // 
         // This API is intended to be useful if your user interface needs to display a selectable list of nexus filtered by country and region.
         // 
-        // <param name="country">The two-character ISO-3166 code for the country.</param>
-        // <param name="region">The two or three character region code for the region.</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='country'>The two-character ISO-3166 code for the country.</param>
+        // <param name='region'>The two or three character region code for the region.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NexusModel> ListNexusByCountryAndRegion(String country, String region, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/nexus/{country}/{region}');
@@ -2811,7 +2811,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<NexusModel>)System.JSON.deserialize(res.getBody(), FetchResult<NexusModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2828,11 +2828,11 @@ global class AvaTaxClient
         // a tax form, you may want to know whether you have declared nexus in all the jurisdictions related to that tax 
         // form in order to better understand how the form will be filled out.
         // 
-        // <param name="formCode">The form code that we are looking up the nexus for</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='formCode'>The form code that we are looking up the nexus for</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public NexusByTaxFormModel ListNexusByFormCode(String formCode, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/nexus/byform/{formCode}');
@@ -2847,7 +2847,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (NexusByTaxFormModel)System.JSON.deserialize(res.getBody(), NexusByTaxFormModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2855,10 +2855,10 @@ global class AvaTaxClient
         // Returns the full list of Avalara-supported nexus tax type groups
         // This API is intended to be useful to identify all the different tax sub-types.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NexusTaxTypeGroupModel> ListNexusTaxTypeGroups(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/nexustaxtypegroups');
@@ -2872,7 +2872,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<NexusTaxTypeGroupModel>)System.JSON.deserialize(res.getBody(), FetchResult<NexusTaxTypeGroupModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2880,10 +2880,10 @@ global class AvaTaxClient
         // Returns the full list of Avalara-supported tax notice customer funding options.
         // This API is intended to be useful to identify all the different notice customer funding options that can be used in notices.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NoticeCustomerFundingOptionModel> ListNoticeCustomerFundingOptions(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/noticecustomerfundingoptions');
@@ -2897,7 +2897,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<NoticeCustomerFundingOptionModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeCustomerFundingOptionModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2905,10 +2905,10 @@ global class AvaTaxClient
         // Returns the full list of Avalara-supported tax notice customer types.
         // This API is intended to be useful to identify all the different notice customer types.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NoticeCustomerTypeModel> ListNoticeCustomerTypes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/noticecustomertypes');
@@ -2922,7 +2922,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<NoticeCustomerTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeCustomerTypeModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2930,10 +2930,10 @@ global class AvaTaxClient
         // Returns the full list of Avalara-supported tax notice filing types.
         // This API is intended to be useful to identify all the different notice filing types that can be used in notices.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NoticeFilingTypeModel> ListNoticeFilingtypes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/noticefilingtypes');
@@ -2947,7 +2947,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<NoticeFilingTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeFilingTypeModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2955,10 +2955,10 @@ global class AvaTaxClient
         // Returns the full list of Avalara-supported tax notice priorities.
         // This API is intended to be useful to identify all the different notice priorities that can be used in notices.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NoticePriorityModel> ListNoticePriorities(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/noticepriorities');
@@ -2972,7 +2972,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<NoticePriorityModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticePriorityModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -2980,10 +2980,10 @@ global class AvaTaxClient
         // Returns the full list of Avalara-supported tax notice reasons.
         // This API is intended to be useful to identify all the different tax notice reasons.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NoticeReasonModel> ListNoticeReasons(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/noticereasons');
@@ -2997,7 +2997,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<NoticeReasonModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeReasonModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3005,10 +3005,10 @@ global class AvaTaxClient
         // Returns the full list of Avalara-supported tax notice responsibility ids
         // This API is intended to be useful to identify all the different tax notice responsibilities.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NoticeResponsibilityModel> ListNoticeResponsibilities(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/noticeresponsibilities');
@@ -3022,7 +3022,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<NoticeResponsibilityModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeResponsibilityModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3030,10 +3030,10 @@ global class AvaTaxClient
         // Returns the full list of Avalara-supported tax notice root causes
         // This API is intended to be useful to identify all the different tax notice root causes.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NoticeRootCauseModel> ListNoticeRootCauses(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/noticerootcauses');
@@ -3047,7 +3047,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<NoticeRootCauseModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeRootCauseModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3055,10 +3055,10 @@ global class AvaTaxClient
         // Returns the full list of Avalara-supported tax notice statuses.
         // This API is intended to be useful to identify all the different tax notice statuses.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NoticeStatusModel> ListNoticeStatuses(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/noticestatuses');
@@ -3072,7 +3072,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<NoticeStatusModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeStatusModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3080,10 +3080,10 @@ global class AvaTaxClient
         // Returns the full list of Avalara-supported tax notice types.
         // This API is intended to be useful to identify all the different notice types that can be used in notices.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NoticeTypeModel> ListNoticeTypes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/noticetypes');
@@ -3097,7 +3097,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<NoticeTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeTypeModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3106,10 +3106,10 @@ global class AvaTaxClient
         // This list of parameters is available for use when configuring your transaction.
         // Some parameters are only available for use if you have subscribed to certain features of AvaTax.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<ParameterModel> ListParameters(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/parameters');
@@ -3123,7 +3123,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<ParameterModel>)System.JSON.deserialize(res.getBody(), FetchResult<ParameterModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3131,10 +3131,10 @@ global class AvaTaxClient
         // Returns the full list of Avalara-supported permission types.
         // This API is intended to be useful to identify the capabilities of a particular user logon.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<String> ListPermissions(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/permissions');
@@ -3148,17 +3148,17 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<String>)System.JSON.deserialize(res.getBody(), FetchResult<String>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
         // Retrieve the full list of Avalara-supported postal codes.
         // Retrieves the list of Avalara-supported postal codes.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<PostalCodeModel> ListPostalCodes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/postalcodes');
@@ -3172,7 +3172,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<PostalCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<PostalCodeModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3187,10 +3187,10 @@ global class AvaTaxClient
         // preferred program. Next, set the parameter `AvaTax.LC.PreferredProgram` in your `CreateTransaction` call to the code of
         // the program.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<PreferredProgramModel> ListPreferredPrograms(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/preferredprograms');
@@ -3204,7 +3204,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<PreferredProgramModel>)System.JSON.deserialize(res.getBody(), FetchResult<PreferredProgramModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3212,11 +3212,11 @@ global class AvaTaxClient
         // Returns the full list of Avalara-supported rate type file types
         // This API is intended to be useful to identify all the different rate types.
         // 
-        // <param name="country">The country to examine for rate types</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='country'>The country to examine for rate types</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<RateTypeModel> ListRateTypesByCountry(String country, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/countries/{country}/ratetypes');
@@ -3231,7 +3231,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<RateTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<RateTypeModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3240,10 +3240,10 @@ global class AvaTaxClient
         // This API is intended to be useful when presenting a dropdown box in your website to allow customers to select a region 
         // within the country for a shipping addresses.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<IsoRegionModel> ListRegions(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/regions');
@@ -3257,7 +3257,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<IsoRegionModel>)System.JSON.deserialize(res.getBody(), FetchResult<IsoRegionModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3266,11 +3266,11 @@ global class AvaTaxClient
         // This API is intended to be useful when presenting a dropdown box in your website to allow customers to select a region 
         // within the country for a shipping addresses.
         // 
-        // <param name="country">The country of which you want to fetch ISO 3166 regions</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='country'>The country of which you want to fetch ISO 3166 regions</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<IsoRegionModel> ListRegionsByCountry(String country, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/countries/{country}/regions');
@@ -3285,7 +3285,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<IsoRegionModel>)System.JSON.deserialize(res.getBody(), FetchResult<IsoRegionModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3293,10 +3293,10 @@ global class AvaTaxClient
         // Returns the full list of Avalara-supported resource file types
         // This API is intended to be useful to identify all the different resource file types.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<ResourceFileTypeModel> ListResourceFileTypes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/resourcefiletypes');
@@ -3310,7 +3310,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<ResourceFileTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<ResourceFileTypeModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3319,10 +3319,10 @@ global class AvaTaxClient
         // This API is intended to be useful when designing a user interface for selecting the security role of a user account.
         // Some security roles are restricted for Avalara internal use.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<SecurityRoleModel> ListSecurityRoles(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/securityroles');
@@ -3336,7 +3336,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<SecurityRoleModel>)System.JSON.deserialize(res.getBody(), FetchResult<SecurityRoleModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3346,10 +3346,10 @@ global class AvaTaxClient
         // You may always contact Avalara's sales department for information on available products or services.
         // You cannot change your subscriptions directly through the API.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<SubscriptionTypeModel> ListSubscriptionTypes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/subscriptiontypes');
@@ -3363,7 +3363,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<SubscriptionTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<SubscriptionTypeModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3371,10 +3371,10 @@ global class AvaTaxClient
         // Returns the full list of Avalara-supported tax authorities.
         // This API is intended to be useful to identify all the different authorities that receive tax.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<TaxAuthorityModel> ListTaxAuthorities(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/taxauthorities');
@@ -3388,7 +3388,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<TaxAuthorityModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxAuthorityModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3398,10 +3398,10 @@ global class AvaTaxClient
         // Customers who subscribe to Avalara Managed Returns Service can request these forms to be filed automatically 
         // based on the customer's AvaTax data.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<TaxAuthorityFormModel> ListTaxAuthorityForms(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/taxauthorityforms');
@@ -3415,7 +3415,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<TaxAuthorityFormModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxAuthorityFormModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3423,10 +3423,10 @@ global class AvaTaxClient
         // Returns the full list of Avalara-supported tax authority types.
         // This API is intended to be useful to identify all the different authority types.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<TaxAuthorityTypeModel> ListTaxAuthorityTypes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/taxauthoritytypes');
@@ -3440,7 +3440,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<TaxAuthorityTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxAuthorityTypeModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3451,10 +3451,10 @@ global class AvaTaxClient
         // If you identify your products by tax code in your 'Create Transacion' API calls, Avalara will correctly calculate tax rates and
         // taxability rules for this product in all supported jurisdictions.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<TaxCodeModel> ListTaxCodes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/taxcodes');
@@ -3468,7 +3468,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<TaxCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxCodeModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3477,10 +3477,10 @@ global class AvaTaxClient
         // A 'Tax Code Type' represents a broad category of tax codes, and is less detailed than a single TaxCode.
         // This API is intended to be useful for broadly searching for tax codes by tax code type.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public TaxCodeTypesModel ListTaxCodeTypes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/taxcodetypes');
@@ -3494,7 +3494,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (TaxCodeTypesModel)System.JSON.deserialize(res.getBody(), TaxCodeTypesModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3502,10 +3502,10 @@ global class AvaTaxClient
         // Returns the full list of Avalara-supported Tax Forms
         // This API is intended to be useful to identify all the different Tax Forms
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<FormMasterModel> ListTaxForms(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/taxforms');
@@ -3519,7 +3519,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<FormMasterModel>)System.JSON.deserialize(res.getBody(), FetchResult<FormMasterModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3527,10 +3527,10 @@ global class AvaTaxClient
         // Returns the full list of Avalara-supported tax sub-types
         // This API is intended to be useful to identify all the different tax sub-types.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<TaxSubTypeModel> ListTaxSubTypes(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/taxsubtypes');
@@ -3544,7 +3544,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<TaxSubTypeModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxSubTypeModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3552,10 +3552,10 @@ global class AvaTaxClient
         // Returns the full list of Avalara-supported tax type groups
         // This API is intended to be useful to identify all the different tax type groups.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<TaxTypeGroupModel> ListTaxTypeGroups(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/taxtypegroups');
@@ -3569,7 +3569,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<TaxTypeGroupModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxTypeGroupModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3578,10 +3578,10 @@ global class AvaTaxClient
         // 
         // A unit of measurement system is a method of measuring a quantity, such as distance, mass, or others.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<UomModel> ListUnitOfMeasurement(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/unitofmeasurements');
@@ -3595,7 +3595,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<UomModel>)System.JSON.deserialize(res.getBody(), FetchResult<UomModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3606,8 +3606,8 @@ global class AvaTaxClient
         // and the taxing borders of various countries. Distance thresholds are necessary
         // to correctly calculate some value-added taxes.
         // 
-        // <param name="companyId">The unique ID number of the company that owns this DistanceThreshold</param>
-        // <param name="model">The DistanceThreshold object or objects you wish to create.</param>
+        // <param name='companyId'>The unique ID number of the company that owns this DistanceThreshold</param>
+        // <param name='model'>The DistanceThreshold object or objects you wish to create.</param>
         public List<CompanyDistanceThresholdModel> CreateDistanceThreshold(Integer companyId, List<CompanyDistanceThresholdModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/distancethresholds');
@@ -3622,7 +3622,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -3633,8 +3633,8 @@ global class AvaTaxClient
         // and the taxing borders of various countries. Distance thresholds are necessary
         // to correctly calculate some value-added taxes.
         // 
-        // <param name="companyId">The unique ID number of the company that owns this DistanceThreshold</param>
-        // <param name="id">The unique ID number of the DistanceThreshold object you wish to delete.</param>
+        // <param name='companyId'>The unique ID number of the company that owns this DistanceThreshold</param>
+        // <param name='id'>The unique ID number of the DistanceThreshold object you wish to delete.</param>
         public List<ErrorDetail> DeleteDistanceThreshold(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/distancethresholds/{id}');
@@ -3650,7 +3650,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -3661,8 +3661,8 @@ global class AvaTaxClient
         // and the taxing borders of various countries. Distance thresholds are necessary
         // to correctly calculate some value-added taxes.
         // 
-        // <param name="companyId">The ID of the company that owns this DistanceThreshold object</param>
-        // <param name="id">The unique ID number referring to this DistanceThreshold object</param>
+        // <param name='companyId'>The ID of the company that owns this DistanceThreshold object</param>
+        // <param name='id'>The unique ID number referring to this DistanceThreshold object</param>
         public CompanyDistanceThresholdModel GetDistanceThreshold(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/distancethresholds/{id}');
@@ -3674,7 +3674,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (CompanyDistanceThresholdModel)System.JSON.deserialize(res.getBody(), CompanyDistanceThresholdModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3685,12 +3685,12 @@ global class AvaTaxClient
         // and the taxing borders of various countries. Distance thresholds are necessary
         // to correctly calculate some value-added taxes.
         // 
-        // <param name="companyId">The ID of the company whose DistanceThreshold objects you wish to list.</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='companyId'>The ID of the company whose DistanceThreshold objects you wish to list.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CompanyDistanceThresholdModel> ListDistanceThresholds(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/distancethresholds');
@@ -3706,7 +3706,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<CompanyDistanceThresholdModel>)System.JSON.deserialize(res.getBody(), FetchResult<CompanyDistanceThresholdModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3720,11 +3720,11 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<CompanyDistanceThresholdModel> QueryDistanceThresholds(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/distancethresholds');
@@ -3739,7 +3739,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<CompanyDistanceThresholdModel>)System.JSON.deserialize(res.getBody(), FetchResult<CompanyDistanceThresholdModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3753,9 +3753,9 @@ global class AvaTaxClient
         // All data from the existing object will be replaced with data in the object you PUT. 
         // To set a field's value to null, you may either set its value to null or omit that field from the object you post.
         // 
-        // <param name="companyId">The unique ID number of the company that owns this DistanceThreshold object.</param>
-        // <param name="id">The unique ID number of the DistanceThreshold object to replace.</param>
-        // <param name="model">The new DistanceThreshold object to store.</param>
+        // <param name='companyId'>The unique ID number of the company that owns this DistanceThreshold object.</param>
+        // <param name='id'>The unique ID number of the DistanceThreshold object to replace.</param>
+        // <param name='model'>The new DistanceThreshold object to store.</param>
         public CompanyDistanceThresholdModel UpdateDistanceThreshold(Integer companyId, Integer id, CompanyDistanceThresholdModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/distancethresholds/{id}');
@@ -3767,7 +3767,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (CompanyDistanceThresholdModel)System.JSON.deserialize(res.getBody(), CompanyDistanceThresholdModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3777,8 +3777,8 @@ global class AvaTaxClient
         // are reviewed and validated by Avalara Compliance before being implemented.
         // The filing request must be in the "ChangeRequest" status to be approved.
         // 
-        // <param name="companyId">The unique ID of the company that owns the filing request object</param>
-        // <param name="id">The unique ID of the filing request object</param>
+        // <param name='companyId'>The unique ID of the company that owns the filing request object</param>
+        // <param name='id'>The unique ID of the filing request object</param>
         public FilingRequestModel ApproveFilingRequest(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingrequests/{id}/approve');
@@ -3790,7 +3790,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FilingRequestModel)System.JSON.deserialize(res.getBody(), FilingRequestModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3799,8 +3799,8 @@ global class AvaTaxClient
         // A "filing request" represents a request to change an existing filing calendar. Filing requests
         // are reviewed and validated by Avalara Compliance before being implemented.
         // 
-        // <param name="companyId">The unique ID of the company that owns the filing request object</param>
-        // <param name="id">The unique ID of the filing request object</param>
+        // <param name='companyId'>The unique ID of the company that owns the filing request object</param>
+        // <param name='id'>The unique ID of the filing request object</param>
         public FilingRequestModel CancelFilingRequest(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingrequests/{id}/cancel');
@@ -3812,7 +3812,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FilingRequestModel)System.JSON.deserialize(res.getBody(), FilingRequestModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3822,9 +3822,9 @@ global class AvaTaxClient
         // A "filing request" represents a request to change an existing filing calendar. Filing requests
         // are reviewed and validated by Avalara Compliance before being implemented.
         // 
-        // <param name="companyId">The unique ID of the company that owns the filing calendar object</param>
-        // <param name="id">The unique ID number of the filing calendar to cancel</param>
-        // <param name="model">The cancellation request for this filing calendar</param>
+        // <param name='companyId'>The unique ID of the company that owns the filing calendar object</param>
+        // <param name='id'>The unique ID number of the filing calendar to cancel</param>
+        // <param name='model'>The cancellation request for this filing calendar</param>
         public FilingRequestModel CancelFilingRequests(Integer companyId, Integer id, List<FilingRequestModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingcalendars/{id}/cancel/request');
@@ -3836,7 +3836,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FilingRequestModel)System.JSON.deserialize(res.getBody(), FilingRequestModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3844,8 +3844,8 @@ global class AvaTaxClient
         // This API is available by invitation only and only available for users with Compliance access
         // A "filing request" represents information that compliance uses to file a return
         // 
-        // <param name="companyId">The unique ID of the company that will add the new filing calendar</param>
-        // <param name="model">Filing calendars that will be added</param>
+        // <param name='companyId'>The unique ID of the company that will add the new filing calendar</param>
+        // <param name='model'>Filing calendars that will be added</param>
         public FilingCalendarModel CreateFilingCalendars(Integer companyId, List<FilingCalendarModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingcalendars');
@@ -3856,7 +3856,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FilingCalendarModel)System.JSON.deserialize(res.getBody(), FilingCalendarModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3865,8 +3865,8 @@ global class AvaTaxClient
         // A "filing request" represents a request to change an existing filing calendar. Filing requests
         // are reviewed and validated by Avalara Compliance before being implemented.
         // 
-        // <param name="companyId">The unique ID of the company that will add the new filing calendar</param>
-        // <param name="model">Information about the proposed new filing calendar</param>
+        // <param name='companyId'>The unique ID of the company that will add the new filing calendar</param>
+        // <param name='model'>Information about the proposed new filing calendar</param>
         public FilingRequestModel CreateFilingRequests(Integer companyId, List<FilingRequestModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingcalendars/add/request');
@@ -3877,15 +3877,15 @@ global class AvaTaxClient
             {
                 responseModel.result = (FilingRequestModel)System.JSON.deserialize(res.getBody(), FilingRequestModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
         // Returns a list of options for adding the specified form.
         // This API is available by invitation only.
         // 
-        // <param name="companyId">The unique ID of the company that owns the filing calendar object</param>
-        // <param name="formCode">The unique code of the form</param>
+        // <param name='companyId'>The unique ID of the company that owns the filing calendar object</param>
+        // <param name='formCode'>The unique code of the form</param>
         public List<CycleAddOptionModel> CycleSafeAdd(Integer companyId, String formCode)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingcalendars/add/options');
@@ -3901,16 +3901,16 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
         // Indicates when changes are allowed to be made to a filing calendar.
         // This API is available by invitation only.
         // 
-        // <param name="companyId">The unique ID of the company that owns the filing calendar object</param>
-        // <param name="id">The unique ID of the filing calendar object</param>
-        // <param name="model">A list of filing calendar edits to be made</param>
+        // <param name='companyId'>The unique ID of the company that owns the filing calendar object</param>
+        // <param name='id'>The unique ID of the filing calendar object</param>
+        // <param name='model'>A list of filing calendar edits to be made</param>
         public CycleEditOptionModel CycleSafeEdit(Integer companyId, Integer id, List<FilingCalendarEditModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingcalendars/{id}/edit/options');
@@ -3922,15 +3922,15 @@ global class AvaTaxClient
             {
                 responseModel.result = (CycleEditOptionModel)System.JSON.deserialize(res.getBody(), CycleEditOptionModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
         // Returns a list of options for expiring a filing calendar
         // This API is available by invitation only.
         // 
-        // <param name="companyId">The unique ID of the company that owns the filing calendar object</param>
-        // <param name="id">The unique ID of the filing calendar object</param>
+        // <param name='companyId'>The unique ID of the company that owns the filing calendar object</param>
+        // <param name='id'>The unique ID of the filing calendar object</param>
         public CycleExpireModel CycleSafeExpiration(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingcalendars/{id}/cancel/options');
@@ -3942,7 +3942,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (CycleExpireModel)System.JSON.deserialize(res.getBody(), CycleExpireModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3952,8 +3952,8 @@ global class AvaTaxClient
         // A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
         // Returns customers often receive support and assistance from the Compliance Notices team in handling notices received by taxing authorities.
         // 
-        // <param name="companyId">The ID of the company that owns this filing calendar.</param>
-        // <param name="id">The ID of the filing calendar you wish to delete.</param>
+        // <param name='companyId'>The ID of the company that owns this filing calendar.</param>
+        // <param name='id'>The ID of the filing calendar you wish to delete.</param>
         public List<ErrorDetail> DeleteFilingCalendar(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingcalendars/{id}');
@@ -3969,15 +3969,15 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
         // Retrieve a single filing calendar
         // This API is available by invitation only.
         // 
-        // <param name="companyId">The ID of the company that owns this filing calendar</param>
-        // <param name="id">The primary key of this filing calendar</param>
+        // <param name='companyId'>The ID of the company that owns this filing calendar</param>
+        // <param name='id'>The primary key of this filing calendar</param>
         public FilingCalendarModel GetFilingCalendar(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingcalendars/{id}');
@@ -3989,7 +3989,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FilingCalendarModel)System.JSON.deserialize(res.getBody(), FilingCalendarModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -3998,8 +3998,8 @@ global class AvaTaxClient
         // A "filing request" represents a request to change an existing filing calendar. Filing requests
         // are reviewed and validated by Avalara Compliance before being implemented.
         // 
-        // <param name="companyId">The ID of the company that owns this filing calendar</param>
-        // <param name="id">The primary key of this filing calendar</param>
+        // <param name='companyId'>The ID of the company that owns this filing calendar</param>
+        // <param name='id'>The primary key of this filing calendar</param>
         public FilingRequestModel GetFilingRequest(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingrequests/{id}');
@@ -4011,20 +4011,20 @@ global class AvaTaxClient
             {
                 responseModel.result = (FilingRequestModel)System.JSON.deserialize(res.getBody(), FilingRequestModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
         // Retrieve all filing calendars for this company
         // This API is available by invitation only.
         // 
-        // <param name="companyId">The ID of the company that owns these batches</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        // <param name="returnCountry">A comma separated list of countries</param>
-        // <param name="returnRegion">A comma separated list of regions</param>
+        // <param name='companyId'>The ID of the company that owns these batches</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='returnCountry'>A comma separated list of countries</param>
+        // <param name='returnRegion'>A comma separated list of regions</param>
         public FetchResult<FilingCalendarModel> ListFilingCalendars(Integer companyId, String filter, Integer top, Integer skip, String orderBy, String returnCountry, String returnRegion)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingcalendars');
@@ -4041,7 +4041,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<FilingCalendarModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingCalendarModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -4050,11 +4050,11 @@ global class AvaTaxClient
         // A "filing request" represents a request to change an existing filing calendar. Filing requests
         // are reviewed and validated by Avalara Compliance before being implemented.
         // 
-        // <param name="companyId">The ID of the company that owns these batches</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='companyId'>The ID of the company that owns these batches</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<FilingRequestModel> ListFilingRequests(Integer companyId, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingrequests');
@@ -4069,7 +4069,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<FilingRequestModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingRequestModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -4078,7 +4078,7 @@ global class AvaTaxClient
         // 
         // This API verifies that a customer has submitted correct login credentials for a tax authority's online filing system.
         // 
-        // <param name="model">The model of the login information we are verifying</param>
+        // <param name='model'>The model of the login information we are verifying</param>
         public LoginVerificationOutputModel LoginVerificationRequest(LoginVerificationInputModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/filingcalendars/credentials/verify');
@@ -4088,7 +4088,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (LoginVerificationOutputModel)System.JSON.deserialize(res.getBody(), LoginVerificationOutputModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -4098,7 +4098,7 @@ global class AvaTaxClient
         // This API checks the status of a login verification request. It may only be called by authorized users from the account 
         // that initially requested the login verification.
         // 
-        // <param name="jobId">The unique ID number of this login request</param>
+        // <param name='jobId'>The unique ID number of this login request</param>
         public LoginVerificationOutputModel LoginVerificationStatus(Integer jobId)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/filingcalendars/credentials/{jobId}');
@@ -4109,19 +4109,19 @@ global class AvaTaxClient
             {
                 responseModel.result = (LoginVerificationOutputModel)System.JSON.deserialize(res.getBody(), LoginVerificationOutputModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
         // Retrieve all filing calendars
         // This API is available by invitation only.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        // <param name="returnCountry">If specified, fetches only filing calendars that apply to tax filings in this specific country. Uses ISO 3166 country codes.</param>
-        // <param name="returnRegion">If specified, fetches only filing calendars that apply to tax filings in this specific region. Uses ISO 3166 region codes.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='returnCountry'>If specified, fetches only filing calendars that apply to tax filings in this specific country. Uses ISO 3166 country codes.</param>
+        // <param name='returnRegion'>If specified, fetches only filing calendars that apply to tax filings in this specific region. Uses ISO 3166 region codes.</param>
         public FetchResult<FilingCalendarModel> QueryFilingCalendars(String filter, Integer top, Integer skip, String orderBy, String returnCountry, String returnRegion)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/filingcalendars');
@@ -4137,7 +4137,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<FilingCalendarModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingCalendarModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -4149,10 +4149,10 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<FilingRequestModel> QueryFilingRequests(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/filingrequests');
@@ -4166,7 +4166,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<FilingRequestModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingRequestModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -4179,9 +4179,9 @@ global class AvaTaxClient
         // Certain users may not update filing calendars directly. Instead, they may submit an edit request
         // to modify the value of a filing calendar using this API.
         // 
-        // <param name="companyId">The unique ID of the company that owns the filing calendar object</param>
-        // <param name="id">The unique ID number of the filing calendar to edit</param>
-        // <param name="model">A list of filing calendar edits to be made</param>
+        // <param name='companyId'>The unique ID of the company that owns the filing calendar object</param>
+        // <param name='id'>The unique ID number of the filing calendar to edit</param>
+        // <param name='model'>A list of filing calendar edits to be made</param>
         public FilingRequestModel RequestFilingCalendarUpdate(Integer companyId, Integer id, List<FilingRequestModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingcalendars/{id}/edit/request');
@@ -4193,16 +4193,16 @@ global class AvaTaxClient
             {
                 responseModel.result = (FilingRequestModel)System.JSON.deserialize(res.getBody(), FilingRequestModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
         // Edit existing Filing Calendar
         // This API is available by invitation only.
         // 
-        // <param name="companyId">The unique ID of the company that owns the filing request object</param>
-        // <param name="id">The unique ID of the filing calendar object</param>
-        // <param name="model">The filing calendar model you are wishing to update with.</param>
+        // <param name='companyId'>The unique ID of the company that owns the filing request object</param>
+        // <param name='id'>The unique ID of the filing calendar object</param>
+        // <param name='model'>The filing calendar model you are wishing to update with.</param>
         public FilingCalendarModel UpdateFilingCalendar(Integer companyId, Integer id, FilingCalendarModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingcalendars/{id}');
@@ -4214,7 +4214,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FilingCalendarModel)System.JSON.deserialize(res.getBody(), FilingCalendarModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -4223,9 +4223,9 @@ global class AvaTaxClient
         // A "filing request" represents a request to change an existing filing calendar. Filing requests
         // are reviewed and validated by Avalara Compliance before being implemented.
         // 
-        // <param name="companyId">The unique ID of the company that owns the filing request object</param>
-        // <param name="id">The unique ID of the filing request object</param>
-        // <param name="model">A list of filing calendar edits to be made</param>
+        // <param name='companyId'>The unique ID of the company that owns the filing request object</param>
+        // <param name='id'>The unique ID of the filing request object</param>
+        // <param name='model'>A list of filing calendar edits to be made</param>
         public FilingRequestModel UpdateFilingRequest(Integer companyId, Integer id, FilingRequestModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingrequests/{id}');
@@ -4237,7 +4237,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FilingRequestModel)System.JSON.deserialize(res.getBody(), FilingRequestModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -4250,10 +4250,10 @@ global class AvaTaxClient
         // A "filing period" is the year and month of the date of the latest customer transaction allowed to be reported on a filing, 
         // based on filing frequency of filing.
         // 
-        // <param name="companyId">The ID of the company that owns the filings.</param>
-        // <param name="year">The year of the filing period to approve.</param>
-        // <param name="month">The month of the filing period to approve.</param>
-        // <param name="model">The approve request you wish to execute.</param>
+        // <param name='companyId'>The ID of the company that owns the filings.</param>
+        // <param name='year'>The year of the filing period to approve.</param>
+        // <param name='month'>The month of the filing period to approve.</param>
+        // <param name='model'>The approve request you wish to execute.</param>
         public List<FilingModel> ApproveFilings(Integer companyId, Integer year, Byte month, ApproveFilingsModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/approve');
@@ -4270,7 +4270,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -4283,11 +4283,11 @@ global class AvaTaxClient
         // A "filing period" is the year and month of the date of the latest customer transaction allowed to be reported on a filing, 
         // based on filing frequency of filing.
         // 
-        // <param name="companyId">The ID of the company that owns the filings.</param>
-        // <param name="year">The year of the filing period to approve.</param>
-        // <param name="month">The month of the filing period to approve.</param>
-        // <param name="country">The two-character ISO-3166 code for the country.</param>
-        // <param name="model">The approve request you wish to execute.</param>
+        // <param name='companyId'>The ID of the company that owns the filings.</param>
+        // <param name='year'>The year of the filing period to approve.</param>
+        // <param name='month'>The month of the filing period to approve.</param>
+        // <param name='country'>The two-character ISO-3166 code for the country.</param>
+        // <param name='model'>The approve request you wish to execute.</param>
         public List<FilingModel> ApproveFilingsCountry(Integer companyId, Integer year, Byte month, String country, ApproveFilingsModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/approve');
@@ -4305,7 +4305,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -4318,12 +4318,12 @@ global class AvaTaxClient
         // A "filing period" is the year and month of the date of the latest customer transaction allowed to be reported on a filing, 
         // based on filing frequency of filing.
         // 
-        // <param name="companyId">The ID of the company that owns the filings.</param>
-        // <param name="year">The year of the filing period to approve.</param>
-        // <param name="month">The month of the filing period to approve.</param>
-        // <param name="country">The two-character ISO-3166 code for the country.</param>
-        // <param name="region">The two or three character region code for the region.</param>
-        // <param name="model">The approve request you wish to execute.</param>
+        // <param name='companyId'>The ID of the company that owns the filings.</param>
+        // <param name='year'>The year of the filing period to approve.</param>
+        // <param name='month'>The month of the filing period to approve.</param>
+        // <param name='country'>The two-character ISO-3166 code for the country.</param>
+        // <param name='region'>The two or three character region code for the region.</param>
+        // <param name='model'>The approve request you wish to execute.</param>
         public List<FilingModel> ApproveFilingsCountryRegion(Integer companyId, Integer year, Byte month, String country, String region, ApproveFilingsModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/approve');
@@ -4342,7 +4342,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -4354,13 +4354,13 @@ global class AvaTaxClient
         // This API creates a new adjustment for an existing tax filing.
         // This API can only be used when the filing has not yet been approved.
         // 
-        // <param name="companyId">The ID of the company that owns the filing being adjusted.</param>
-        // <param name="year">The year of the filing's filing period being adjusted.</param>
-        // <param name="month">The month of the filing's filing period being adjusted.</param>
-        // <param name="country">The two-character ISO-3166 code for the country of the filing being adjusted.</param>
-        // <param name="region">The two or three character region code for the region.</param>
-        // <param name="formCode">The unique code of the form being adjusted.</param>
-        // <param name="model">A list of Adjustments to be created for the specified filing.</param>
+        // <param name='companyId'>The ID of the company that owns the filing being adjusted.</param>
+        // <param name='year'>The year of the filing's filing period being adjusted.</param>
+        // <param name='month'>The month of the filing's filing period being adjusted.</param>
+        // <param name='country'>The two-character ISO-3166 code for the country of the filing being adjusted.</param>
+        // <param name='region'>The two or three character region code for the region.</param>
+        // <param name='formCode'>The unique code of the form being adjusted.</param>
+        // <param name='model'>A list of Adjustments to be created for the specified filing.</param>
         public List<FilingAdjustmentModel> CreateReturnAdjustment(Integer companyId, Integer year, Byte month, String country, String region, String formCode, List<FilingAdjustmentModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/{formCode}/adjust');
@@ -4380,7 +4380,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -4391,13 +4391,13 @@ global class AvaTaxClient
         // This API creates a new augmentation for an existing tax filing.
         // This API can only be used when the filing has not been approved.
         // 
-        // <param name="companyId">The ID of the company that owns the filing being changed.</param>
-        // <param name="year">The month of the filing's filing period being changed.</param>
-        // <param name="month">The month of the filing's filing period being changed.</param>
-        // <param name="country">The two-character ISO-3166 code for the country of the filing being changed.</param>
-        // <param name="region">The two or three character region code for the region of the filing being changed.</param>
-        // <param name="formCode">The unique code of the form being changed.</param>
-        // <param name="model">A list of augmentations to be created for the specified filing.</param>
+        // <param name='companyId'>The ID of the company that owns the filing being changed.</param>
+        // <param name='year'>The month of the filing's filing period being changed.</param>
+        // <param name='month'>The month of the filing's filing period being changed.</param>
+        // <param name='country'>The two-character ISO-3166 code for the country of the filing being changed.</param>
+        // <param name='region'>The two or three character region code for the region of the filing being changed.</param>
+        // <param name='formCode'>The unique code of the form being changed.</param>
+        // <param name='model'>A list of augmentations to be created for the specified filing.</param>
         public List<FilingAugmentationModel> CreateReturnAugmentation(Integer companyId, Integer year, Byte month, String country, String region, String formCode, List<FilingAugmentationModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/{formCode}/augment');
@@ -4417,7 +4417,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -4429,13 +4429,13 @@ global class AvaTaxClient
         // This API creates a new payment for an existing tax filing.
         // This API can only be used when the filing has not yet been approved.
         // 
-        // <param name="companyId">The ID of the company that owns the filing being adjusted.</param>
-        // <param name="year">The year of the filing's filing period being adjusted.</param>
-        // <param name="month">The month of the filing's filing period being adjusted.</param>
-        // <param name="country">The two-character ISO-3166 code for the country of the filing being adjusted.</param>
-        // <param name="region">The two or three character region code for the region.</param>
-        // <param name="formCode">The unique code of the form being adjusted.</param>
-        // <param name="model">A list of Payments to be created for the specified filing.</param>
+        // <param name='companyId'>The ID of the company that owns the filing being adjusted.</param>
+        // <param name='year'>The year of the filing's filing period being adjusted.</param>
+        // <param name='month'>The month of the filing's filing period being adjusted.</param>
+        // <param name='country'>The two-character ISO-3166 code for the country of the filing being adjusted.</param>
+        // <param name='region'>The two or three character region code for the region.</param>
+        // <param name='formCode'>The unique code of the form being adjusted.</param>
+        // <param name='model'>A list of Payments to be created for the specified filing.</param>
         public List<FilingPaymentModel> CreateReturnPayment(Integer companyId, Integer year, Byte month, String country, String region, String formCode, List<FilingPaymentModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/{formCode}/payment');
@@ -4455,7 +4455,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -4467,8 +4467,8 @@ global class AvaTaxClient
         // This API deletes an adjustment for an existing tax filing.
         // This API can only be used when the filing has been unapproved.
         // 
-        // <param name="companyId">The ID of the company that owns the filing being adjusted.</param>
-        // <param name="id">The ID of the adjustment being deleted.</param>
+        // <param name='companyId'>The ID of the company that owns the filing being adjusted.</param>
+        // <param name='id'>The ID of the adjustment being deleted.</param>
         public List<ErrorDetail> DeleteReturnAdjustment(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/adjust/{id}');
@@ -4484,7 +4484,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -4495,8 +4495,8 @@ global class AvaTaxClient
         // This API deletes an augmentation for an existing tax filing.
         // This API can only be used when the filing has been unapproved.
         // 
-        // <param name="companyId">The ID of the company that owns the filing being changed.</param>
-        // <param name="id">The ID of the augmentation being added.</param>
+        // <param name='companyId'>The ID of the company that owns the filing being changed.</param>
+        // <param name='id'>The ID of the augmentation being added.</param>
         public List<ErrorDetail> DeleteReturnAugmentation(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/augment/{id}');
@@ -4512,7 +4512,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -4524,8 +4524,8 @@ global class AvaTaxClient
         // This API deletes an payment for an existing tax filing.
         // This API can only be used when the filing has been unapproved.
         // 
-        // <param name="companyId">The ID of the company that owns the filing being adjusted.</param>
-        // <param name="id">The ID of the payment being deleted.</param>
+        // <param name='companyId'>The ID of the company that owns the filing being adjusted.</param>
+        // <param name='id'>The ID of the payment being deleted.</param>
         public List<ErrorDetail> DeleteReturnPayment(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/payment/{id}');
@@ -4541,15 +4541,15 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
         // Retrieve worksheet checkup report for company and filing period.
         // This API is available by invitation only.
         // 
-        // <param name="filingsId">The unique id of the worksheet.</param>
-        // <param name="companyId">The unique ID of the company that owns the worksheet.</param>
+        // <param name='filingsId'>The unique id of the worksheet.</param>
+        // <param name='companyId'>The unique ID of the company that owns the worksheet.</param>
         public FilingsCheckupModel FilingsCheckupReport(Integer filingsId, Integer companyId)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{filingsId}/checkup');
@@ -4561,16 +4561,16 @@ global class AvaTaxClient
             {
                 responseModel.result = (FilingsCheckupModel)System.JSON.deserialize(res.getBody(), FilingsCheckupModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
         // Retrieve worksheet checkup report for company and filing period.
         // This API is available by invitation only.
         // 
-        // <param name="companyId">The unique ID of the company that owns the worksheets object.</param>
-        // <param name="year">The year of the filing period.</param>
-        // <param name="month">The month of the filing period.</param>
+        // <param name='companyId'>The unique ID of the company that owns the worksheets object.</param>
+        // <param name='year'>The year of the filing period.</param>
+        // <param name='month'>The month of the filing period.</param>
         public FilingsCheckupModel FilingsCheckupReports(Integer companyId, Integer year, Integer month)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/checkup');
@@ -4583,16 +4583,16 @@ global class AvaTaxClient
             {
                 responseModel.result = (FilingsCheckupModel)System.JSON.deserialize(res.getBody(), FilingsCheckupModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
         // Retrieve a single attachment for a filing
         // This API is available by invitation only.
         // 
-        // <param name="companyId">The ID of the company that owns the filings.</param>
-        // <param name="filingReturnId">The unique id of the worksheet return.</param>
-        // <param name="fileId">The unique id of the document you are downloading</param>
+        // <param name='companyId'>The ID of the company that owns the filings.</param>
+        // <param name='filingReturnId'>The unique id of the worksheet return.</param>
+        // <param name='fileId'>The unique id of the document you are downloading</param>
         public FileResult GetFilingAttachment(Integer companyId, Integer filingReturnId, Integer fileId)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{filingReturnId}/attachment');
@@ -4601,7 +4601,7 @@ global class AvaTaxClient
             path.AddQuery('fileId', fileId);
             FileResultModel responseModel = null;
             responseModel = (FileResultModel) restCallForFile('GET', path.relativePath, null);
-            return responseModel
+            return responseModel;
         }
 
 
@@ -4610,9 +4610,9 @@ global class AvaTaxClient
         // A "filing period" is the year and month of the date of the latest customer transaction allowed to be reported on a filing, 
         // based on filing frequency of filing.
         // 
-        // <param name="companyId">The ID of the company that owns the filings.</param>
-        // <param name="year">The year of the filing period.</param>
-        // <param name="month">The two digit month of the filing period.</param>
+        // <param name='companyId'>The ID of the company that owns the filings.</param>
+        // <param name='year'>The year of the filing period.</param>
+        // <param name='month'>The two digit month of the filing period.</param>
         public FileResult GetFilingAttachments(Integer companyId, Integer year, Byte month)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/attachments');
@@ -4621,7 +4621,7 @@ global class AvaTaxClient
             path.ApplyField('month', month);
             FileResultModel responseModel = null;
             responseModel = (FileResultModel) restCallForFile('GET', path.relativePath, null);
-            return responseModel
+            return responseModel;
         }
 
 
@@ -4630,9 +4630,9 @@ global class AvaTaxClient
         // A "filing period" is the year and month of the date of the latest customer transaction allowed to be reported on a filing, 
         // based on filing frequency of filing.
         // 
-        // <param name="companyId">The ID of the company that owns the filings.</param>
-        // <param name="year">The year of the filing period.</param>
-        // <param name="month">The two digit month of the filing period.</param>
+        // <param name='companyId'>The ID of the company that owns the filings.</param>
+        // <param name='year'>The year of the filing period.</param>
+        // <param name='month'>The two digit month of the filing period.</param>
         public FileResult GetFilingAttachmentsTraceFile(Integer companyId, Integer year, Byte month)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/attachments/tracefile');
@@ -4641,7 +4641,7 @@ global class AvaTaxClient
             path.ApplyField('month', month);
             FileResultModel responseModel = null;
             responseModel = (FileResultModel) restCallForFile('GET', path.relativePath, null);
-            return responseModel
+            return responseModel;
         }
 
 
@@ -4650,8 +4650,8 @@ global class AvaTaxClient
         // A "filing period" is the year and month of the date of the latest customer transaction allowed to be reported on a filing, 
         // based on filing frequency of filing.
         // 
-        // <param name="companyId">The ID of the company that owns the filings.</param>
-        // <param name="id">The id of the filing return your retrieving</param>
+        // <param name='companyId'>The ID of the company that owns the filings.</param>
+        // <param name='id'>The id of the filing return your retrieving</param>
         public FetchResult<FilingReturnModel> GetFilingReturn(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/returns/{id}');
@@ -4663,7 +4663,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<FilingReturnModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingReturnModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -4672,9 +4672,9 @@ global class AvaTaxClient
         // A "filing period" is the year and month of the date of the latest customer transaction allowed to be reported on a filing, 
         // based on filing frequency of filing.
         // 
-        // <param name="companyId">The ID of the company that owns the filings.</param>
-        // <param name="year">The year of the filing period.</param>
-        // <param name="month">The two digit month of the filing period.</param>
+        // <param name='companyId'>The ID of the company that owns the filings.</param>
+        // <param name='year'>The year of the filing period.</param>
+        // <param name='month'>The two digit month of the filing period.</param>
         public FetchResult<FilingModel> GetFilings(Integer companyId, Integer year, Byte month)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}');
@@ -4687,7 +4687,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<FilingModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -4696,10 +4696,10 @@ global class AvaTaxClient
         // A "filing period" is the year and month of the date of the latest customer transaction allowed to be reported on a filing, 
         // based on filing frequency of filing.
         // 
-        // <param name="companyId">The ID of the company that owns the filings.</param>
-        // <param name="year">The year of the filing period.</param>
-        // <param name="month">The two digit month of the filing period.</param>
-        // <param name="country">The two-character ISO-3166 code for the country.</param>
+        // <param name='companyId'>The ID of the company that owns the filings.</param>
+        // <param name='year'>The year of the filing period.</param>
+        // <param name='month'>The two digit month of the filing period.</param>
+        // <param name='country'>The two-character ISO-3166 code for the country.</param>
         public FetchResult<FilingModel> GetFilingsByCountry(Integer companyId, Integer year, Byte month, String country)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}');
@@ -4713,7 +4713,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<FilingModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -4722,11 +4722,11 @@ global class AvaTaxClient
         // A "filing period" is the year and month of the date of the latest customer transaction allowed to be reported on a filing, 
         // based on filing frequency of filing.
         // 
-        // <param name="companyId">The ID of the company that owns the filings.</param>
-        // <param name="year">The year of the filing period.</param>
-        // <param name="month">The two digit month of the filing period.</param>
-        // <param name="country">The two-character ISO-3166 code for the country.</param>
-        // <param name="region">The two or three character region code for the region.</param>
+        // <param name='companyId'>The ID of the company that owns the filings.</param>
+        // <param name='year'>The year of the filing period.</param>
+        // <param name='month'>The two digit month of the filing period.</param>
+        // <param name='country'>The two-character ISO-3166 code for the country.</param>
+        // <param name='region'>The two or three character region code for the region.</param>
         public FetchResult<FilingModel> GetFilingsByCountryRegion(Integer companyId, Integer year, Byte month, String country, String region)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}');
@@ -4741,7 +4741,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<FilingModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -4750,12 +4750,12 @@ global class AvaTaxClient
         // A "filing period" is the year and month of the date of the latest customer transaction allowed to be reported on a filing, 
         // based on filing frequency of filing.
         // 
-        // <param name="companyId">The ID of the company that owns the filings.</param>
-        // <param name="year">The year of the filing period.</param>
-        // <param name="month">The two digit month of the filing period.</param>
-        // <param name="country">The two-character ISO-3166 code for the country.</param>
-        // <param name="region">The two or three character region code for the region.</param>
-        // <param name="formCode">The unique code of the form.</param>
+        // <param name='companyId'>The ID of the company that owns the filings.</param>
+        // <param name='year'>The year of the filing period.</param>
+        // <param name='month'>The two digit month of the filing period.</param>
+        // <param name='country'>The two-character ISO-3166 code for the country.</param>
+        // <param name='region'>The two or three character region code for the region.</param>
+        // <param name='formCode'>The unique code of the form.</param>
         public FetchResult<FilingModel> GetFilingsByReturnName(Integer companyId, Integer year, Byte month, String country, String region, String formCode)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/{formCode}');
@@ -4771,7 +4771,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<FilingModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -4779,14 +4779,14 @@ global class AvaTaxClient
         // This gets the basic information from the filings and doesn't include anything extra.
         // 
         // 
-        // <param name="companyId">The ID of the company that owns these batches</param>
-        // <param name="endPeriodMonth">The month of the period you are trying to retrieve</param>
-        // <param name="endPeriodYear">The year of the period you are trying to retrieve</param>
-        // <param name="frequency">The frequency of the return you are trying to retrieve</param>
-        // <param name="status">The status of the return(s) you are trying to retrieve</param>
-        // <param name="country">The country of the return(s) you are trying to retrieve</param>
-        // <param name="region">The region of the return(s) you are trying to retrieve</param>
-        // <param name="filingCalendarId">The filing calendar id of the return you are trying to retrieve</param>
+        // <param name='companyId'>The ID of the company that owns these batches</param>
+        // <param name='endPeriodMonth'>The month of the period you are trying to retrieve</param>
+        // <param name='endPeriodYear'>The year of the period you are trying to retrieve</param>
+        // <param name='frequency'>The frequency of the return you are trying to retrieve</param>
+        // <param name='status'>The status of the return(s) you are trying to retrieve</param>
+        // <param name='country'>The country of the return(s) you are trying to retrieve</param>
+        // <param name='region'>The region of the return(s) you are trying to retrieve</param>
+        // <param name='filingCalendarId'>The filing calendar id of the return you are trying to retrieve</param>
         public FetchResult<FilingReturnModelBasic> GetFilingsReturns(Integer companyId, Integer endPeriodMonth, Integer endPeriodYear, FilingFrequencyId frequency, FilingStatusId status, String country, String region, Integer filingCalendarId)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/returns');
@@ -4804,7 +4804,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<FilingReturnModelBasic>)System.JSON.deserialize(res.getBody(), FetchResult<FilingReturnModelBasic>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -4816,10 +4816,10 @@ global class AvaTaxClient
         // based on filing frequency of filing.
         // This API requires filing to be unapproved.
         // 
-        // <param name="companyId">The ID of the company that owns the filings.</param>
-        // <param name="year">The year of the filing period to be rebuilt.</param>
-        // <param name="month">The month of the filing period to be rebuilt.</param>
-        // <param name="model">The rebuild request you wish to execute.</param>
+        // <param name='companyId'>The ID of the company that owns the filings.</param>
+        // <param name='year'>The year of the filing period to be rebuilt.</param>
+        // <param name='month'>The month of the filing period to be rebuilt.</param>
+        // <param name='model'>The rebuild request you wish to execute.</param>
         public FetchResult<FilingModel> RebuildFilings(Integer companyId, Integer year, Byte month, RebuildFilingsModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/rebuild');
@@ -4832,7 +4832,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<FilingModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -4844,11 +4844,11 @@ global class AvaTaxClient
         // based on filing frequency of filing.
         // This API requires filing to be unapproved.
         // 
-        // <param name="companyId">The ID of the company that owns the filings.</param>
-        // <param name="year">The year of the filing period to be rebuilt.</param>
-        // <param name="month">The month of the filing period to be rebuilt.</param>
-        // <param name="country">The two-character ISO-3166 code for the country.</param>
-        // <param name="model">The rebuild request you wish to execute.</param>
+        // <param name='companyId'>The ID of the company that owns the filings.</param>
+        // <param name='year'>The year of the filing period to be rebuilt.</param>
+        // <param name='month'>The month of the filing period to be rebuilt.</param>
+        // <param name='country'>The two-character ISO-3166 code for the country.</param>
+        // <param name='model'>The rebuild request you wish to execute.</param>
         public FetchResult<FilingModel> RebuildFilingsByCountry(Integer companyId, Integer year, Byte month, String country, RebuildFilingsModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/rebuild');
@@ -4862,7 +4862,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<FilingModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -4874,12 +4874,12 @@ global class AvaTaxClient
         // based on filing frequency of filing.
         // This API requires filing to be unapproved.
         // 
-        // <param name="companyId">The ID of the company that owns the filings.</param>
-        // <param name="year">The year of the filing period to be rebuilt.</param>
-        // <param name="month">The month of the filing period to be rebuilt.</param>
-        // <param name="country">The two-character ISO-3166 code for the country.</param>
-        // <param name="region">The two or three character region code for the region.</param>
-        // <param name="model">The rebuild request you wish to execute.</param>
+        // <param name='companyId'>The ID of the company that owns the filings.</param>
+        // <param name='year'>The year of the filing period to be rebuilt.</param>
+        // <param name='month'>The month of the filing period to be rebuilt.</param>
+        // <param name='country'>The two-character ISO-3166 code for the country.</param>
+        // <param name='region'>The two or three character region code for the region.</param>
+        // <param name='model'>The rebuild request you wish to execute.</param>
         public FetchResult<FilingModel> RebuildFilingsByCountryRegion(Integer companyId, Integer year, Byte month, String country, String region, RebuildFilingsModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/rebuild');
@@ -4894,7 +4894,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<FilingModel>)System.JSON.deserialize(res.getBody(), FetchResult<FilingModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -4906,9 +4906,9 @@ global class AvaTaxClient
         // This API modifies an adjustment for an existing tax filing.
         // This API can only be used when the filing has not yet been approved.
         // 
-        // <param name="companyId">The ID of the company that owns the filing being adjusted.</param>
-        // <param name="id">The ID of the adjustment being edited.</param>
-        // <param name="model">The updated Adjustment.</param>
+        // <param name='companyId'>The ID of the company that owns the filing being adjusted.</param>
+        // <param name='id'>The ID of the adjustment being edited.</param>
+        // <param name='model'>The updated Adjustment.</param>
         public FilingAdjustmentModel UpdateReturnAdjustment(Integer companyId, Integer id, FilingAdjustmentModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/adjust/{id}');
@@ -4920,7 +4920,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FilingAdjustmentModel)System.JSON.deserialize(res.getBody(), FilingAdjustmentModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -4931,9 +4931,9 @@ global class AvaTaxClient
         // This API modifies an augmentation for an existing tax filing.
         // This API can only be used when the filing has not been approved.
         // 
-        // <param name="companyId">The ID of the company that owns the filing being changed.</param>
-        // <param name="id">The ID of the augmentation being edited.</param>
-        // <param name="model">The updated Augmentation.</param>
+        // <param name='companyId'>The ID of the company that owns the filing being changed.</param>
+        // <param name='id'>The ID of the augmentation being edited.</param>
+        // <param name='model'>The updated Augmentation.</param>
         public FilingModel UpdateReturnAugmentation(Integer companyId, Integer id, FilingAugmentationModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/augment/{id}');
@@ -4945,7 +4945,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FilingModel)System.JSON.deserialize(res.getBody(), FilingModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -4957,9 +4957,9 @@ global class AvaTaxClient
         // This API modifies an payment for an existing tax filing.
         // This API can only be used when the filing has not yet been approved.
         // 
-        // <param name="companyId">The ID of the company that owns the filing being adjusted.</param>
-        // <param name="id">The ID of the payment being edited.</param>
-        // <param name="model">The updated Payment.</param>
+        // <param name='companyId'>The ID of the company that owns the filing being adjusted.</param>
+        // <param name='id'>The ID of the payment being edited.</param>
+        // <param name='model'>The updated Payment.</param>
         public FilingPaymentModel UpdateReturnPayment(Integer companyId, Integer id, FilingPaymentModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/payment/{id}');
@@ -4971,7 +4971,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FilingPaymentModel)System.JSON.deserialize(res.getBody(), FilingPaymentModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -4989,7 +4989,7 @@ global class AvaTaxClient
         // * Includes a limited time free trial of AvaTaxPro; after that date, the free TaxRates API will continue to work.
         // * Each free trial account must have its own valid email address.
         // 
-        // <param name="model">Required information to provision a free trial account.</param>
+        // <param name='model'>Required information to provision a free trial account.</param>
         public NewAccountModel RequestFreeTrial(FreeTrialRequestModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/freetrials/request');
@@ -4999,7 +4999,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (NewAccountModel)System.JSON.deserialize(res.getBody(), NewAccountModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -5030,11 +5030,11 @@ global class AvaTaxClient
         // Please see [Estimating Tax with REST v2](http://developer.avalara.com/blog/2016/11/04/estimating-tax-with-rest-v2/)
         // for information on how to upgrade to the full AvaTax CreateTransaction API.
         // 
-        // <param name="line1">The street address of the location.</param>
-        // <param name="line2">The street address of the location.</param>
-        // <param name="line3">The street address of the location.</param>
-        // <param name="city">The city name of the location.</param>
-        // <param name="region">Name or ISO 3166 code identifying the region within the country.
+        // <param name='line1'>The street address of the location.</param>
+        // <param name='line2'>The street address of the location.</param>
+        // <param name='line3'>The street address of the location.</param>
+        // <param name='city'>The city name of the location.</param>
+        // <param name='region'>Name or ISO 3166 code identifying the region within the country.
         // 
         // This field supports many different region identifiers:
         //  * Two and three character ISO 3166 region codes
@@ -5042,8 +5042,8 @@ global class AvaTaxClient
         //  * Common alternative spellings for many regions
         // 
         // For a full list of all supported codes and names, please see the Definitions API `ListRegions`.</param>
-        // <param name="postalCode">The postal code of the location.</param>
-        // <param name="country">Name or ISO 3166 code identifying the country.
+        // <param name='postalCode'>The postal code of the location.</param>
+        // <param name='country'>Name or ISO 3166 code identifying the country.
         // 
         // This field supports many different country identifiers:
         //  * Two character ISO 3166 codes
@@ -5068,7 +5068,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (TaxRateModel)System.JSON.deserialize(res.getBody(), TaxRateModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -5101,7 +5101,7 @@ global class AvaTaxClient
         // Please see [Estimating Tax with REST v2](http://developer.avalara.com/blog/2016/11/04/estimating-tax-with-rest-v2/)
         // for information on how to upgrade to the full AvaTax CreateTransaction API.
         // 
-        // <param name="country">Name or ISO 3166 code identifying the country.
+        // <param name='country'>Name or ISO 3166 code identifying the country.
         // 
         // This field supports many different country identifiers:
         //  * Two character ISO 3166 codes
@@ -5110,7 +5110,7 @@ global class AvaTaxClient
         //  * Common alternative spellings for many countries
         // 
         // For a full list of all supported codes and names, please see the Definitions API `ListCountries`.</param>
-        // <param name="postalCode">The postal code of the location.</param>
+        // <param name='postalCode'>The postal code of the location.</param>
         public TaxRateModel TaxRatesByPostalCode(String country, String postalCode)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/taxrates/bypostalcode');
@@ -5122,7 +5122,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (TaxRateModel)System.JSON.deserialize(res.getBody(), TaxRateModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -5140,7 +5140,7 @@ global class AvaTaxClient
         // Use the 'methodReturn.javaScript' return value to insert this widget into your HTML page.
         // This API requires a subscription to Avalara Managed Returns or SST Certified Service Provider.
         // 
-        // <param name="id">The unique ID number of this funding request</param>
+        // <param name='id'>The unique ID number of this funding request</param>
         public FundingStatusModel ActivateFundingRequest(Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/fundingrequests/{id}/widget');
@@ -5151,7 +5151,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FundingStatusModel)System.JSON.deserialize(res.getBody(), FundingStatusModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -5167,7 +5167,7 @@ global class AvaTaxClient
         // This API checks the status on an existing funding request.
         // This API requires a subscription to Avalara Managed Returns or SST Certified Service Provider.
         // 
-        // <param name="id">The unique ID number of this funding request</param>
+        // <param name='id'>The unique ID number of this funding request</param>
         public FundingStatusModel FundingRequestStatus(Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/fundingrequests/{id}');
@@ -5178,7 +5178,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FundingStatusModel)System.JSON.deserialize(res.getBody(), FundingStatusModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -5191,8 +5191,8 @@ global class AvaTaxClient
         // from the item table instead. This allows your CreateTransaction call to be as simple as possible, and your tax compliance
         // team can manage your item catalog and adjust the tax behavior of items without having to modify your software.
         // 
-        // <param name="companyId">The ID of the company that owns this item.</param>
-        // <param name="model">The item you wish to create.</param>
+        // <param name='companyId'>The ID of the company that owns this item.</param>
+        // <param name='model'>The item you wish to create.</param>
         public List<ItemModel> CreateItems(Integer companyId, List<ItemModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/items');
@@ -5207,7 +5207,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -5220,8 +5220,8 @@ global class AvaTaxClient
         // from the item table instead. This allows your CreateTransaction call to be as simple as possible, and your tax compliance
         // team can manage your item catalog and adjust the tax behavior of items without having to modify your software.
         // 
-        // <param name="companyId">The ID of the company that owns this item.</param>
-        // <param name="id">The ID of the item you wish to delete.</param>
+        // <param name='companyId'>The ID of the company that owns this item.</param>
+        // <param name='id'>The ID of the item you wish to delete.</param>
         public List<ErrorDetail> DeleteItem(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/items/{id}');
@@ -5237,7 +5237,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -5250,8 +5250,8 @@ global class AvaTaxClient
         // from the item table instead. This allows your CreateTransaction call to be as simple as possible, and your tax compliance
         // team can manage your item catalog and adjust the tax behavior of items without having to modify your software.
         // 
-        // <param name="companyId">The ID of the company that owns this item object</param>
-        // <param name="id">The primary key of this item</param>
+        // <param name='companyId'>The ID of the company that owns this item object</param>
+        // <param name='id'>The primary key of this item</param>
         public ItemModel GetItem(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/items/{id}');
@@ -5263,7 +5263,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (ItemModel)System.JSON.deserialize(res.getBody(), ItemModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -5283,12 +5283,12 @@ global class AvaTaxClient
         //  
         // * Attributes
         // 
-        // <param name="companyId">The ID of the company that defined these items</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='companyId'>The ID of the company that defined these items</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<ItemModel> ListItemsByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/items');
@@ -5304,7 +5304,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<ItemModel>)System.JSON.deserialize(res.getBody(), FetchResult<ItemModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -5324,11 +5324,11 @@ global class AvaTaxClient
         //  
         // * Attributes
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<ItemModel> QueryItems(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/items');
@@ -5343,7 +5343,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<ItemModel>)System.JSON.deserialize(res.getBody(), FetchResult<ItemModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -5359,9 +5359,9 @@ global class AvaTaxClient
         // All data from the existing object will be replaced with data in the object you PUT. 
         // To set a field's value to null, you may either set its value to null or omit that field from the object you post.
         // 
-        // <param name="companyId">The ID of the company that this item belongs to.</param>
-        // <param name="id">The ID of the item you wish to update</param>
-        // <param name="model">The item object you wish to update.</param>
+        // <param name='companyId'>The ID of the company that this item belongs to.</param>
+        // <param name='id'>The ID of the item you wish to update</param>
+        // <param name='model'>The item object you wish to update.</param>
         public ItemModel UpdateItem(Integer companyId, Integer id, ItemModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/items/{id}');
@@ -5373,7 +5373,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (ItemModel)System.JSON.deserialize(res.getBody(), ItemModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -5385,8 +5385,8 @@ global class AvaTaxClient
         // between two different jurisdictions, you can choose to set up a jurisdiction override
         // to switch this address to use different taxing jurisdictions.
         // 
-        // <param name="accountId">The ID of the account that owns this override</param>
-        // <param name="model">The jurisdiction override objects to create</param>
+        // <param name='accountId'>The ID of the account that owns this override</param>
+        // <param name='model'>The jurisdiction override objects to create</param>
         public List<JurisdictionOverrideModel> CreateJurisdictionOverrides(Integer accountId, List<JurisdictionOverrideModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/jurisdictionoverrides');
@@ -5401,15 +5401,15 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
         // Delete a single override
         // Marks the item object at this URL as deleted.
         // 
-        // <param name="accountId">The ID of the account that owns this override</param>
-        // <param name="id">The ID of the override you wish to delete</param>
+        // <param name='accountId'>The ID of the account that owns this override</param>
+        // <param name='id'>The ID of the override you wish to delete</param>
         public List<ErrorDetail> DeleteJurisdictionOverride(Integer accountId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/jurisdictionoverrides/{id}');
@@ -5425,7 +5425,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -5437,8 +5437,8 @@ global class AvaTaxClient
         // between two different jurisdictions, you can choose to set up a jurisdiction override
         // to switch this address to use different taxing jurisdictions.
         // 
-        // <param name="accountId">The ID of the account that owns this override</param>
-        // <param name="id">The primary key of this override</param>
+        // <param name='accountId'>The ID of the account that owns this override</param>
+        // <param name='id'>The primary key of this override</param>
         public JurisdictionOverrideModel GetJurisdictionOverride(Integer accountId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/jurisdictionoverrides/{id}');
@@ -5450,7 +5450,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (JurisdictionOverrideModel)System.JSON.deserialize(res.getBody(), JurisdictionOverrideModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -5465,12 +5465,12 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
-        // <param name="accountId">The ID of the account that owns this override</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='accountId'>The ID of the account that owns this override</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<JurisdictionOverrideModel> ListJurisdictionOverridesByAccount(Integer accountId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/jurisdictionoverrides');
@@ -5486,7 +5486,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<JurisdictionOverrideModel>)System.JSON.deserialize(res.getBody(), FetchResult<JurisdictionOverrideModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -5501,11 +5501,11 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<JurisdictionOverrideModel> QueryJurisdictionOverrides(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/jurisdictionoverrides');
@@ -5520,16 +5520,16 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<JurisdictionOverrideModel>)System.JSON.deserialize(res.getBody(), FetchResult<JurisdictionOverrideModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
         // Update a single jurisdictionoverride
         // Replace the existing jurisdictionoverride object at this URL with an updated object.
         // 
-        // <param name="accountId">The ID of the account that this jurisdictionoverride belongs to.</param>
-        // <param name="id">The ID of the jurisdictionoverride you wish to update</param>
-        // <param name="model">The jurisdictionoverride object you wish to update.</param>
+        // <param name='accountId'>The ID of the account that this jurisdictionoverride belongs to.</param>
+        // <param name='id'>The ID of the jurisdictionoverride you wish to update</param>
+        // <param name='model'>The jurisdictionoverride object you wish to update.</param>
         public JurisdictionOverrideModel UpdateJurisdictionOverride(Integer accountId, Integer id, JurisdictionOverrideModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/jurisdictionoverrides/{id}');
@@ -5541,15 +5541,15 @@ global class AvaTaxClient
             {
                 responseModel.result = (JurisdictionOverrideModel)System.JSON.deserialize(res.getBody(), JurisdictionOverrideModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
         // Create a new location
         // Create one or more new location objects attached to this company.
         // 
-        // <param name="companyId">The ID of the company that owns this location.</param>
-        // <param name="model">The location you wish to create.</param>
+        // <param name='companyId'>The ID of the company that owns this location.</param>
+        // <param name='model'>The location you wish to create.</param>
         public List<LocationModel> CreateLocations(Integer companyId, List<LocationModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/locations');
@@ -5564,15 +5564,15 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
         // Delete a single location
         // Mark the location object at this URL as deleted.
         // 
-        // <param name="companyId">The ID of the company that owns this location.</param>
-        // <param name="id">The ID of the location you wish to delete.</param>
+        // <param name='companyId'>The ID of the company that owns this location.</param>
+        // <param name='id'>The ID of the location you wish to delete.</param>
         public List<ErrorDetail> DeleteLocation(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/locations/{id}');
@@ -5588,7 +5588,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -5603,9 +5603,9 @@ global class AvaTaxClient
         //  
         // * LocationSettings
         // 
-        // <param name="companyId">The ID of the company that owns this location</param>
-        // <param name="id">The primary key of this location</param>
-        // <param name="include">A comma separated list of additional data to retrieve. You may specify `LocationSettings` to retrieve location settings.</param>
+        // <param name='companyId'>The ID of the company that owns this location</param>
+        // <param name='id'>The primary key of this location</param>
+        // <param name='include'>A comma separated list of additional data to retrieve. You may specify `LocationSettings` to retrieve location settings.</param>
         public LocationModel GetLocation(Integer companyId, Integer id, String include)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/locations/{id}');
@@ -5618,7 +5618,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (LocationModel)System.JSON.deserialize(res.getBody(), LocationModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -5635,12 +5635,12 @@ global class AvaTaxClient
         //  
         // * LocationSettings
         // 
-        // <param name="companyId">The ID of the company that owns these locations</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve. You may specify `LocationSettings` to retrieve location settings.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='companyId'>The ID of the company that owns these locations</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve. You may specify `LocationSettings` to retrieve location settings.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<LocationModel> ListLocationsByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/locations');
@@ -5656,7 +5656,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<LocationModel>)System.JSON.deserialize(res.getBody(), FetchResult<LocationModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -5674,11 +5674,11 @@ global class AvaTaxClient
         //  
         // * LocationSettings
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve. You may specify `LocationSettings` to retrieve location settings.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve. You may specify `LocationSettings` to retrieve location settings.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<LocationModel> QueryLocations(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/locations');
@@ -5693,7 +5693,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<LocationModel>)System.JSON.deserialize(res.getBody(), FetchResult<LocationModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -5702,9 +5702,9 @@ global class AvaTaxClient
         // All data from the existing object will be replaced with data in the object you PUT. 
         // To set a field's value to null, you may either set its value to null or omit that field from the object you post.
         // 
-        // <param name="companyId">The ID of the company that this location belongs to.</param>
-        // <param name="id">The ID of the location you wish to update</param>
-        // <param name="model">The location you wish to update.</param>
+        // <param name='companyId'>The ID of the company that this location belongs to.</param>
+        // <param name='id'>The ID of the location you wish to update</param>
+        // <param name='model'>The location you wish to update.</param>
         public LocationModel UpdateLocation(Integer companyId, Integer id, LocationModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/locations/{id}');
@@ -5716,7 +5716,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (LocationModel)System.JSON.deserialize(res.getBody(), LocationModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -5725,8 +5725,8 @@ global class AvaTaxClient
         // This API call is intended to compare this location against the currently known taxing authority rules and regulations,
         // and provide information about what additional work is required to completely setup this location.
         // 
-        // <param name="companyId">The ID of the company that owns this location</param>
-        // <param name="id">The primary key of this location</param>
+        // <param name='companyId'>The ID of the company that owns this location</param>
+        // <param name='id'>The primary key of this location</param>
         public LocationValidationModel ValidateLocation(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/locations/{id}/validate');
@@ -5738,7 +5738,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (LocationValidationModel)System.JSON.deserialize(res.getBody(), LocationValidationModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -5754,10 +5754,10 @@ global class AvaTaxClient
         // 
         // Transactions that have been previously reported to a tax authority by Avalara Managed Returns are considered locked and are no longer available for adjustments.
         // 
-        // <param name="code">The transaction code for this MultiDocument transaction</param>
-        // <param name="type">The transaction type for this MultiDocument transaction</param>
-        // <param name="include">Specifies objects to include in this fetch call</param>
-        // <param name="model">The adjust request you wish to execute</param>
+        // <param name='code'>The transaction code for this MultiDocument transaction</param>
+        // <param name='type'>The transaction type for this MultiDocument transaction</param>
+        // <param name='include'>Specifies objects to include in this fetch call</param>
+        // <param name='model'>The adjust request you wish to execute</param>
         public MultiDocumentModel AdjustMultiDocumentTransaction(String code, DocumentType type, String include, AdjustMultiDocumentModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/multidocument/{code}/type/{type}/adjust');
@@ -5770,7 +5770,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -5790,8 +5790,8 @@ global class AvaTaxClient
         // A transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like
         // sales, purchases, inventory transfer, and returns (also called refunds).
         // 
-        // <param name="code">The transaction code for this MultiDocument transaction</param>
-        // <param name="type">The transaction type for this MultiDocument transaction</param>
+        // <param name='code'>The transaction code for this MultiDocument transaction</param>
+        // <param name='type'>The transaction type for this MultiDocument transaction</param>
         public AuditMultiDocumentModel AuditMultiDocumentTransaction(String code, DocumentType type)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/multidocument/{code}/type/{type}/audit');
@@ -5803,7 +5803,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (AuditMultiDocumentModel)System.JSON.deserialize(res.getBody(), AuditMultiDocumentModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -5817,7 +5817,7 @@ global class AvaTaxClient
         // 
         // Any changes made to a committed transaction will generate a transaction history.
         // 
-        // <param name="model">The commit request you wish to execute</param>
+        // <param name='model'>The commit request you wish to execute</param>
         public MultiDocumentModel CommitMultiDocumentTransaction(CommitMultiDocumentModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/multidocument/commit');
@@ -5827,7 +5827,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -5865,8 +5865,8 @@ global class AvaTaxClient
         //  
         // If you omit the `$include` parameter, the API will assume you want `Summary,Addresses`.
         // 
-        // <param name="include">Specifies objects to include in the response after transaction is created</param>
-        // <param name="model">the multi document transaction model</param>
+        // <param name='include'>Specifies objects to include in the response after transaction is created</param>
+        // <param name='model'>the multi document transaction model</param>
         public MultiDocumentModel CreateMultiDocumentTransaction(String include, CreateMultiDocumentModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/multidocument');
@@ -5877,7 +5877,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -5895,9 +5895,9 @@ global class AvaTaxClient
         // * SummaryOnly (omit lines and details - reduces API response size)
         // * LinesOnly (omit details - reduces API response size)
         // 
-        // <param name="code"></param>
-        // <param name="type"></param>
-        // <param name="include">Specifies objects to include in the response after transaction is created</param>
+        // <param name='code'></param>
+        // <param name='type'></param>
+        // <param name='include'>Specifies objects to include in the response after transaction is created</param>
         public MultiDocumentModel GetMultiDocumentTransactionByCodeAndType(String code, DocumentType type, String include)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/multidocument/{code}/type/{type}');
@@ -5910,7 +5910,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -5937,8 +5937,8 @@ global class AvaTaxClient
         // * SummaryOnly (omit lines and details - reduces API response size)
         // * LinesOnly (omit details - reduces API response size)
         // 
-        // <param name="id">The unique ID number of the MultiDocument transaction to retrieve</param>
-        // <param name="include">Specifies objects to include in the response after transaction is created</param>
+        // <param name='id'>The unique ID number of the MultiDocument transaction to retrieve</param>
+        // <param name='include'>Specifies objects to include in the response after transaction is created</param>
         public MultiDocumentModel GetMultiDocumentTransactionById(Integer id, String include)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/multidocument/{id}');
@@ -5950,7 +5950,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -5975,11 +5975,11 @@ global class AvaTaxClient
         // * SummaryOnly (omit lines and details - reduces API response size)
         // * LinesOnly (omit details - reduces API response size)
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">Specifies objects to include in the response after transaction is created</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>Specifies objects to include in the response after transaction is created</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<MultiDocumentModel> ListMultiDocumentTransactions(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/multidocument');
@@ -5994,7 +5994,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<MultiDocumentModel>)System.JSON.deserialize(res.getBody(), FetchResult<MultiDocumentModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -6036,10 +6036,10 @@ global class AvaTaxClient
         //  
         // If you omit the `$include` parameter, the API will assume you want `Summary,Addresses`.
         // 
-        // <param name="code">The code of this MultiDocument transaction</param>
-        // <param name="type">The type of this MultiDocument transaction</param>
-        // <param name="include">Specifies objects to include in the response after transaction is created</param>
-        // <param name="model">Information about the refund to create</param>
+        // <param name='code'>The code of this MultiDocument transaction</param>
+        // <param name='type'>The type of this MultiDocument transaction</param>
+        // <param name='include'>Specifies objects to include in the response after transaction is created</param>
+        // <param name='model'>Information about the refund to create</param>
         public MultiDocumentModel RefundMultiDocumentTransaction(String code, DocumentType type, String include, RefundTransactionModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/multidocument/{code}/type/{type}/refund');
@@ -6052,7 +6052,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -6064,7 +6064,7 @@ global class AvaTaxClient
         // A transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like
         // sales, purchases, inventory transfer, and returns (also called refunds).
         // 
-        // <param name="model">Information from your accounting system to verify against this MultiDocument transaction as it is stored in AvaTax</param>
+        // <param name='model'>Information from your accounting system to verify against this MultiDocument transaction as it is stored in AvaTax</param>
         public MultiDocumentModel VerifyMultiDocumentTransaction(VerifyMultiDocumentModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/multidocument/verify');
@@ -6074,7 +6074,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -6089,9 +6089,9 @@ global class AvaTaxClient
         // Transactions that have been previously reported to a tax authority by Avalara Managed Returns Service are considered `locked`,
         // and they are no longer available to be voided.
         // 
-        // <param name="code">The transaction code for this MultiDocument transaction</param>
-        // <param name="type">The transaction type for this MultiDocument transaction</param>
-        // <param name="model">The void request you wish to execute</param>
+        // <param name='code'>The transaction code for this MultiDocument transaction</param>
+        // <param name='type'>The transaction type for this MultiDocument transaction</param>
+        // <param name='model'>The void request you wish to execute</param>
         public MultiDocumentModel VoidMultiDocumentTransaction(String code, DocumentType type, VoidTransactionModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/multidocument/{code}/type/{type}/void');
@@ -6103,7 +6103,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (MultiDocumentModel)System.JSON.deserialize(res.getBody(), MultiDocumentModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -6118,8 +6118,8 @@ global class AvaTaxClient
         // You may only define nexus matching the official list of declared nexus.
         // Please allow 1 minute before start using the created Nexus in your transactions.
         // 
-        // <param name="companyId">The ID of the company that owns this nexus.</param>
-        // <param name="model">The nexus you wish to create.</param>
+        // <param name='companyId'>The ID of the company that owns this nexus.</param>
+        // <param name='model'>The nexus you wish to create.</param>
         public List<NexusModel> CreateNexus(Integer companyId, List<NexusModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/nexus');
@@ -6134,7 +6134,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -6142,8 +6142,8 @@ global class AvaTaxClient
         // Marks the existing nexus object at this URL as deleted.
         // Please allow 1 minute to stop collecting tax in your transaction on the deleted Nexus.
         // 
-        // <param name="companyId">The ID of the company that owns this nexus.</param>
-        // <param name="id">The ID of the nexus you wish to delete.</param>
+        // <param name='companyId'>The ID of the company that owns this nexus.</param>
+        // <param name='id'>The ID of the nexus you wish to delete.</param>
         public List<ErrorDetail> DeleteNexus(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/nexus/{id}');
@@ -6159,7 +6159,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -6170,8 +6170,8 @@ global class AvaTaxClient
         // When defining companies in AvaTax, you must declare nexus for your company in order to correctly calculate tax
         // in all jurisdictions affected by your transactions.
         // 
-        // <param name="companyId">The ID of the company that owns this nexus object</param>
-        // <param name="id">The primary key of this nexus</param>
+        // <param name='companyId'>The ID of the company that owns this nexus object</param>
+        // <param name='id'>The primary key of this nexus</param>
         public NexusModel GetNexus(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/nexus/{id}');
@@ -6183,7 +6183,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (NexusModel)System.JSON.deserialize(res.getBody(), NexusModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -6200,8 +6200,8 @@ global class AvaTaxClient
         // a tax form, you may want to know whether you have declared nexus in all the jurisdictions related to that tax 
         // form in order to better understand how the form will be filled out.
         // 
-        // <param name="companyId">The ID of the company that owns this nexus object</param>
-        // <param name="formCode">The form code that we are looking up the nexus for</param>
+        // <param name='companyId'>The ID of the company that owns this nexus object</param>
+        // <param name='formCode'>The form code that we are looking up the nexus for</param>
         public NexusByTaxFormModel GetNexusByFormCode(Integer companyId, String formCode)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/nexus/byform/{formCode}');
@@ -6213,7 +6213,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (NexusByTaxFormModel)System.JSON.deserialize(res.getBody(), NexusByTaxFormModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -6227,12 +6227,12 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
-        // <param name="companyId">The ID of the company that owns these nexus objects</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='companyId'>The ID of the company that owns these nexus objects</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NexusModel> ListNexusByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/nexus');
@@ -6248,7 +6248,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<NexusModel>)System.JSON.deserialize(res.getBody(), FetchResult<NexusModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -6262,11 +6262,11 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NexusModel> QueryNexus(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/nexus');
@@ -6281,7 +6281,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<NexusModel>)System.JSON.deserialize(res.getBody(), FetchResult<NexusModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -6298,9 +6298,9 @@ global class AvaTaxClient
         // To set a field's value to null, you may either set its value to null or omit that field from the object you post.
         // Please allow 1 minute to start seeing your updated Nexus taking effect on your transactions.
         // 
-        // <param name="companyId">The ID of the company that this nexus belongs to.</param>
-        // <param name="id">The ID of the nexus you wish to update</param>
-        // <param name="model">The nexus object you wish to update.</param>
+        // <param name='companyId'>The ID of the company that this nexus belongs to.</param>
+        // <param name='id'>The ID of the nexus you wish to update</param>
+        // <param name='model'>The nexus object you wish to update.</param>
         public NexusModel UpdateNexus(Integer companyId, Integer id, NexusModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/nexus/{id}');
@@ -6312,7 +6312,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (NexusModel)System.JSON.deserialize(res.getBody(), NexusModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -6322,9 +6322,9 @@ global class AvaTaxClient
         // A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
         // Returns customers often receive support and assistance from the Compliance Notices team in handling notices received by taxing authorities.
         // 
-        // <param name="companyId">The ID of the company that owns this notice.</param>
-        // <param name="id">The ID of the tax notice we are adding the comment for.</param>
-        // <param name="model">The notice comments you wish to create.</param>
+        // <param name='companyId'>The ID of the company that owns this notice.</param>
+        // <param name='id'>The ID of the tax notice we are adding the comment for.</param>
+        // <param name='model'>The notice comments you wish to create.</param>
         public List<NoticeCommentModel> CreateNoticeComment(Integer companyId, Integer id, List<NoticeCommentModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}/comments');
@@ -6340,7 +6340,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -6351,9 +6351,9 @@ global class AvaTaxClient
         // A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
         // Returns customers often receive support and assistance from the Compliance Notices team in handling notices received by taxing authorities.
         // 
-        // <param name="companyId">The ID of the company that owns this notice.</param>
-        // <param name="id">The ID of the notice added to the finance details.</param>
-        // <param name="model">The notice finance details you wish to create.</param>
+        // <param name='companyId'>The ID of the company that owns this notice.</param>
+        // <param name='id'>The ID of the notice added to the finance details.</param>
+        // <param name='model'>The notice finance details you wish to create.</param>
         public List<NoticeFinanceModel> CreateNoticeFinanceDetails(Integer companyId, Integer id, List<NoticeFinanceModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}/financedetails');
@@ -6369,7 +6369,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -6379,9 +6379,9 @@ global class AvaTaxClient
         // A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
         // Returns customers often receive support and assistance from the Compliance Notices team in handling notices received by taxing authorities.
         // 
-        // <param name="companyId">The ID of the company that owns this notice.</param>
-        // <param name="id">The ID of the tax notice we are adding the responsibility for.</param>
-        // <param name="model">The notice responsibilities you wish to create.</param>
+        // <param name='companyId'>The ID of the company that owns this notice.</param>
+        // <param name='id'>The ID of the tax notice we are adding the responsibility for.</param>
+        // <param name='model'>The notice responsibilities you wish to create.</param>
         public List<NoticeResponsibilityDetailModel> CreateNoticeResponsibilities(Integer companyId, Integer id, List<NoticeResponsibilityDetailModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}/responsibilities');
@@ -6397,7 +6397,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -6407,9 +6407,9 @@ global class AvaTaxClient
         // A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
         // Returns customers often receive support and assistance from the Compliance Notices team in handling notices received by taxing authorities.
         // 
-        // <param name="companyId">The ID of the company that owns this notice.</param>
-        // <param name="id">The ID of the tax notice we are adding the responsibility for.</param>
-        // <param name="model">The notice root causes you wish to create.</param>
+        // <param name='companyId'>The ID of the company that owns this notice.</param>
+        // <param name='id'>The ID of the tax notice we are adding the responsibility for.</param>
+        // <param name='model'>The notice root causes you wish to create.</param>
         public List<NoticeRootCauseDetailModel> CreateNoticeRootCauses(Integer companyId, Integer id, List<NoticeRootCauseDetailModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}/rootcauses');
@@ -6425,7 +6425,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -6435,8 +6435,8 @@ global class AvaTaxClient
         // A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
         // Returns customers often receive support and assistance from the Compliance Notices team in handling notices received by taxing authorities.
         // 
-        // <param name="companyId">The ID of the company that owns this notice.</param>
-        // <param name="model">The notice object you wish to create.</param>
+        // <param name='companyId'>The ID of the company that owns this notice.</param>
+        // <param name='model'>The notice object you wish to create.</param>
         public List<NoticeModel> CreateNotices(Integer companyId, List<NoticeModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices');
@@ -6451,7 +6451,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -6461,8 +6461,8 @@ global class AvaTaxClient
         // A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
         // Returns customers often receive support and assistance from the Compliance Notices team in handling notices received by taxing authorities.
         // 
-        // <param name="companyId">The ID of the company that owns this notice.</param>
-        // <param name="id">The ID of the notice you wish to delete.</param>
+        // <param name='companyId'>The ID of the company that owns this notice.</param>
+        // <param name='id'>The ID of the notice you wish to delete.</param>
         public List<ErrorDetail> DeleteNotice(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}');
@@ -6478,7 +6478,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -6488,9 +6488,9 @@ global class AvaTaxClient
         // A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
         // Returns customers often receive support and assistance from the Compliance Notices team in handling notices received by taxing authorities.
         // 
-        // <param name="companyId">The ID of the company that owns this notice.</param>
-        // <param name="noticeId">The ID of the notice you wish to delete.</param>
-        // <param name="id">The ID of the responsibility you wish to delete.</param>
+        // <param name='companyId'>The ID of the company that owns this notice.</param>
+        // <param name='noticeId'>The ID of the notice you wish to delete.</param>
+        // <param name='id'>The ID of the responsibility you wish to delete.</param>
         public List<ErrorDetail> DeleteResponsibilities(Integer companyId, Integer noticeId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{noticeId}/responsibilities/{id}');
@@ -6507,7 +6507,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -6517,9 +6517,9 @@ global class AvaTaxClient
         // A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
         // Returns customers often receive support and assistance from the Compliance Notices team in handling notices received by taxing authorities.
         // 
-        // <param name="companyId">The ID of the company that owns this notice.</param>
-        // <param name="noticeId">The ID of the notice you wish to delete.</param>
-        // <param name="id">The ID of the root cause you wish to delete.</param>
+        // <param name='companyId'>The ID of the company that owns this notice.</param>
+        // <param name='noticeId'>The ID of the notice you wish to delete.</param>
+        // <param name='id'>The ID of the root cause you wish to delete.</param>
         public List<ErrorDetail> DeleteRootCauses(Integer companyId, Integer noticeId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{noticeId}/rootcauses/{id}');
@@ -6536,7 +6536,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -6544,8 +6544,8 @@ global class AvaTaxClient
         // This API is available by invitation only.
         // Get the file attachment identified by this URL.
         // 
-        // <param name="companyId">The ID of the company for this attachment.</param>
-        // <param name="id">The ResourceFileId of the attachment to download.</param>
+        // <param name='companyId'>The ID of the company for this attachment.</param>
+        // <param name='id'>The ResourceFileId of the attachment to download.</param>
         public FileResult DownloadNoticeAttachment(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/files/{id}/attachment');
@@ -6553,7 +6553,7 @@ global class AvaTaxClient
             path.ApplyField('id', id);
             FileResultModel responseModel = null;
             responseModel = (FileResultModel) restCallForFile('GET', path.relativePath, null);
-            return responseModel
+            return responseModel;
         }
 
 
@@ -6563,8 +6563,8 @@ global class AvaTaxClient
         // A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
         // Returns customers often receive support and assistance from the Compliance Notices team in handling notices received by taxing authorities.
         // 
-        // <param name="companyId">The ID of the company for this notice.</param>
-        // <param name="id">The ID of this notice.</param>
+        // <param name='companyId'>The ID of the company for this notice.</param>
+        // <param name='id'>The ID of this notice.</param>
         public NoticeModel GetNotice(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}');
@@ -6576,7 +6576,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (NoticeModel)System.JSON.deserialize(res.getBody(), NoticeModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -6586,8 +6586,8 @@ global class AvaTaxClient
         // A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
         // Returns customers often receive support and assistance from the Compliance Notices team in handling notices received by taxing authorities.
         // 
-        // <param name="id">The ID of the notice.</param>
-        // <param name="companyId">The ID of the company that owns these notices.</param>
+        // <param name='id'>The ID of the notice.</param>
+        // <param name='companyId'>The ID of the company that owns these notices.</param>
         public FetchResult<NoticeCommentModel> GetNoticeComments(Integer id, Integer companyId)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}/comments');
@@ -6599,7 +6599,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<NoticeCommentModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeCommentModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -6610,8 +6610,8 @@ global class AvaTaxClient
         // A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
         // Returns customers often receive support and assistance from the Compliance Notices team in handling notices received by taxing authorities.
         // 
-        // <param name="id">The ID of the company that owns these notices.</param>
-        // <param name="companyId">The ID of the company that owns these notices.</param>
+        // <param name='id'>The ID of the company that owns these notices.</param>
+        // <param name='companyId'>The ID of the company that owns these notices.</param>
         public FetchResult<NoticeFinanceModel> GetNoticeFinanceDetails(Integer id, Integer companyId)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}/financedetails');
@@ -6623,7 +6623,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<NoticeFinanceModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeFinanceModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -6633,8 +6633,8 @@ global class AvaTaxClient
         // A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
         // Returns customers often receive support and assistance from the Compliance Notices team in handling notices received by taxing authorities.
         // 
-        // <param name="id">The ID of the notice.</param>
-        // <param name="companyId">The ID of the company that owns these notices.</param>
+        // <param name='id'>The ID of the notice.</param>
+        // <param name='companyId'>The ID of the company that owns these notices.</param>
         public FetchResult<NoticeResponsibilityDetailModel> GetNoticeResponsibilities(Integer id, Integer companyId)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}/responsibilities');
@@ -6646,7 +6646,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<NoticeResponsibilityDetailModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeResponsibilityDetailModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -6656,8 +6656,8 @@ global class AvaTaxClient
         // A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
         // Returns customers often receive support and assistance from the Compliance Notices team in handling notices received by taxing authorities.
         // 
-        // <param name="id">The ID of the notice.</param>
-        // <param name="companyId">The ID of the company that owns these notices.</param>
+        // <param name='id'>The ID of the notice.</param>
+        // <param name='companyId'>The ID of the company that owns these notices.</param>
         public FetchResult<NoticeRootCauseDetailModel> GetNoticeRootCauses(Integer id, Integer companyId)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}/rootcauses');
@@ -6669,7 +6669,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<NoticeRootCauseDetailModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeRootCauseDetailModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -6682,12 +6682,12 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
-        // <param name="companyId">The ID of the company that owns these notices.</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='companyId'>The ID of the company that owns these notices.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NoticeModel> ListNoticesByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices');
@@ -6703,7 +6703,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<NoticeModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -6716,11 +6716,11 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<NoticeModel> QueryNotices(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/notices');
@@ -6735,7 +6735,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<NoticeModel>)System.JSON.deserialize(res.getBody(), FetchResult<NoticeModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -6747,9 +6747,9 @@ global class AvaTaxClient
         // All data from the existing object will be replaced with data in the object you PUT. 
         // To set a field's value to null, you may either set its value to null or omit that field from the object you post.
         // 
-        // <param name="companyId">The ID of the company that this notice belongs to.</param>
-        // <param name="id">The ID of the notice you wish to update.</param>
-        // <param name="model">The notice object you wish to update.</param>
+        // <param name='companyId'>The ID of the company that this notice belongs to.</param>
+        // <param name='id'>The ID of the notice you wish to update.</param>
+        // <param name='model'>The notice object you wish to update.</param>
         public NoticeModel UpdateNotice(Integer companyId, Integer id, NoticeModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}');
@@ -6761,7 +6761,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (NoticeModel)System.JSON.deserialize(res.getBody(), NoticeModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -6769,15 +6769,15 @@ global class AvaTaxClient
         // This API is available by invitation only.
         // Get the file attachment identified by this URL.
         // 
-        // <param name="companyId">The ID of the company for this attachment.</param>
-        // <param name="model">The ResourceFileId of the attachment to download.</param>
+        // <param name='companyId'>The ID of the company for this attachment.</param>
+        // <param name='model'>The ResourceFileId of the attachment to download.</param>
         public FileResult UploadAttachment(Integer companyId, ResourceFileUploadRequestModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/files/attachment');
             path.ApplyField('companyId', companyId);
             FileResultModel responseModel = null;
             responseModel = (FileResultModel) restCallForFile('POST', path.relativePath, model);
-            return responseModel
+            return responseModel;
         }
 
 
@@ -6797,7 +6797,7 @@ global class AvaTaxClient
         // conditions, the account will be created in `New` status and they can receive a license key by logging
         // onto the AvaTax website and reviewing terms and conditions online.
         // 
-        // <param name="model">Information about the account you wish to create and the selected product offerings.</param>
+        // <param name='model'>Information about the account you wish to create and the selected product offerings.</param>
         public NewAccountModel RequestNewAccount(NewAccountRequestModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/request');
@@ -6807,7 +6807,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (NewAccountModel)System.JSON.deserialize(res.getBody(), NewAccountModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -6819,7 +6819,7 @@ global class AvaTaxClient
         // This API only allows the currently authenticated user to change their password; it cannot be used to apply to a
         // different user than the one authenticating the current API call.
         // 
-        // <param name="model">An object containing your current password and the new password.</param>
+        // <param name='model'>An object containing your current password and the new password.</param>
         public String ChangePassword(PasswordChangeModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/passwords');
@@ -6829,7 +6829,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (String)System.JSON.deserialize(res.getBody(), String.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -6840,7 +6840,7 @@ global class AvaTaxClient
         // Create a single new account object. 
         // When creating an account object you may attach subscriptions and users as part of the 'Create' call.
         // 
-        // <param name="model">The account you wish to create.</param>
+        // <param name='model'>The account you wish to create.</param>
         public AccountModel CreateAccount(AccountModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts');
@@ -6850,7 +6850,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (AccountModel)System.JSON.deserialize(res.getBody(), AccountModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -6862,8 +6862,8 @@ global class AvaTaxClient
         // A 'subscription' indicates a licensed subscription to a named Avalara service.
         // To request or remove subscriptions, please contact Avalara sales or your customer account manager.
         // 
-        // <param name="accountId">The ID of the account that owns this subscription.</param>
-        // <param name="model">The subscription you wish to create.</param>
+        // <param name='accountId'>The ID of the account that owns this subscription.</param>
+        // <param name='model'>The subscription you wish to create.</param>
         public List<SubscriptionModel> CreateSubscriptions(Integer accountId, List<SubscriptionModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/subscriptions');
@@ -6878,7 +6878,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -6889,7 +6889,7 @@ global class AvaTaxClient
         // Delete an account.
         // Deleting an account will delete all companies and all account level users attached to this account.
         // 
-        // <param name="id">The ID of the account you wish to delete.</param>
+        // <param name='id'>The ID of the account you wish to delete.</param>
         public List<ErrorDetail> DeleteAccount(Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{id}');
@@ -6904,7 +6904,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -6914,8 +6914,8 @@ global class AvaTaxClient
         // 
         // Mark the existing account identified by this URL as deleted.
         // 
-        // <param name="accountId">The ID of the account that owns this subscription.</param>
-        // <param name="id">The ID of the subscription you wish to delete.</param>
+        // <param name='accountId'>The ID of the account that owns this subscription.</param>
+        // <param name='id'>The ID of the subscription you wish to delete.</param>
         public List<ErrorDetail> DeleteSubscription(Integer accountId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/subscriptions/{id}');
@@ -6931,7 +6931,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -6941,8 +6941,8 @@ global class AvaTaxClient
         // 
         // Mark the user object identified by this URL as deleted.
         // 
-        // <param name="id">The ID of the user you wish to delete.</param>
-        // <param name="accountId">The accountID of the user you wish to delete.</param>
+        // <param name='id'>The ID of the user you wish to delete.</param>
+        // <param name='accountId'>The accountID of the user you wish to delete.</param>
         public List<ErrorDetail> DeleteUser(Integer id, Integer accountId)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/users/{id}');
@@ -6958,7 +6958,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -6976,11 +6976,11 @@ global class AvaTaxClient
         //  
         // For more information about filtering in REST, please see the documentation at http://developer.avalara.com/avatax/filtering-in-rest/ .
         // 
-        // <param name="include">A comma separated list of objects to fetch underneath this account. Any object with a URL path underneath this account can be fetched by specifying its name.</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='include'>A comma separated list of objects to fetch underneath this account. Any object with a URL path underneath this account can be fetched by specifying its name.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<AccountModel> QueryAccounts(String include, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts');
@@ -6995,7 +6995,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<AccountModel>)System.JSON.deserialize(res.getBody(), FetchResult<AccountModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7007,8 +7007,8 @@ global class AvaTaxClient
         // This API is only available for Avalara Registrar Admins, and can be used to reset the password of any
         // user based on internal Avalara business processes.
         // 
-        // <param name="userId">The unique ID of the user whose password will be changed</param>
-        // <param name="model">The new password for this user</param>
+        // <param name='userId'>The unique ID of the user whose password will be changed</param>
+        // <param name='model'>The new password for this user</param>
         public String ResetPassword(Integer userId, SetPasswordModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/passwords/{userId}/reset');
@@ -7019,7 +7019,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (String)System.JSON.deserialize(res.getBody(), String.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7029,8 +7029,8 @@ global class AvaTaxClient
         // 
         // Replace an existing account object with an updated account object.
         // 
-        // <param name="id">The ID of the account you wish to update.</param>
-        // <param name="model">The account object you wish to update.</param>
+        // <param name='id'>The ID of the account you wish to update.</param>
+        // <param name='model'>The account object you wish to update.</param>
         public AccountModel UpdateAccount(Integer id, AccountModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{id}');
@@ -7041,7 +7041,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (AccountModel)System.JSON.deserialize(res.getBody(), AccountModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7055,9 +7055,9 @@ global class AvaTaxClient
         // All data from the existing object will be replaced with data in the object you PUT. 
         // To set a field's value to null, you may either set its value to null or omit that field from the object you post.
         // 
-        // <param name="accountId">The ID of the account that this subscription belongs to.</param>
-        // <param name="id">The ID of the subscription you wish to update</param>
-        // <param name="model">The subscription you wish to update.</param>
+        // <param name='accountId'>The ID of the account that this subscription belongs to.</param>
+        // <param name='id'>The ID of the subscription you wish to update</param>
+        // <param name='model'>The subscription you wish to update.</param>
         public SubscriptionModel UpdateSubscription(Integer accountId, Integer id, SubscriptionModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/subscriptions/{id}');
@@ -7069,7 +7069,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (SubscriptionModel)System.JSON.deserialize(res.getBody(), SubscriptionModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7089,14 +7089,14 @@ global class AvaTaxClient
         // 
         // This API works for all report types.
         // 
-        // <param name="id">The unique ID number of this report</param>
+        // <param name='id'>The unique ID number of this report</param>
         public FileResult DownloadReport(Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/reports/{id}/attachment');
             path.ApplyField('id', id);
             FileResultModel responseModel = null;
             responseModel = (FileResultModel) restCallForFile('GET', path.relativePath, null);
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7110,15 +7110,15 @@ global class AvaTaxClient
         // * Check the status of a report by calling `GetReport` and passing in the report's `id` value.
         // * When a report's status is `Completed`, call `DownloadReport` to retrieve the file.
         // 
-        // <param name="companyId">The unique ID number of the company to report on.</param>
-        // <param name="model">Options that may be configured to customize the report.</param>
+        // <param name='companyId'>The unique ID number of the company to report on.</param>
+        // <param name='model'>Options that may be configured to customize the report.</param>
         public FileResult ExportDocumentLine(Integer companyId, ExportDocumentLineModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/reports/exportdocumentline');
             path.ApplyField('companyId', companyId);
             FileResultModel responseModel = null;
             responseModel = (FileResultModel) restCallForFile('POST', path.relativePath, model);
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7135,7 +7135,7 @@ global class AvaTaxClient
         // 
         // This API call returns information about any report type.
         // 
-        // <param name="id">The unique ID number of the report to retrieve</param>
+        // <param name='id'>The unique ID number of the report to retrieve</param>
         public ReportModel GetReport(Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/reports/{id}');
@@ -7146,7 +7146,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (ReportModel)System.JSON.deserialize(res.getBody(), ReportModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7163,15 +7163,15 @@ global class AvaTaxClient
         // 
         // The `ExportDocumentLine` report produces information about invoice lines recorded within your account.
         // 
-        // <param name="companyId">The unique ID number of the company to report on.</param>
-        // <param name="model">Options that may be configured to customize the report.</param>
+        // <param name='companyId'>The unique ID number of the company to report on.</param>
+        // <param name='model'>Options that may be configured to customize the report.</param>
         public FileResult InitiateExportDocumentLineReport(Integer companyId, ExportDocumentLineModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/reports/exportdocumentline/initiate');
             path.ApplyField('companyId', companyId);
             FileResultModel responseModel = null;
             responseModel = (FileResultModel) restCallForFile('POST', path.relativePath, model);
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7197,7 +7197,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<ReportModel>)System.JSON.deserialize(res.getBody(), FetchResult<ReportModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7210,8 +7210,8 @@ global class AvaTaxClient
         // To ensure correct operation of other programs or connectors, please create a new GUID for your application and use that value for
         // the 'set' data field.
         // 
-        // <param name="companyId">The ID of the company that owns this setting.</param>
-        // <param name="model">The setting you wish to create.</param>
+        // <param name='companyId'>The ID of the company that owns this setting.</param>
+        // <param name='model'>The setting you wish to create.</param>
         public List<SettingModel> CreateSettings(Integer companyId, List<SettingModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/settings');
@@ -7226,15 +7226,15 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
         // Delete a single setting
         // Mark the setting object at this URL as deleted.
         // 
-        // <param name="companyId">The ID of the company that owns this setting.</param>
-        // <param name="id">The ID of the setting you wish to delete.</param>
+        // <param name='companyId'>The ID of the company that owns this setting.</param>
+        // <param name='id'>The ID of the setting you wish to delete.</param>
         public List<ErrorDetail> DeleteSetting(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/settings/{id}');
@@ -7250,7 +7250,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -7263,8 +7263,8 @@ global class AvaTaxClient
         // To ensure correct operation of other programs or connectors, please create a new GUID for your application and use that value for
         // the 'set' data field.
         // 
-        // <param name="companyId">The ID of the company that owns this setting</param>
-        // <param name="id">The primary key of this setting</param>
+        // <param name='companyId'>The ID of the company that owns this setting</param>
+        // <param name='id'>The primary key of this setting</param>
         public SettingModel GetSetting(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/settings/{id}');
@@ -7276,7 +7276,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (SettingModel)System.JSON.deserialize(res.getBody(), SettingModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7292,12 +7292,12 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
-        // <param name="companyId">The ID of the company that owns these settings</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='companyId'>The ID of the company that owns these settings</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<SettingModel> ListSettingsByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/settings');
@@ -7313,7 +7313,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<SettingModel>)System.JSON.deserialize(res.getBody(), FetchResult<SettingModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7329,11 +7329,11 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<SettingModel> QuerySettings(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/settings');
@@ -7348,7 +7348,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<SettingModel>)System.JSON.deserialize(res.getBody(), FetchResult<SettingModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7363,9 +7363,9 @@ global class AvaTaxClient
         // All data from the existing object will be replaced with data in the object you PUT. 
         // To set a field's value to null, you may either set its value to null or omit that field from the object you post.
         // 
-        // <param name="companyId">The ID of the company that this setting belongs to.</param>
-        // <param name="id">The ID of the setting you wish to update</param>
-        // <param name="model">The setting you wish to update.</param>
+        // <param name='companyId'>The ID of the company that this setting belongs to.</param>
+        // <param name='id'>The ID of the setting you wish to update</param>
+        // <param name='model'>The setting you wish to update.</param>
         public SettingModel UpdateSetting(Integer companyId, Integer id, SettingModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/settings/{id}');
@@ -7377,7 +7377,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (SettingModel)System.JSON.deserialize(res.getBody(), SettingModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7386,8 +7386,8 @@ global class AvaTaxClient
         // A 'subscription' indicates a licensed subscription to a named Avalara service.
         // To request or remove subscriptions, please contact Avalara sales or your customer account manager.
         // 
-        // <param name="accountId">The ID of the account that owns this subscription</param>
-        // <param name="id">The primary key of this subscription</param>
+        // <param name='accountId'>The ID of the account that owns this subscription</param>
+        // <param name='id'>The primary key of this subscription</param>
         public SubscriptionModel GetSubscription(Integer accountId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/subscriptions/{id}');
@@ -7399,7 +7399,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (SubscriptionModel)System.JSON.deserialize(res.getBody(), SubscriptionModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7411,11 +7411,11 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
-        // <param name="accountId">The ID of the account that owns these subscriptions</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='accountId'>The ID of the account that owns these subscriptions</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<SubscriptionModel> ListSubscriptionsByAccount(Integer accountId, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/subscriptions');
@@ -7430,7 +7430,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<SubscriptionModel>)System.JSON.deserialize(res.getBody(), FetchResult<SubscriptionModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7442,10 +7442,10 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<SubscriptionModel> QuerySubscriptions(String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/subscriptions');
@@ -7459,7 +7459,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<SubscriptionModel>)System.JSON.deserialize(res.getBody(), FetchResult<SubscriptionModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7470,8 +7470,8 @@ global class AvaTaxClient
         // If you identify your products by tax code in your 'Create Transacion' API calls, Avalara will correctly calculate tax rates and
         // taxability rules for this product in all supported jurisdictions.
         // 
-        // <param name="companyId">The ID of the company that owns this tax code.</param>
-        // <param name="model">The tax code you wish to create.</param>
+        // <param name='companyId'>The ID of the company that owns this tax code.</param>
+        // <param name='model'>The tax code you wish to create.</param>
         public List<TaxCodeModel> CreateTaxCodes(Integer companyId, List<TaxCodeModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/taxcodes');
@@ -7486,15 +7486,15 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
         // Delete a single tax code
         // Marks the existing TaxCode object at this URL as deleted.
         // 
-        // <param name="companyId">The ID of the company that owns this tax code.</param>
-        // <param name="id">The ID of the tax code you wish to delete.</param>
+        // <param name='companyId'>The ID of the company that owns this tax code.</param>
+        // <param name='id'>The ID of the tax code you wish to delete.</param>
         public List<ErrorDetail> DeleteTaxCode(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/taxcodes/{id}');
@@ -7510,7 +7510,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -7521,8 +7521,8 @@ global class AvaTaxClient
         // If you identify your products by tax code in your 'Create Transacion' API calls, Avalara will correctly calculate tax rates and
         // taxability rules for this product in all supported jurisdictions.
         // 
-        // <param name="companyId">The ID of the company that owns this tax code</param>
-        // <param name="id">The primary key of this tax code</param>
+        // <param name='companyId'>The ID of the company that owns this tax code</param>
+        // <param name='id'>The primary key of this tax code</param>
         public TaxCodeModel GetTaxCode(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/taxcodes/{id}');
@@ -7534,7 +7534,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (TaxCodeModel)System.JSON.deserialize(res.getBody(), TaxCodeModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7548,12 +7548,12 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
-        // <param name="companyId">The ID of the company that owns these tax codes</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='companyId'>The ID of the company that owns these tax codes</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<TaxCodeModel> ListTaxCodesByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/taxcodes');
@@ -7569,7 +7569,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<TaxCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxCodeModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7583,11 +7583,11 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<TaxCodeModel> QueryTaxCodes(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/taxcodes');
@@ -7602,7 +7602,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<TaxCodeModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxCodeModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7615,9 +7615,9 @@ global class AvaTaxClient
         // All data from the existing object will be replaced with data in the object you PUT. 
         // To set a field's value to null, you may either set its value to null or omit that field from the object you post.
         // 
-        // <param name="companyId">The ID of the company that this tax code belongs to.</param>
-        // <param name="id">The ID of the tax code you wish to update</param>
-        // <param name="model">The tax code you wish to update.</param>
+        // <param name='companyId'>The ID of the company that this tax code belongs to.</param>
+        // <param name='id'>The ID of the tax code you wish to update</param>
+        // <param name='model'>The tax code you wish to update.</param>
         public TaxCodeModel UpdateTaxCode(Integer companyId, Integer id, TaxCodeModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/taxcodes/{id}');
@@ -7629,7 +7629,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (TaxCodeModel)System.JSON.deserialize(res.getBody(), TaxCodeModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7648,13 +7648,13 @@ global class AvaTaxClient
         // 
         // NOTE: This API does not work for Tennessee tax holiday scenarios.
         // 
-        // <param name="model">Parameters about the desired file format and report format, specifying which company, locations and TaxCodes to include.</param>
+        // <param name='model'>Parameters about the desired file format and report format, specifying which company, locations and TaxCodes to include.</param>
         public FileResult BuildTaxContentFile(PointOfSaleDataRequestModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/pointofsaledata/build');
             FileResultModel responseModel = null;
             responseModel = (FileResultModel) restCallForFile('POST', path.relativePath, model);
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7673,12 +7673,12 @@ global class AvaTaxClient
         // 
         // NOTE: This API does not work for Tennessee tax holiday scenarios.
         // 
-        // <param name="companyId">The ID number of the company that owns this location.</param>
-        // <param name="id">The ID number of the location to retrieve point-of-sale data.</param>
-        // <param name="date">The date for which point-of-sale data would be calculated (today by default)</param>
-        // <param name="format">The format of the file (JSON by default)</param>
-        // <param name="partnerId">If specified, requests a custom partner-formatted version of the file.</param>
-        // <param name="includeJurisCodes">When true, the file will include jurisdiction codes in the result.</param>
+        // <param name='companyId'>The ID number of the company that owns this location.</param>
+        // <param name='id'>The ID number of the location to retrieve point-of-sale data.</param>
+        // <param name='date'>The date for which point-of-sale data would be calculated (today by default)</param>
+        // <param name='format'>The format of the file (JSON by default)</param>
+        // <param name='partnerId'>If specified, requests a custom partner-formatted version of the file.</param>
+        // <param name='includeJurisCodes'>When true, the file will include jurisdiction codes in the result.</param>
         public FileResult BuildTaxContentFileForLocation(Integer companyId, Integer id, DateTime date, PointOfSaleFileType format, PointOfSalePartnerId partnerId, Boolean includeJurisCodes)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/locations/{id}/pointofsaledata');
@@ -7690,7 +7690,7 @@ global class AvaTaxClient
             path.AddQuery('includeJurisCodes', includeJurisCodes);
             FileResultModel responseModel = null;
             responseModel = (FileResultModel) restCallForFile('GET', path.relativePath, null);
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7713,14 +7713,14 @@ global class AvaTaxClient
         // 
         // For more detailed tax content, please use the `BuildTaxContentFile` API which allows usage of exact items and exact locations.
         // 
-        // <param name="date">The date for which point-of-sale data would be calculated (today by default). Example input: 2016-12-31</param>
+        // <param name='date'>The date for which point-of-sale data would be calculated (today by default). Example input: 2016-12-31</param>
         public FileResult DownloadTaxRatesByZipCode(DateTime date)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/taxratesbyzipcode/download/{date}');
             path.ApplyField('date', date);
             FileResultModel responseModel = null;
             responseModel = (FileResultModel) restCallForFile('GET', path.relativePath, null);
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7731,8 +7731,8 @@ global class AvaTaxClient
         // within certain taxing jurisdictions, or you have obtained special tax concessions for certain dates or locations,
         // you may wish to create a TaxRule object to override the AvaTax engine's default behavior in those circumstances.
         // 
-        // <param name="companyId">The ID of the company that owns this tax rule.</param>
-        // <param name="model">The tax rule you wish to create.</param>
+        // <param name='companyId'>The ID of the company that owns this tax rule.</param>
+        // <param name='model'>The tax rule you wish to create.</param>
         public List<TaxRuleModel> CreateTaxRules(Integer companyId, List<TaxRuleModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/taxrules');
@@ -7747,15 +7747,15 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
         // Delete a single tax rule
         // Mark the TaxRule identified by this URL as deleted.
         // 
-        // <param name="companyId">The ID of the company that owns this tax rule.</param>
-        // <param name="id">The ID of the tax rule you wish to delete.</param>
+        // <param name='companyId'>The ID of the company that owns this tax rule.</param>
+        // <param name='id'>The ID of the tax rule you wish to delete.</param>
         public List<ErrorDetail> DeleteTaxRule(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/taxrules/{id}');
@@ -7771,7 +7771,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -7782,8 +7782,8 @@ global class AvaTaxClient
         // within certain taxing jurisdictions, or you have obtained special tax concessions for certain dates or locations,
         // you may wish to create a TaxRule object to override the AvaTax engine's default behavior in those circumstances.
         // 
-        // <param name="companyId">The ID of the company that owns this tax rule</param>
-        // <param name="id">The primary key of this tax rule</param>
+        // <param name='companyId'>The ID of the company that owns this tax rule</param>
+        // <param name='id'>The primary key of this tax rule</param>
         public TaxRuleModel GetTaxRule(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/taxrules/{id}');
@@ -7795,7 +7795,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (TaxRuleModel)System.JSON.deserialize(res.getBody(), TaxRuleModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7809,12 +7809,12 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
-        // <param name="companyId">The ID of the company that owns these tax rules</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='companyId'>The ID of the company that owns these tax rules</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<TaxRuleModel> ListTaxRules(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/taxrules');
@@ -7830,7 +7830,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<TaxRuleModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxRuleModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7844,11 +7844,11 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<TaxRuleModel> QueryTaxRules(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/taxrules');
@@ -7863,7 +7863,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<TaxRuleModel>)System.JSON.deserialize(res.getBody(), FetchResult<TaxRuleModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7876,9 +7876,9 @@ global class AvaTaxClient
         // All data from the existing object will be replaced with data in the object you PUT. 
         // To set a field's value to null, you may either set its value to null or omit that field from the object you post.
         // 
-        // <param name="companyId">The ID of the company that this tax rule belongs to.</param>
-        // <param name="id">The ID of the tax rule you wish to update</param>
-        // <param name="model">The tax rule you wish to update.</param>
+        // <param name='companyId'>The ID of the company that this tax rule belongs to.</param>
+        // <param name='id'>The ID of the tax rule you wish to update</param>
+        // <param name='model'>The tax rule you wish to update.</param>
         public TaxRuleModel UpdateTaxRule(Integer companyId, Integer id, TaxRuleModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/taxrules/{id}');
@@ -7890,7 +7890,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (TaxRuleModel)System.JSON.deserialize(res.getBody(), TaxRuleModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7916,8 +7916,8 @@ global class AvaTaxClient
         // 
         //  If you omit the `$include` parameter, the API will assume you want `Summary,Addresses`.
         // 
-        // <param name="include">Specifies objects to include in the response after transaction is created</param>
-        // <param name="model">information about the transaction and lines to be added</param>
+        // <param name='include'>Specifies objects to include in the response after transaction is created</param>
+        // <param name='model'>information about the transaction and lines to be added</param>
         public TransactionModel AddLines(String include, AddTransactionLineModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/transactions/lines/add');
@@ -7928,7 +7928,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7945,10 +7945,10 @@ global class AvaTaxClient
         // Transactions that have been previously reported to a tax authority by Avalara Managed Returns are considered `locked` and are 
         // no longer available for adjustments.
         // 
-        // <param name="companyCode">The company code of the company that recorded this transaction</param>
-        // <param name="transactionCode">The transaction code to adjust</param>
-        // <param name="documentType">(Optional): The document type of the transaction to adjust.</param>
-        // <param name="model">The adjustment you wish to make</param>
+        // <param name='companyCode'>The company code of the company that recorded this transaction</param>
+        // <param name='transactionCode'>The transaction code to adjust</param>
+        // <param name='documentType'>(Optional): The document type of the transaction to adjust.</param>
+        // <param name='model'>The adjustment you wish to make</param>
         public TransactionModel AdjustTransaction(String companyCode, String transactionCode, DocumentType documentType, AdjustTransactionModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}/adjust');
@@ -7961,7 +7961,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -7982,8 +7982,8 @@ global class AvaTaxClient
         // A transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like
         // sales, purchases, inventory transfer, and returns (also called refunds).
         // 
-        // <param name="companyCode">The code identifying the company that owns this transaction</param>
-        // <param name="transactionCode">The code identifying the transaction</param>
+        // <param name='companyCode'>The code identifying the company that owns this transaction</param>
+        // <param name='transactionCode'>The code identifying the transaction</param>
         public AuditTransactionModel AuditTransaction(String companyCode, String transactionCode)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}/audit');
@@ -7995,7 +7995,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (AuditTransactionModel)System.JSON.deserialize(res.getBody(), AuditTransactionModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8016,9 +8016,9 @@ global class AvaTaxClient
         // A transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like
         // sales, purchases, inventory transfer, and returns (also called refunds).
         // 
-        // <param name="companyCode">The code identifying the company that owns this transaction</param>
-        // <param name="transactionCode">The code identifying the transaction</param>
-        // <param name="documentType">The document type of the original transaction</param>
+        // <param name='companyCode'>The code identifying the company that owns this transaction</param>
+        // <param name='transactionCode'>The code identifying the transaction</param>
+        // <param name='documentType'>The document type of the original transaction</param>
         public AuditTransactionModel AuditTransactionWithType(String companyCode, String transactionCode, DocumentType documentType)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}/types/{documentType}/audit');
@@ -8031,7 +8031,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (AuditTransactionModel)System.JSON.deserialize(res.getBody(), AuditTransactionModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8044,7 +8044,7 @@ global class AvaTaxClient
         // A transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like
         // sales, purchases, inventory transfer, and returns (also called refunds).
         // 
-        // <param name="model">bulk lock request</param>
+        // <param name='model'>bulk lock request</param>
         public BulkLockTransactionResult BulkLockTransaction(BulkLockTransactionModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/lock');
@@ -8054,7 +8054,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (BulkLockTransactionResult)System.JSON.deserialize(res.getBody(), BulkLockTransactionResult.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8071,10 +8071,10 @@ global class AvaTaxClient
         // A transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like
         // sales, purchases, inventory transfer, and returns (also called refunds).
         // 
-        // <param name="companyCode">The company code of the company that recorded this transaction</param>
-        // <param name="transactionCode">The transaction code to change</param>
-        // <param name="documentType">(Optional): The document type of the transaction to change document code. If not provided, the default is SalesInvoice.</param>
-        // <param name="model">The code change request you wish to execute</param>
+        // <param name='companyCode'>The company code of the company that recorded this transaction</param>
+        // <param name='transactionCode'>The transaction code to change</param>
+        // <param name='documentType'>(Optional): The document type of the transaction to change document code. If not provided, the default is SalesInvoice.</param>
+        // <param name='model'>The code change request you wish to execute</param>
         public TransactionModel ChangeTransactionCode(String companyCode, String transactionCode, DocumentType documentType, ChangeTransactionCodeModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}/changecode');
@@ -8087,7 +8087,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8103,10 +8103,10 @@ global class AvaTaxClient
         // 
         // Any changes made to a committed transaction will generate a transaction history.
         // 
-        // <param name="companyCode">The company code of the company that recorded this transaction</param>
-        // <param name="transactionCode">The transaction code to commit</param>
-        // <param name="documentType">(Optional): The document type of the transaction to commit. If not provided, the default is SalesInvoice.</param>
-        // <param name="model">The commit request you wish to execute</param>
+        // <param name='companyCode'>The company code of the company that recorded this transaction</param>
+        // <param name='transactionCode'>The transaction code to commit</param>
+        // <param name='documentType'>(Optional): The document type of the transaction to commit. If not provided, the default is SalesInvoice.</param>
+        // <param name='model'>The commit request you wish to execute</param>
         public TransactionModel CommitTransaction(String companyCode, String transactionCode, DocumentType documentType, CommitTransactionModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}/commit');
@@ -8119,7 +8119,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8153,8 +8153,8 @@ global class AvaTaxClient
         //  
         // If you omit the `$include` parameter, the API will assume you want `Summary,Addresses`.
         // 
-        // <param name="include">Specifies objects to include in the response after transaction is created</param>
-        // <param name="model">The transaction you wish to create or adjust</param>
+        // <param name='include'>Specifies objects to include in the response after transaction is created</param>
+        // <param name='model'>The transaction you wish to create or adjust</param>
         public TransactionModel CreateOrAdjustTransaction(String include, CreateOrAdjustTransactionModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/createoradjust');
@@ -8165,7 +8165,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8205,8 +8205,8 @@ global class AvaTaxClient
         //  
         // If you omit the `$include` parameter, the API will assume you want `Summary,Addresses`.
         // 
-        // <param name="include">Specifies objects to include in the response after transaction is created</param>
-        // <param name="model">The transaction you wish to create</param>
+        // <param name='include'>Specifies objects to include in the response after transaction is created</param>
+        // <param name='model'>The transaction you wish to create</param>
         public TransactionModel CreateTransaction(String include, CreateTransactionModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/create');
@@ -8217,7 +8217,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8240,8 +8240,8 @@ global class AvaTaxClient
         // 
         //  If you omit the `$include` parameter, the API will assume you want `Summary,Addresses`.
         // 
-        // <param name="include">Specifies objects to include in the response after transaction is created</param>
-        // <param name="model">information about the transaction and lines to be removed</param>
+        // <param name='include'>Specifies objects to include in the response after transaction is created</param>
+        // <param name='model'>information about the transaction and lines to be removed</param>
         public TransactionModel DeleteLines(String include, RemoveTransactionLineModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/transactions/lines/delete');
@@ -8252,7 +8252,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8276,10 +8276,10 @@ global class AvaTaxClient
         // * SummaryOnly (omit lines and details - reduces API response size)
         // * LinesOnly (omit details - reduces API response size)
         // 
-        // <param name="companyCode">The company code of the company that recorded this transaction</param>
-        // <param name="transactionCode">The transaction code to retrieve</param>
-        // <param name="documentType">(Optional): The document type of the transaction to retrieve</param>
-        // <param name="include">Specifies objects to include in this fetch call</param>
+        // <param name='companyCode'>The company code of the company that recorded this transaction</param>
+        // <param name='transactionCode'>The transaction code to retrieve</param>
+        // <param name='documentType'>(Optional): The document type of the transaction to retrieve</param>
+        // <param name='include'>Specifies objects to include in this fetch call</param>
         public TransactionModel GetTransactionByCode(String companyCode, String transactionCode, DocumentType documentType, String include)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}');
@@ -8293,17 +8293,17 @@ global class AvaTaxClient
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
         // Retrieve a single transaction by code
         // DEPRECATED: Please use the `GetTransactionByCode` API instead.
         // 
-        // <param name="companyCode">The company code of the company that recorded this transaction</param>
-        // <param name="transactionCode">The transaction code to retrieve</param>
-        // <param name="documentType">The transaction type to retrieve</param>
-        // <param name="include">Specifies objects to include in this fetch call</param>
+        // <param name='companyCode'>The company code of the company that recorded this transaction</param>
+        // <param name='transactionCode'>The transaction code to retrieve</param>
+        // <param name='documentType'>The transaction type to retrieve</param>
+        // <param name='include'>Specifies objects to include in this fetch call</param>
         public TransactionModel GetTransactionByCodeAndType(String companyCode, String transactionCode, DocumentType documentType, String include)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}/types/{documentType}');
@@ -8317,7 +8317,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8339,8 +8339,8 @@ global class AvaTaxClient
         // * SummaryOnly (omit lines and details - reduces API response size)
         // * LinesOnly (omit details - reduces API response size)
         // 
-        // <param name="id">The unique ID number of the transaction to retrieve</param>
-        // <param name="include">Specifies objects to include in this fetch call</param>
+        // <param name='id'>The unique ID number of the transaction to retrieve</param>
+        // <param name='include'>Specifies objects to include in this fetch call</param>
         public TransactionModel GetTransactionById(Integer id, String include)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/transactions/{id}');
@@ -8352,7 +8352,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8379,12 +8379,12 @@ global class AvaTaxClient
         // * SummaryOnly (omit lines and details - reduces API response size)
         // * LinesOnly (omit details - reduces API response size)
         // 
-        // <param name="companyCode">The company code of the company that recorded this transaction</param>
-        // <param name="include">Specifies objects to include in this fetch call</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='companyCode'>The company code of the company that recorded this transaction</param>
+        // <param name='include'>Specifies objects to include in this fetch call</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<TransactionModel> ListTransactionsByCompany(String companyCode, String include, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions');
@@ -8400,7 +8400,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<TransactionModel>)System.JSON.deserialize(res.getBody(), FetchResult<TransactionModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8417,10 +8417,10 @@ global class AvaTaxClient
         // A transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like
         // sales, purchases, inventory transfer, and returns (also called refunds).
         // 
-        // <param name="companyCode">The company code of the company that recorded this transaction</param>
-        // <param name="transactionCode">The transaction code to lock</param>
-        // <param name="documentType">(Optional): The document type of the transaction to lock. If not provided, the default is SalesInvoice.</param>
-        // <param name="model">The lock request you wish to execute</param>
+        // <param name='companyCode'>The company code of the company that recorded this transaction</param>
+        // <param name='transactionCode'>The transaction code to lock</param>
+        // <param name='documentType'>(Optional): The document type of the transaction to lock. If not provided, the default is SalesInvoice.</param>
+        // <param name='model'>The lock request you wish to execute</param>
         public TransactionModel LockTransaction(String companyCode, String transactionCode, DocumentType documentType, LockTransactionModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}/lock');
@@ -8433,7 +8433,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8470,12 +8470,12 @@ global class AvaTaxClient
         //  
         // If you omit the `$include` parameter, the API will assume you want `Summary,Addresses`.
         // 
-        // <param name="companyCode">The code of the company that made the original sale</param>
-        // <param name="transactionCode">The transaction code of the original sale</param>
-        // <param name="include">Specifies objects to include in the response after transaction is created</param>
-        // <param name="documentType">(Optional): The document type of the transaction to refund. If not provided, the default is SalesInvoice.</param>
-        // <param name="useTaxDateOverride">(Optional): If set to true, processes refund using taxDateOverride rather than taxAmountOverride (Note: taxAmountOverride is not allowed for SST states).</param>
-        // <param name="model">Information about the refund to create</param>
+        // <param name='companyCode'>The code of the company that made the original sale</param>
+        // <param name='transactionCode'>The transaction code of the original sale</param>
+        // <param name='include'>Specifies objects to include in the response after transaction is created</param>
+        // <param name='documentType'>(Optional): The document type of the transaction to refund. If not provided, the default is SalesInvoice.</param>
+        // <param name='useTaxDateOverride'>(Optional): If set to true, processes refund using taxDateOverride rather than taxAmountOverride (Note: taxAmountOverride is not allowed for SST states).</param>
+        // <param name='model'>Information about the refund to create</param>
         public TransactionModel RefundTransaction(String companyCode, String transactionCode, String include, DocumentType documentType, Boolean useTaxDateOverride, RefundTransactionModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}/refund');
@@ -8490,7 +8490,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8506,10 +8506,10 @@ global class AvaTaxClient
         // 
         // This API is available for users who want to execute more than one action at a time.
         // 
-        // <param name="companyCode">The company code of the company that recorded this transaction</param>
-        // <param name="transactionCode">The transaction code to settle</param>
-        // <param name="documentType">(Optional): The document type of the transaction to settle. If not provided, the default is SalesInvoice.</param>
-        // <param name="model">The data from an external system to reconcile against AvaTax</param>
+        // <param name='companyCode'>The company code of the company that recorded this transaction</param>
+        // <param name='transactionCode'>The transaction code to settle</param>
+        // <param name='documentType'>(Optional): The document type of the transaction to settle. If not provided, the default is SalesInvoice.</param>
+        // <param name='model'>The data from an external system to reconcile against AvaTax</param>
         public TransactionModel SettleTransaction(String companyCode, String transactionCode, DocumentType documentType, SettleTransactionModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}/settle');
@@ -8522,7 +8522,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8536,10 +8536,10 @@ global class AvaTaxClient
         // A transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like
         // sales, purchases, inventory transfer, and returns (also called refunds).
         // 
-        // <param name="companyCode">The company code of the company that recorded this transaction</param>
-        // <param name="transactionCode">The transaction code to settle</param>
-        // <param name="documentType">(Optional): The document type of the transaction to verify. If not provided, the default is SalesInvoice.</param>
-        // <param name="model">The data from an external system to reconcile against AvaTax</param>
+        // <param name='companyCode'>The company code of the company that recorded this transaction</param>
+        // <param name='transactionCode'>The transaction code to settle</param>
+        // <param name='documentType'>(Optional): The document type of the transaction to verify. If not provided, the default is SalesInvoice.</param>
+        // <param name='model'>The data from an external system to reconcile against AvaTax</param>
         public TransactionModel VerifyTransaction(String companyCode, String transactionCode, DocumentType documentType, VerifyTransactionModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}/verify');
@@ -8552,7 +8552,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8568,10 +8568,10 @@ global class AvaTaxClient
         // 
         // Transactions that have been previously reported to a tax authority by Avalara Managed Returns are no longer available to be voided.
         // 
-        // <param name="companyCode">The company code of the company that recorded this transaction</param>
-        // <param name="transactionCode">The transaction code to void</param>
-        // <param name="documentType">(Optional): The document type of the transaction to void. If not provided, the default is SalesInvoice.</param>
-        // <param name="model">The void request you wish to execute</param>
+        // <param name='companyCode'>The company code of the company that recorded this transaction</param>
+        // <param name='transactionCode'>The transaction code to void</param>
+        // <param name='documentType'>(Optional): The document type of the transaction to void. If not provided, the default is SalesInvoice.</param>
+        // <param name='model'>The void request you wish to execute</param>
         public TransactionModel VoidTransaction(String companyCode, String transactionCode, DocumentType documentType, VoidTransactionModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyCode}/transactions/{transactionCode}/void');
@@ -8584,7 +8584,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (TransactionModel)System.JSON.deserialize(res.getBody(), TransactionModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8592,8 +8592,8 @@ global class AvaTaxClient
         // Create one or more new UPC objects attached to this company.
         // A UPC represents a single UPC code in your catalog and matches this product to the tax code identified by this UPC.
         // 
-        // <param name="companyId">The ID of the company that owns this UPC.</param>
-        // <param name="model">The UPC you wish to create.</param>
+        // <param name='companyId'>The ID of the company that owns this UPC.</param>
+        // <param name='model'>The UPC you wish to create.</param>
         public List<UPCModel> CreateUPCs(Integer companyId, List<UPCModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/upcs');
@@ -8608,15 +8608,15 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
         // Delete a single UPC
         // Marks the UPC object identified by this URL as deleted.
         // 
-        // <param name="companyId">The ID of the company that owns this UPC.</param>
-        // <param name="id">The ID of the UPC you wish to delete.</param>
+        // <param name='companyId'>The ID of the company that owns this UPC.</param>
+        // <param name='id'>The ID of the UPC you wish to delete.</param>
         public List<ErrorDetail> DeleteUPC(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/upcs/{id}');
@@ -8632,7 +8632,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -8640,8 +8640,8 @@ global class AvaTaxClient
         // Get the UPC object identified by this URL.
         // A UPC represents a single UPC code in your catalog and matches this product to the tax code identified by this UPC.
         // 
-        // <param name="companyId">The ID of the company that owns this UPC</param>
-        // <param name="id">The primary key of this UPC</param>
+        // <param name='companyId'>The ID of the company that owns this UPC</param>
+        // <param name='id'>The primary key of this UPC</param>
         public UPCModel GetUPC(Integer companyId, Integer id)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/upcs/{id}');
@@ -8653,7 +8653,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (UPCModel)System.JSON.deserialize(res.getBody(), UPCModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8664,12 +8664,12 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
-        // <param name="companyId">The ID of the company that owns these UPCs</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='companyId'>The ID of the company that owns these UPCs</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<UPCModel> ListUPCsByCompany(Integer companyId, String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/upcs');
@@ -8685,7 +8685,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<UPCModel>)System.JSON.deserialize(res.getBody(), FetchResult<UPCModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8696,11 +8696,11 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="include">A comma separated list of additional data to retrieve.</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='include'>A comma separated list of additional data to retrieve.</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<UPCModel> QueryUPCs(String filter, String include, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/upcs');
@@ -8715,7 +8715,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<UPCModel>)System.JSON.deserialize(res.getBody(), FetchResult<UPCModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8725,9 +8725,9 @@ global class AvaTaxClient
         // All data from the existing object will be replaced with data in the object you PUT. 
         // To set a field's value to null, you may either set its value to null or omit that field from the object you post.
         // 
-        // <param name="companyId">The ID of the company that this UPC belongs to.</param>
-        // <param name="id">The ID of the UPC you wish to update</param>
-        // <param name="model">The UPC you wish to update.</param>
+        // <param name='companyId'>The ID of the company that this UPC belongs to.</param>
+        // <param name='id'>The ID of the UPC you wish to update</param>
+        // <param name='model'>The UPC you wish to update.</param>
         public UPCModel UpdateUPC(Integer companyId, Integer id, UPCModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/upcs/{id}');
@@ -8739,7 +8739,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (UPCModel)System.JSON.deserialize(res.getBody(), UPCModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8754,8 +8754,8 @@ global class AvaTaxClient
         // A newly created user will receive an email inviting them to create their password. This means that you
         // must provide a valid email address for all user accounts created.
         // 
-        // <param name="accountId">The unique ID number of the account where these users will be created.</param>
-        // <param name="model">The user or array of users you wish to create.</param>
+        // <param name='accountId'>The unique ID number of the account where these users will be created.</param>
+        // <param name='model'>The user or array of users you wish to create.</param>
         public List<UserModel> CreateUsers(Integer accountId, List<UserModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/users');
@@ -8770,7 +8770,7 @@ global class AvaTaxClient
             {
                 retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
             }
-            return retVal
+            return retVal;
         }
 
 
@@ -8778,9 +8778,9 @@ global class AvaTaxClient
         // Get the user object identified by this URL.
         // A user represents one person with access privileges to make API calls and work with a specific account.
         // 
-        // <param name="id">The ID of the user to retrieve.</param>
-        // <param name="accountId">The accountID of the user you wish to get.</param>
-        // <param name="include">Optional fetch commands.</param>
+        // <param name='id'>The ID of the user to retrieve.</param>
+        // <param name='accountId'>The accountID of the user you wish to get.</param>
+        // <param name='include'>Optional fetch commands.</param>
         public UserModel GetUser(Integer id, Integer accountId, String include)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/users/{id}');
@@ -8793,7 +8793,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (UserModel)System.JSON.deserialize(res.getBody(), UserModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8814,8 +8814,8 @@ global class AvaTaxClient
         //  
         // For a full list of defined permissions, please use '/api/v2/definitions/permissions' .
         // 
-        // <param name="id">The ID of the user to retrieve.</param>
-        // <param name="accountId">The accountID of the user you wish to get.</param>
+        // <param name='id'>The ID of the user to retrieve.</param>
+        // <param name='accountId'>The accountID of the user you wish to get.</param>
         public UserEntitlementModel GetUserEntitlements(Integer id, Integer accountId)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/users/{id}/entitlements');
@@ -8827,7 +8827,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (UserEntitlementModel)System.JSON.deserialize(res.getBody(), UserEntitlementModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8837,7 +8837,7 @@ global class AvaTaxClient
         // 
         // Please ensure that the query string is url encoded if you wish to check information for a user that contains url-sensitive characters.
         // 
-        // <param name="username">The username to search.</param>
+        // <param name='username'>The username to search.</param>
         public UsernameModel GetUsername(String username)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/usernames');
@@ -8848,7 +8848,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (UsernameModel)System.JSON.deserialize(res.getBody(), UsernameModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8862,12 +8862,12 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
-        // <param name="accountId">The accountID of the user you wish to list.</param>
-        // <param name="include">Optional fetch commands.</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='accountId'>The accountID of the user you wish to list.</param>
+        // <param name='include'>Optional fetch commands.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<UserModel> ListUsersByAccount(Integer accountId, String include, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/users');
@@ -8883,7 +8883,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<UserModel>)System.JSON.deserialize(res.getBody(), FetchResult<UserModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8899,11 +8899,11 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
-        // <param name="include">Optional fetch commands.</param>
-        // <param name="filter">A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
-        // <param name="top">If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
-        // <param name="skip">If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name="orderBy">A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
+        // <param name='include'>Optional fetch commands.</param>
+        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
+        // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
+        // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
+        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
         public FetchResult<UserModel> QueryUsers(String include, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/users');
@@ -8918,7 +8918,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<UserModel>)System.JSON.deserialize(res.getBody(), FetchResult<UserModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8928,9 +8928,9 @@ global class AvaTaxClient
         // All data from the existing object will be replaced with data in the object you PUT. 
         // To set a field's value to null, you may either set its value to null or omit that field from the object you post.
         // 
-        // <param name="id">The ID of the user you wish to update.</param>
-        // <param name="accountId">The accountID of the user you wish to update.</param>
-        // <param name="model">The user object you wish to update.</param>
+        // <param name='id'>The ID of the user you wish to update.</param>
+        // <param name='accountId'>The accountID of the user you wish to update.</param>
+        // <param name='model'>The user object you wish to update.</param>
         public UserModel UpdateUser(Integer id, Integer accountId, UserModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/users/{id}');
@@ -8942,7 +8942,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (UserModel)System.JSON.deserialize(res.getBody(), UserModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8951,7 +8951,7 @@ global class AvaTaxClient
         // This API call is intended to allow you to identify whether you have the necessary account configuration to access certain
         // features of AvaTax, and would be useful in debugging access privilege problems.
         // 
-        // <param name="serviceTypeId">The service to check</param>
+        // <param name='serviceTypeId'>The service to check</param>
         public SubscriptionModel GetMySubscription(ServiceTypeId serviceTypeId)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/utilities/subscriptions/{serviceTypeId}');
@@ -8962,7 +8962,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (SubscriptionModel)System.JSON.deserialize(res.getBody(), SubscriptionModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -8980,7 +8980,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (FetchResult<SubscriptionModel>)System.JSON.deserialize(res.getBody(), FetchResult<SubscriptionModel>.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 
@@ -9000,7 +9000,7 @@ global class AvaTaxClient
             {
                 responseModel.result = (PingResultModel)System.JSON.deserialize(res.getBody(), PingResultModel.class);
             }
-            return responseModel
+            return responseModel;
         }
 
 	global AvaTaxClient(string appName, string appVersion, string machineName, AvaTaxEnvironment environment)
