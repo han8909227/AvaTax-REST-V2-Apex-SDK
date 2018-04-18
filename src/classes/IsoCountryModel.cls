@@ -31,4 +31,7 @@ global class IsoCountryModel extends ErrorResult
     // 
     // This list is maintained by the International Standards Organization.
     global List<IsoLocalizedName> localizedNames { get; set; }
+
+    // Whether or not this country requires a region in postal addresses.
+    global Boolean addressesRequireRegion { get; set; }
 }

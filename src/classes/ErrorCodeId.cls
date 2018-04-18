@@ -83,9 +83,6 @@ global enum ErrorCodeId
     CannotChangePassword,
 
     // 
-    CannotChangeCompanyCode,
-
-    // 
     DateFormatError,
 
     // 
@@ -406,6 +403,9 @@ global enum ErrorCodeId
     // 
     TransactionAlreadyCancelled,
 
+    // 
+    QueryParameterOutOfRange,
+
     // Batch errors
     BatchSalesAuditMustBeZippedError,
 
@@ -467,7 +467,7 @@ global enum ErrorCodeId
     DocumentFetchLimit,
 
     // 
-    AddressIncomplete,
+    InvalidAddress,
 
     // 
     AddressLocationNotFound,
@@ -489,9 +489,6 @@ global enum ErrorCodeId
 
     // 
     TimeoutRequested,
-
-    // 
-    InvalidAddress,
 
     // 
     InvalidPostalCode,
@@ -558,6 +555,9 @@ global enum ErrorCodeId
 
     // Free API error codes
     MustUseCreateTransaction,
+
+    // 
+    MustAcceptTermsAndConditions,
 
     // Filing Calendar Error Codes
     FilingCalendarCannotBeDeleted,
@@ -714,5 +714,20 @@ global enum ErrorCodeId
 
     // 
     NexusChildDateMismatch,
+
+    // Advanced rule errors
+    AdvancedRuleBadScript,
+
+    // 
+    AdvancedRuleBadCsvTable,
+
+    // 
+    AdvancedRuleRequestRuleError,
+
+    // 
+    AdvancedRuleResponseRuleError,
+
+    // 
+    InvalidDocumentStatusToAddOrDeleteLines,
 
 }

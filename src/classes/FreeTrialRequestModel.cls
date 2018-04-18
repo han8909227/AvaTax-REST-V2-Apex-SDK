@@ -38,4 +38,10 @@ global class FreeTrialRequestModel extends ErrorResult
 
     // Website of the company or user requesting a free trial
     global String website { get; set; }
+
+    // Read Avalara's terms and conditions is necessary for a free trial account
+    global Boolean haveReadAvalaraTermsAndConditions { get; set; }
+
+    // Accept Avalara's terms and conditions is necessary for a free trial
+    global Boolean acceptAvalaraTermsAndConditions { get; set; }
 }

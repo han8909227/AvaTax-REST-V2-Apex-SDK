@@ -101,6 +101,12 @@ global class TransactionLineDetailModel extends ErrorResult
     // The type of tax that was calculated. Depends on the company's nexus settings as well as the jurisdiction's tax laws.
     global TaxType taxType { get; set; }
 
+    // The id of the tax subtype.
+    global String taxSubTypeId { get; set; }
+
+    // The id of the tax type group.
+    global String taxTypeGroupId { get; set; }
+
     // The name of the tax against which this tax amount was calculated.
     global String taxName { get; set; }
 
