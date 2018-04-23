@@ -20,8 +20,8 @@ global class FilingCalendarEditModel extends ErrorResult
     global Integer questionId { get; set; }
 
     // The current value of the field.
-    global Dictionary<string, string> oldValue { get; set; }
+    global Map oldValue { get; set; }
 
     // The new/proposed value of the field.
-    global Dictionary<string, string> newValue { get; set; }
+    global Map newValue { get; set; }
 }

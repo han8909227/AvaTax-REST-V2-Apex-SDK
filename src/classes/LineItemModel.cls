@@ -102,7 +102,7 @@ global class LineItemModel extends ErrorResult
     // Special parameters that apply to this line within this transaction.
     // 
     // To get a full list of available parameters, please use the `ListParameters` API.
-    global Dictionary<string, string> parameters { get; set; }
+    global Map parameters { get; set; }
 
     // The Item code for Custom Duty / Global Import tax determination
     // Harmonized Tariff System code for this transaction.
