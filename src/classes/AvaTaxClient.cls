@@ -4464,7 +4464,7 @@ global class AvaTaxClient
         // <param name='year'>The year of the filing period to approve.</param>
         // <param name='month'>The month of the filing period to approve.</param>
         // <param name='model'>The approve request you wish to execute.</param>
-        global ListFilingModel ApproveFilings(Integer companyId, Integer year, Byte month, ApproveFilingsModel model)
+        global ListFilingModel ApproveFilings(Integer companyId, Integer year, Integer month, ApproveFilingsModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/approve');
             path.ApplyField('companyId', companyId);
@@ -4498,7 +4498,7 @@ global class AvaTaxClient
         // <param name='month'>The month of the filing period to approve.</param>
         // <param name='country'>The two-character ISO-3166 code for the country.</param>
         // <param name='model'>The approve request you wish to execute.</param>
-        global ListFilingModel ApproveFilingsCountry(Integer companyId, Integer year, Byte month, String country, ApproveFilingsModel model)
+        global ListFilingModel ApproveFilingsCountry(Integer companyId, Integer year, Integer month, String country, ApproveFilingsModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/approve');
             path.ApplyField('companyId', companyId);
@@ -4534,7 +4534,7 @@ global class AvaTaxClient
         // <param name='country'>The two-character ISO-3166 code for the country.</param>
         // <param name='region'>The two or three character region code for the region.</param>
         // <param name='model'>The approve request you wish to execute.</param>
-        global ListFilingModel ApproveFilingsCountryRegion(Integer companyId, Integer year, Byte month, String country, String region, ApproveFilingsModel model)
+        global ListFilingModel ApproveFilingsCountryRegion(Integer companyId, Integer year, Integer month, String country, String region, ApproveFilingsModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/approve');
             path.ApplyField('companyId', companyId);
@@ -4571,7 +4571,7 @@ global class AvaTaxClient
         // <param name='region'>The two or three character region code for the region.</param>
         // <param name='formCode'>The unique code of the form being adjusted.</param>
         // <param name='model'>A list of Adjustments to be created for the specified filing.</param>
-        global ListFilingAdjustmentModel CreateReturnAdjustment(Integer companyId, Integer year, Byte month, String country, String region, String formCode, List<FilingAdjustmentModel> model)
+        global ListFilingAdjustmentModel CreateReturnAdjustment(Integer companyId, Integer year, Integer month, String country, String region, String formCode, List<FilingAdjustmentModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/{formCode}/adjust');
             path.ApplyField('companyId', companyId);
@@ -4608,7 +4608,7 @@ global class AvaTaxClient
         // <param name='region'>The two or three character region code for the region of the filing being changed.</param>
         // <param name='formCode'>The unique code of the form being changed.</param>
         // <param name='model'>A list of augmentations to be created for the specified filing.</param>
-        global ListFilingAugmentationModel CreateReturnAugmentation(Integer companyId, Integer year, Byte month, String country, String region, String formCode, List<FilingAugmentationModel> model)
+        global ListFilingAugmentationModel CreateReturnAugmentation(Integer companyId, Integer year, Integer month, String country, String region, String formCode, List<FilingAugmentationModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/{formCode}/augment');
             path.ApplyField('companyId', companyId);
@@ -4646,7 +4646,7 @@ global class AvaTaxClient
         // <param name='region'>The two or three character region code for the region.</param>
         // <param name='formCode'>The unique code of the form being adjusted.</param>
         // <param name='model'>A list of Payments to be created for the specified filing.</param>
-        global ListFilingPaymentModel CreateReturnPayment(Integer companyId, Integer year, Byte month, String country, String region, String formCode, List<FilingPaymentModel> model)
+        global ListFilingPaymentModel CreateReturnPayment(Integer companyId, Integer year, Integer month, String country, String region, String formCode, List<FilingPaymentModel> model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/{formCode}/payment');
             path.ApplyField('companyId', companyId);
@@ -4781,7 +4781,7 @@ global class AvaTaxClient
         // <param name='companyId'>The unique ID of the company that owns the worksheets object.</param>
         // <param name='year'>The year of the filing period.</param>
         // <param name='month'>The month of the filing period.</param>
-        global FilingsCheckupModel FilingsCheckupReports(Integer companyId, Integer year, Byte month)
+        global FilingsCheckupModel FilingsCheckupReports(Integer companyId, Integer year, Integer month)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/checkup');
             path.ApplyField('companyId', companyId);
@@ -4823,7 +4823,7 @@ global class AvaTaxClient
         // <param name='companyId'>The ID of the company that owns the filings.</param>
         // <param name='year'>The year of the filing period.</param>
         // <param name='month'>The two digit month of the filing period.</param>
-        global FileResult GetFilingAttachments(Integer companyId, Integer year, Byte month)
+        global FileResult GetFilingAttachments(Integer companyId, Integer year, Integer month)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/attachments');
             path.ApplyField('companyId', companyId);
@@ -4843,7 +4843,7 @@ global class AvaTaxClient
         // <param name='companyId'>The ID of the company that owns the filings.</param>
         // <param name='year'>The year of the filing period.</param>
         // <param name='month'>The two digit month of the filing period.</param>
-        global FileResult GetFilingAttachmentsTraceFile(Integer companyId, Integer year, Byte month)
+        global FileResult GetFilingAttachmentsTraceFile(Integer companyId, Integer year, Integer month)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/attachments/tracefile');
             path.ApplyField('companyId', companyId);
@@ -4885,7 +4885,7 @@ global class AvaTaxClient
         // <param name='companyId'>The ID of the company that owns the filings.</param>
         // <param name='year'>The year of the filing period.</param>
         // <param name='month'>The two digit month of the filing period.</param>
-        global FetchResult<FilingModel> GetFilings(Integer companyId, Integer year, Byte month)
+        global FetchResult<FilingModel> GetFilings(Integer companyId, Integer year, Integer month)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}');
             path.ApplyField('companyId', companyId);
@@ -4910,7 +4910,7 @@ global class AvaTaxClient
         // <param name='year'>The year of the filing period.</param>
         // <param name='month'>The two digit month of the filing period.</param>
         // <param name='country'>The two-character ISO-3166 code for the country.</param>
-        global FetchResult<FilingModel> GetFilingsByCountry(Integer companyId, Integer year, Byte month, String country)
+        global FetchResult<FilingModel> GetFilingsByCountry(Integer companyId, Integer year, Integer month, String country)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}');
             path.ApplyField('companyId', companyId);
@@ -4937,7 +4937,7 @@ global class AvaTaxClient
         // <param name='month'>The two digit month of the filing period.</param>
         // <param name='country'>The two-character ISO-3166 code for the country.</param>
         // <param name='region'>The two or three character region code for the region.</param>
-        global FetchResult<FilingModel> GetFilingsByCountryRegion(Integer companyId, Integer year, Byte month, String country, String region)
+        global FetchResult<FilingModel> GetFilingsByCountryRegion(Integer companyId, Integer year, Integer month, String country, String region)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}');
             path.ApplyField('companyId', companyId);
@@ -4966,7 +4966,7 @@ global class AvaTaxClient
         // <param name='country'>The two-character ISO-3166 code for the country.</param>
         // <param name='region'>The two or three character region code for the region.</param>
         // <param name='formCode'>The unique code of the form.</param>
-        global FetchResult<FilingModel> GetFilingsByReturnName(Integer companyId, Integer year, Byte month, String country, String region, String formCode)
+        global FetchResult<FilingModel> GetFilingsByReturnName(Integer companyId, Integer year, Integer month, String country, String region, String formCode)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/{formCode}');
             path.ApplyField('companyId', companyId);
@@ -5030,7 +5030,7 @@ global class AvaTaxClient
         // <param name='year'>The year of the filing period to be rebuilt.</param>
         // <param name='month'>The month of the filing period to be rebuilt.</param>
         // <param name='model'>The rebuild request you wish to execute.</param>
-        global FetchResult<FilingModel> RebuildFilings(Integer companyId, Integer year, Byte month, RebuildFilingsModel model)
+        global FetchResult<FilingModel> RebuildFilings(Integer companyId, Integer year, Integer month, RebuildFilingsModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/rebuild');
             path.ApplyField('companyId', companyId);
@@ -5059,7 +5059,7 @@ global class AvaTaxClient
         // <param name='month'>The month of the filing period to be rebuilt.</param>
         // <param name='country'>The two-character ISO-3166 code for the country.</param>
         // <param name='model'>The rebuild request you wish to execute.</param>
-        global FetchResult<FilingModel> RebuildFilingsByCountry(Integer companyId, Integer year, Byte month, String country, RebuildFilingsModel model)
+        global FetchResult<FilingModel> RebuildFilingsByCountry(Integer companyId, Integer year, Integer month, String country, RebuildFilingsModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/rebuild');
             path.ApplyField('companyId', companyId);
@@ -5090,7 +5090,7 @@ global class AvaTaxClient
         // <param name='country'>The two-character ISO-3166 code for the country.</param>
         // <param name='region'>The two or three character region code for the region.</param>
         // <param name='model'>The rebuild request you wish to execute.</param>
-        global FetchResult<FilingModel> RebuildFilingsByCountryRegion(Integer companyId, Integer year, Byte month, String country, String region, RebuildFilingsModel model)
+        global FetchResult<FilingModel> RebuildFilingsByCountryRegion(Integer companyId, Integer year, Integer month, String country, String region, RebuildFilingsModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filings/{year}/{month}/{country}/{region}/rebuild');
             path.ApplyField('companyId', companyId);

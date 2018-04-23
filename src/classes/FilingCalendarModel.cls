@@ -167,7 +167,7 @@ global class FilingCalendarModel extends ErrorResult
 
     // If you are required to prepay a percentage of taxes for future periods, please specify the percentage in whole numbers; 
     // for example, the value 90 would indicate 90%.
-    global Byte prepayPercentage { get; set; }
+    global Integer prepayPercentage { get; set; }
 
     // The type of tax to report on this return.
     global MatchingTaxType taxTypeId { get; set; }

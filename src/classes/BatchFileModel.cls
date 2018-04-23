@@ -23,7 +23,7 @@ global class BatchFileModel extends ErrorResult
     global String name { get; set; }
 
     // Content of the batch file.
-    global Byte[] content { get; set; }
+    global Blob content { get; set; }
 
     // Size of content, in bytes.
     global Integer contentLength { get; set; }

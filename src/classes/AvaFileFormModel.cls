@@ -47,13 +47,13 @@ global class AvaFileFormModel extends ErrorResult
     global DueDateTypeId dueDateTypeId { get; set; }
 
     // Due date
-    global Byte dueDay { get; set; }
+    global Integer dueDay { get; set; }
 
     // 
     global DueDateTypeId efileDueDateTypeId { get; set; }
 
     // The date by when the E-filing should be submitted
-    global Byte efileDueDay { get; set; }
+    global Integer efileDueDay { get; set; }
 
     // The time of day by when the E-filing should be submitted
     global DateTime efileDueTime { get; set; }

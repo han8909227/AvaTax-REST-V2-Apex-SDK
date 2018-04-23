@@ -14,7 +14,7 @@ global class SecurityRoleModel extends ErrorResult
 {
 
     // The unique ID number of this security role.
-    global Byte id { get; set; }
+    global Integer id { get; set; }
 
     // A description of this security role
     global String description { get; set; }

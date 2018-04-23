@@ -14,7 +14,7 @@ global class ResourceFileUploadRequestModel extends ErrorResult
 {
 
     // This stream contains the bytes of the file being uploaded.
-    global Byte[] content { get; set; }
+    global Blob content { get; set; }
 
     // The username adding the file
     global String username { get; set; }

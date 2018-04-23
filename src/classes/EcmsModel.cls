@@ -68,7 +68,7 @@ global class EcmsModel extends ErrorResult
     global String documentRefNo { get; set; }
 
     // Business type
-    global Byte businessTypeId { get; set; }
+    global Integer businessTypeId { get; set; }
 
     // Other description for this business type
     global String businessTypeOtherDescription { get; set; }

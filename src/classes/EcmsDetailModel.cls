@@ -53,7 +53,7 @@ global class EcmsDetailModel extends ErrorResult
     global String idType { get; set; }
 
     // Is the tax code list an exculsion list?
-    global Byte isTaxCodeListExclusionList { get; set; }
+    global Integer isTaxCodeListExclusionList { get; set; }
 
     // optional: list of tax code associated with this exempt certificate detail
     global List<EcmsDetailTaxCodeModel> taxCodes { get; set; }
