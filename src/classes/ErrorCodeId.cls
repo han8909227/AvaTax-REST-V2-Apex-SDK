@@ -12,7 +12,6 @@
 
 global enum ErrorCodeId
 {
-
     // Server has a configuration or setup problem
     ServerConfiguration,
 
@@ -728,6 +727,6 @@ global enum ErrorCodeId
     AdvancedRuleResponseRuleError,
 
     // 
-    InvalidDocumentStatusToAddOrDeleteLines,
+    InvalidDocumentStatusToAddOrDeleteLines
 
 }

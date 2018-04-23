@@ -12,7 +12,6 @@
 
 global enum ServiceTypeId
 {
-
     // None
     None,
 
@@ -68,6 +67,6 @@ global enum ServiceTypeId
     AvaBottle,
 
     // MRSComplianceManager
-    MRSComplianceManager,
+    MRSComplianceManager
 
 }

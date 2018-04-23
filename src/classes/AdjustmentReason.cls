@@ -12,7 +12,6 @@
 
 global enum AdjustmentReason
 {
-
     // The transaction has not been adjusted
     NotAdjusted,
 
@@ -41,6 +40,6 @@ global enum AdjustmentReason
     Other,
 
     // Offline
-    Offline,
+    Offline
 
 }

@@ -12,7 +12,6 @@
 
 global enum AdjustmentTypeId
 {
-
     // 
     Other,
 
@@ -50,6 +49,6 @@ global enum AdjustmentTypeId
     CspFee,
 
     // 
-    Marketplace,
+    Marketplace
 
 }

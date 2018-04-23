@@ -14,7 +14,6 @@
 
 global enum MatchingTaxType
 {
-
     // Match medical excise type
     Excise,
 
@@ -58,6 +57,6 @@ global enum MatchingTaxType
     SalesTax,
 
     // Match Seller's Use Tax only
-    UseTax,
+    UseTax
 
 }

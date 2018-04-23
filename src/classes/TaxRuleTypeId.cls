@@ -12,7 +12,6 @@
 
 global enum TaxRuleTypeId
 {
-
     // RateRule
     RateRule,
 
@@ -29,6 +28,6 @@ global enum TaxRuleTypeId
     ProductTaxabilityRule,
 
     // NexusRule
-    NexusRule,
+    NexusRule
 
 }

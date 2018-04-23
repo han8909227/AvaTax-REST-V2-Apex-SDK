@@ -12,11 +12,10 @@
 
 global enum PointOfSalePartnerId
 {
-
     // 
     DMA,
 
     // 
-    AX7,
+    AX7
 
 }

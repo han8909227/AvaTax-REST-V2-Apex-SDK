@@ -12,7 +12,6 @@
 
 global enum JurisTypeId
 {
-
     // State
     STA,
 
@@ -26,6 +25,6 @@ global enum JurisTypeId
     STJ,
 
     // Country
-    CNT,
+    CNT
 
 }

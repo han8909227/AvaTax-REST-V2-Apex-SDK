@@ -12,11 +12,10 @@
 
 global enum AdvancedRuleCrashBehavior
 {
-
     // 
     FailOnError,
 
     // 
-    ProceedWithOriginal,
+    ProceedWithOriginal
 
 }

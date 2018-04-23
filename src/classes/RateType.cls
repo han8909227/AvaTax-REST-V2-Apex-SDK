@@ -12,7 +12,6 @@
 
 global enum RateType
 {
-
     // 
     ReducedA,
 
@@ -47,6 +46,6 @@ global enum RateType
     Standard,
 
     // 
-    Zero,
+    Zero
 
 }

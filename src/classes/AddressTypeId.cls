@@ -12,7 +12,6 @@
 
 global enum AddressTypeId
 {
-
     // A business location, for example a store, warehouse, or office.
     Location,
 
@@ -23,6 +22,6 @@ global enum AddressTypeId
         //  When you select `Marketplace` as the address type for a location, you must then choose either
         //  `SellersRemitsTax` or `MarketplaceRemitsTax` to indicate which business entity is responsible
         //  for collecting and remitting tax for this location.
-    Marketplace,
+    Marketplace
 
 }

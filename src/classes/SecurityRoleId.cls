@@ -12,7 +12,6 @@
 
 global enum SecurityRoleId
 {
-
     // NoAccess
     NoAccess,
 
@@ -80,6 +79,6 @@ global enum SecurityRoleId
     ComplianceOperator,
 
     // SSTAdmin
-    SSTAdmin,
+    SSTAdmin
 
 }

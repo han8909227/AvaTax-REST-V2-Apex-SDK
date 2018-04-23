@@ -12,7 +12,6 @@
 
 global enum PaymentType
 {
-
     // The payment is for the current payment
     CurrentPeriod,
 
@@ -23,6 +22,6 @@ global enum PaymentType
     PriorPayment,
 
     // The payment is a prior CSP fee
-    PriorCspFee,
+    PriorCspFee
 
 }

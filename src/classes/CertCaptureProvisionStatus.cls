@@ -12,7 +12,6 @@
 
 global enum CertCaptureProvisionStatus
 {
-
     // Account and company are provisioned
     Provisioned,
 
@@ -22,6 +21,6 @@ global enum CertCaptureProvisionStatus
     InProgress,
 
     // 
-    NotProvisioned,
+    NotProvisioned
 
 }

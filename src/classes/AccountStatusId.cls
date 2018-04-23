@@ -12,7 +12,6 @@
 
 global enum AccountStatusId
 {
-
     // This account is not currently active.
     Inactive,
 
@@ -23,6 +22,6 @@ global enum AccountStatusId
     Test,
 
     // The account is new and is currently in the onboarding process.
-    New,
+    New
 
 }

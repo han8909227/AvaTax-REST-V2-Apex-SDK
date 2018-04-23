@@ -12,7 +12,6 @@
 
 global enum AuthenticationTypeId
 {
-
     // This API call was not authenticated.
     None,
 
@@ -23,6 +22,6 @@ global enum AuthenticationTypeId
     AccountIdLicenseKey,
 
     // This API call was authenticated by OpenID Bearer Token.
-    OpenIdBearerToken,
+    OpenIdBearerToken
 
 }

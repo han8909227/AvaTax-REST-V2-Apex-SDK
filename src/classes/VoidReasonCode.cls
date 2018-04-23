@@ -12,7 +12,6 @@
 
 global enum VoidReasonCode
 {
-
     // Unspecified reason
     Unspecified,
 
@@ -27,6 +26,6 @@ global enum VoidReasonCode
     DocVoided,
 
     // AdjustTax operation has been cancelled. Adjustment will be reversed.
-    AdjustmentCancelled,
+    AdjustmentCancelled
 
 }

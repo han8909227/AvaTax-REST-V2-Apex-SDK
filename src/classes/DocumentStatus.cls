@@ -12,7 +12,6 @@
 
 global enum DocumentStatus
 {
-
     // Temporary document not saved (SalesOrder, PurchaseOrder)
     Temporary,
 
@@ -38,6 +37,6 @@ global enum DocumentStatus
     PendingApproval,
 
     // Any status (for searching)
-    Any,
+    Any
 
 }

@@ -12,7 +12,6 @@
 
 global enum FilingRequestStatus
 {
-
     // Customer is building a request for a new filing calendar
     New,
 
@@ -38,6 +37,6 @@ global enum FilingRequestStatus
     RequestApproved,
 
     // This indicates that compliance rejected the request.
-    RequestDenied,
+    RequestDenied
 
 }

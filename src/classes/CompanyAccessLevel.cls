@@ -12,7 +12,6 @@
 
 global enum CompanyAccessLevel
 {
-
     // No permission to access companies.
     None,
 
@@ -23,6 +22,6 @@ global enum CompanyAccessLevel
     SingleAccount,
 
     // Permission to access all companies in all accounts. Reserved for system administration tasks.
-    AllCompanies,
+    AllCompanies
 
 }

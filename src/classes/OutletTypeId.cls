@@ -14,7 +14,6 @@
 
 global enum OutletTypeId
 {
-
     // File a single return per cycle for your entire business.
     None,
 
@@ -25,6 +24,6 @@ global enum OutletTypeId
     Duplicate,
 
     // File a single return, but you must have a line item for each place of business.
-    Consolidated,
+    Consolidated
 
 }

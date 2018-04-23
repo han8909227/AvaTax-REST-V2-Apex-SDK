@@ -12,7 +12,6 @@
 
 global enum PaymentAccountTypeId
 {
-
     // 
     None,
 
@@ -23,6 +22,6 @@ global enum PaymentAccountTypeId
     AccountsReceivable,
 
     // 
-    AccountsPayable,
+    AccountsPayable
 
 }

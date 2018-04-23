@@ -12,7 +12,6 @@
 
 global enum RefundType
 {
-
     // Refund the whole transaction.
     Full,
 
@@ -23,6 +22,6 @@ global enum RefundType
     TaxOnly,
 
     // Refund a percentage of the value of this transaction.
-    Percentage,
+    Percentage
 
 }

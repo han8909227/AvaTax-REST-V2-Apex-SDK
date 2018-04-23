@@ -12,7 +12,6 @@
 
 global enum PointOfSaleFileType
 {
-
     // File is in Javascript Object Notation format
     Json,
 
@@ -20,6 +19,6 @@ global enum PointOfSaleFileType
     Csv,
 
     // File is in Extended Markup Language format
-    Xml,
+    Xml
 
 }

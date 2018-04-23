@@ -12,7 +12,6 @@
 
 global enum BatchType
 {
-
     // 
     AvaCertUpdate,
 
@@ -51,6 +50,6 @@ global enum BatchType
     UPCBulkImport,
 
     // 
-    UPCValidationImport,
+    UPCValidationImport
 
 }

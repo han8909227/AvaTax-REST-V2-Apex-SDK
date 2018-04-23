@@ -12,7 +12,6 @@
 
 global enum NoticePriorityId
 {
-
     // Immediate Attention Required
     ImmediateAttentionRequired,
 
@@ -23,6 +22,6 @@ global enum NoticePriorityId
     Normal,
 
     // Low
-    Low,
+    Low
 
 }

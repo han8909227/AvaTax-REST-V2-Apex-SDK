@@ -12,7 +12,6 @@
 
 global enum TaxOverrideType
 {
-
     // No override
     None,
 
@@ -29,6 +28,6 @@ global enum TaxOverrideType
     AccruedTaxAmount,
 
     // Derive the taxable amount from the tax amount
-    DeriveTaxable,
+    DeriveTaxable
 
 }

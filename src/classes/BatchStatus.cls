@@ -12,7 +12,6 @@
 
 global enum BatchStatus
 {
-
     // Batch file has been received and is in the queue to be processed.
     Waiting,
 
@@ -38,6 +37,6 @@ global enum BatchStatus
     Paused,
 
     // Batch is currently being processed.
-    Processing,
+    Processing
 
 }

@@ -12,7 +12,6 @@
 
 global enum RoundingTypeId
 {
-
     // There is no rounding on the return
     None,
 
@@ -23,6 +22,6 @@ global enum RoundingTypeId
     Up,
 
     // Always round down
-    Down,
+    Down
 
 }

@@ -12,7 +12,6 @@
 
 global enum SeverityLevel
 {
-
     // Operation succeeded
     Success,
 
@@ -23,6 +22,6 @@ global enum SeverityLevel
     Error,
 
     // Unexpected exceptions occurred, operation failed
-    Exception,
+    Exception
 
 }

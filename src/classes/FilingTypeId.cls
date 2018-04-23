@@ -12,7 +12,6 @@
 
 global enum FilingTypeId
 {
-
     // Denotes the tax return is being filed on paper.
     PaperReturn,
 
@@ -32,6 +31,6 @@ global enum FilingTypeId
     SignatureReady,
 
     // Denotes a return which is filed online but paid by check.
-    EfileCheck,
+    EfileCheck
 
 }

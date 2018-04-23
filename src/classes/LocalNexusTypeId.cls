@@ -12,7 +12,6 @@
 
 global enum LocalNexusTypeId
 {
-
     // Only the specific nexus objects declared for this company are declared.
     Selected,
 
@@ -24,6 +23,6 @@ global enum LocalNexusTypeId
     // Customer declares nexus in all local taxing authorities. 
         //  
         //  This value only takes effect if you set `hasLocalNexus` = true.
-    All,
+    All
 
 }

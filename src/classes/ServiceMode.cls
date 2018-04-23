@@ -12,7 +12,6 @@
 
 global enum ServiceMode
 {
-
     // Automatically use local or remote (default)
     Automatic,
 
@@ -20,6 +19,6 @@ global enum ServiceMode
     Local,
 
     // Remote server only
-    Remote,
+    Remote
 
 }

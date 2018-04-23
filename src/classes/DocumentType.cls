@@ -12,7 +12,6 @@
 
 global enum DocumentType
 {
-
     // Represents an estimate, or a sales order, or a quote. 
         //  
         //  This document type is used before a sale has occurred to estimate the final amount of tax to be paid when the
@@ -121,6 +120,6 @@ global enum DocumentType
         //  
         //  This value is used when querying for documents. You can specify the type `Any` in some cases to permit the
         //  system to find any document matching other criteria.
-    Any,
+    Any
 
 }

@@ -12,7 +12,6 @@
 
 global enum TaxNoticeFilingTypeId
 {
-
     // Denotes the tax return is being filed via electronic means; excludes SST electronic filing.
     ElectronicReturn,
 
@@ -41,6 +40,6 @@ global enum TaxNoticeFilingTypeId
     CertCapture,
 
     // Denotes a signature ready return
-    SignatureReady,
+    SignatureReady
 
 }

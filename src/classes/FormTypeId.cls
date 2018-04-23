@@ -12,7 +12,6 @@
 
 global enum FormTypeId
 {
-
     // Denotes the form type is Sales and Use Tax
     SalesAndUse,
 
@@ -38,6 +37,6 @@ global enum FormTypeId
     TouristAndRental,
 
     // Denotes the form type is Prepayment
-    Prepayment,
+    Prepayment
 
 }

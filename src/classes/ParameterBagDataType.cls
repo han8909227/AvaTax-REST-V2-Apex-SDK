@@ -12,7 +12,6 @@
 
 global enum ParameterBagDataType
 {
-
     // This data type is a string.
     String,
 
@@ -20,6 +19,6 @@ global enum ParameterBagDataType
     Boolean,
 
     // This data type is a numeric value. It can include decimals.
-    Numeric,
+    Numeric
 
 }

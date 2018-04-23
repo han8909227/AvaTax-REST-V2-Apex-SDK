@@ -12,7 +12,6 @@
 
 global enum AddressCategoryId
 {
-
     // Address refers to a storefront location
     Storefront,
 
@@ -39,6 +38,6 @@ global enum AddressCategoryId
         //  taxes on your behalf. When this option is selected, all transactions tied to this location
         //  will be treated as already filed, and will be listed on each sales tax return as amounts
         //  already paid.
-    MarketplaceRemitsTax,
+    MarketplaceRemitsTax
 
 }

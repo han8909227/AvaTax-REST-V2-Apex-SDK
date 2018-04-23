@@ -12,7 +12,6 @@
 
 global enum ApiCallStatus
 {
-
     // If the original api call is availabe on S3
     OriginalApiCallAvailable,
 
@@ -20,6 +19,6 @@ global enum ApiCallStatus
     ReconstructedApiCallAvailable,
 
     // Any other api call status
-    Any,
+    Any
 
 }

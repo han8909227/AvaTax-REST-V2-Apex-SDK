@@ -12,7 +12,6 @@
 
 global enum CertificateRequestDeliveryMethod
 {
-
     // The invitation will be sent via email to the recipient's email address.
     Email,
 
@@ -23,6 +22,6 @@ global enum CertificateRequestDeliveryMethod
 
     // The request will be processed and turned into a web link (URL) which the user can click on to visit the CertExpress site and immediately
         //  begin entering data about their certificates.
-    Download,
+    Download
 
 }

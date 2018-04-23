@@ -12,7 +12,6 @@
 
 global enum NoticeCustomerType
 {
-
     // AvaTax Returns
     AvaTaxReturns,
 
@@ -26,6 +25,6 @@ global enum NoticeCustomerType
     SST,
 
     // TrustFile
-    TrustFile,
+    TrustFile
 
 }

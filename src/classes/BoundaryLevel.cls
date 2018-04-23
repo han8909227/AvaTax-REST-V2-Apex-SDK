@@ -13,7 +13,6 @@
 
 global enum BoundaryLevel
 {
-
     // Street address precision
     Address,
 
@@ -21,6 +20,6 @@ global enum BoundaryLevel
     Zip9,
 
     // 5-digit zip precision
-    Zip5,
+    Zip5
 
 }

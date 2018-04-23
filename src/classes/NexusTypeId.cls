@@ -12,7 +12,6 @@
 
 global enum NexusTypeId
 {
-
     // Indicates no nexus
     None,
 
@@ -32,6 +31,6 @@ global enum NexusTypeId
 
     // Indicates the entity is registered as a Non-Volunteer in an SST state.
         //  Only your SST administrator may set this option.
-    SSTNonVolunteer,
+    SSTNonVolunteer
 
 }

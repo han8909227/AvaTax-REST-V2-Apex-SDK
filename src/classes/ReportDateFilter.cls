@@ -13,7 +13,6 @@
 
 global enum ReportDateFilter
 {
-
     // The date when the transaction is posted
     DocumentDate,
 
@@ -24,6 +23,6 @@ global enum ReportDateFilter
     ReportingDate,
 
     // The date when the transaction is being taxed
-    TaxDate,
+    TaxDate
 
 }

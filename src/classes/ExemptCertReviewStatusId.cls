@@ -12,7 +12,6 @@
 
 global enum ExemptCertReviewStatusId
 {
-
     // Review pending
     Pending,
 
@@ -20,6 +19,6 @@ global enum ExemptCertReviewStatusId
     Accepted,
 
     // Certificate was rejected
-    Rejected,
+    Rejected
 
 }

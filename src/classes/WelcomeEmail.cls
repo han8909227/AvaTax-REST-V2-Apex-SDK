@@ -12,7 +12,6 @@
 
 global enum WelcomeEmail
 {
-
     // Normal
     Normal,
 
@@ -20,6 +19,6 @@ global enum WelcomeEmail
     Suppressed,
 
     // Custom
-    Custom,
+    Custom
 
 }

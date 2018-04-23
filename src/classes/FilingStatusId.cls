@@ -12,7 +12,6 @@
 
 global enum FilingStatusId
 {
-
     // 
     PendingApproval,
 
@@ -62,6 +61,6 @@ global enum FilingStatusId
     ReturnRejectedOnBehalf,
 
     // 
-    ApprovedToFileOnBehalf,
+    ApprovedToFileOnBehalf
 
 }

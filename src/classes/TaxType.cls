@@ -12,7 +12,6 @@
 
 global enum TaxType
 {
-
     // Match Lodging tax type
     Lodging,
 
@@ -50,6 +49,6 @@ global enum TaxType
     Sales,
 
     // Use tax
-    Use,
+    Use
 
 }

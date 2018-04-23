@@ -12,7 +12,6 @@
 
 global enum JurisdictionType
 {
-
     // Country
     Country,
 
@@ -26,6 +25,6 @@ global enum JurisdictionType
     City,
 
     // Special Tax Jurisdiction
-    Special,
+    Special
 
 }

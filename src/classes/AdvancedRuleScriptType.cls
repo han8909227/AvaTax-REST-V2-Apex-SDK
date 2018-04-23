@@ -12,11 +12,10 @@
 
 global enum AdvancedRuleScriptType
 {
-
     // 
     RequestRule,
 
     // 
-    ResponseRule,
+    ResponseRule
 
 }

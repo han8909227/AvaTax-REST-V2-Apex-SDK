@@ -12,7 +12,6 @@
 
 global enum CompanyFilingStatus
 {
-
     // This company is not a reporting entity and cannot file taxes. To change this behavior, you must mark
         //  the company as a reporting entity.
     NoReporting,
@@ -33,6 +32,6 @@ global enum CompanyFilingStatus
     Active,
 
     // This company has not been configured for compliance
-    NotConfiguredForCompliance,
+    NotConfiguredForCompliance
 
 }

@@ -12,7 +12,6 @@
 
 global enum WorksheetTypeId
 {
-
     // The original filing for a period
     Original,
 
@@ -20,6 +19,6 @@ global enum WorksheetTypeId
     Amended,
 
     // Represents a test filing
-    Test,
+    Test
 
 }

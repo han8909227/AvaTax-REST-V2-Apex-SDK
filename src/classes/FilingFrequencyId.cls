@@ -12,7 +12,6 @@
 
 global enum FilingFrequencyId
 {
-
     // File once per month
     Monthly,
 
@@ -32,6 +31,6 @@ global enum FilingFrequencyId
     Occasional,
 
     // File for the first two months of each quarter, then do not file on the quarterly month.
-    InverseQuarterly,
+    InverseQuarterly
 
 }

@@ -12,11 +12,10 @@
 
 global enum FundingOption
 {
-
     // Pull
     Pull,
 
     // Wire
-    Wire,
+    Wire
 
 }

@@ -12,7 +12,6 @@
 
 global enum ResolutionQuality
 {
-
     // Location was not geocoded
     NotCoded,
 
@@ -47,6 +46,6 @@ global enum ResolutionQuality
     Rooftop,
 
     // Pulled from a static list of geocodes for specific jurisdictions
-    Constant,
+    Constant
 
 }
