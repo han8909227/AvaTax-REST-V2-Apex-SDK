@@ -20,11 +20,9 @@ global class CommunicationsTSPairModel extends ErrorResult
     global Integer serviceTypeId { get; set; }
 
     // The name of the transaction type.
-    [JsonProperty(PropertyName = "AvaTax.Communications.TransactionType")]
     global String TransactionType { get; set; }
 
     // The name of the service type.
-    [JsonProperty(PropertyName = "AvaTax.Communications.ServiceType")]
     global String ServiceType { get; set; }
 
     // The description of the transaction/service type pair.

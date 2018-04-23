@@ -17,6 +17,5 @@ global class CommunicationsTransactionTypeModel extends ErrorResult
     global Integer transactionTypeId { get; set; }
 
     // The name of the transaction type.
-    [JsonProperty(PropertyName = "AvaTax.Communications.TransactionType")]
     global String TransactionType { get; set; }
 }

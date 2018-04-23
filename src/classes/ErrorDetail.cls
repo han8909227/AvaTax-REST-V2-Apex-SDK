@@ -14,7 +14,7 @@ global class ErrorDetail
 {
 
     // Name of the error or message.
-    global ErrorCodeId code { get; set; }
+    global String code { get; set; }
 
     // Unique ID number referring to this error or message.
     global Integer number { get; set; }
