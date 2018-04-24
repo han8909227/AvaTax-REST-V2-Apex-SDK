@@ -8,14 +8,14 @@
  *
  * @copyright  2004-2018 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    18.4.0-185
+ * @version    18.4.1-187
  * @link       https://github.com/avadev/AvaTax-REST-V2-Apex-SDK
  */
 
 global class AvaTaxClient
 {
         // Returns the version number of the API used to generate this class
-        global static string API_VERSION { get { return '18.4.0-185' } }
+        global static string API_VERSION { get { return '18.4.1-187' } }
 	private string credentials;
 	private string clientHeader;
 	private String envUri;
