@@ -17,5 +17,5 @@ global class FilingAnswerModel extends ErrorResult
     global Integer filingQuestionId { get; set; }
 
     // The value of the answer for the filing question identified by filingQuestionId
-    global Map answer { get; set; }
+    global Map<string, string> answer { get; set; }
 }

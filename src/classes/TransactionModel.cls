@@ -222,7 +222,7 @@ global class TransactionModel extends ErrorResult
     global List<TransactionSummary> summary { get; set; }
 
     // Contains a list of extra parameters that were set when the transaction was created.
-    global Map parameters { get; set; }
+    global Map<string, string> parameters { get; set; }
 
     // List of informational and warning messages regarding this API call. These messages are only relevant to the current API call.
     global List<AvaTaxMessage> messages { get; set; }

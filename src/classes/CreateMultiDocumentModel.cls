@@ -99,7 +99,7 @@ global class CreateMultiDocumentModel extends ErrorResult
     // Special parameters for this transaction.
     // 
     // To get a full list of available parameters, please use the `/api/v2/definitions/parameters` endpoint.
-    global Map parameters { get; set; }
+    global Map<string, string> parameters { get; set; }
 
     // Customer-provided Reference Code with information about this transaction.
     // 

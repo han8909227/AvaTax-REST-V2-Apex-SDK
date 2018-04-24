@@ -15,5 +15,5 @@ global class TaxCodeTypesModel extends ErrorResult
 {
 
     // The list of Avalara-defined tax code types.
-    global Map types { get; set; }
+    global Map<string, string> types { get; set; }
 }

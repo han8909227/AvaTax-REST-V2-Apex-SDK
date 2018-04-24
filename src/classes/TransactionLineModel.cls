@@ -170,7 +170,7 @@ global class TransactionLineModel extends ErrorResult
     global List<TransactionLineLocationTypeModel> lineLocationTypes { get; set; }
 
     // Contains a list of extra parameters that were set when the transaction was created.
-    global Map parameters { get; set; }
+    global Map<string, string> parameters { get; set; }
 
     // The cross-border harmonized system code (HSCode) used to calculate tariffs and duties for this line item. 
     // For a full list of HS codes, see `ListCrossBorderCodes()`.
