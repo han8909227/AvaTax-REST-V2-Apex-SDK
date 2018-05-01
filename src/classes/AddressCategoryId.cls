@@ -31,7 +31,7 @@ global enum AddressCategoryId
         //  location. Use this option if you are using a marketplace vendor to handle your transactions
         //  and your company is responsible for collecting and remitting all taxes for transactions tied
         //  to this location.
-    SellersRemitsTax,
+    SellerRemitsTax,
 
     // The marketplace vendor collects and remits tax on your behalf for all transactions tied
         //  to this location. Use this option if your marketplace vendor already pays sales and use
