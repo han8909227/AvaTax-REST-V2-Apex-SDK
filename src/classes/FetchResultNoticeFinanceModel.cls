@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultNoticeFinanceModel extends FetchResultBase
+global FetchResultNoticeFinanceModel extends FetchResultBase
 {
     global List<NoticeFinanceModel> value{ get; set; }
 }

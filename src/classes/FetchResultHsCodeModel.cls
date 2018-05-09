@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultHsCodeModel extends FetchResultBase
+global FetchResultHsCodeModel extends FetchResultBase
 {
     global List<HsCodeModel> value{ get; set; }
 }

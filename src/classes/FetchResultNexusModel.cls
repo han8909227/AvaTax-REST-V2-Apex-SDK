@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultNexusModel extends FetchResultBase
+global FetchResultNexusModel extends FetchResultBase
 {
     global List<NexusModel> value{ get; set; }
 }

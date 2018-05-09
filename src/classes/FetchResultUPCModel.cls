@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultUPCModel extends FetchResultBase
+global FetchResultUPCModel extends FetchResultBase
 {
     global List<UPCModel> value{ get; set; }
 }

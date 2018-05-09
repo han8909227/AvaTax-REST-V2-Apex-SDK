@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultNoticeResponsibilityDetailModel extends FetchResultBase
+global FetchResultNoticeResponsibilityDetailModel extends FetchResultBase
 {
     global List<NoticeResponsibilityDetailModel> value{ get; set; }
 }

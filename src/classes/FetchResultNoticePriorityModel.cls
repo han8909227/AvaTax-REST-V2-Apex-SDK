@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultNoticePriorityModel extends FetchResultBase
+global FetchResultNoticePriorityModel extends FetchResultBase
 {
     global List<NoticePriorityModel> value{ get; set; }
 }

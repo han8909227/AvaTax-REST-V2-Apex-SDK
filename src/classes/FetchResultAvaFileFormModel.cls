@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultAvaFileFormModel extends FetchResultBase
+global FetchResultAvaFileFormModel extends FetchResultBase
 {
     global List<AvaFileFormModel> value{ get; set; }
 }

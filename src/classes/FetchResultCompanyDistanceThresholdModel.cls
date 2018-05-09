@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultCompanyDistanceThresholdModel extends FetchResultBase
+global FetchResultCompanyDistanceThresholdModel extends FetchResultBase
 {
     global List<CompanyDistanceThresholdModel> value{ get; set; }
 }

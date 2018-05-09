@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultFilingCalendarModel extends FetchResultBase
+global FetchResultFilingCalendarModel extends FetchResultBase
 {
     global List<FilingCalendarModel> value{ get; set; }
 }

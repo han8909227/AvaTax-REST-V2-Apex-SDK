@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultPostalCodeModel extends FetchResultBase
+global FetchResultPostalCodeModel extends FetchResultBase
 {
     global List<PostalCodeModel> value{ get; set; }
 }

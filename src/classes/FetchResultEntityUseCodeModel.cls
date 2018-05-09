@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultEntityUseCodeModel extends FetchResultBase
+global FetchResultEntityUseCodeModel extends FetchResultBase
 {
     global List<EntityUseCodeModel> value{ get; set; }
 }

@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultTaxAuthorityModel extends FetchResultBase
+global FetchResultTaxAuthorityModel extends FetchResultBase
 {
     global List<TaxAuthorityModel> value{ get; set; }
 }

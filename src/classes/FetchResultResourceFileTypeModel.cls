@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultResourceFileTypeModel extends FetchResultBase
+global FetchResultResourceFileTypeModel extends FetchResultBase
 {
     global List<ResourceFileTypeModel> value{ get; set; }
 }

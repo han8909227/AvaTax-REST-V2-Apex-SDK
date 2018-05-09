@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultExemptionReasonModel extends FetchResultBase
+global FetchResultExemptionReasonModel extends FetchResultBase
 {
     global List<ExemptionReasonModel> value{ get; set; }
 }

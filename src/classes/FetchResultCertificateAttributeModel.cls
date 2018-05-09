@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultCertificateAttributeModel extends FetchResultBase
+global FetchResultCertificateAttributeModel extends FetchResultBase
 {
     global List<CertificateAttributeModel> value{ get; set; }
 }

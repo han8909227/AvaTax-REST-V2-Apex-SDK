@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultFilingModel extends FetchResultBase
+global FetchResultFilingModel extends FetchResultBase
 {
     global List<FilingModel> value{ get; set; }
 }

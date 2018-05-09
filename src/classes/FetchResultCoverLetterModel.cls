@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultCoverLetterModel extends FetchResultBase
+global FetchResultCoverLetterModel extends FetchResultBase
 {
     global List<CoverLetterModel> value{ get; set; }
 }

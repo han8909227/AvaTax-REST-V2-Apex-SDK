@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultSkyscraperStatusModel extends FetchResultBase
+global FetchResultSkyscraperStatusModel extends FetchResultBase
 {
     global List<SkyscraperStatusModel> value{ get; set; }
 }

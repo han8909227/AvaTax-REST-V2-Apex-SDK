@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultCommunicationsTSPairModel extends FetchResultBase
+global FetchResultCommunicationsTSPairModel extends FetchResultBase
 {
     global List<CommunicationsTSPairModel> value{ get; set; }
 }

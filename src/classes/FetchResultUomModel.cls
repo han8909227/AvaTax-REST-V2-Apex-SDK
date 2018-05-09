@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultUomModel extends FetchResultBase
+global FetchResultUomModel extends FetchResultBase
 {
     global List<UomModel> value{ get; set; }
 }

@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultExposureZoneModel extends FetchResultBase
+global FetchResultExposureZoneModel extends FetchResultBase
 {
     global List<ExposureZoneModel> value{ get; set; }
 }

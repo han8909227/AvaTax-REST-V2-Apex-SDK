@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultSecurityRoleModel extends FetchResultBase
+global FetchResultSecurityRoleModel extends FetchResultBase
 {
     global List<SecurityRoleModel> value{ get; set; }
 }

@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultPreferredProgramModel extends FetchResultBase
+global FetchResultPreferredProgramModel extends FetchResultBase
 {
     global List<PreferredProgramModel> value{ get; set; }
 }

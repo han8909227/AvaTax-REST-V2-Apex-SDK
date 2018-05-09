@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultIsoCountryModel extends FetchResultBase
+global FetchResultIsoCountryModel extends FetchResultBase
 {
     global List<IsoCountryModel> value{ get; set; }
 }

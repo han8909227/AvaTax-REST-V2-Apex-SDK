@@ -16,9 +16,9 @@ global class AvaTaxClient
 {
         // Returns the version number of the API used to generate this class
         global static string API_VERSION { get { return '18.4.3-191' } }
-    private string credentials;
-    private string clientHeader;
-    private String envUri;
+    	private string credentials;
+    	private string clientHeader;
+    	private String envUri;
 
 
         // Reset this account's license key
@@ -128,7 +128,7 @@ global class AvaTaxClient
             ListAccountConfigurationModel retVal = new ListAccountConfigurationModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListAccountConfigurationModel)System.JSON.deserialize(res.getBody(), ListAccountConfigurationModel.class);
+                retVal.result = (ListAccountConfigurationModel)System.JSON.deserialize(res.getBody(), ListAccountConfigurationModel.class);
             }
             else
             {
@@ -162,7 +162,7 @@ global class AvaTaxClient
             ListAccountConfigurationModel retVal = new ListAccountConfigurationModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListAccountConfigurationModel)System.JSON.deserialize(res.getBody(), ListAccountConfigurationModel.class);
+                retVal.result = (ListAccountConfigurationModel)System.JSON.deserialize(res.getBody(), ListAccountConfigurationModel.class);
             }
             else
             {
@@ -321,7 +321,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -347,7 +347,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -455,7 +455,7 @@ global class AvaTaxClient
             ListAvaFileFormModel retVal = new ListAvaFileFormModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListAvaFileFormModel)System.JSON.deserialize(res.getBody(), ListAvaFileFormModel.class);
+                retVal.result = (ListAvaFileFormModel)System.JSON.deserialize(res.getBody(), ListAvaFileFormModel.class);
             }
             else
             {
@@ -477,7 +477,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -578,7 +578,7 @@ global class AvaTaxClient
             ListBatchModel retVal = new ListBatchModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListBatchModel)System.JSON.deserialize(res.getBody(), ListBatchModel.class);
+                retVal.result = (ListBatchModel)System.JSON.deserialize(res.getBody(), ListBatchModel.class);
             }
             else
             {
@@ -602,7 +602,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -784,7 +784,7 @@ global class AvaTaxClient
             ListCertExpressInvitationStatusModel retVal = new ListCertExpressInvitationStatusModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListCertExpressInvitationStatusModel)System.JSON.deserialize(res.getBody(), ListCertExpressInvitationStatusModel.class);
+                retVal.result = (ListCertExpressInvitationStatusModel)System.JSON.deserialize(res.getBody(), ListCertExpressInvitationStatusModel.class);
             }
             else
             {
@@ -907,7 +907,7 @@ global class AvaTaxClient
             ListCertificateModel retVal = new ListCertificateModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListCertificateModel)System.JSON.deserialize(res.getBody(), ListCertificateModel.class);
+                retVal.result = (ListCertificateModel)System.JSON.deserialize(res.getBody(), ListCertificateModel.class);
             }
             else
             {
@@ -1467,7 +1467,7 @@ global class AvaTaxClient
             ListCompanyModel retVal = new ListCompanyModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListCompanyModel)System.JSON.deserialize(res.getBody(), ListCompanyModel.class);
+                retVal.result = (ListCompanyModel)System.JSON.deserialize(res.getBody(), ListCompanyModel.class);
             }
             else
             {
@@ -1517,7 +1517,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -1565,7 +1565,7 @@ global class AvaTaxClient
             ListFundingConfigurationModel retVal = new ListFundingConfigurationModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListFundingConfigurationModel)System.JSON.deserialize(res.getBody(), ListFundingConfigurationModel.class);
+                retVal.result = (ListFundingConfigurationModel)System.JSON.deserialize(res.getBody(), ListFundingConfigurationModel.class);
             }
             else
             {
@@ -1632,7 +1632,7 @@ global class AvaTaxClient
             ListCompanyConfigurationModel retVal = new ListCompanyConfigurationModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListCompanyConfigurationModel)System.JSON.deserialize(res.getBody(), ListCompanyConfigurationModel.class);
+                retVal.result = (ListCompanyConfigurationModel)System.JSON.deserialize(res.getBody(), ListCompanyConfigurationModel.class);
             }
             else
             {
@@ -1687,7 +1687,7 @@ global class AvaTaxClient
             ListFundingStatusModel retVal = new ListFundingStatusModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListFundingStatusModel)System.JSON.deserialize(res.getBody(), ListFundingStatusModel.class);
+                retVal.result = (ListFundingStatusModel)System.JSON.deserialize(res.getBody(), ListFundingStatusModel.class);
             }
             else
             {
@@ -1778,7 +1778,7 @@ global class AvaTaxClient
             ListCompanyConfigurationModel retVal = new ListCompanyConfigurationModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListCompanyConfigurationModel)System.JSON.deserialize(res.getBody(), ListCompanyConfigurationModel.class);
+                retVal.result = (ListCompanyConfigurationModel)System.JSON.deserialize(res.getBody(), ListCompanyConfigurationModel.class);
             }
             else
             {
@@ -1825,7 +1825,7 @@ global class AvaTaxClient
             ListContactModel retVal = new ListContactModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListContactModel)System.JSON.deserialize(res.getBody(), ListContactModel.class);
+                retVal.result = (ListContactModel)System.JSON.deserialize(res.getBody(), ListContactModel.class);
             }
             else
             {
@@ -1849,7 +1849,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -1995,7 +1995,7 @@ global class AvaTaxClient
             ListCustomerModel retVal = new ListCustomerModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListCustomerModel)System.JSON.deserialize(res.getBody(), ListCustomerModel.class);
+                retVal.result = (ListCustomerModel)System.JSON.deserialize(res.getBody(), ListCustomerModel.class);
             }
             else
             {
@@ -3826,7 +3826,7 @@ global class AvaTaxClient
             ListCompanyDistanceThresholdModel retVal = new ListCompanyDistanceThresholdModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListCompanyDistanceThresholdModel)System.JSON.deserialize(res.getBody(), ListCompanyDistanceThresholdModel.class);
+                retVal.result = (ListCompanyDistanceThresholdModel)System.JSON.deserialize(res.getBody(), ListCompanyDistanceThresholdModel.class);
             }
             else
             {
@@ -3854,7 +3854,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -4105,7 +4105,7 @@ global class AvaTaxClient
             ListCycleAddOptionModel retVal = new ListCycleAddOptionModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListCycleAddOptionModel)System.JSON.deserialize(res.getBody(), ListCycleAddOptionModel.class);
+                retVal.result = (ListCycleAddOptionModel)System.JSON.deserialize(res.getBody(), ListCycleAddOptionModel.class);
             }
             else
             {
@@ -4173,7 +4173,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -4474,7 +4474,7 @@ global class AvaTaxClient
             ListFilingModel retVal = new ListFilingModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListFilingModel)System.JSON.deserialize(res.getBody(), ListFilingModel.class);
+                retVal.result = (ListFilingModel)System.JSON.deserialize(res.getBody(), ListFilingModel.class);
             }
             else
             {
@@ -4509,7 +4509,7 @@ global class AvaTaxClient
             ListFilingModel retVal = new ListFilingModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListFilingModel)System.JSON.deserialize(res.getBody(), ListFilingModel.class);
+                retVal.result = (ListFilingModel)System.JSON.deserialize(res.getBody(), ListFilingModel.class);
             }
             else
             {
@@ -4546,7 +4546,7 @@ global class AvaTaxClient
             ListFilingModel retVal = new ListFilingModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListFilingModel)System.JSON.deserialize(res.getBody(), ListFilingModel.class);
+                retVal.result = (ListFilingModel)System.JSON.deserialize(res.getBody(), ListFilingModel.class);
             }
             else
             {
@@ -4584,7 +4584,7 @@ global class AvaTaxClient
             ListFilingAdjustmentModel retVal = new ListFilingAdjustmentModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListFilingAdjustmentModel)System.JSON.deserialize(res.getBody(), ListFilingAdjustmentModel.class);
+                retVal.result = (ListFilingAdjustmentModel)System.JSON.deserialize(res.getBody(), ListFilingAdjustmentModel.class);
             }
             else
             {
@@ -4621,7 +4621,7 @@ global class AvaTaxClient
             ListFilingAugmentationModel retVal = new ListFilingAugmentationModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListFilingAugmentationModel)System.JSON.deserialize(res.getBody(), ListFilingAugmentationModel.class);
+                retVal.result = (ListFilingAugmentationModel)System.JSON.deserialize(res.getBody(), ListFilingAugmentationModel.class);
             }
             else
             {
@@ -4659,7 +4659,7 @@ global class AvaTaxClient
             ListFilingPaymentModel retVal = new ListFilingPaymentModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListFilingPaymentModel)System.JSON.deserialize(res.getBody(), ListFilingPaymentModel.class);
+                retVal.result = (ListFilingPaymentModel)System.JSON.deserialize(res.getBody(), ListFilingPaymentModel.class);
             }
             else
             {
@@ -4688,7 +4688,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -4716,7 +4716,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -4745,7 +4745,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -5411,7 +5411,7 @@ global class AvaTaxClient
             ListItemModel retVal = new ListItemModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListItemModel)System.JSON.deserialize(res.getBody(), ListItemModel.class);
+                retVal.result = (ListItemModel)System.JSON.deserialize(res.getBody(), ListItemModel.class);
             }
             else
             {
@@ -5441,7 +5441,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -5605,7 +5605,7 @@ global class AvaTaxClient
             ListJurisdictionOverrideModel retVal = new ListJurisdictionOverrideModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListJurisdictionOverrideModel)System.JSON.deserialize(res.getBody(), ListJurisdictionOverrideModel.class);
+                retVal.result = (ListJurisdictionOverrideModel)System.JSON.deserialize(res.getBody(), ListJurisdictionOverrideModel.class);
             }
             else
             {
@@ -5629,7 +5629,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -5768,7 +5768,7 @@ global class AvaTaxClient
             ListLocationModel retVal = new ListLocationModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListLocationModel)System.JSON.deserialize(res.getBody(), ListLocationModel.class);
+                retVal.result = (ListLocationModel)System.JSON.deserialize(res.getBody(), ListLocationModel.class);
             }
             else
             {
@@ -5792,7 +5792,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -6338,7 +6338,7 @@ global class AvaTaxClient
             ListNexusModel retVal = new ListNexusModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListNexusModel)System.JSON.deserialize(res.getBody(), ListNexusModel.class);
+                retVal.result = (ListNexusModel)System.JSON.deserialize(res.getBody(), ListNexusModel.class);
             }
             else
             {
@@ -6376,7 +6376,7 @@ global class AvaTaxClient
             ListNexusByAddressModel retVal = new ListNexusByAddressModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListNexusByAddressModel)System.JSON.deserialize(res.getBody(), ListNexusByAddressModel.class);
+                retVal.result = (ListNexusByAddressModel)System.JSON.deserialize(res.getBody(), ListNexusByAddressModel.class);
             }
             else
             {
@@ -6401,7 +6401,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -6582,7 +6582,7 @@ global class AvaTaxClient
             ListNoticeCommentModel retVal = new ListNoticeCommentModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListNoticeCommentModel)System.JSON.deserialize(res.getBody(), ListNoticeCommentModel.class);
+                retVal.result = (ListNoticeCommentModel)System.JSON.deserialize(res.getBody(), ListNoticeCommentModel.class);
             }
             else
             {
@@ -6611,7 +6611,7 @@ global class AvaTaxClient
             ListNoticeFinanceModel retVal = new ListNoticeFinanceModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListNoticeFinanceModel)System.JSON.deserialize(res.getBody(), ListNoticeFinanceModel.class);
+                retVal.result = (ListNoticeFinanceModel)System.JSON.deserialize(res.getBody(), ListNoticeFinanceModel.class);
             }
             else
             {
@@ -6639,7 +6639,7 @@ global class AvaTaxClient
             ListNoticeResponsibilityDetailModel retVal = new ListNoticeResponsibilityDetailModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListNoticeResponsibilityDetailModel)System.JSON.deserialize(res.getBody(), ListNoticeResponsibilityDetailModel.class);
+                retVal.result = (ListNoticeResponsibilityDetailModel)System.JSON.deserialize(res.getBody(), ListNoticeResponsibilityDetailModel.class);
             }
             else
             {
@@ -6667,7 +6667,7 @@ global class AvaTaxClient
             ListNoticeRootCauseDetailModel retVal = new ListNoticeRootCauseDetailModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListNoticeRootCauseDetailModel)System.JSON.deserialize(res.getBody(), ListNoticeRootCauseDetailModel.class);
+                retVal.result = (ListNoticeRootCauseDetailModel)System.JSON.deserialize(res.getBody(), ListNoticeRootCauseDetailModel.class);
             }
             else
             {
@@ -6693,7 +6693,7 @@ global class AvaTaxClient
             ListNoticeModel retVal = new ListNoticeModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListNoticeModel)System.JSON.deserialize(res.getBody(), ListNoticeModel.class);
+                retVal.result = (ListNoticeModel)System.JSON.deserialize(res.getBody(), ListNoticeModel.class);
             }
             else
             {
@@ -6720,7 +6720,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -6749,7 +6749,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -6778,7 +6778,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -7120,7 +7120,7 @@ global class AvaTaxClient
             ListSubscriptionModel retVal = new ListSubscriptionModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListSubscriptionModel)System.JSON.deserialize(res.getBody(), ListSubscriptionModel.class);
+                retVal.result = (ListSubscriptionModel)System.JSON.deserialize(res.getBody(), ListSubscriptionModel.class);
             }
             else
             {
@@ -7146,7 +7146,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -7173,7 +7173,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -7200,7 +7200,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -7421,7 +7421,7 @@ global class AvaTaxClient
             ListReportModel retVal = new ListReportModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListReportModel)System.JSON.deserialize(res.getBody(), ListReportModel.class);
+                retVal.result = (ListReportModel)System.JSON.deserialize(res.getBody(), ListReportModel.class);
             }
             else
             {
@@ -7479,7 +7479,7 @@ global class AvaTaxClient
             ListSettingModel retVal = new ListSettingModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListSettingModel)System.JSON.deserialize(res.getBody(), ListSettingModel.class);
+                retVal.result = (ListSettingModel)System.JSON.deserialize(res.getBody(), ListSettingModel.class);
             }
             else
             {
@@ -7512,7 +7512,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -7762,7 +7762,7 @@ global class AvaTaxClient
             ListTaxCodeModel retVal = new ListTaxCodeModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListTaxCodeModel)System.JSON.deserialize(res.getBody(), ListTaxCodeModel.class);
+                retVal.result = (ListTaxCodeModel)System.JSON.deserialize(res.getBody(), ListTaxCodeModel.class);
             }
             else
             {
@@ -7786,7 +7786,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -8025,7 +8025,7 @@ global class AvaTaxClient
             ListTaxRuleModel retVal = new ListTaxRuleModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListTaxRuleModel)System.JSON.deserialize(res.getBody(), ListTaxRuleModel.class);
+                retVal.result = (ListTaxRuleModel)System.JSON.deserialize(res.getBody(), ListTaxRuleModel.class);
             }
             else
             {
@@ -8049,7 +8049,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -8911,7 +8911,7 @@ global class AvaTaxClient
             ListUPCModel retVal = new ListUPCModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListUPCModel)System.JSON.deserialize(res.getBody(), ListUPCModel.class);
+                retVal.result = (ListUPCModel)System.JSON.deserialize(res.getBody(), ListUPCModel.class);
             }
             else
             {
@@ -8935,7 +8935,7 @@ global class AvaTaxClient
             ListErrorDetail retVal = new ListErrorDetail();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), ListErrorDetail.class);
             }
             else
             {
@@ -9073,7 +9073,7 @@ global class AvaTaxClient
             ListUserModel retVal = new ListUserModel();
             if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                retVal.result = restCallForList(ListUserModel)System.JSON.deserialize(res.getBody(), ListUserModel.class);
+                retVal.result = (ListUserModel)System.JSON.deserialize(res.getBody(), ListUserModel.class);
             }
             else
             {

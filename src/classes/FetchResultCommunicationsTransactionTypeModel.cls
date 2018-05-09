@@ -10,7 +10,7 @@
 
 /*  */
 
-global virtualList FetchResultCommunicationsTransactionTypeModel extends FetchResultBase
+global FetchResultCommunicationsTransactionTypeModel extends FetchResultBase
 {
     global List<CommunicationsTransactionTypeModel> value{ get; set; }
 }
