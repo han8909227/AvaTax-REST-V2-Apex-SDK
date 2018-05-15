@@ -14,7 +14,7 @@ global class TaxOverrideModel extends ErrorResult
 {
 
     // Identifies the type of tax override
-    global TaxOverrideType type { get; set; }
+    global TaxOverrideType typeField { get; set; }
 
     // Indicates a total override of the calculated tax on the document. AvaTax will distribute
     // the override across all the lines.

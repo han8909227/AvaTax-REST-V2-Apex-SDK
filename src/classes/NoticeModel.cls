@@ -94,7 +94,7 @@ global class NoticeModel extends ErrorResult
     global Integer typeId { get; set; }
 
     // The tax notice type description
-    global String type { get; set; }
+    global String typeField { get; set; }
 
     // The notice customer funding options
     global FundingOption customerFundingOptionId { get; set; }

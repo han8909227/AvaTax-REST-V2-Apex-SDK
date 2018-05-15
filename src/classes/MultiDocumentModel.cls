@@ -35,7 +35,7 @@ global class MultiDocumentModel extends ErrorResult
     // * SalesInvoice - An invoice that can be reported on a tax return
     // 
     // For more information about document types, see [DocumentType](https://developer.avalara.com/api-reference/avatax/rest/v2/models/enums/DocumentType/)
-    global DocumentType type { get; set; }
+    global DocumentType typeField { get; set; }
 
     // The user ID of the user who created this record.
     global Integer createdUserId { get; set; }

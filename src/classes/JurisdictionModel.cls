@@ -20,7 +20,7 @@ global class JurisdictionModel extends ErrorResult
     global String name { get; set; }
 
     // The type of the jurisdiction, indicating whether it is a country, state/region, city, for example.
-    global JurisdictionType type { get; set; }
+    global JurisdictionType typeField { get; set; }
 
     // The base rate of tax specific to this jurisdiction.
     global Decimal rate { get; set; }

@@ -26,7 +26,7 @@ global class FilingAdjustmentModel extends ErrorResult
     global AdjustmentPeriodTypeId period { get; set; }
 
     // The type of the adjustment.
-    global AdjustmentTypeId type { get; set; }
+    global AdjustmentTypeId typeField { get; set; }
 
     // Whether or not the adjustment has been calculated.
     global Boolean isCalculated { get; set; }

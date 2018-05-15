@@ -23,7 +23,7 @@ global class FilingPaymentModel extends ErrorResult
     global Decimal paymentAmount { get; set; }
 
     // The type of the payment.
-    global PaymentType type { get; set; }
+    global PaymentType typeField { get; set; }
 
     // Whether or not the payment has been calculated.
     global Boolean isCalculated { get; set; }

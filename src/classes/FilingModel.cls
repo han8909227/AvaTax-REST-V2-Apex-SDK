@@ -30,7 +30,7 @@ global class FilingModel extends ErrorResult
     global Integer year { get; set; }
 
     // Indicates whether this is an original or an amended filing.
-    global WorksheetTypeId type { get; set; }
+    global WorksheetTypeId typeField { get; set; }
 
     // The date when this record was created.
     global DateTime createdDate { get; set; }

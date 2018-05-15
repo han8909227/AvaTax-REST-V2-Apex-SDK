@@ -43,7 +43,7 @@ global class CreateMultiDocumentModel extends ErrorResult
     // be preserved.
     // 
     // If you omit this value, the API will assume you want to create a `SalesOrder`.
-    global DocumentType type { get; set; }
+    global DocumentType typeField { get; set; }
 
     // Company Code - Specify the code of the company creating this transaction here. If you leave this value null,
     // your account's default company will be used instead.

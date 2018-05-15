@@ -20,7 +20,7 @@ global class FundingConfigurationModel extends ErrorResult
     global String systemType { get; set; }
 
     // Recipient
-    global String currency { get; set; }
+    global String currencyField { get; set; }
 
     // Sender
     global Boolean isFundingSetup { get; set; }

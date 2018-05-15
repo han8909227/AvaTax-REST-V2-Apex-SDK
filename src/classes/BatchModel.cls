@@ -26,7 +26,7 @@ global class BatchModel extends ErrorResult
     global Integer companyId { get; set; }
 
     // The type of this batch.
-    global BatchType type { get; set; }
+    global BatchType typeField { get; set; }
 
     // This batch's current processing status
     global BatchStatus status { get; set; }
