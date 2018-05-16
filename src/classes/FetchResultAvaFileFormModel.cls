@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultAvaFileFormModel extends FetchResultBase
+global class FetchResultAvaFileFormModel extends FetchResultBase
 {
     global List<AvaFileFormModel> value{ get; set; }
 }

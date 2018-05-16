@@ -20,5 +20,5 @@ global class RateModel extends ErrorResult
     global String name { get; set; }
 
     // The type of jurisdiction associated with this tax rate.
-    global JurisdictionType type { get; set; }
+    global JurisdictionType typeField { get; set; }
 }

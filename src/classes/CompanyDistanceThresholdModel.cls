@@ -74,5 +74,5 @@ global class CompanyDistanceThresholdModel extends ErrorResult
     // Indicates the distance threshold type.
     // 
     // This value can be either `Sale` or `Purchase`.
-    global String type { get; set; }
+    global String typeField { get; set; }
 }

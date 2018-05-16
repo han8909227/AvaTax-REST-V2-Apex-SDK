@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultFilingCalendarModel extends FetchResultBase
+global class FetchResultFilingCalendarModel extends FetchResultBase
 {
     global List<FilingCalendarModel> value{ get; set; }
 }

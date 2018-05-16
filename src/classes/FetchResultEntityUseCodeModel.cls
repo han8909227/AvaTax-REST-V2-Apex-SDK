@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultEntityUseCodeModel extends FetchResultBase
+global class FetchResultEntityUseCodeModel extends FetchResultBase
 {
     global List<EntityUseCodeModel> value{ get; set; }
 }

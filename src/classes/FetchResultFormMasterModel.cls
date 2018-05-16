@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultFormMasterModel extends FetchResultBase
+global class FetchResultFormMasterModel extends FetchResultBase
 {
     global List<FormMasterModel> value{ get; set; }
 }

@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultCurrencyModel extends FetchResultBase
+global class FetchResultCurrencyModel extends FetchResultBase
 {
     global List<CurrencyModel> value{ get; set; }
 }

@@ -36,7 +36,7 @@ global class SettingModel extends ErrorResult
     // We recommend that you choose a set name that clearly identifies your application, and then
     // store data within name/value pairs within that set. For example, if you were creating an 
     // application called MyApp, you might choose to create a set named `X-MyCompany-MyApp`.
-    global String set { get; set; }
+    global String setField { get; set; }
 
     // A user-defined "name" for this name-value pair.
     global String name { get; set; }

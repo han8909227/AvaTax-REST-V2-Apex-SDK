@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultSkyscraperStatusModel extends FetchResultBase
+global class FetchResultSkyscraperStatusModel extends FetchResultBase
 {
     global List<SkyscraperStatusModel> value{ get; set; }
 }

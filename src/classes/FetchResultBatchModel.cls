@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultBatchModel extends FetchResultBase
+global class FetchResultBatchModel extends FetchResultBase
 {
     global List<BatchModel> value{ get; set; }
 }

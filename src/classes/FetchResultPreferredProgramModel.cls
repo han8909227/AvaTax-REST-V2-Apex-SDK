@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultPreferredProgramModel extends FetchResultBase
+global class FetchResultPreferredProgramModel extends FetchResultBase
 {
     global List<PreferredProgramModel> value{ get; set; }
 }

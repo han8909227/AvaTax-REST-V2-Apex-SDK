@@ -17,7 +17,7 @@ global class ErrorDetail
     global String code { get; set; }
 
     // Unique ID number referring to this error or message.
-    global Integer number { get; set; }
+    global Integer numberField { get; set; }
 
     // Concise summary of the message, suitable for display in the caption of an alert box.
     global String message { get; set; }

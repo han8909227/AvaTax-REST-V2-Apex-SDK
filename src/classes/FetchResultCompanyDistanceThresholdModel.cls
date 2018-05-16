@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultCompanyDistanceThresholdModel extends FetchResultBase
+global class FetchResultCompanyDistanceThresholdModel extends FetchResultBase
 {
     global List<CompanyDistanceThresholdModel> value{ get; set; }
 }

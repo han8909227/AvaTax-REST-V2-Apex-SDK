@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultItemModel extends FetchResultBase
+global class FetchResultItemModel extends FetchResultBase
 {
     global List<ItemModel> value{ get; set; }
 }

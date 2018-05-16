@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultCertificateAttributeModel extends FetchResultBase
+global class FetchResultCertificateAttributeModel extends FetchResultBase
 {
     global List<CertificateAttributeModel> value{ get; set; }
 }

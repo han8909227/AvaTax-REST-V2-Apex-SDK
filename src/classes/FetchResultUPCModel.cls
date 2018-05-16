@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultUPCModel extends FetchResultBase
+global class FetchResultUPCModel extends FetchResultBase
 {
     global List<UPCModel> value{ get; set; }
 }

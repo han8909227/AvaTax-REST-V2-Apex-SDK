@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultTaxTypeGroupModel extends FetchResultBase
+global class FetchResultTaxTypeGroupModel extends FetchResultBase
 {
     global List<TaxTypeGroupModel> value{ get; set; }
 }

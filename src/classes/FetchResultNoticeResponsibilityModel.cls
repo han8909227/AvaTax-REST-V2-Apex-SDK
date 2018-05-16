@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultNoticeResponsibilityModel extends FetchResultBase
+global class FetchResultNoticeResponsibilityModel extends FetchResultBase
 {
     global List<NoticeResponsibilityModel> value{ get; set; }
 }

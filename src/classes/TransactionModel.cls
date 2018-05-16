@@ -41,7 +41,7 @@ global class TransactionModel extends ErrorResult
     // A sales transaction represents a sale from the company to a customer. A purchase transaction represents a purchase made by the company.
     // A return transaction represents a customer who decided to request a refund after purchasing a product from the company. An inventory 
     // transfer transaction represents goods that were moved from one location of the company to another location without changing ownership.
-    global DocumentType type { get; set; }
+    global DocumentType typeField { get; set; }
 
     // If this transaction was created as part of a batch, this code indicates which batch.
     global String batchCode { get; set; }

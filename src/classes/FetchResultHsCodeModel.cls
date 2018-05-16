@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultHsCodeModel extends FetchResultBase
+global class FetchResultHsCodeModel extends FetchResultBase
 {
     global List<HsCodeModel> value{ get; set; }
 }

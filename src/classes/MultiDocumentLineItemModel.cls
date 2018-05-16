@@ -24,7 +24,7 @@ global class MultiDocumentLineItemModel extends ErrorResult
     global String reportingLocationCode { get; set; }
 
     // The line number of this line within the document. This can be any text that is useful to you, such as numeric line numbers, alphabetic line numbers, or other text.
-    global String number { get; set; }
+    global String numberField { get; set; }
 
     // Quantity of items in this line. This quantity value should always be a positive value representing the quantity of product that changed hands, even when handling returns or refunds.
     // 

@@ -27,7 +27,7 @@ global class VerifyMultiDocumentModel extends ErrorResult
     // document types, see [DocumentType](https://developer.avalara.com/api-reference/avatax/rest/v2/models/enums/DocumentType/).
     // 
     // A MultiDocument transaction is uniquely identified by its `accountId`, `code`, and `type`.
-    global DocumentType type { get; set; }
+    global DocumentType typeField { get; set; }
 
     // Set this value if you wish to verify a match between `verifyTransactionDate` and
     // the `documentDate` value on the transaction recorded in AvaTax.
