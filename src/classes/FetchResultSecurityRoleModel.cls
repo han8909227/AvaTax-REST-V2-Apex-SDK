@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultSecurityRoleModel extends FetchResultBase
+global class FetchResultSecurityRoleModel extends FetchResultBase
 {
     global List<SecurityRoleModel> value{ get; set; }
 }

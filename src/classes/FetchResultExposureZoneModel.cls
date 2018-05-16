@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultExposureZoneModel extends FetchResultBase
+global class FetchResultExposureZoneModel extends FetchResultBase
 {
     global List<ExposureZoneModel> value{ get; set; }
 }

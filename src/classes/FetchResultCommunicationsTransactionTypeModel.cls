@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultCommunicationsTransactionTypeModel extends FetchResultBase
+global class FetchResultCommunicationsTransactionTypeModel extends FetchResultBase
 {
     global List<CommunicationsTransactionTypeModel> value{ get; set; }
 }

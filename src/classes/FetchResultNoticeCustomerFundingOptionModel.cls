@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultNoticeCustomerFundingOptionModel extends FetchResultBase
+global class FetchResultNoticeCustomerFundingOptionModel extends FetchResultBase
 {
     global List<NoticeCustomerFundingOptionModel> value{ get; set; }
 }

@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultJurisdictionModel extends FetchResultBase
+global class FetchResultJurisdictionModel extends FetchResultBase
 {
     global List<JurisdictionModel> value{ get; set; }
 }

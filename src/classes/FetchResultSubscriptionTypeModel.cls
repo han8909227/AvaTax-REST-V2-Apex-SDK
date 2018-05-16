@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultSubscriptionTypeModel extends FetchResultBase
+global class FetchResultSubscriptionTypeModel extends FetchResultBase
 {
     global List<SubscriptionTypeModel> value{ get; set; }
 }

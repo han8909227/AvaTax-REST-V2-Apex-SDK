@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultMultiDocumentModel extends FetchResultBase
+global class FetchResultMultiDocumentModel extends FetchResultBase
 {
     global List<MultiDocumentModel> value{ get; set; }
 }

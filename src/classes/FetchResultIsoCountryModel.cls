@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultIsoCountryModel extends FetchResultBase
+global class FetchResultIsoCountryModel extends FetchResultBase
 {
     global List<IsoCountryModel> value{ get; set; }
 }

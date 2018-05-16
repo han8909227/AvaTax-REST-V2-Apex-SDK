@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultCoverLetterModel extends FetchResultBase
+global class FetchResultCoverLetterModel extends FetchResultBase
 {
     global List<CoverLetterModel> value{ get; set; }
 }

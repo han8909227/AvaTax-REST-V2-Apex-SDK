@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultCommunicationsTSPairModel extends FetchResultBase
+global class FetchResultCommunicationsTSPairModel extends FetchResultBase
 {
     global List<CommunicationsTSPairModel> value{ get; set; }
 }

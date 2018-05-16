@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultResourceFileTypeModel extends FetchResultBase
+global class FetchResultResourceFileTypeModel extends FetchResultBase
 {
     global List<ResourceFileTypeModel> value{ get; set; }
 }

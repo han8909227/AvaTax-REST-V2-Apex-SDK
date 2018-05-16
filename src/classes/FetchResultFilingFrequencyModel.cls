@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultFilingFrequencyModel extends FetchResultBase
+global class FetchResultFilingFrequencyModel extends FetchResultBase
 {
     global List<FilingFrequencyModel> value{ get; set; }
 }

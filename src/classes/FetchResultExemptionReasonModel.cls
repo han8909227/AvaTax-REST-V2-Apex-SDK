@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultExemptionReasonModel extends FetchResultBase
+global class FetchResultExemptionReasonModel extends FetchResultBase
 {
     global List<ExemptionReasonModel> value{ get; set; }
 }

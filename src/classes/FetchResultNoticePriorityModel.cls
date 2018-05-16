@@ -10,7 +10,7 @@
 
 /*  */
 
-global FetchResultNoticePriorityModel extends FetchResultBase
+global class FetchResultNoticePriorityModel extends FetchResultBase
 {
     global List<NoticePriorityModel> value{ get; set; }
 }
