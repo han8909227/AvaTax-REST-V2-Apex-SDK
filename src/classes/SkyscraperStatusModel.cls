@@ -22,7 +22,7 @@ global class SkyscraperStatusModel extends ErrorResult
     // The country of the returns
     global String country { get; set; }
 
-    // They Scraper type
+    // The Scraper type
     global ScraperType scraperType { get; set; }
 
     // Indicates if the return is currently available

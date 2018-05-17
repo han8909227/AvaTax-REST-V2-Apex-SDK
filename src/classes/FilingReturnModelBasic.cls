@@ -113,6 +113,9 @@ global class FilingReturnModelBasic extends ErrorResult
     // Accrual type of the return
     global AccrualType accrualType { get; set; }
 
+    // The attachments for this return.
+    global List<FilingAttachmentModel> attachments { get; set; }
+
     // The date when this record was created.
     global DateTime createdDate { get; set; }
 

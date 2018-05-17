@@ -67,6 +67,9 @@ global enum ServiceTypeId
     AvaBottle,
 
     // MRSComplianceManager
-    MRSComplianceManager
+    MRSComplianceManager,
+
+    // Send Sales Rate file service
+    SendSalesRateFile
 
 }

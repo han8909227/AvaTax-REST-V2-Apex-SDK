@@ -226,4 +226,7 @@ global class TransactionModel extends ErrorResult
 
     // List of informational and warning messages regarding this API call. These messages are only relevant to the current API call.
     global List<AvaTaxMessage> messages { get; set; }
+
+    // Invoice messages associated with this document. Currently, this stores legally-required VAT messages.
+    global List<InvoiceMessageModel> invoiceMessages { get; set; }
 }

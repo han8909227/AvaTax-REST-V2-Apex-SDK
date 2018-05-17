@@ -37,6 +37,6 @@ global enum DocumentStatus
     PendingApproval,
 
     // Any status (for searching)
-    Any
+    AnyField
 
 }

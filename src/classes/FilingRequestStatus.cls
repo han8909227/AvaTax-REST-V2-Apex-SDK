@@ -13,7 +13,7 @@
 global enum FilingRequestStatus
 {
     // Customer is building a request for a new filing calendar
-    New,
+    NewField,
 
     // Customer’s information validated before submitting to go live. All required information as per state and form selection is entered.
     Validated,

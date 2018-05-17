@@ -40,7 +40,7 @@ global class AvaFileFormModel extends ErrorResult
     // The type of the form being submitted
     global FormTypeId formTypeId { get; set; }
 
-    // 
+    // The type of Filing option
     global FilingOptionTypeId filingOptionTypeId { get; set; }
 
     // The type of the due date
@@ -49,7 +49,7 @@ global class AvaFileFormModel extends ErrorResult
     // Due date
     global Integer dueDay { get; set; }
 
-    // 
+    // The type of E-file due date.
     global DueDateTypeId efileDueDateTypeId { get; set; }
 
     // The date by when the E-filing should be submitted

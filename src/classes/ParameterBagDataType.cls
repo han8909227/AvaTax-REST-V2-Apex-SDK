@@ -13,10 +13,10 @@
 global enum ParameterBagDataType
 {
     // This data type is a string.
-    String,
+    StringField,
 
     // This data type is either 'true' or 'false'.
-    Boolean,
+    BooleanField,
 
     // This data type is a numeric value. It can include decimals.
     Numeric

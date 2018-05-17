@@ -97,28 +97,52 @@ global class CompanyModel extends ErrorResult
     // The user ID of the user who last modified this record.
     global Integer modifiedUserId { get; set; }
 
-    // Optional: A list of contacts defined for this company. To fetch this list, add the query string "?$include=Contacts" to your URL.
+    // Optional: A list of contacts defined for this company. To fetch this list, add the query string `?$include=Contacts` to your URL.
+    // 
+    // When calling `CreateCompany`, you may provide a list of objects in this element and they will be created alongside the company.
+    // The `UpdateCompany` API does not permit updating nested objects.
     global List<ContactModel> contacts { get; set; }
 
-    // Optional: A list of items defined for this company. To fetch this list, add the query string "?$include=Items" to your URL.
+    // Optional: A list of items defined for this company. To fetch this list, add the query string `?$include=Items` to your URL.
+    // 
+    // When calling `CreateCompany`, you may provide a list of objects in this element and they will be created alongside the company.
+    // The `UpdateCompany` API does not permit updating nested objects.
     global List<ItemModel> items { get; set; }
 
-    // Optional: A list of locations defined for this company. To fetch this list, add the query string "?$include=Locations" to your URL.
+    // Optional: A list of locations defined for this company. To fetch this list, add the query string `?$include=Locations` to your URL.
+    // 
+    // When calling `CreateCompany`, you may provide a list of objects in this element and they will be created alongside the company.
+    // The `UpdateCompany` API does not permit updating nested objects.
     global List<LocationModel> locations { get; set; }
 
-    // Optional: A list of nexus defined for this company. To fetch this list, add the query string "?$include=Nexus" to your URL.
+    // Optional: A list of nexus defined for this company. To fetch this list, add the query string `?$include=Nexus` to your URL.
+    // 
+    // When calling `CreateCompany`, you may provide a list of objects in this element and they will be created alongside the company.
+    // The `UpdateCompany` API does not permit updating nested objects.
     global List<NexusModel> nexus { get; set; }
 
-    // Optional: A list of settings defined for this company. To fetch this list, add the query string "?$include=Settings" to your URL.
+    // Optional: A list of settings defined for this company. To fetch this list, add the query string `?$include=Settings` to your URL.
+    // 
+    // When calling `CreateCompany`, you may provide a list of objects in this element and they will be created alongside the company.
+    // The `UpdateCompany` API does not permit updating nested objects.
     global List<SettingModel> settings { get; set; }
 
-    // Optional: A list of tax codes defined for this company. To fetch this list, add the query string "?$include=TaxCodes" to your URL.
+    // Optional: A list of tax codes defined for this company. To fetch this list, add the query string `?$include=TaxCodes` to your URL.
+    // 
+    // When calling `CreateCompany`, you may provide a list of objects in this element and they will be created alongside the company.
+    // The `UpdateCompany` API does not permit updating nested objects.
     global List<TaxCodeModel> taxCodes { get; set; }
 
-    // Optional: A list of tax rules defined for this company. To fetch this list, add the query string "?$include=TaxRules" to your URL.
+    // Optional: A list of tax rules defined for this company. To fetch this list, add the query string `?$include=TaxRules` to your URL.
+    // 
+    // When calling `CreateCompany`, you may provide a list of objects in this element and they will be created alongside the company.
+    // The `UpdateCompany` API does not permit updating nested objects.
     global List<TaxRuleModel> taxRules { get; set; }
 
-    // Optional: A list of UPCs defined for this company. To fetch this list, add the query string "?$include=UPCs" to your URL.
+    // Optional: A list of UPCs defined for this company. To fetch this list, add the query string `?$include=UPCs` to your URL.
+    // 
+    // When calling `CreateCompany`, you may provide a list of objects in this element and they will be created alongside the company.
+    // The `UpdateCompany` API does not permit updating nested objects.
     global List<UPCModel> upcs { get; set; }
 
     // DEPRECATED - Please use the `ListCertificates` API.

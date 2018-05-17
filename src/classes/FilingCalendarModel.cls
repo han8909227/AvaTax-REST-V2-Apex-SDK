@@ -169,6 +169,9 @@ global class FilingCalendarModel extends ErrorResult
     // for example, the value 90 would indicate 90%.
     global Integer prepayPercentage { get; set; }
 
+    // If your company is required to make a prepayment that is designated by a fixed amount each period, please specify the amount here.
+    global Decimal fixedPrepaymentAmount { get; set; }
+
     // The type of tax to report on this return.
     global MatchingTaxType taxTypeId { get; set; }
 

@@ -8,14 +8,14 @@
  *
  * @copyright  2004-2018 Avalara, Inc.
  * @license    https://www.apache.org/licenses/LICENSE-2.0
- * @version    18.4.3-191
+ * @version    18.5.0-197
  * @link       https://github.com/avadev/AvaTax-REST-V2-Apex-SDK
  */
 
 global class AvaTaxClient
 {
         // Returns the version number of the API used to generate this class
-        global static string API_VERSION { get { return '18.4.3-191' } }
+        global static string API_VERSION { get { return '18.5.0-197' } }
     	private string credentials;
     	private string clientHeader;
     	private String envUri;
@@ -237,216 +237,6 @@ global class AvaTaxClient
         }
 
 
-        // Approve an advanced rule script to run.
-        // This API is available by invite only and implementation support is required. 
-        // Please contact your Customer Account Manager if you are interested in using 
-        // Advanced Rules in your AvaTax integration.
-        // 
-        // <param name='accountId'>The ID of the account that owns the Advanced Rule.</param>
-        // <param name='scriptType'>The script transform type: Request or Response.</param>
-        global AdvancedRuleScriptModel ApproveAdvancedRuleScript(Integer accountId, AdvancedRuleScriptType scriptType)
-        {
-            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/advancedrulescripts/{scriptType}/approve');
-            path.ApplyField('accountId', accountId);
-            path.ApplyField('scriptType', scriptType);
-            AdvancedRuleScriptModel responseModel = null;
-            responseModel = restCall('POST', path.relativePath, null, AdvancedRuleScriptModel.class.getName());
-            if(responseModel.getStatusCode() != 200 && responseModel.getStatusCode() != 201)
-            {
-                responseModel.error = (ErrorResult)System.JSON.deserialize(JSON.serialize(responseModel), ErrorResult.class)).error;
-            }
-            return responseModel;
-        }
-
-
-        // Create an advanced rule.
-        // This API is available by invite only and implementation support is required. 
-        // Please contact your Customer Account Manager if you are interested in using 
-        // Advanced Rules in your AvaTax integration.
-        // 
-        // <param name='accountId'>The ID of the account that will own the Advanced Rule.</param>
-        // <param name='scriptType'>The script transform type, Request or Response.</param>
-        // <param name='crashBehavior'>The behavior the script should take if it crashes: Fail or Proceed.</param>
-        // <param name='file'>The JavaScript file containing the advanced rule.</param>
-        global String CreateAdvancedRuleScript(Integer accountId, AdvancedRuleScriptType scriptType, AdvancedRuleCrashBehavior crashBehavior, FileResult file)
-        {
-            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/advancedrulescripts/{scriptType}');
-            path.ApplyField('accountId', accountId);
-            path.ApplyField('scriptType', scriptType);
-            path.AddQuery('crashBehavior', crashBehavior);
-            String responseModel = null;
-            responseModel = restCall('POST', path.relativePath, null, String.class.getName());
-            if(responseModel.getStatusCode() != 200 && responseModel.getStatusCode() != 201)
-            {
-                responseModel.error = (ErrorResult)System.JSON.deserialize(JSON.serialize(responseModel), ErrorResult.class)).error;
-            }
-            return responseModel;
-        }
-
-
-        // Create a lookup table for an advanced rule
-        // This API is available by invite only and implementation support is required. 
-        // Please contact your Customer Account Manager if you are interested in using 
-        // Advanced Rules in your AvaTax integration.
-        // 
-        // <param name='accountId'>The ID of the account that owns the Advanced Rule.</param>
-        // <param name='csvTableName'>The name to assign the CSV lookup table.</param>
-        // <param name='file'>A CSV file containing lookup data for an advanced rule.</param>
-        global String CreateAdvancedRuleTable(Integer accountId, String csvTableName, FileResult file)
-        {
-            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/advancedruletables/{csvTableName}');
-            path.ApplyField('accountId', accountId);
-            path.ApplyField('csvTableName', csvTableName);
-            String responseModel = null;
-            responseModel = restCall('POST', path.relativePath, null, String.class.getName());
-            if(responseModel.getStatusCode() != 200 && responseModel.getStatusCode() != 201)
-            {
-                responseModel.error = (ErrorResult)System.JSON.deserialize(JSON.serialize(responseModel), ErrorResult.class)).error;
-            }
-            return responseModel;
-        }
-
-
-        // Delete an account's active advanced rule
-        // This API is available by invite only and implementation support is required. 
-        // Please contact your Customer Account Manager if you are interested in using 
-        // Advanced Rules in your AvaTax integration.
-        // 
-        // <param name='accountId'>The ID of the account that owns the Advanced Rule.</param>
-        // <param name='scriptType'>The script transform type: Request or Response.</param>
-        global ListErrorDetail DeleteAdvancedRuleScript(Integer accountId, AdvancedRuleScriptType scriptType)
-        {
-            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/advancedrulescripts/{scriptType}');
-            path.ApplyField('accountId', accountId);
-            path.ApplyField('scriptType', scriptType);
-            httpResponse res = restCallForList('DELETE', path.relativePath, null);
-            ListErrorDetail retVal = new ListErrorDetail();
-            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
-            {
-                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
-            }
-            else
-            {
-                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
-            }
-            retVal.statusCode = res.getStatusCode();
-            return retVal;
-        }
-
-
-        // Delete a lookup table for an advanced rule.
-        // This API is available by invite only and implementation support is required. 
-        // Please contact your Customer Account Manager if you are interested in using 
-        // Advanced Rules in your AvaTax integration.
-        // 
-        // <param name='accountId'>The ID of the account that owns the Advanced Rule.</param>
-        // <param name='csvTableName'>The name of the CSV lookup table to delete.</param>
-        global ListErrorDetail DeleteAdvancedRuleTable(Integer accountId, String csvTableName)
-        {
-            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/advancedruletables/{csvTableName}');
-            path.ApplyField('accountId', accountId);
-            path.ApplyField('csvTableName', csvTableName);
-            httpResponse res = restCallForList('DELETE', path.relativePath, null);
-            ListErrorDetail retVal = new ListErrorDetail();
-            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
-            {
-                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
-            }
-            else
-            {
-                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
-            }
-            retVal.statusCode = res.getStatusCode();
-            return retVal;
-        }
-
-
-        // Get an account's advanced rule script.
-        // This API is available by invite only and implementation support is required. 
-        // Please contact your Customer Account Manager if you are interested in using 
-        // Advanced Rules in your AvaTax integration.
-        // 
-        // <param name='accountId'>The ID of the account that owns the Advanced Rule.</param>
-        // <param name='scriptType'>The script transform type: Request or Response.</param>
-        global AdvancedRuleScriptModel GetAdvancedRuleScript(Integer accountId, AdvancedRuleScriptType scriptType)
-        {
-            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/advancedrulescripts/{scriptType}');
-            path.ApplyField('accountId', accountId);
-            path.ApplyField('scriptType', scriptType);
-            AdvancedRuleScriptModel responseModel = null;
-            responseModel = restCall('GET', path.relativePath, null, AdvancedRuleScriptModel.class.getName());
-            if(responseModel.getStatusCode() != 200 && responseModel.getStatusCode() != 201)
-            {
-                responseModel.error = (ErrorResult)System.JSON.deserialize(JSON.serialize(responseModel), ErrorResult.class)).error;
-            }
-            return responseModel;
-        }
-
-
-        // Get an advanced rule lookup table for an account
-        // This API is available by invite only and implementation support is required. 
-        // Please contact your Customer Account Manager if you are interested in using 
-        // Advanced Rules in your AvaTax integration.
-        // 
-        // <param name='accountId'>The ID of the account that owns the Advanced Rule.</param>
-        // <param name='csvTableName'>The name of the CSV lookup table to get.</param>
-        global AdvancedRuleTableModel GetAdvancedRuleTable(Integer accountId, String csvTableName)
-        {
-            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/advancedruletables/{csvTableName}');
-            path.ApplyField('accountId', accountId);
-            path.ApplyField('csvTableName', csvTableName);
-            AdvancedRuleTableModel responseModel = null;
-            responseModel = restCall('GET', path.relativePath, null, AdvancedRuleTableModel.class.getName());
-            if(responseModel.getStatusCode() != 200 && responseModel.getStatusCode() != 201)
-            {
-                responseModel.error = (ErrorResult)System.JSON.deserialize(JSON.serialize(responseModel), ErrorResult.class)).error;
-            }
-            return responseModel;
-        }
-
-
-        // Get all advanced rule lookup tables for an account
-        // This API is available by invite only and implementation support is required. 
-        // Please contact your Customer Account Manager if you are interested in using 
-        // Advanced Rules in your AvaTax integration.
-        // 
-        // <param name='accountId'>The ID of the account that owns the Advanced Rule.</param>
-        global AdvancedRuleTableModel GetAdvancedRuleTables(Integer accountId)
-        {
-            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/advancedruletables');
-            path.ApplyField('accountId', accountId);
-            AdvancedRuleTableModel responseModel = null;
-            responseModel = restCall('GET', path.relativePath, null, AdvancedRuleTableModel.class.getName());
-            if(responseModel.getStatusCode() != 200 && responseModel.getStatusCode() != 201)
-            {
-                responseModel.error = (ErrorResult)System.JSON.deserialize(JSON.serialize(responseModel), ErrorResult.class)).error;
-            }
-            return responseModel;
-        }
-
-
-        // Unapprove an advanced rule script so that it cannot be run.
-        // This API is available by invite only and implementation support is required. 
-        // Please contact your Customer Account Manager if you are interested in using 
-        // Advanced Rules in your AvaTax integration.
-        // 
-        // <param name='accountId'>The ID of the account that owns the Advanced Rule.</param>
-        // <param name='scriptType'>The script transform type: Request or Response.</param>
-        global AdvancedRuleScriptModel UnapproveAdvancedRuleScript(Integer accountId, AdvancedRuleScriptType scriptType)
-        {
-            AvaTaxPath path = new AvaTaxPath('/api/v2/accounts/{accountId}/advancedrulescripts/{scriptType}/unapprove');
-            path.ApplyField('accountId', accountId);
-            path.ApplyField('scriptType', scriptType);
-            AdvancedRuleScriptModel responseModel = null;
-            responseModel = restCall('POST', path.relativePath, null, AdvancedRuleScriptModel.class.getName());
-            if(responseModel.getStatusCode() != 200 && responseModel.getStatusCode() != 201)
-            {
-                responseModel.error = (ErrorResult)System.JSON.deserialize(JSON.serialize(responseModel), ErrorResult.class)).error;
-            }
-            return responseModel;
-        }
-
-
         // Create a new AvaFileForm
         // Create one or more AvaFileForms
         // A 'AvaFileForm' represents a form supported by our returns team
@@ -596,7 +386,16 @@ global class AvaTaxClient
 
 
         // Delete a single batch
+        // Marks the batch identified by this URL as deleted.
         // 
+        // If you attempt to delete a batch that is being processed, you will receive an error message.
+        // Deleting a batch does not delete any transactions that were created by importing the batch.
+        // 
+        // Because the batch system processes with a degree of concurrency, and
+        // because of batch sizes in the queue vary, AvaTax API is unable to accurately 
+        // predict when a batch will complete. If high performance processing is 
+        // required, please use the 
+        // [CreateTransaction API](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Transactions/CreateTransaction/).
         // 
         // <param name='companyId'>The ID of the company that owns this batch.</param>
         // <param name='id'>The ID of the batch to delete.</param>
@@ -1806,9 +1605,14 @@ global class AvaTaxClient
 
         // Update a single company
         // Replace the existing company object at this URL with an updated object.
-        // A 'company' represents a single corporation or individual that is registered to handle transactional taxes.
+        //  
+        // A `CompanyModel` represents a single corporation or individual that is registered to handle transactional taxes.
         // All data from the existing object will be replaced with data in the object you PUT. 
-        // To set a field's value to null, you may either set its value to null or omit that field from the object you post.
+        //  
+        // When calling `UpdateCompany`, you are permitted to update the company itself. Updates to the nested objects
+        // such as contacts, locations, or settings are not permitted. To update the nested objects
+        //  
+        // To set a field's value to `null`, you may either set its value to `null` or omit that field from the object you PUT.
         // 
         // <param name='id'>The ID of the company you wish to update.</param>
         // <param name='model'>The company object you wish to update.</param>
@@ -3360,17 +3164,13 @@ global class AvaTaxClient
         // Returns the full list of Avalara-supported permission types.
         // This API is intended to be useful to identify the capabilities of a particular user logon.
         // 
-        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
         // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        global FetchResultString ListPermissions(String filter, Integer top, Integer skip, String orderBy)
+        global FetchResultString ListPermissions(Integer top, Integer skip)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/permissions');
-            path.AddQuery('$filter', filter);
             path.AddQuery('$top', top);
             path.AddQuery('$skip', skip);
-            path.AddQuery('$orderBy', orderBy);
             FetchResultString responseModel = null;
             responseModel = restCall('GET', path.relativePath, null, FetchResultString.class.getName());
             if(responseModel.getStatusCode() != 200 && responseModel.getStatusCode() != 201)
@@ -3706,17 +3506,13 @@ global class AvaTaxClient
         // A 'Tax Code Type' represents a broad category of tax codes, and is less detailed than a single TaxCode.
         // This API is intended to be useful for broadly searching for tax codes by tax code type.
         // 
-        // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
         // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
-        // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        global TaxCodeTypesModel ListTaxCodeTypes(String filter, Integer top, Integer skip, String orderBy)
+        global TaxCodeTypesModel ListTaxCodeTypes(Integer top, Integer skip)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/definitions/taxcodetypes');
-            path.AddQuery('$filter', filter);
             path.AddQuery('$top', top);
             path.AddQuery('$skip', skip);
-            path.AddQuery('$orderBy', orderBy);
             TaxCodeTypesModel responseModel = null;
             responseModel = restCall('GET', path.relativePath, null, TaxCodeTypesModel.class.getName());
             if(responseModel.getStatusCode() != 200 && responseModel.getStatusCode() != 201)
@@ -4284,14 +4080,16 @@ global class AvaTaxClient
         // are reviewed and validated by Avalara Compliance before being implemented.
         // 
         // <param name='companyId'>The ID of the company that owns these batches</param>
+        // <param name='filingCalendarId'>Specific filing calendar id for the request</param>
         // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
         // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        global FetchResultFilingRequestModel ListFilingRequests(Integer companyId, String filter, Integer top, Integer skip, String orderBy)
+        global FetchResultFilingRequestModel ListFilingRequests(Integer companyId, Integer filingCalendarId, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/filingrequests');
             path.ApplyField('companyId', companyId);
+            path.AddQuery('filingCalendarId', filingCalendarId);
             path.AddQuery('$filter', filter);
             path.AddQuery('$top', top);
             path.AddQuery('$skip', skip);
@@ -4382,13 +4180,15 @@ global class AvaTaxClient
         // Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .
         // Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
         // 
+        // <param name='filingCalendarId'>Specific filing calendar id for the request</param>
         // <param name='filter'>A filter statement to identify specific records to retrieve. For more information on filtering, see [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .</param>
         // <param name='top'>If nonzero, return no more than this number of results. Used with $skip to provide pagination for large datasets.</param>
         // <param name='skip'>If nonzero, skip this number of results before returning data. Used with $top to provide pagination for large datasets.</param>
         // <param name='orderBy'>A comma separated list of sort statements in the format `(fieldname) [ASC|DESC]`, for example `id ASC`.</param>
-        global FetchResultFilingRequestModel QueryFilingRequests(String filter, Integer top, Integer skip, String orderBy)
+        global FetchResultFilingRequestModel QueryFilingRequests(Integer filingCalendarId, String filter, Integer top, Integer skip, String orderBy)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/filingrequests');
+            path.AddQuery('filingCalendarId', filingCalendarId);
             path.AddQuery('$filter', filter);
             path.AddQuery('$top', top);
             path.AddQuery('$skip', skip);
@@ -5218,18 +5018,16 @@ global class AvaTaxClient
 
 
         // FREE API - Request a free trial of AvaTax
-        // Call this API to obtain a free AvaTax sandbox account.
+        // Call this API to obtain a free AvaTax account.
         // 
-        // This API is free to use. No authentication credentials are required to call this API. You must read and accept Avalara's terms and conditions.
-        // The account will grant a full trial version of AvaTax (e.g. AvaTaxPro) for a limited period of time.
-        // After this introductory period, you may continue to use the free TaxRates API.
-        // 
-        // Limitations on free trial accounts:
+        // This API is free to use. No authentication credentials are required to call this API. You must read and 
+        // accept [Avalara's terms and conditions](https://www1.avalara.com/us/en/legal/terms.html) for the account to be 
+        // created. 
         //  
-        // * Only one free trial per company.
-        // * The free trial account does not expire.
-        // * Includes a limited time free trial of AvaTaxPro; after that date, the free TaxRates API will continue to work.
-        // * Each free trial account must have its own valid email address.
+        // If all conditions are met, this API will grant a free trial version of AvaTax. For a list of functionality
+        // available in the free trial and its limitations, please see the [AvaTax Developer Website Free Trial page](https://developer.avalara.com/avatax/signup/).
+        //  
+        // After your free trial concludes, you will still be able to use the [Free AvaTax API Suite](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Free/).
         // 
         // <param name='model'>Required information to provision a free trial account.</param>
         global NewAccountModel RequestFreeTrial(FreeTrialRequestModel model)
@@ -6605,6 +6403,36 @@ global class AvaTaxClient
         }
 
 
+        // Delete a single notice.
+        // This API is available by invitation only.
+        // 'Notice comments' are updates by the notice team on the work to be done and that has been done so far on a notice.
+        // A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
+        // Returns customers often receive support and assistance from the Compliance Notices team in handling notices received by taxing authorities.
+        // 
+        // <param name='companyId'>The ID of the company that owns this notice.</param>
+        // <param name='id'>The ID of the notice you wish to delete the finance detail from.</param>
+        // <param name='commentDetailsId'>The ID of the comment you wish to delete.</param>
+        global ListErrorDetail CommentDetailsDelete(Integer companyId, Integer id, Integer commentDetailsId)
+        {
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}/commentdetails/{commentdetailsid}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            path.ApplyField('commentDetailsId', commentDetailsId);
+            httpResponse res = restCallForList('DELETE', path.relativePath, null);
+            ListErrorDetail retVal = new ListErrorDetail();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            retVal.statusCode = res.getStatusCode();
+            return retVal;
+        }
+
+
         // Create a new notice comment.
         // This API is available by invitation only.
         // 'Notice comments' are updates by the notice team on the work to be done and that has been done so far on a notice.
@@ -6851,6 +6679,37 @@ global class AvaTaxClient
             FileResultModel responseModel = null;
             responseModel = (FileResultModel) restCallForFile('GET', path.relativePath, null);
             return responseModel;
+        }
+
+
+        // Delete a single notice.
+        // This API is available by invitation only.
+        // 'Notice finance details' is the categorical breakdown of the total charge levied by the tax authority on our customer,
+        // as broken down in our "notice log" found in Workflow. Main examples of the categories are 'Tax Due', 'Interest', 'Penalty', 'Total Abated'.
+        // A 'notice' represents a letter sent to a business by a tax authority regarding tax filing issues. Avalara
+        // Returns customers often receive support and assistance from the Compliance Notices team in handling notices received by taxing authorities.
+        // 
+        // <param name='companyId'>The ID of the company that owns this notice.</param>
+        // <param name='id'>The ID of the notice you wish to delete the finance detail from.</param>
+        // <param name='financeDetailsId'>The ID of the finance detail you wish to delete.</param>
+        global ListErrorDetail financedetailsdelete(Integer companyId, Integer id, Integer financeDetailsId)
+        {
+            AvaTaxPath path = new AvaTaxPath('/api/v2/companies/{companyId}/notices/{id}/financedetails/{financedetailsid}');
+            path.ApplyField('companyId', companyId);
+            path.ApplyField('id', id);
+            path.ApplyField('financeDetailsId', financeDetailsId);
+            httpResponse res = restCallForList('DELETE', path.relativePath, null);
+            ListErrorDetail retVal = new ListErrorDetail();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
+            {
+                retVal.result = (ListErrorDetail)System.JSON.deserialize(res.getBody(), List<ErrorDetail>.class);
+            }
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            retVal.statusCode = res.getStatusCode();
+            return retVal;
         }
 
 
@@ -7138,16 +6997,21 @@ global class AvaTaxClient
         // When creating an account object you may attach subscriptions and users as part of the 'Create' call.
         // 
         // <param name='model'>The account you wish to create.</param>
-        global AccountModel CreateAccount(AccountModel model)
+        global ListAccountModel CreateAccount(AccountModel model)
         {
             AvaTaxPath path = new AvaTaxPath('/api/v2/accounts');
-            AccountModel responseModel = null;
-            responseModel = restCall('POST', path.relativePath, model, AccountModel.class.getName());
-            if(responseModel.getStatusCode() != 200 && responseModel.getStatusCode() != 201)
+            httpResponse res = restCallForList('POST', path.relativePath, model);
+            ListAccountModel retVal = new ListAccountModel();
+            if(res.getStatusCode() == 200 || res.getStatusCode() == 201)
             {
-                responseModel.error = (ErrorResult)System.JSON.deserialize(JSON.serialize(responseModel), ErrorResult.class)).error;
+                retVal.result = (ListAccountModel)System.JSON.deserialize(res.getBody(), List<AccountModel>.class);
             }
-            return responseModel;
+            else
+            {
+                retVal.error = ((ErrorResult)System.JSON.deserialize(res.getBody(), ErrorResult.class)).error;
+            }
+            retVal.statusCode = res.getStatusCode();
+            return retVal;
         }
 
 
@@ -8050,6 +7914,23 @@ global class AvaTaxClient
         // If you use this file to provide default tax rates, please ensure that your software calls `CreateTransaction`
         // to reconcile the actual transaction and determine the difference between the estimated general tax
         // rate and the final transaction tax.
+        // 
+        // The file provided by this API is in CSV format with the following columns:
+        // 
+        // * ZIP_CODE - The five digit zip code for this record.
+        // * STATE_ABBREV - A valid two character US state abbreviation for this record. Zip codes may span multiple states.
+        // * COUNTY_NAME - A valid county name for this record. Zip codes may span multiple counties.
+        // * CITY_NAME - A valid city name for this record. Zip codes may span multiple cities.
+        // * STATE_SALES_TAX - The state component of the sales tax rate.
+        // * STATE_USE_TAX - The state component of the use tax rate.
+        // * COUNTY_SALES_TAX - The county component of the sales tax rate.
+        // * COUNTY_USE_TAX - The county component of the use tax rate.
+        // * CITY_SALES_TAX - The city component of the sales tax rate.
+        // * CITY_USE_TAX - The city component of the use tax rate.
+        // * TOTAL_SALES_TAX - The total tax rate for sales tax for this postal code. This value may not equal the sum of the state/county/city due to special tax jurisdiction rules.
+        // * TOTAL_USE_TAX - The total tax rate for use tax for this postal code. This value may not equal the sum of the state/county/city due to special tax jurisdiction rules.
+        // * TAX_SHIPPING_ALONE - This column contains 'Y' if shipping is taxable.
+        // * TAX_SHIPPING_AND_HANDLING_TOGETHER - This column contains 'Y' if shipping and handling are taxable when sent together.
         // 
         // For more detailed tax content, please use the `BuildTaxContentFile` API which allows usage of exact items and exact locations.
         // 

@@ -19,6 +19,6 @@ global enum ApiCallStatus
     ReconstructedApiCallAvailable,
 
     // Any other api call status
-    Any
+    AnyField
 
 }

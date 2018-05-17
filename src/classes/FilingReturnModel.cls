@@ -124,6 +124,9 @@ global class FilingReturnModel extends ErrorResult
     // The total amount of nontaxable sales accrued in the current active period
     global Decimal nonTaxableAccrualAmount { get; set; }
 
+    // The total amount of taxable sales accrued in the current active period
+    global Decimal taxableAccrualAmount { get; set; }
+
     // The total amount of sales tax accrued in the current active period
     global Decimal salesTaxAccrualAmount { get; set; }
 

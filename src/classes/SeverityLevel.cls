@@ -22,6 +22,6 @@ global enum SeverityLevel
     Error,
 
     // Unexpected exceptions occurred, operation failed
-    Exception
+    ExceptionField
 
 }

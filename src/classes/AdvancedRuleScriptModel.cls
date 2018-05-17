@@ -30,4 +30,7 @@ global class AdvancedRuleScriptModel extends ErrorResult
 
     // The rule has been approved
     global Boolean isApproved { get; set; }
+
+    // The rule has been disabled
+    global Boolean isDisabled { get; set; }
 }
