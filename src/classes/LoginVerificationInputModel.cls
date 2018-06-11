@@ -22,6 +22,9 @@ global class LoginVerificationInputModel extends ErrorResult
     // Region of the verification request
     global String region { get; set; }
 
+    // TaxFormCode for the verification request
+    global String taxFormCode { get; set; }
+
     // Username that we are using for verification
     global String username { get; set; }
 

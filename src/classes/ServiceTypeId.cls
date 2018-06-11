@@ -69,6 +69,15 @@ global enum ServiceTypeId
     // MRSComplianceManager
     MRSComplianceManager,
 
+    // AvaBikeTax
+    AvaBikeTax,
+
+    // AvaCheckoutBag
+    AvaCheckoutBag,
+
+    // TFOCompliance
+    TFOCompliance,
+
     // Send Sales Rate file service
     SendSalesRateFile
 
