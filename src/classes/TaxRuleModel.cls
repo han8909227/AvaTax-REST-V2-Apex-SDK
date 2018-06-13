@@ -56,7 +56,7 @@ global class TaxRuleModel extends ErrorResult
     // (DEPRECATED) Enumerated rate type to which this rule applies. Please use rateTypeCode instead.
     global RateType rateTypeId { get; set; }
 
-    // Indicates the code of the rate type that applies to this rule. Use `/api/v2/definitions/ratetypes` for a full list of rate type codes.
+    // Indicates the code of the rate type that applies to this rule. Use [ListRateTypesByCountry](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Definitions/ListRateTypesByCountry/) API for a full list of rate type codes.
     global String rateTypeCode { get; set; }
 
     // This type value determines the behavior of the tax rule.

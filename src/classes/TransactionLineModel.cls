@@ -55,13 +55,16 @@ global class TransactionLineModel extends ErrorResult
     // The amount of this line item that was exempt.
     global Decimal exemptAmount { get; set; }
 
-    // The unique ID number of the exemption certificate that applied to this line item.
+    // The unique ID number of the exemption certificate that applied to this line item. It is the calc_id associated with a certificate in CertCapture.
     global Integer exemptCertId { get; set; }
 
     // The CertCapture Certificate ID
     global String certificateId { get; set; }
 
-    // If this line item was exempt, this string contains the word `Exempt`.
+    // The customer Tax Id Number (tax_number) associated with a certificate - Sales tax calculation requests first determine if there is an applicable 
+    // ECMS entry available, and will utilize it for exemption processing. If no applicable ECMS entry is available, the AvaTax service 
+    // will determine if an Exemption Number field is populated or an Entity/Use Code is included in the sales tax calculation request, 
+    // and will perform exemption processing using either of those two options.
     global String exemptNo { get; set; }
 
     // True if this item is taxable.

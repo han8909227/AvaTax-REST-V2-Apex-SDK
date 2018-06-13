@@ -46,7 +46,7 @@ global class TransactionSummary
     // (DEPRECATED) Indicates the tax rate type. Please use rateTypeCode instead.
     global RateType rateType { get; set; }
 
-    // Indicates the code of the rate type. Use `/api/v2/definitions/ratetypes` for a full list of rate type codes.
+    // Indicates the code of the rate type. Use [ListRateTypesByCountry](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Definitions/ListRateTypesByCountry/) API for a full list of rate type codes.
     global String rateTypeCode { get; set; }
 
     // Tax Base - The adjusted taxable amount.

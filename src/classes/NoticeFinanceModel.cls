@@ -13,49 +13,49 @@
 global class NoticeFinanceModel extends ErrorResult
 {
 
-    // 
+    // The Unique Id of the Finance Model
     global Integer id { get; set; }
 
-    // 
+    // The unique ID of the the tax notice associated with the the finance detail
     global Integer noticeId { get; set; }
 
-    // 
+    // The date of the notice
     global DateTime noticeDate { get; set; }
 
-    // 
+    // The due date of the notice
     global DateTime dueDate { get; set; }
 
-    // 
+    // The sequential number of the notice
     global String noticeNumber { get; set; }
 
-    // 
+    // The amount of tax due on the notice
     global Decimal taxDue { get; set; }
 
-    // 
+    // The amound of penalty listed on the notice
     global Decimal penalty { get; set; }
 
-    // 
+    // The amount of interest listed on the notice
     global Decimal interest { get; set; }
 
-    // 
+    // The amount of credits listed on the notice
     global Decimal credits { get; set; }
 
-    // 
+    // The amount of tax abated on the notice
     global Decimal taxAbated { get; set; }
 
-    // 
+    // The amount of customer penalty on the notice
     global Decimal customerPenalty { get; set; }
 
-    // 
+    // The amount of customer interest on the notice
     global Decimal customerInterest { get; set; }
 
-    // 
+    // The amount of CSP Fee Refund on the notice
     global Decimal cspFeeRefund { get; set; }
 
-    // resourceFileId
+    // The name of the file attached to the finance detail
     global String fileName { get; set; }
 
-    // resourceFileId
+    // The ResourceFileId of the finance detail attachment
     global Integer resourceFileId { get; set; }
 
     // The date when this record was created.

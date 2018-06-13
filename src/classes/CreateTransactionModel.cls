@@ -45,13 +45,12 @@ global class CreateTransactionModel extends ErrorResult
     // be the same as the one passed to create a customer.
     global String customerCode { get; set; }
 
-    // DEPRECATED - Customer Usage Type - The client application customer or usage type. For a list of 
-    // available usage types, see `/api/v2/definitions/entityusecodes`.
+    // DEPRECATED - Customer Usage Type - The client application customer or usage type.
     // Please use entityUseCode instead.
     global String customerUsageType { get; set; }
 
     // Entity Use Code - The client application customer or usage type. For a list of 
-    // available usage types, see `/api/v2/definitions/entityusecodes`.
+    // available usage types, use [ListEntityUseCodes](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Definitions/ListEntityUseCodes/) API.
     global String entityUseCode { get; set; }
 
     // Discount - The discount amount to apply to the document. This value will be applied only to lines
@@ -69,6 +68,7 @@ global class CreateTransactionModel extends ErrorResult
     // If you specify an exemption number for this document, this document will be considered exempt, and you
     // may be asked to provide proof of this exemption certificate in the event that you are asked by an auditor
     // to verify your exemptions.
+    // Note: This is same as 'exemptNo' in TransactionModel.
     global String exemptionNo { get; set; }
 
     // Default addresses for all lines in this document. 
@@ -80,7 +80,7 @@ global class CreateTransactionModel extends ErrorResult
 
     // Special parameters for this transaction.
     // 
-    // To get a full list of available parameters, please use the `/api/v2/definitions/parameters` endpoint.
+    // To get a full list of available parameters, please use the [ListParameters](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Definitions/ListParameters/) endpoint.
     global Map<string, string> parameters { get; set; }
 
     // Customer-provided Reference Code with information about this transaction.

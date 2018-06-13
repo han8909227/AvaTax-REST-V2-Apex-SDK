@@ -13,10 +13,10 @@
 global class EcmsDetailModel extends ErrorResult
 {
 
-    // detail id
+    // Unique, system-assigned identifier of a ExemptCertDetail record.
     global Integer exemptCertDetailId { get; set; }
 
-    // exempt certificate id
+    // The calc_id associated with a certificate in CertCapture.
     global Integer exemptCertId { get; set; }
 
     // State FIPS
@@ -32,7 +32,7 @@ global class EcmsDetailModel extends ErrorResult
     // For a full list of all supported codes and names, please see the Definitions API `ListRegions`.
     global String region { get; set; }
 
-    // ID number
+    // The customer Tax Id Number (tax_number) associated with a certificate. This is same as exemptionNo in Transactions.
     global String idNo { get; set; }
 
     // Name or ISO 3166 code identifying the country.
@@ -49,7 +49,8 @@ global class EcmsDetailModel extends ErrorResult
     // End date of this exempt certificate
     global DateTime endDate { get; set; }
 
-    // ID type of this exempt certificate
+    // The type of idNo (tax_number) associated with a certificate.
+    // Example: Driver's Licence Number, Permit Number.
     global String idType { get; set; }
 
     // Is the tax code list an exculsion list?

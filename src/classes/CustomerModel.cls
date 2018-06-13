@@ -110,4 +110,15 @@ global class CustomerModel extends ErrorResult
     // 
     // For more information about custom fields, see the [Avalara Help Center article about custom fields](https://help.avalara.com/0021_Avalara_CertCapture/All_About_CertCapture/Edit_or_Remove_Details_about_Customers).
     global List<CustomFieldModel> customFields { get; set; }
+
+    // A list of exposure zones where you do business with this customer. 
+    // 
+    // To keep track of certificates that are needed for each customer, set this value to a list of all exposure zones where you
+    // sell products to this customer. You can find a list of exposure zones by calling `ListExposureZones`.
+    // 
+    // This field is often called "Ship-To States" or "Ship-To Zones", since it generally refers to locations where you ship products
+    // when this customer makes a purchase.
+    // 
+    // This field is useful for audit purposes since it helps you ensure you have the necessary certificates for each customer.
+    global List<ExposureZoneModel> exposureZones { get; set; }
 }

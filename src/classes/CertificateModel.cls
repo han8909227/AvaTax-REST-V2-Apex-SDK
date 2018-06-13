@@ -57,6 +57,9 @@ global class CertificateModel extends ErrorResult
     // during the audit stage of the certificate validation process.
     global Boolean isSingleCertificate { get; set; }
 
+    // The exemption reason that CertCapture audit/internal logic identifies for created certificate.
+    global ExemptionReasonModel validatedExemptionReason { get; set; }
+
     // The exemption reason associated with this certificate. For example, the reason code for exemption
     // for purposes of resale is `RESALE`.
     //  

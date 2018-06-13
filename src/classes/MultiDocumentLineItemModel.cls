@@ -64,7 +64,11 @@ global class MultiDocumentLineItemModel extends ErrorResult
     // and use all the information available about that item for this transaction.
     global String itemCode { get; set; }
 
-    // Exemption certificate number for this line.
+    // The customer Tax Id Number (tax_number) associated with a certificate - Sales tax calculation requests first determine if there is an applicable 
+    // ECMS entry available, and will utilize it for exemption processing. If no applicable ECMS entry is available, the AvaTax service 
+    // will determine if an Exemption Number field is populated or an Entity/Use Code is included in the sales tax calculation request, 
+    // and will perform exemption processing using either of those two options.
+    // Note: This is same as 'exemptNo' in TransactionModel.
     global String exemptionCode { get; set; }
 
     // True if the document discount should be applied to this line. If this value is false, or not provided, discounts will not be 

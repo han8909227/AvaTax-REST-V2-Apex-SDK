@@ -13,7 +13,7 @@
 global class EcmsModel extends ErrorResult
 {
 
-    // Exempt certificate ID
+    // The calc_id associated with a certificate in CertCapture.
     global Integer exemptCertId { get; set; }
 
     // Company ID
@@ -61,22 +61,23 @@ global class EcmsModel extends ErrorResult
     // For a full list of all supported codes and names, please see the Definitions API `ListCountries`.
     global String country { get; set; }
 
-    // Exempt cert type
+    // The type of exemption certificate. Permitted values are: Blanket and Single.
     global ExemptCertTypeId exemptCertTypeId { get; set; }
 
-    // Document Reference Number
+    // Document Reference Number, in the case of single-use exemption certificates, the DocumentCode or PurchaseOrderNo to which the certificate should apply.
     global String documentRefNo { get; set; }
 
-    // Business type
+    // Business type the customer belongs to.
     global Integer businessTypeId { get; set; }
 
     // Other description for this business type
     global String businessTypeOtherDescription { get; set; }
 
-    // Exempt reason ID
+    // Exempt reason associated with the certificate, coded by CustomerUsageType.
+    // Example: A - Federal Government.
     global String exemptReasonId { get; set; }
 
-    // Other description for exempt reason
+    // Other description for exempt reason i.e. Populated on if exemptReasonId is 'L' - Other.
     global String exemptReasonOtherDescription { get; set; }
 
     // Effective date for this exempt certificate
@@ -119,7 +120,8 @@ global class EcmsModel extends ErrorResult
     // For a full list of all supported codes and names, please see the Definitions API `ListCountries`.
     global String countryIssued { get; set; }
 
-    // Certificate ID for AvaTax?
+    // If the certificate record was synced from an AvaTax Certs account(as opposed to being entered in ECMS directly), 
+    // the unique AvaTax Certs identifier for the certificate record. Usually same as the Id of a Certificate.
     global String avaCertId { get; set; }
 
     // Review status for this exempt certificate

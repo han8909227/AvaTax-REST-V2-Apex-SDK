@@ -118,7 +118,7 @@ global class NexusModel extends ErrorResult
     global Integer modifiedUserId { get; set; }
 
     // The type of nexus that this company is declaring.Replaces NexusTypeId.
-    // Use `/api/v2/definitions/taxtypegroups` for a list of tax type groups.
+    // Use [ListNexusTaxTypeGroups](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Definitions/ListNexusTaxTypeGroups/) API for a list of nexus tax type groups.
     global String nexusTaxTypeGroup { get; set; }
 
     // The tax authority id associated with the jurisdiction the nexus is for

@@ -127,7 +127,7 @@ global class TransactionLineDetailModel extends ErrorResult
     // (DEPRECATED) The rate type for this tax detail. Please use rateTypeCode instead.
     global RateType rateType { get; set; }
 
-    // Indicates the code of the rate type that was used to calculate this tax detail. Use `/api/v2/definitions/ratetypes` for a full list of rate type codes.
+    // Indicates the code of the rate type that was used to calculate this tax detail. Use [ListRateTypesByCountry](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Definitions/ListRateTypesByCountry/) API for a full list of rate type codes.
     global String rateTypeCode { get; set; }
 
     // Number of units in this line item that were calculated to be taxable according to this rate detail.
