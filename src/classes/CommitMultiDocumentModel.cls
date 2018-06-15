@@ -27,5 +27,5 @@ global class CommitMultiDocumentModel extends ErrorResult
     // Set this value to be `true` to commit this transaction.
     // 
     // Committing a transaction allows it to be reported on a tax filing. Uncommitted transactions will not be reported.
-    global Boolean commit { get; set; }
+    global Boolean commitField { get; set; }
 }

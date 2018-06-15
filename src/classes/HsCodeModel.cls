@@ -46,7 +46,7 @@ global class HsCodeModel extends ErrorResult
     global String description { get; set; }
 
     // The system to which this HS code belongs.
-    global String system { get; set; }
+    global String systemField { get; set; }
 
     // The destination country identified with this HS Code. This value applies when certain products are classified in specific ways by
     // bilateral trade agreements.

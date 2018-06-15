@@ -31,5 +31,5 @@ global class SettleTransactionModel extends ErrorResult
     // If you leave this field null, the transaction's commit status will not be changed.
     // 
     // If you use Avalara's Managed Returns Service, committing a transaction will allow that transaction to be filed.
-    global CommitTransactionModel commit { get; set; }
+    global CommitTransactionModel commitField { get; set; }
 }

@@ -23,7 +23,7 @@ global class TransactionModel extends ErrorResult
     global Integer companyId { get; set; }
 
     // The date on which this transaction occurred.
-    global DateTime date { get; set; }
+    global DateTime dateField { get; set; }
 
     // The date when payment was made on this transaction. By default, this should be the same as the date of the transaction.
     global DateTime paymentDate { get; set; }

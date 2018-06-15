@@ -20,7 +20,7 @@ global class NoticeCommentModel extends ErrorResult
     global Integer noticeId { get; set; }
 
     // The date this comment was entered
-    global DateTime date { get; set; }
+    global DateTime dateField { get; set; }
 
     // TaxNoticeComment
     global String comment { get; set; }

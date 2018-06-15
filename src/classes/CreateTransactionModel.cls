@@ -35,7 +35,7 @@ global class CreateTransactionModel extends ErrorResult
     // 
     // By default, this date will be used to calculate the tax rates for the transaction. If you wish to use a
     // different date to calculate tax rates, please specify a `taxOverride` of type `taxDate`.
-    global DateTime date { get; set; }
+    global DateTime dateField { get; set; }
 
     // Salesperson Code - The client application salesperson reference code.
     global String salespersonCode { get; set; }
@@ -97,7 +97,7 @@ global class CreateTransactionModel extends ErrorResult
 
     // Causes the document to be committed if true. This option is only applicable for invoice document 
     // types, not orders.
-    global Boolean commit { get; set; }
+    global Boolean commitField { get; set; }
 
     // BatchCode for batch operations.
     global String batchCode { get; set; }
