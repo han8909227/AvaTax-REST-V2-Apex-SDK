@@ -62,7 +62,7 @@ global class CertExpressInvitationModel extends ErrorResult
     global String message { get; set; }
 
     // The date of the invitation.
-    global DateTime date { get; set; }
+    global DateTime dateField { get; set; }
 
     // The web link (URL) that a customer can click on or visit to begin using this CertExpress invitation. 
     // 
